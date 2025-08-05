@@ -1,0 +1,331 @@
+<div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
+  <div id="coauthor-graph" style="height: 420px; min-height: 320px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: radial-gradient(ellipse at 60% 40%, #222 0%, #1a237e 60%, #000 100%); position: relative; overflow: hidden;"></div>
+  <div id="coauthor-table" style="width: 100%;"></div>
+</div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(() => {
+  // Bail out if the container is not present on the page.
+  const container = document.getElementById('coauthor-graph');
+  if (!container) return;
+
+  fetch('/assets/json/collabo_graph.json')
+    .then(response => response.json())
+    .then(graph => {
+      // Draw graph
+      const width = container.clientWidth || 800;
+      let height;
+      if (width < 500) {
+        // 모바일: 정사각형 또는 최소 높이 보장
+        height = Math.max(width);
+      } else {
+        // 데스크탑: 16:9 비율
+        height = width * 9 / 16;
+      }
+
+      // Remove any existing SVG (fix double box issue)
+      d3.select(container).selectAll('svg').remove();
+
+
+      // --- Add cosmic starfield background ---
+      const starCount = 120;
+      const stars = Array.from({length: starCount}, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.2 + 0.3,
+        o: Math.random() * 0.7 + 0.3
+      }));
+
+      // Insert SVG for graph and starfield
+      const svg = d3.select(container)
+        .append('svg')
+        .attr('viewBox', [0, 0, width, height])
+        .style('width', '100%')
+        .style('height', '100%')
+        .style('border', '1px solid #e2e8f0')
+        .call(
+          d3.zoom()
+            .scaleExtent([0.3, 5])
+            .on('zoom', (event) => {
+              svg.select('g.zoomable').attr('transform', event.transform);
+              updateLabelVisibility(event.transform);
+            })
+        );
+
+      // Add starfield as a background layer
+      svg.append('g')
+        .attr('class', 'starfield')
+        .selectAll('circle')
+        .data(stars)
+        .join('circle')
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .attr('r', d => d.r)
+        .attr('fill', '#fff')
+        .attr('opacity', d => d.o)
+        .attr('filter', 'url(#star-glow)');
+
+      // Add a filter for glowing stars
+      svg.append('defs').append('filter')
+        .attr('id', 'star-glow')
+        .html('<feGaussianBlur stdDeviation="1.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>');
+
+      const simulation = d3.forceSimulation(graph.nodes)
+        .force('link', d3.forceLink(graph.links)
+          .id(d => d.id)
+          .distance(d => 40 + Math.log(d.value + 1) * 14)
+          .strength(d => 0.06 + d.value * 0.012)) // 중력 약화
+        .force('charge', d3.forceManyBody().strength(-40)) // 약간 약화
+        .force('center', d3.forceCenter(width / 2, height / 2)) // 중앙으로 포스 추가
+
+      // Create a group for zoom/pan
+      const zoomable = svg.append('g').attr('class', 'zoomable');
+
+      const link = zoomable.append('g')
+        .attr('stroke', '#e0f7fa')
+        .attr('stroke-opacity', 0.35)
+        .selectAll('line')
+        .data(graph.links)
+        .join('line')
+        .attr('stroke-width', d => 1.2 + Math.log(d.value));
+
+
+      // 네온/야광 팔레트 (더 밝고 화려하게)
+      const neonColors = [
+        '#39ff14', // Neon green
+        '#00fff7', // Neon cyan
+        '#ff00ea', // Neon magenta
+        '#ffe600', // Neon yellow
+        '#ff1744', // Neon red
+        '#00e676', // Neon mint
+        '#2979ff', // Neon blue
+        '#f50057', // Neon pink
+        '#00ff90', // Neon teal
+        '#fff700', // Neon lemon
+        '#ff6ec7', // Pink nebula
+        '#00bfff', // Electric blue
+        '#ffb300', // Neon orange
+        '#e040fb', // Neon purple
+        '#76ff03', // Neon lime
+      ];
+      const color = d3.scaleOrdinal(neonColors);
+
+      // 각 색상별로 glow filter 동적 생성
+      const defs = svg.append('defs');
+      neonColors.forEach((c, i) => {
+        defs.append('filter')
+          .attr('id', `neon-glow-${i}`)
+          .html(`
+            <feGaussianBlur stdDeviation="7" result="blur"/>
+            <feFlood flood-color="${c}" flood-opacity="0.55"/>
+            <feComposite in2="blur" operator="in"/>
+            <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          `);
+      });
+
+      // 노드에 우주 그림자(glow) 효과 추가 (작고 타이트한 원형 glow)
+      svg.append('defs').html(`
+        <filter id="cosmic-glow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      `);
+
+      // Find the top author (max value) and top 5 authors
+      let maxValue = Math.max(...graph.nodes.map(d => d.value));
+      // Sort nodes by value descending and get top 5
+      const top5 = [...graph.nodes].sort((a, b) => b.value - a.value).slice(0, 6).map(d => d.id);
+
+      const nodeGroup = zoomable.append('g');
+      const node = nodeGroup
+        .selectAll('g')
+        .data(graph.nodes)
+        .join('g');
+
+      // Draw circles
+
+      // 노드에 네온 glow 효과 적용 (트윙클 제거로 드래그 부드럽게)
+      node.append('circle')
+        .attr('r', d => {
+          if (d.value === maxValue) return 14 + Math.sqrt(d.value); // 1등 노드 더 크게
+          return 6 + Math.sqrt(d.value);
+        })
+        .attr('fill', (d, i) => color(i % neonColors.length))
+        .attr('filter', (d, i) => `url(#neon-glow-${i % neonColors.length})`)
+        .attr('opacity', 1)
+        .call(d3.drag()
+          .on('start', dragstarted)
+          .on('drag', dragged)
+          .on('end', dragended));
+
+
+      // Add name labels: top 5 to the right, others inside
+      function splitName(name) {
+        // 콤마가 있으면 콤마 앞(성)만
+        if (name.includes(',')) {
+          return name.split(',')[0].trim();
+        }
+        // 한글 이름: 성1글자만
+        if (/^[가-힣]{2,}$/.test(name)) {
+          return name[0];
+        }
+        // 영문 이름: 공백으로 분리해서 첫 단어만
+        if (/^[A-Za-z ]+$/.test(name.trim())) {
+          return name.trim().split(/\s+/)[0];
+        }
+        return name;
+      }
+
+      // Main label (inside for non-top5, hidden for top5)
+      const label = node.append('text')
+        .text(d => splitName(d.id))
+        .attr('text-anchor', 'middle')
+        .attr('dominant-baseline', 'middle')
+        .attr('pointer-events', 'none')
+        .attr('fill', '#fff')
+        .attr('font-size', d => {
+          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
+          return Math.max(8, r * 0.7); // 살짝 키움
+        })
+        .style('white-space', 'pre-line')
+        .style('display', d => top5.includes(d.id) ? 'none' : 'none'); // top5는 기본 숨김
+
+      // Side label for top 5
+      const sideLabel = node.append('text')
+        .filter(d => top5.includes(d.id))
+        .text(d => d.id)
+        .attr('x', d => {
+          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
+          return r + 10;
+        })
+        .attr('y', 2)
+        .attr('text-anchor', 'start')
+        .attr('dominant-baseline', 'middle')
+        .attr('pointer-events', 'none')
+        .attr('fill', '#fff')
+        .attr('font-size', d => {
+          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
+          return Math.max(12, r * 0.85);
+        })
+        .attr('stroke', '#222')
+        .attr('stroke-width', 2)
+        .attr('paint-order', 'stroke')
+        .style('display', 'block');
+
+
+      // Show/hide labels based on zoom level and node size
+      function updateLabelVisibility(transform) {
+        label.each(function(d) {
+          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
+          // threshold: label shows if node radius * zoom > 16
+          if (!top5.includes(d.id) && (r * transform.k) > 16) {
+            d3.select(this).style('display', 'block');
+          } else {
+            d3.select(this).style('display', 'none');
+          }
+        });
+        sideLabel.each(function(d) {
+          // top5는 항상 보이게
+          d3.select(this).style('display', top5.includes(d.id) ? 'block' : 'none');
+        });
+      }
+      // Initial label visibility
+      updateLabelVisibility({k: 1});
+
+      // Tooltip for displaying author names on hover.
+      const tooltip = d3.select('body')
+        .append('div')
+        .attr('class', 'graph-tooltip')
+        .style('position', 'absolute')
+        .style('padding', '4px 8px')
+        .style('background', 'rgba(0,0,0,0.7)')
+        .style('color', '#fff')
+        .style('border-radius', '4px')
+        .style('font-size', '0.75rem')
+        .style('pointer-events', 'none')
+        .style('opacity', 0);
+
+      node.on('mouseover', (event, d) => {
+        tooltip
+          .style('opacity', 1)
+          .html(`<strong>${d.id}</strong><br/>Papers: ${d.value}`);
+      }).on('mousemove', (event) => {
+        tooltip
+          .style('left', (event.pageX + 10) + 'px')
+          .style('top', (event.pageY + 10) + 'px');
+      }).on('mouseout', () => {
+        tooltip.style('opacity', 0);
+      });
+
+
+      // 이름만 추출 ("Kim, Minhee" → "Minhee", "Minhee Kim" → "Minhee", "김민희" → "민희")
+      function extractFirstName(name) {
+        if (name.includes(',')) {
+          // "성, 이름" 형태: 콤마 기준으로만 분리
+          const parts = name.split(',');
+          return parts[1] ? parts[1].trim() : '';
+        }
+        // 한글 이름: 2글자 이상이면 마지막 2글자
+        if (/^[가-힣]{2,}$/.test(name)) {
+          return name.slice(-2);
+        }
+        // 영문 이름: 공백으로 분리해서 첫 단어가 이름일 확률 높음
+        if (/^[A-Za-z ]+$/.test(name.trim())) {
+          return name.trim().split(/\s+/)[0];
+        }
+        return name;
+      }
+
+      // bib_search input이 생성될 때까지 재시도하며 값 입력
+      function setBibSearchValue(value, retries = 5) {
+        const searchBox = document.getElementById('bibsearch');
+        if (searchBox) {
+          searchBox.value = value;
+          searchBox.dispatchEvent(new Event('input', { bubbles: true }));
+          searchBox.focus();
+        } else if (retries > 0) {
+          setTimeout(() => setBibSearchValue(value, retries - 1), 200);
+        }
+      }
+
+      node.on('click', (event, d) => {
+        setBibSearchValue(extractFirstName(d.id));
+      });
+
+      node.append('title').text(d => d.id);
+
+      simulation.on('tick', () => {
+        link
+          .attr('x1', d => d.source.x)
+          .attr('y1', d => d.source.y)
+          .attr('x2', d => d.target.x)
+          .attr('y2', d => d.target.y);
+        node.attr('transform', d => `translate(${d.x},${d.y})`);
+      });
+
+      function dragstarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.1).restart(); // 더 낮은 값으로 부드럽게
+        d.fx = d.x;
+        d.fy = d.y;
+        
+        // 드래그 중에는 트랜지션 중단
+        d3.select(event.sourceEvent.target).interrupt();
+      }
+      function dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+      }
+      function dragended(event, d) {
+        if (!event.active) simulation.alphaTarget(0).restart(); // 부드러운 종료
+        d.fx = null;
+        d.fy = null;
+      }
+    });
+})();
+</script>

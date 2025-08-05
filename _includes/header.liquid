@@ -17,7 +17,7 @@
               {{- site.last_name -}}
             {% endif %}
           {% else %}
-            {{- site.title -}}
+            <span style="font-family: 'HancomHoonminjeongeumH';">{{- site.krtitle -}}</span>
           {% endif %}
         </a>
       {% elsif site.enable_navbar_social %}
@@ -57,7 +57,7 @@
           </li>
 
           <!-- Other pages -->
-          {% assign sorted_pages = site.pages | sort: 'nav_order' %}
+          {% assign sorted_pages = site.pages | sort: 'title' %}
           {% for p in sorted_pages %}
             {% if p.nav and p.autogen == null %}
               {% if p.dropdown %}
