@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://BAELAB-PNU.github.io//sitemap.xml
+Sitemap: https://pnubaelab.github.io//sitemap.xml
