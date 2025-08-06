@@ -19,10 +19,16 @@
             <th scope="row" style="width: 20%">{{ item.date | date: '%b %d, %Y' }}</th>
             <td>
               {% if item.inline %}
-                {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-              {% else %}
+            {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+            {% else %}
+            {% if item.redirect %}
+                <a class="news-title" href="{{ item.redirect }}" target="_blank" rel="noopener">{{ item.title }}</a>
+            {% elsif item.url contains "http" %}
+                <a class="news-title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+            {% else %}
                 <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-              {% endif %}
+            {% endif %}
+            {% endif %}
               {% if item.author %}
                 <br><small class="text-muted">by {{ item.author }}</small>
               {% endif %}
