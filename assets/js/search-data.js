@@ -49,6 +49,16 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "news-부산대-배혜림-교수-김승-씨-39-icicic-2011-39-논문상-수상",
+          title: '부산대 배혜림 교수·김승 씨, &amp;#39;ICICIC 2011&amp;#39; 논문상 수상',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/ICICIC2012/";
+            },},{id: "news-주제발표하는-배혜림-부산대-교수",
+          title: '주제발표하는 배혜림 부산대 교수',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%EC%A3%BC%EC%A0%9C%EB%B0%9C%ED%91%9C%ED%95%98%EB%8A%94%20%EB%B0%B0%ED%98%9C%EB%A6%BC%20%EB%B6%80%EC%82%B0%EB%8C%80%20%EA%B5%90%EC%88%98/";
             },},{id: "news-congratulation-daesan-park-and-hyunha-lee-have-accepted-their-presentation-in-informs-annual-meeting-2025",
           title: 'Congratulation 🎓🍑 🇺🇸 !!! Daesan Park and Hyunha Lee have accepted their presentation...',
           description: "",
@@ -215,8 +225,8 @@ ninja.data = [{
           description: "M.S. Researcher at FITI",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EC%9D%80%EC%A3%BC/";
-            },},{id: "people-이현하",
-          title: '이현하',
+            },},{id: "people-hyunha-lee-이현하",
+          title: 'Hyunha Lee(이현하)',
           description: "Undergraduate Student",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%ED%98%84%ED%95%98/";
