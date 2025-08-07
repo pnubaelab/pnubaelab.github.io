@@ -54,6 +54,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/ICICIC2012/";
+            },},{id: "news-시계열-예측을-위한-새로운-인공신경망-cru-부산대-저명-학술지-ieee-tpami-논문-게재",
+          title: '시계열 예측을 위한 새로운 인공신경망 CRU 부산대, 저명 학술지 『IEEE TPAMI』 논문 게재...',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%EC%8B%9C%EA%B3%84%EC%97%B4%20%EC%98%88%EC%B8%A1%EC%9D%84%20%EC%9C%84%ED%95%9C%20%EC%83%88%EB%A1%9C%EC%9A%B4%20%EC%9D%B8%EA%B3%B5%EC%8B%A0%EA%B2%BD%EB%A7%9D%20CRU%20%EB%B6%80%EC%82%B0%EB%8C%80,%20%EC%A0%80%EB%AA%85%20%ED%95%99%EC%88%A0%EC%A7%80%20%E3%80%8EIEEE%20TPAMI%E3%80%8F%20%EB%85%BC%EB%AC%B8%20%EA%B2%8C%EC%9E%AC/";
             },},{id: "news-주제발표하는-배혜림-부산대-교수",
           title: '주제발표하는 배혜림 부산대 교수',
           description: "",
@@ -417,22 +422,22 @@ ninja.data = [{
               window.location.href = "/photo/%EC%A4%91%EA%B5%AD%EA%B4%80%EA%B4%91/";
             },},{id: "photo-2025년배랩단합대회",
           title: '2025년배랩단합대회',
-          description: "2025년 BAELAB 단합대회 (전체사진)",
+          description: "2025년 BAELAB 단합대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C/";
             },},{id: "photo-2025년배랩단합대회",
           title: '2025년배랩단합대회',
-          description: "2025년 BAELAB 단합대회 (탁구사진)",
+          description: "2025년 BAELAB 단합대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C2/";
             },},{id: "photo-2025년배랩단합대회",
           title: '2025년배랩단합대회',
-          description: "2025년 BAELAB 단합대회 (탁구사진)",
+          description: "2025년 BAELAB 단합대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C4/";
             },},{id: "photo-2025년배랩단합대회",
           title: '2025년배랩단합대회',
-          description: "2025년 BAELAB 단합대회 (족구사진)",
+          description: "2025년 BAELAB 단합대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C7/";
             },},{id: "photo-2025-상반기-제주도-선도워크숍",
