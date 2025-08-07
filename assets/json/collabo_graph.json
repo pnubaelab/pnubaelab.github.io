@@ -1,21 +1,6 @@
 {
   "nodes": [
     {
-      "id": "Kamal, Imam Mustafa",
-      "group": 1,
-      "value": 16
-    },
-    {
-      "id": "Bae, Hyerim",
-      "group": 1,
-      "value": 77
-    },
-    {
-      "id": "Liu, Ling",
-      "group": 1,
-      "value": 6
-    },
-    {
       "id": "Kim, Dohee",
       "group": 1,
       "value": 26
@@ -24,6 +9,16 @@
       "id": "Lee, Eunju",
       "group": 1,
       "value": 4
+    },
+    {
+      "id": "Kamal, Imam Mustafa",
+      "group": 1,
+      "value": 16
+    },
+    {
+      "id": "Bae, Hyerim",
+      "group": 1,
+      "value": 76
     },
     {
       "id": "Sim, Sunghyun",
@@ -49,6 +44,11 @@
       "id": "Kim, Yeongho",
       "group": 1,
       "value": 1
+    },
+    {
+      "id": "Liu, Ling",
+      "group": 1,
+      "value": 5
     },
     {
       "id": "Park, Sa-Eun",
@@ -136,11 +136,6 @@
       "value": 3
     },
     {
-      "id": "Mustafa, Kamal Imam",
-      "group": 1,
-      "value": 1
-    },
-    {
       "id": "Ramadhan, Muhammad Hanif",
       "group": 1,
       "value": 5
@@ -178,7 +173,7 @@
     {
       "id": "Adi, Taufik Nur",
       "group": 1,
-      "value": 8
+      "value": 9
     },
     {
       "id": "Kim, Hyemee",
@@ -267,11 +262,6 @@
     },
     {
       "id": "Lim, Taesoo",
-      "group": 1,
-      "value": 1
-    },
-    {
-      "id": "Adi, T",
       "group": 1,
       "value": 1
     },
@@ -504,16 +494,6 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "Liu, Ling",
-      "value": 6
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
-      "target": "Liu, Ling",
-      "value": 3
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "Kim, Dohee",
       "value": 26
     },
@@ -525,7 +505,7 @@
     {
       "source": "Kamal, Imam Mustafa",
       "target": "Kim, Dohee",
-      "value": 3
+      "value": 4
     },
     {
       "source": "Kamal, Imam Mustafa",
@@ -586,6 +566,16 @@
       "source": "Kang, Suk-Ho",
       "target": "Kim, Yeongho",
       "value": 1
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Liu, Ling",
+      "value": 5
+    },
+    {
+      "source": "Kamal, Imam Mustafa",
+      "target": "Liu, Ling",
+      "value": 2
     },
     {
       "source": "Bae, Hyerim",
@@ -924,13 +914,13 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "Mustafa, Kamal Imam",
-      "value": 1
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "Ramadhan, Muhammad Hanif",
       "value": 5
+    },
+    {
+      "source": "Iman, Alif Nur",
+      "target": "Kamal, Imam Mustafa",
+      "value": 1
     },
     {
       "source": "Iman, Alif Nur",
@@ -944,13 +934,18 @@
     },
     {
       "source": "Iman, Alif Nur",
-      "target": "Mustafa, Kamal Imam",
+      "target": "Ramadhan, Muhammad Hanif",
+      "value": 3
+    },
+    {
+      "source": "Kamal, Imam Mustafa",
+      "target": "Lee, Yongjae",
       "value": 1
     },
     {
-      "source": "Iman, Alif Nur",
+      "source": "Kamal, Imam Mustafa",
       "target": "Ramadhan, Muhammad Hanif",
-      "value": 3
+      "value": 2
     },
     {
       "source": "Kim, Dohee",
@@ -959,26 +954,11 @@
     },
     {
       "source": "Kim, Dohee",
-      "target": "Mustafa, Kamal Imam",
-      "value": 1
-    },
-    {
-      "source": "Kim, Dohee",
       "target": "Ramadhan, Muhammad Hanif",
       "value": 2
     },
     {
       "source": "Lee, Yongjae",
-      "target": "Mustafa, Kamal Imam",
-      "value": 1
-    },
-    {
-      "source": "Lee, Yongjae",
-      "target": "Ramadhan, Muhammad Hanif",
-      "value": 1
-    },
-    {
-      "source": "Mustafa, Kamal Imam",
       "target": "Ramadhan, Muhammad Hanif",
       "value": 1
     },
@@ -1000,11 +980,6 @@
     {
       "source": "Lee, Sangjae",
       "target": "Sim, Sunghyun",
-      "value": 1
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
-      "target": "Ramadhan, Muhammad Hanif",
       "value": 1
     },
     {
@@ -1110,7 +1085,7 @@
     {
       "source": "Adi, Taufik Nur",
       "target": "Bae, Hyerim",
-      "value": 8
+      "value": 9
     },
     {
       "source": "Adi, Taufik Nur",
@@ -1180,7 +1155,7 @@
     {
       "source": "Adi, Taufik Nur",
       "target": "Choi, Yulim",
-      "value": 3
+      "value": 4
     },
     {
       "source": "Adi, Taufik Nur",
@@ -1190,7 +1165,7 @@
     {
       "source": "Adi, Taufik Nur",
       "target": "Wahid, Nur Ahmad",
-      "value": 4
+      "value": 5
     },
     {
       "source": "Bae, Hyerim",
@@ -1473,39 +1448,24 @@
       "value": 1
     },
     {
-      "source": "Adi, T",
-      "target": "Bae, Hyerim",
-      "value": 1
-    },
-    {
-      "source": "Adi, T",
-      "target": "Choi, Yulim",
-      "value": 1
-    },
-    {
-      "source": "Adi, T",
+      "source": "Adi, Taufik Nur",
       "target": "Jeong, Soo Hwan",
       "value": 1
     },
     {
-      "source": "Adi, T",
+      "source": "Adi, Taufik Nur",
       "target": "Seo, Chang Sung",
       "value": 1
     },
     {
-      "source": "Adi, T",
+      "source": "Adi, Taufik Nur",
       "target": "Seo, Tae Young",
       "value": 1
     },
     {
-      "source": "Adi, T",
+      "source": "Adi, Taufik Nur",
       "target": "Sutrisnowati, Riska Asriana",
-      "value": 1
-    },
-    {
-      "source": "Adi, T",
-      "target": "Wahid, Nur Ahmad",
-      "value": 1
+      "value": 2
     },
     {
       "source": "Bae, Hyerim",
@@ -1605,11 +1565,6 @@
     {
       "source": "Adi, Taufik Nur",
       "target": "Sim, Sunghyun",
-      "value": 1
-    },
-    {
-      "source": "Adi, Taufik Nur",
-      "target": "Sutrisnowati, Riska Asriana",
       "value": 1
     },
     {

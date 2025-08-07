@@ -13,7 +13,6 @@ display_categories: [2025,2024,2023,2022,2021,2020]
   font-weight: 400;
   font-style: normal;
 }
-<style>
 
 .photo-gallery {
   width: 100%;
@@ -23,7 +22,7 @@ display_categories: [2025,2024,2023,2022,2021,2020]
 }
 
 .photo-masonry {
-  columns: 4;
+  columns: 3;
   column-gap: 8px;
   margin: 20px 0;
 }
