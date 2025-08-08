@@ -75,6 +75,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/informs/";
+            },},{id: "people-nur-ahmad-wahid",
+          title: 'Nur Ahmad Wahid',
+          description: "M.S. Software Engineer at Diverta Inc.",
+          section: "People",handler: () => {
+              window.location.href = "/people/Ahmad%20Wahid/";
             },},{id: "people-bernardo-nugroho-yahya",
           title: 'Bernardo Nugroho Yahya',
           description: "PhD. Professor at Hankuk Univ of Foreign Studies, Industrial Engineering",
@@ -95,6 +100,21 @@ ninja.data = [{
           description: "PhD. Senior Research Engineer (선임) at IOChord (아이오코드)",
           section: "People",handler: () => {
               window.location.href = "/people/Riska%20Asriana%20Sutrisnowati/";
+            },},{id: "people-",
+          title: '',
+          description: "",
+          section: "People",handler: () => {
+              window.location.href = "/people/ShuzhuZHANG/";
+            },},{id: "people-taufik-nur-adi",
+          title: 'Taufik Nur Adi',
+          description: ":PhD. Permanent Lecturer at Telkom University",
+          section: "People",handler: () => {
+              window.location.href = "/people/Taufik%20Adi/";
+            },},{id: "people-",
+          title: '',
+          description: "",
+          section: "People",handler: () => {
+              window.location.href = "/people/ZhenguoWang/";
             },},{id: "people-hanseok-kang-강한석",
           title: 'Hanseok Kang(강한석)',
           description: "M.S. 주임 at 파크랜드 월드",
@@ -155,11 +175,21 @@ ninja.data = [{
           description: "M.S. Researcher at LIG Nex1",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EB%AF%BC%EA%B7%9C/";
+            },},{id: "people-sanghyuck-stephn-park-박상혁",
+          title: 'Sanghyuck(Stephn) Park(박상혁)',
+          description: "M.S. Head of Planning Department, (주)동신모텍",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EB%B0%95%EC%83%81%ED%98%81/";
             },},{id: "people-eunhee-park-박은희",
           title: 'Eunhee Park(박은희)',
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EC%9D%80%ED%9D%AC/";
+            },},{id: "people-jaehun-park-박재훈",
+          title: 'Jaehun Park(박재훈)',
+          description: "PhD. Professor at Changwon National Univ, Department of Business Administration",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EB%B0%95%EC%9E%AC%ED%9B%88/";
             },},{id: "people-chanho-park-박찬호",
           title: 'Chanho Park(박찬호)',
           description: "M.S. Senier Researcher at LGCNS",
