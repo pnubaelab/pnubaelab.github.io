@@ -1,5 +1,8 @@
 <div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
   <div id="coauthor-graph" style="height: 420px; min-height: 320px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: radial-gradient(ellipse at 60% 40%, #222 0%, #1a237e 60%, #000 100%); position: relative; overflow: hidden;"></div>
+  <div style="margin-top: .25rem;">
+    {% include pub_count_legend.liquid %}
+  </div>
   <div id="coauthor-table" style="width: 100%;"></div>
 </div>
 <script src="https://d3js.org/d3.v7.min.js"></script>

@@ -231,7 +231,7 @@ latest_posts:
       <div class="card-content">
         <p>Our research covers the implementation of pilot systems required for the development, service and commercialization of key source technologies.</p>
         <p>We apply our solutions to <strong>port logistics</strong>, <strong>shipbuilding</strong>, <strong>manufacturing</strong>, <strong>service industries</strong>,
-        and <strong>>military</strong></p>
+        and <strong>military</strong></p>
       </div>
     </div>
   </div>

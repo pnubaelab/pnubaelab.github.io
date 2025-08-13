@@ -1,0 +1,18 @@
+{% assign pub_count = site.data.pub_count %}
+<div class="pub-legend" style="display:flex; gap: 1rem; align-items:center; flex-wrap: wrap; margin: 0.25rem 0 1.25rem;">
+  <div style="display:flex; align-items:center; gap:0.5rem;">
+    <span role="img" aria-label="Domestic" style="font-size:1.1em;">🏠</span>
+    <span style="font-weight:600; color:#1f2937;">Domestic</span>
+    <span style="color:#6b7280;">{{ pub_count.kci }}</span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.5rem;">
+    <span role="img" aria-label="International" style="font-size:1.1em;">🌍</span>
+    <span style="font-weight:600; color:#1f2937;">International</span>
+    <span style="color:#6b7280;">{{ pub_count.intl }}</span>
+  </div>
+  <div style="display:flex; align-items:center; gap:0.5rem;">
+    <span role="img" aria-label="Total" style="font-size:1.1em;">📊</span>
+    <span style="font-weight:600; color:#1f2937;">Total</span>
+    <span style="color:#6b7280;">{{ pub_count.total }}</span>
+  </div>
+</div>

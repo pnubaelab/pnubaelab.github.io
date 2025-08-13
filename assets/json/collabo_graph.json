@@ -18,7 +18,7 @@
     {
       "id": "Bae, Hyerim",
       "group": 1,
-      "value": 76
+      "value": 77
     },
     {
       "id": "Sim, Sunghyun",
@@ -28,7 +28,7 @@
     {
       "id": "Park, Kikun",
       "group": 1,
-      "value": 14
+      "value": 15
     },
     {
       "id": "Bae, Joonsoo",
@@ -63,7 +63,7 @@
     {
       "id": "Kim, Kihun",
       "group": 1,
-      "value": 3
+      "value": 4
     },
     {
       "id": "Kang, Eung-Jun",
@@ -306,6 +306,11 @@
       "value": 1
     },
     {
+      "id": "Kim, Minhee",
+      "group": 1,
+      "value": 1
+    },
+    {
       "id": "Lee, Kyunghoon",
       "group": 1,
       "value": 1
@@ -530,7 +535,7 @@
     {
       "source": "Bae, Hyerim",
       "target": "Park, Kikun",
-      "value": 14
+      "value": 15
     },
     {
       "source": "Park, Kikun",
@@ -590,7 +595,7 @@
     {
       "source": "Bae, Hyerim",
       "target": "Kim, Kihun",
-      "value": 3
+      "value": 4
     },
     {
       "source": "Bae, Hyerim",
@@ -890,7 +895,7 @@
     {
       "source": "Kim, Kihun",
       "target": "Park, Kikun",
-      "value": 1
+      "value": 2
     },
     {
       "source": "Kwon, Jaeeun",
@@ -1725,6 +1730,21 @@
     {
       "source": "Choi, Yulim",
       "target": "Liu, Ling",
+      "value": 1
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Kim, Minhee",
+      "value": 1
+    },
+    {
+      "source": "Kim, Kihun",
+      "target": "Kim, Minhee",
+      "value": 1
+    },
+    {
+      "source": "Kim, Minhee",
+      "target": "Park, Kikun",
       "value": 1
     },
     {
