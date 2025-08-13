@@ -100,9 +100,9 @@ ninja.data = [{
           description: "PhD. Senior Research Engineer (선임) at IOChord (아이오코드)",
           section: "People",handler: () => {
               window.location.href = "/people/Riska%20Asriana%20Sutrisnowati/";
-            },},{id: "people-",
-          title: '',
-          description: "",
+            },},{id: "people-shuzhu-zhang",
+          title: 'Shuzhu ZHANG',
+          description: "M.S. Professor at Zhejiang University, School of Information Management and Artificial Intelligence",
           section: "People",handler: () => {
               window.location.href = "/people/ShuzhuZHANG/";
             },},{id: "people-taufik-nur-adi",
@@ -110,9 +110,9 @@ ninja.data = [{
           description: ":PhD. Permanent Lecturer at Telkom University",
           section: "People",handler: () => {
               window.location.href = "/people/Taufik%20Adi/";
-            },},{id: "people-",
-          title: '',
-          description: "",
+            },},{id: "people-zhenguo-wang",
+          title: 'Zhenguo Wang',
+          description: "Department Manager at 上海振华重工(集团)股份有限公司 (ZPMC)",
           section: "People",handler: () => {
               window.location.href = "/people/ZhenguoWang/";
             },},{id: "people-hanseok-kang-강한석",
