@@ -31,8 +31,8 @@ latest_posts:
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
 
 .hero-section {
-  padding: 120px 20px;
-  margin: -40px -20px 60px -20px;
+  padding: 56px 16px; /* further reduced height */
+  margin: -40px -20px 0 -20px; /* remove bottom gap */
   text-align: center;
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
@@ -56,12 +56,12 @@ latest_posts:
 
 .hero-title {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(4rem, 15vw, 15rem);
+  font-size: clamp(3.25rem, 12vw, 11rem); /* slightly wider visual footprint */
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: -0.05em;
+  letter-spacing: 0.02em; /* widen title spacing */
   line-height: 0.85;
-  margin: 0 0 20px 0;
+  margin: 0 0 12px 0; /* tighter spacing below title */
   position: relative;
   z-index: 2;
   color: white;
@@ -75,7 +75,7 @@ latest_posts:
 
 .hero-subtitle {
   font-family: 'Oswald', sans-serif;
-  font-size: clamp(1.2rem, 3vw, 2.5rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.8rem); /* slightly smaller to keep hero compact */
   margin: 0;
   font-weight: 400;
   letter-spacing: 0.05em;
@@ -183,10 +183,51 @@ latest_posts:
   transform: translateY(-3px);
 }
 
+/* Logo strip under hero */
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px 36px;
+  padding: 0 20px 24px 20px; /* remove top padding to close the gap */
+  margin: 0 0 20px 0;
+  background: transparent; /* make container transparent */
+  border-top: none;
+  border-bottom: none;
+}
+
+.logo-item img {
+  height: 42px;
+  max-width: 200px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-item.smartchain {
+  background: #ffffff; /* white background as requested */
+  padding: 2px 6px; /* tighter padding */
+  border-radius: 0; /* sharp corners */
+  border: none;
+}
+
+/* make white logo text appear gray on white background */
+.logo-item.smartchain img {
+  filter: grayscale(100%) brightness(0.4);
+}
+
+/* reusable white box for specified logos */
+.logo-item.boxed {
+  background: #ffffff;
+  padding: 2px 6px; /* tighter padding */
+  border-radius: 0; /* sharp corners */
+  border: none;
+}
+
 @media (max-width: 768px) {
   .hero-section {
-    padding: 80px 20px;
-    margin: -20px -20px 40px -20px;
+  padding: 48px 16px; /* further reduced on mobile */
+  margin: -20px -20px 0 -20px; /* remove bottom gap on mobile */
     background-attachment: scroll;
   }
   
@@ -203,13 +244,42 @@ latest_posts:
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
   }
+
+  .logo-strip {
+    gap: 16px 20px;
+    padding: 0 12px 16px 12px; /* remove top padding on mobile */
+  }
+
+  .logo-item img {
+    height: 32px;
+    max-width: 160px;
+  }
 }
 </style>
 
 <div class="hero-section">
   <h1 class="hero-title">BAE LAB</h1>
   <p class="hero-subtitle">BIGDATA ANALYTICS ENGINEERING</p>
-  <p class="hero-subtitle">PNU, Hyerim Bae</p>
+  <p class="hero-subtitle">Hyerim Bae, PNU</p>
+</div>
+
+<!-- Partner/affiliation logos -->
+<div class="logo-strip">
+  <div class="logo-item">
+    <img src="{{ '/assets/img/logo_pnu.jpg' | relative_url }}" alt="Pusan National University logo">
+  </div>
+  <div class="logo-item boxed">
+    <img src="{{ '/assets/img/logo_scsc.png' | relative_url }}" alt="SCSC logo">
+  </div>
+  <div class="logo-item smartchain">
+    <img src="{{ '/assets/img/logo_smartchain.png' | relative_url }}" alt="Smart Chain logo">
+  </div>
+  <div class="logo-item">
+    <img src="{{ '/assets/img/logo_ds.png' | relative_url }}" alt="DS logo">
+  </div>
+  <div class="logo-item boxed">
+    <img src="{{ '/assets/img/logo_baelab.png' | relative_url }}" alt="baelab logo">
+  </div>
 </div>
 
 <div class="section-container">
