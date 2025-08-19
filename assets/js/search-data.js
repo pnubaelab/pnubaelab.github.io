@@ -51,7 +51,51 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/repositories/";
           },
-        },{id: "books-the-godfather",
+        },{id: "post-spinquant",
+        
+          title: "SpinQuant",
+        
+        description: "양자화 기법 중 하나인 SpinQuant에 대해서 알아봅시다.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/SpinQuant.pdf";
+          
+        },
+      },{id: "post-post-llm-online-function-approximation-problem은-어떻게-해결할-수있는가-rnn에서-mamba2까지",
+        
+          title: "Post LLM, Online Function Approximation problem은 어떻게 해결할 수있는가? RNN에서 Mamba2까지",
+        
+        description: "맘바에 대해서 알아보자",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/20250521-%EB%B0%95%ED%83%9D%ED%98%84.pdf";
+          
+        },
+      },{id: "post-bitnet",
+        
+          title: "Bitnet",
+        
+        description: "양자화 기법 중 하나인 Bitnet에 대해서 톺아봅시다.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/assets/pdf/Bitnet%ED%86%BA%EC%95%84%EB%B3%B4%EA%B8%B0_%EB%B0%95%ED%83%9D%ED%98%84.pdf";
+          
+        },
+      },{id: "post-a-post-with-formatting-and-links",
+        
+          title: "a post with formatting and links",
+        
+        description: "march &amp; april, looking forward to summer",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2015/Points/";
+          
+        },
+      },{id: "books-the-godfather",
           title: 'The Godfather',
           description: "",
           section: "Books",handler: () => {
@@ -117,11 +161,21 @@ ninja.data = [{
           description: ":PhD. Permanent Lecturer at Telkom University",
           section: "People",handler: () => {
               window.location.href = "/people/Taufik%20Adi/";
+            },},{id: "people-yelita-anggiane-iskandar",
+          title: 'Yelita Anggiane Iskandar',
+          description: "Doctor program",
+          section: "People",handler: () => {
+              window.location.href = "/people/YelitaAnggianeIskandar/";
             },},{id: "people-zhenguo-wang",
           title: 'Zhenguo Wang',
           description: "Department Manager at 上海振华重工(集团)股份有限公司 (ZPMC)",
           section: "People",handler: () => {
               window.location.href = "/people/ZhenguoWang/";
+            },},{id: "people-seongpil-kang-강상필",
+          title: 'Seongpil Kang(강상필)',
+          description: "Doctor Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B0%95%EC%84%B1%ED%95%84/";
             },},{id: "people-hanseok-kang-강한석",
           title: 'Hanseok Kang(강한석)',
           description: "M.S. 주임 at 파크랜드 월드",
@@ -167,6 +221,16 @@ ninja.data = [{
           description: "Integrated PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EC%98%88%EB%A6%B0/";
+            },},{id: "people-hyemee-kim-김혜미",
+          title: 'Hyemee Kim(김혜미)',
+          description: "Doctor Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B9%80%ED%98%9C%EB%AF%B8/";
+            },},{id: "people-changho-moon-문창호",
+          title: 'Changho Moon(문창호)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EB%AC%B8%EC%B0%BD%ED%98%B8/";
             },},{id: "people-kikun-park-박기군",
           title: 'Kikun Park(박기군)',
           description: "PhD. Postdoctoral Researher at SCSC Research Center",
@@ -177,6 +241,11 @@ ninja.data = [{
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EB%8C%80%EC%82%B0/";
+            },},{id: "people-myeongsoon-park-박명순",
+          title: 'Myeongsoon Park(박명순)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EB%B0%95%EB%AA%85%EC%88%9C/";
             },},{id: "people-mingyu-park-박민규",
           title: 'Mingyu Park(박민규)',
           description: "M.S. Researcher at LIG Nex1",
@@ -217,6 +286,11 @@ ninja.data = [{
           description: "Professor",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%B0%ED%98%9C%EB%A6%BC/";
+            },},{id: "people-hanwoong-baek-백한웅",
+          title: 'Hanwoong Baek(백한웅)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EB%B0%B1%ED%95%9C%EC%9B%85/";
             },},{id: "people-junhyuk-seo-서준혁",
           title: 'Junhyuk Seo(서준혁)',
           description: "Integrated PhD program",
@@ -232,6 +306,11 @@ ninja.data = [{
           description: "Ph.D Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%95%84%EB%A6%AC%ED%94%84/";
+            },},{id: "people-minji-ahn-안민지",
+          title: 'Minji Ahn(안민지)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%95%88%EB%AF%BC%EC%A7%80/";
             },},{id: "people-gawon-lee-이가원",
           title: 'Gawon Lee(이가원)',
           description: "M.S.",
@@ -267,11 +346,26 @@ ninja.data = [{
           description: "M.S. Researcher at FITI",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EC%9D%80%EC%A3%BC/";
+            },},{id: "people-hyunju-lee-이현주",
+          title: 'Hyunju Lee(이현주)',
+          description: "Doctor Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%9D%B4%ED%98%84%EC%A3%BC/";
             },},{id: "people-hyunha-lee-이현하",
           title: 'Hyunha Lee(이현하)',
           description: "Undergraduate Student",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%ED%98%84%ED%95%98/";
+            },},{id: "people-jinhong-lim-임진홍",
+          title: 'Jinhong Lim(임진홍)',
+          description: "Doctor Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%9E%84%EC%A7%84%ED%99%8D/";
+            },},{id: "people-minsu-jeong-정민수",
+          title: 'Minsu Jeong(정민수)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%A0%95%EB%AF%BC%EC%88%98/";
             },},{id: "people-hyokyeong-jung-정효경",
           title: 'HyoKyeong Jung(정효경)',
           description: "M.S.",
@@ -287,6 +381,11 @@ ninja.data = [{
           description: "M.S.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A1%B0%EC%88%98%ED%98%84/";
+            },},{id: "people-hyungtae-jo-조형태",
+          title: 'Hyungtae Jo(조형태)',
+          description: "Doctor Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%A1%B0%ED%98%95%ED%83%9C/";
             },},{id: "people-byeongjun-joo-주병준",
           title: 'Byeongjun Joo(주병준)',
           description: "M.S. Senier professional at Samsung Electronics",
