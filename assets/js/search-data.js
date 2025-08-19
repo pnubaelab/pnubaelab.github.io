@@ -171,8 +171,8 @@ ninja.data = [{
           description: "Department Manager at 上海振华重工(集团)股份有限公司 (ZPMC)",
           section: "People",handler: () => {
               window.location.href = "/people/ZhenguoWang/";
-            },},{id: "people-seongpil-kang-강상필",
-          title: 'Seongpil Kang(강상필)',
+            },},{id: "people-seongpil-kang-강성필",
+          title: 'Seongpil Kang(강성필)',
           description: "Doctor Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B0%95%EC%84%B1%ED%95%84/";
