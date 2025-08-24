@@ -111,11 +111,17 @@
         '#e040fb', // Neon purple
         '#76ff03', // Neon lime
       ];
-      const color = d3.scaleOrdinal(neonColors);
+      // 매 로드마다 색상 순서를 랜덤화 (일관된 세션 내 매핑 유지)
+      const shuffledColors = neonColors.slice();
+      for (let i = shuffledColors.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffledColors[i], shuffledColors[j]] = [shuffledColors[j], shuffledColors[i]];
+      }
+      const color = d3.scaleOrdinal(shuffledColors);
 
-      // 각 색상별로 glow filter 동적 생성
-      const defs = svg.append('defs');
-      neonColors.forEach((c, i) => {
+  // 각 색상별로 glow filter 동적 생성 (셔플된 팔레트 적용)
+  const defs = svg.append('defs');
+  shuffledColors.forEach((c, i) => {
         defs.append('filter')
           .attr('id', `neon-glow-${i}`)
           .html(`
@@ -156,11 +162,11 @@
       // 노드에 네온 glow 효과 적용 (트윙클 제거로 드래그 부드럽게)
       node.append('circle')
         .attr('r', d => {
-          if (d.value === maxValue) return 14 + Math.sqrt(d.value); // 1등 노드 더 크게
+          if (d.value === maxValue) return 20 + Math.sqrt(d.value); // 1등 노드 더 크게
           return 6 + Math.sqrt(d.value);
         })
-        .attr('fill', (d, i) => color(i % neonColors.length))
-        .attr('filter', (d, i) => `url(#neon-glow-${i % neonColors.length})`)
+        .attr('fill', (d, i) => color(i % shuffledColors.length))
+        .attr('filter', (d, i) => `url(#neon-glow-${i % shuffledColors.length})`)
         .attr('opacity', 1)
         .call(d3.drag()
           .on('start', dragstarted)
