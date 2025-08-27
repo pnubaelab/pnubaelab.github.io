@@ -271,8 +271,8 @@ latest_posts:
   <div class="logo-item boxed">
     <img src="{{ '/assets/img/logo_scsc.png' | relative_url }}" alt="SCSC logo">
   </div>
-  <div class="logo-item smartchain">
-    <img src="{{ '/assets/img/logo_smartchain.png' | relative_url }}" alt="Smart Chain logo">
+  <div class="logo-item boxed">
+    <img src="{{ '/assets/img/logo_smartchain.jpg' | relative_url }}" alt="Smart Chain logo">
   </div>
   <div class="logo-item">
     <img src="{{ '/assets/img/logo_ds.png' | relative_url }}" alt="DS logo">
