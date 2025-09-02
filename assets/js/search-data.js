@@ -243,6 +243,11 @@ ninja.data = [{
           description: "Integrated PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EC%98%88%EB%A6%B0/";
+            },},{id: "people-taekhyeong-kim-김탁형",
+          title: 'Taekhyeong Kim(김탁형)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B9%80%ED%83%81%ED%98%95/";
             },},{id: "people-hyemee-kim-김혜미",
           title: 'Hyemee Kim(김혜미)',
           description: "Doctor Program",
@@ -388,6 +393,11 @@ ninja.data = [{
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A0%95%EB%AF%BC%EC%88%98/";
+            },},{id: "people-minjae-jeong-정민재",
+          title: 'MinJae Jeong(정민재)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%A0%95%EB%AF%BC%EC%9E%AC/";
             },},{id: "people-hyokyeong-jung-정효경",
           title: 'HyoKyeong Jung(정효경)',
           description: "M.S.",
