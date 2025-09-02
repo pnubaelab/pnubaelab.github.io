@@ -193,6 +193,11 @@ ninja.data = [{
           description: "Department Manager at 上海振华重工(集团)股份有限公司 (ZPMC)",
           section: "People",handler: () => {
               window.location.href = "/people/ZhenguoWang/";
+            },},{id: "people-mingyun-kang-강민균",
+          title: 'Mingyun Kang(강민균)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B0%95%EB%AF%BC%EA%B7%A0/";
             },},{id: "people-seongpil-kang-강성필",
           title: 'Seongpil Kang(강성필)',
           description: "Doctor Program",
