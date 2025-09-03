@@ -84,17 +84,6 @@ ninja.data = [{
             window.location.href = "/assets/pdf/Bitnet%ED%86%BA%EC%95%84%EB%B3%B4%EA%B8%B0_%EB%B0%95%ED%83%9D%ED%98%84.pdf";
           
         },
-      },{id: "post-spinquant",
-        
-          title: "SpinQuant",
-        
-        description: "양자화 기법 중 하나인 SpinQuant에 대해서 알아봅시다.",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/assets/pdf/SpinQuant.pdf";
-          
-        },
       },{id: "post-post-llm-online-function-approximation-problem은-어떻게-해결할-수있는가-rnn에서-mamba2까지",
         
           title: "Post LLM, Online Function Approximation problem은 어떻게 해결할 수있는가? RNN에서 Mamba2까지",
@@ -248,6 +237,11 @@ ninja.data = [{
           description: "Integrated PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EC%98%88%EB%A6%B0/";
+            },},{id: "people-jongmin-kim-김종민",
+          title: 'Jongmin Kim(김종민)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B9%80%EC%A2%85%EB%AF%BC/";
             },},{id: "people-taekhyeong-kim-김탁형",
           title: 'Taekhyeong Kim(김탁형)',
           description: "M.S Program",
