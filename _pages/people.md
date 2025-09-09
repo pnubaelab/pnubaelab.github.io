@@ -7,11 +7,18 @@ nav: true
 display_categories: [current, parttime,alumni]
 horizontal: false
 ---
+<style>
+.projects h2.category { color:#000 !important; }
+</style>
 <div class="projects">
   {% if site.enable_project_categories and page.display_categories %}
   <!-- Display categorized projects -->
     {% for category in page.display_categories %}
-      <h2 class="category">{{ category }}</h2>
+      {% if category == 'parttime' %}
+        <h2 class="category">part-time</h2>
+      {% else %}
+        <h2 class="category">{{ category }}</h2>
+      {% endif %}
       {% assign categorized_projects = site.people | where: "category", category %}
       {% if category == "alumni" %}
         {% assign sorted_projects = categorized_projects | sort: "importance" | reverse %}

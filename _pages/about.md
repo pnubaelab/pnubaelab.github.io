@@ -141,6 +141,12 @@ latest_posts:
   text-align: center;
 }
 
+/* Document style intro override */
+.highlight-box.doc-intro { text-align:left; padding:10px 0 32px 0; margin:10px 0 40px 0; }
+.highlight-box.doc-intro .doc-heading { font-family:'Oswald'; font-size:2.2rem; font-weight:600; margin:0 0 14px 0; letter-spacing:.5px; text-transform:none; }
+.highlight-box.doc-intro .doc-body { font-size:1rem; line-height:1.6; margin:0; max-width:860px; color:#333; }
+.highlight-box.doc-intro.doc-center { text-align:center; }
+
 .highlight-text {
   font-family: 'Oswald', sans-serif;
   font-size: clamp(1.4rem, 4vw, 2.1rem);
@@ -259,10 +265,8 @@ latest_posts:
 
 <div class="hero-section">
   <h1 class="hero-title">BAE LAB</h1>
-  <p class="hero-subtitle">BIGDATA ANALYTICS ENGINEERING</p>
-  <p class="hero-subtitle">Hyerim Bae, PNU</p>
+  <p class="hero-subtitle">BIGDATA ANALYTICS ENGINEERING LAB · PNU</p>
 </div>
-
 <!-- Partner/affiliation logos -->
 <div class="logo-strip">
   <div class="logo-item">
@@ -282,54 +286,37 @@ latest_posts:
   </div>
 </div>
 
+
 <div class="section-container">
-  <div class="highlight-box">
-    <p class="highlight-text">Data-Driven Solutions for Industrial Innovation<span class="hero-colon">.</span></p>
-  </div>
-
-  <div class="section-grid">
-    <div class="info-card">
-      <h2 class="card-title">Research Focus</h2>
-      <div class="card-content">
-        <p>The <strong>Bigdata Analytics Engineering</strong> (BAE) laboratory uses data to find solutions to various problems in the industry and conduct research necessary for servitization and systematization of them.</p>
-        <p>We study methodologies to find hidden keys to process productivity and service competitiveness through data, building systematic operational processes to gain enterprise competitiveness.</p>
-      </div>
+    <div class="highlight-box doc-intro doc-center">
+      <h2 class="doc-heading">From Raw Data to Operational Intelligence<span class="hero-colon">.</span></h2>
+      <p class="doc-body">We fuse advanced analytics, AI engineering, and domain knowledge to transform complex industrial processes into measurable, optimizable, and sustainable systems.</p>
     </div>
+    <section class="doc-section" style="margin:0 0 42px 0;">
+      <h2 style="font-family:'Oswald',sans-serif;font-size:1.85rem;margin:0 0 14px 0;letter-spacing:.5px;">
+        Research Scope
+      </h2>
+      <p style="margin:0 0 14px 0;line-height:1.55;">
+         The <strong>Bigdata Analytics Engineering</strong> (BAE) Lab develops data-driven solutions 
+        to address industrial challenges and to advance the <strong>servitization and systematization</strong> 
+        of operations. Harnessing the power of cloud and IoT-era data, we uncover hidden performance drivers 
+        that enhance efficiency and productivity across <strong>port logistics</strong>, <strong>shipbuilding</strong>, 
+        <strong>manufacturing</strong>, <strong>service industries</strong>, and <strong>defense</strong> — 
+        converting raw operational traces into structured, decision-ready intelligence.
+      </p>
+      <p style="margin:0;line-height:1.55;">
+         Our work spans the entire lifecycle (acquisition → curation → feature abstraction → 
+        AI &amp; hybrid RL/OR with simulation-driven optimization → deployment &amp; monitoring) 
+        and integrates deep learning, reinforcement learning, process mining, and large-scale 
+        data engineering. Our collaborations foster technology transfer and commercialization, 
+        enabling sustainable improvements in industrial efficiency and productivity.
+      </p>
+    </section>
 
-    <div class="info-card">
-      <h2 class="card-title">Applications</h2>
-      <div class="card-content">
-        <p>Our research covers the implementation of pilot systems required for the development, service and commercialization of key source technologies.</p>
-        <p>We apply our solutions to <strong>port logistics</strong>, <strong>shipbuilding</strong>, <strong>manufacturing</strong>, <strong>service industries</strong>,
-        and <strong>military</strong></p>
-      </div>
-    </div>
-  </div>
-
-  <div class="tech-grid">
-    <div class="tech-item">Artificial<br>Intelligence</div>
-    <div class="tech-item">Reinforcement<br>Learning</div>
-    <div class="tech-item">Big Data</div>
-    <div class="tech-item">Process<br>Mining</div>
-  </div>
-
-  <div class="info-card">
-    <h2 class="card-title">Innovation & Collaboration</h2>
-    <div class="card-content">
-      <p>Cloud computing and IoT, the core technologies of the Fourth Industrial Revolution, produce massive amounts of data. Many industries are seeking <strong>hidden knowledge</strong> to gain competitiveness from this data.</p>
-      <p>We work on <strong>technology transfer and commercialization</strong> through cooperation with diverse domestic companies, increasing efficiency and productivity in manufacturing, logistics, and finance sectors.</p>
-    </div>
-  </div>
-
-  <div style="margin-top: 60px;" class="info-card">
-    <h2 class="card-title">Join Our Team</h2>
-    <div class="card-content">
-      <p>Room 602, 10th Engineering Building, PNU<br>
-      hrbae@pusan.ac.kr</p>
-    </div>
-  </div>
+  <section class="doc-section" style="margin:0 0 30px 0;">
+      <h2 style="font-family:'Oswald',sans-serif;font-size:1.85rem;margin:0 0 14px 0;letter-spacing:.5px;">Contact & Location</h2>
+      <p style="margin:0 0 6px 0;">Room 602, 10th Engineering Building, Pusan National University</p>
+      <p style="margin:0 0 10px 0;">Email: <a href="mailto:hrbae@pusan.ac.kr">hrbae@pusan.ac.kr</a></p>
+      <p style="margin:0;">Prospective students: include transcripts (unofficial OK), a ≤300 word statement, and any project/research artifacts.</p>
+  </section>
 </div>
-<br>
-<br>
-<br>
-<br>
