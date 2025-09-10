@@ -35,8 +35,8 @@ latest_posts:
   margin: -40px -20px 0 -20px; /* remove bottom gap */
   text-align: center;
   position: relative;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), 
-              url('https://baelab.pusan.ac.kr/sites/baelab/atchmnfl/bbs/15879/temp_1697086842004100.tmp');
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
+              url('{{ "/assets/img/LOGMS2025.jpg" | relative_url }}');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
