@@ -627,6 +627,61 @@ ninja.data = [{
           description: "2025년 대한산업공학회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
+            },},{id: "photo-icpr28-chía-colombia",
+          title: 'ICPR28,Chía, Colombia',
+          description: "ICPR28,Chía, Colombia",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%BD%9C%EB%A1%AC%EB%B9%84%EC%95%84/";
+            },},{id: "photo-icpr28-chía-colombia",
+          title: 'ICPR28,Chía, Colombia',
+          description: "ICPR28,Chía, Colombia",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%BD%9C%EB%A1%AC%EB%B9%84%EC%95%842/";
+            },},{id: "photo-icpr28-chía-colombia",
+          title: 'ICPR28,Chía, Colombia',
+          description: "ICPR28,Chía, Colombia",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%BD%9C%EB%A1%AC%EB%B9%84%EC%95%843/";
+            },},{id: "photo-2025년-icicic",
+          title: '2025년 ICICIC',
+          description: "ICICIC2025,Kitakyushu,Japan",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025ICICIC1/";
+            },},{id: "photo-2025년-icicic",
+          title: '2025년 ICICIC',
+          description: "ICICIC2025,Kitakyushu,Japan",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025ICICIC2/";
+            },},{id: "photo-2025년-logms",
+          title: '2025년 LOGMS',
+          description: "LOGMS2025, Sanghai,China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025LOGMS1/";
+            },},{id: "photo-2025년-logms",
+          title: '2025년 LOGMS',
+          description: "LOGMS2025, Sanghai,China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025LOGMS2/";
+            },},{id: "photo-2025년-logms",
+          title: '2025년 LOGMS',
+          description: "LOGMS2025, Sanghai,China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025LOGMS3/";
+            },},{id: "photo-2025년-logms",
+          title: '2025년 LOGMS',
+          description: "LOGMS2025, Sanghai, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025LOGMS4/";
+            },},{id: "photo-2025년bpm발표-스페인",
+          title: '2025년BPM발표, 스페인',
+          description: "BPM MAIN TRACK!!, Seville, Spain",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%8A%A4%ED%8E%98%EC%9D%B8%20copy/";
+            },},{id: "photo-2025년bpm발표-스페인",
+          title: '2025년BPM발표, 스페인',
+          description: "BPM, Seville, Spain",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%8A%A4%ED%8E%98%EC%9D%B8/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
