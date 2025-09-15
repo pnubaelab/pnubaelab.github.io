@@ -141,10 +141,12 @@ ninja.data = [{
           section: "News",},{id: "news-祝贺-추정호-이경훈-presented-at-13th-international-conference-on-logistics-and-maritime-systems-logms-2025-sanghai-china",
           title: '祝贺!! 🎉🎉🎉🇨🇳 추정호 이경훈 presented at 13th International Conference on Logistics and Maritime...',
           description: "",
-          section: "News",},{id: "news-hola-이용재-presented-at-international-conference-on-business-process-management-seville-spain-2025-main-track",
-          title: '¡Hola!!! 🎉🎉🎉 이용재 presented at International Conference on Business Process Management,Seville, Spain 2025...',
+          section: "News",},{id: "news-bpm-2025-presenter-이용재",
+          title: 'BPM 2025 Presenter 이용재!!',
           description: "",
-          section: "News",},{id: "news-すごい-조상민-got-the-icicic2025-best-presentation-award",
+          section: "News",handler: () => {
+              window.location.href = "/news/2025-09-04-BPM/";
+            },},{id: "news-すごい-조상민-got-the-icicic2025-best-presentation-award",
           title: 'すごい!! 🎉🎉🎉    조상민 got the ICICIC2025 Best Presentation Award!!!!',
           description: "",
           section: "News",},{id: "people-nur-ahmad-wahid",
