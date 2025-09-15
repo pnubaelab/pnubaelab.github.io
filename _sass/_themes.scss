@@ -20,6 +20,11 @@
   --global-divider-color: rgba(0, 0, 0, 0.1);
   --global-card-bg-color: #{$white-color};
   --global-highlight-color: #{$red-color-dark};
+  /* Legend text colors */
+  --legend-primary-color: var(--global-text-color);
+  --legend-secondary-color: var(--global-text-color-light);
+  /* Category heading color */
+  --category-heading-color: var(--global-text-color);
   --global-back-to-top-bg-color: rgba(
     #{color.channel($black-color, "red", $space: rgb)},
     #{color.channel($black-color, "green", $space: rgb)},
@@ -91,6 +96,11 @@ html[data-theme="dark"] {
   --global-distill-app-color: #{$grey-color-light};
   --global-divider-color: #424246;
   --global-card-bg-color: #{$grey-900};
+  /* Legend text colors (tuned for dark mode) */
+  --legend-primary-color: var(--global-text-color);
+  --legend-secondary-color: #9ca3af; /* slightly dimmer than primary for contrast */
+  /* Category heading color for dark mode */
+  --category-heading-color: var(--global-text-color);
   --global-back-to-top-bg-color: rgba(
     #{color.channel($white-color, "red", $space: rgb)},
     #{color.channel($white-color, "green", $space: rgb)},

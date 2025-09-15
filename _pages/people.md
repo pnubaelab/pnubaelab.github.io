@@ -8,7 +8,7 @@ display_categories: [current, parttime,alumni]
 horizontal: false
 ---
 <style>
-.projects h2.category { color:#000 !important; }
+.projects h2.category { color: var(--category-heading-color) !important; }
 </style>
 <div class="projects">
   {% if site.enable_project_categories and page.display_categories %}
