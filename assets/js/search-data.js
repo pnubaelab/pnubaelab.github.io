@@ -59,29 +59,18 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/assets/pdf/CT%20forecasting%20with%20TimeLLM.pdf";
+            window.location.href = "/blog/2025/TimeLLMCTF/";
           
         },
-      },{id: "post-an-evolutionary-and-predictive-discrete-event-simulation",
+      },{id: "post-bitnet-톺아보기",
         
-          title: "An Evolutionary and Predictive Discrete Event Simulation",
+          title: "Bitnet 톺아보기.",
         
-        description: "컨테이너 터미널 효율을 높이기 위한 GAIML 기법",
+        description: "Bitnet 톺아보기.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/assets/pdf/An%20Evolutionary%20and%20Predictive%20Discrete%20Event%20Simulation.pdf";
-          
-        },
-      },{id: "post-bitnet",
-        
-          title: "Bitnet",
-        
-        description: "양자화 기법 중 하나인 Bitnet에 대해서 톺아봅시다.",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/assets/pdf/Bitnet%ED%86%BA%EC%95%84%EB%B3%B4%EA%B8%B0_%EB%B0%95%ED%83%9D%ED%98%84.pdf";
+            window.location.href = "/blog/2025/BitNet/";
           
         },
       },{id: "post-post-llm-online-function-approximation-problem은-어떻게-해결할-수있는가-rnn에서-mamba2까지",
@@ -92,7 +81,18 @@ ninja.data = [{
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/assets/pdf/20250521-%EB%B0%95%ED%83%9D%ED%98%84.pdf";
+            window.location.href = "/blog/2025/Mamba/";
+          
+        },
+      },{id: "post-an-evolutionary-and-predictive-discrete-event-simulation",
+        
+          title: "An Evolutionary and Predictive Discrete Event Simulation",
+        
+        description: "컨테이너 터미널 효율을 높이기 위한 GAIML 기법",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2024/KikunPark/";
           
         },
       },{id: "post-a-post-with-formatting-and-links",
