@@ -751,7 +751,7 @@ ninja.data = [{
         title: 'LinkedIn',
         section: 'Socials',
         handler: () => {
-          window.open("https://www.linkedin.com/in/혜림-배-184400b1", "_blank");
+          window.open("https://www.linkedin.com/in/hyerim-bae-184400b1", "_blank");
         },
       },{
         id: 'social-orcid',
