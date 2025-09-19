@@ -79,12 +79,13 @@
       }
       .photo-img-wrap:hover .photo-desc-overlay {
         opacity: 1;
-        pointer-events: auto;
+        /* Keep overlay non-interactive so clicks go through to the image for zoom */
+        pointer-events: none;
       }
       </style>
       <div class="photo-img-wrap">
         {% if project.img %}
-        <img class="photo-img" src="{{ project.img | relative_url }}" alt="project thumbnail">
+        <img class="photo-img" src="{{ project.img | relative_url }}" alt="project thumbnail" data-zoomable>
         {% endif %}
         <div class="photo-desc-overlay">{{ project.description }}</div>
         <div class="polaroid-text">{{ project.date | date: '%b %d, %Y' }}</div>
