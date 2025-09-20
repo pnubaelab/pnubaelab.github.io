@@ -144,7 +144,7 @@ latest_posts:
 /* Document style intro override */
 .highlight-box.doc-intro { text-align:left; padding:10px 0 32px 0; margin:10px 0 40px 0; }
 .highlight-box.doc-intro .doc-heading { font-family:'Oswald'; font-size:2.2rem; font-weight:600; margin:0 0 14px 0; letter-spacing:.5px; text-transform:none; }
-.highlight-box.doc-intro .doc-body { font-size:1rem; line-height:1.6; margin:0; max-width:860px; color:#333; }
+.highlight-box.doc-intro .doc-body { font-size:1rem; line-height:1.6; margin:0; max-width:860px;}
 .highlight-box.doc-intro.doc-center { text-align:center; }
 
 .highlight-text {
@@ -197,7 +197,7 @@ latest_posts:
   align-items: center;
   gap: 24px 36px;
   padding: 0 20px 24px 20px; /* remove top padding to close the gap */
-  margin: 0 0 20px 0;
+  margin: 0 -20px 20px -20px; /* match hero-section width */
   background: transparent; /* make container transparent */
   border-top: none;
   border-bottom: none;
@@ -230,6 +230,12 @@ latest_posts:
   border: none;
 }
 
+/* Theme-based grayscale toggle for specific logos (PNU, DS) */
+.logo-item.pnu .only-dark,
+.logo-item.ds .only-dark {
+  filter: grayscale(0%) brightness(1);
+}
+
 @media (max-width: 768px) {
   .hero-section {
   padding: 48px 16px; /* further reduced on mobile */
@@ -254,6 +260,7 @@ latest_posts:
   .logo-strip {
     gap: 16px 20px;
     padding: 0 12px 16px 12px; /* remove top padding on mobile */
+    margin: 0 -20px 16px -20px; /* match hero-section width on mobile */
   }
 
   .logo-item img {
@@ -270,21 +277,21 @@ latest_posts:
 <!-- Partner/affiliation logos -->
 <div class="logo-strip">
   <div class="logo-item">
-    <img src="{{ '/assets/img/logo_pnu.jpg' | relative_url }}" alt="Pusan National University logo">
-  </div>
-  <div class="logo-item boxed">
-    <img src="{{ '/assets/img/logo_scsc.png' | relative_url }}" alt="SCSC logo">
-  </div>
-  <div class="logo-item boxed">
-    <img src="{{ '/assets/img/logo_smartchain.jpg' | relative_url }}" alt="Smart Chain logo">
+    <img class="only-light" src="{{ '/assets/img/logo_pnub.png' | relative_url }}" alt="Pusan National University logo (light)">
+    <img class="only-dark" src="{{ '/assets/img/logo_pnud.png' | relative_url }}" alt="Pusan National University logo (dark)">
   </div>
   <div class="logo-item">
-    <img src="{{ '/assets/img/logo_ds.png' | relative_url }}" alt="DS logo">
+      <img class="only-light" src="{{ '/assets/img/logo_scsc.png' | relative_url }}" alt="SCSC logo (light)">
+      <img class="only-dark" src="{{ '/assets/img/logo_scsc1.png' | relative_url }}" alt="SCSC logo (dark)">
   </div>
-  <div class="logo-item boxed">
-    <img src="{{ '/assets/img/logo_baelab.png' | relative_url }}" alt="baelab logo">
+  <div class="logo-item">
+    <img class="only-light" src="{{ '/assets/img/logo_smartchain.png' | relative_url }}" alt="Smart Chain logo(light)">
+    <img class="only-dark" src="{{ '/assets/img/logo_smartchain1.png' | relative_url }}" alt="Smart Chain logo (dark)">
   </div>
-</div>
+  <div class="logo-item">
+    <img class="only-light" src="{{ '/assets/img/logo_dsb.png' | relative_url }}" alt="DS logo (light)">
+    <img class="only-dark" src="{{ '/assets/img/logo_dsd.png' | relative_url }}" alt="DS logo (dark)">
+  </div>
 
 
 <div class="section-container">
@@ -317,6 +324,8 @@ latest_posts:
       <h2 style="font-family:'Oswald',sans-serif;font-size:1.85rem;margin:0 0 14px 0;letter-spacing:.5px;">Contact & Location</h2>
       <p style="margin:0 0 6px 0;">Room 602, 10th Engineering Building, Pusan National University</p>
       <p style="margin:0 0 10px 0;">Email: <a href="mailto:hrbae@pusan.ac.kr">hrbae@pusan.ac.kr</a></p>
-      <p style="margin:0;">Prospective students: include transcripts (unofficial OK), a ≤300 word statement, and any project/research artifacts.</p>
   </section>
+</div>
+
+
 </div>
