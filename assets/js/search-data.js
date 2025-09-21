@@ -135,7 +135,12 @@ ninja.data = [{
           section: "News",},{id: "news-shiok-ah-dohee-kim-and-jaeeun-kwon-have-invited-in-informs-international-2025",
           title: 'Shiok ah 🇸🇬🦁🌺~! Dohee Kim and Jaeeun Kwon have invited in INFORMS International...',
           description: "",
-          section: "News",},{id: "news-すごい-조상민-홍성문-presented-at-19th-international-conference-on-innovative-computing-information-and-control-icicic2025",
+          section: "News",},{id: "news-부산-데이터-위크-개최-데이터-기반-혁신도시-도약",
+          title: '부산 데이터 위크 개최…“데이터 기반 혁신도시 도약”',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%EB%B6%80%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%84%ED%81%AC/";
+            },},{id: "news-すごい-조상민-홍성문-presented-at-19th-international-conference-on-innovative-computing-information-and-control-icicic2025",
           title: 'すごい!! 🎉🎉🎉 조상민, 홍성문 presented at 19th International Conference on Innovative Computing, Information...',
           description: "",
           section: "News",},{id: "news-祝贺-추정호-이경훈-presented-at-13th-international-conference-on-logistics-and-maritime-systems-logms-2025-sanghai-china",
