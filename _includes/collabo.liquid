@@ -135,16 +135,23 @@
           `);
       });
 
-      // 노드에 우주 그림자(glow) 효과 추가 (작고 타이트한 원형 glow)
-      svg.append('defs').html(`
-        <filter id="cosmic-glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      `);
+      // 노드에 그라데이션 효과 추가 (안쪽은 투명도 0, 바깥쪽은 투명하게)
+      const gradientDefs = svg.append('defs');
+      
+      // 각 색상별로 radial gradient 생성
+      shuffledColors.forEach((c, i) => {
+        gradientDefs.append('radialGradient')
+          .attr('id', `gradient-${i}`)
+          .attr('cx', '50%')
+          .attr('cy', '50%')
+          .attr('r', '50%')
+          .html(`
+            <stop offset="0%" style="stop-color:${c};stop-opacity:1"/>
+            <stop offset="70%" style="stop-color:${c};stop-opacity:0.8"/>
+            <stop offset="100%" style="stop-color:${c};stop-opacity:0.5"/>
+            <stop offset="100%" style="stop-color:${c};stop-opacity:0.1"/>
+          `);
+      });
 
       // Find the top author (max value) and top 5 authors
       let maxValue = Math.max(...graph.nodes.map(d => d.value));
@@ -165,7 +172,7 @@
           if (d.value === maxValue) return 20 + Math.sqrt(d.value); // 1등 노드 더 크게
           return 6 + Math.sqrt(d.value);
         })
-        .attr('fill', (d, i) => color(i % shuffledColors.length))
+        .attr('fill', (d, i) => `url(#gradient-${i % shuffledColors.length})`)
         .attr('filter', (d, i) => `url(#neon-glow-${i % shuffledColors.length})`)
         .attr('opacity', 1)
         .call(d3.drag()
