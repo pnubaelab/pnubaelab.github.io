@@ -24,6 +24,13 @@
   },
   "work": [
     {
+      "name": "Symposium on Computational Intelligence",
+      "position": "International Program Committee Member",
+      "url": "http://www.icicconference.org/sci2025/",
+      "startDate": "2025-09-23",
+      "endDate": "Now"
+    },
+    {
       "name": "부산대학교 산업공학과 / Pusan National University, Department of Industrial Engineering",
       "position": "교수 / Professor",
       "url": "https://baelab.pusan.ac.kr/baelab/63122/subview.do",
@@ -62,7 +69,14 @@
       "name": "부산대학교 지능물류빅데이터연구소 / Pusan National University, Intelligent Logistics Big Data Research Institute",
       "position": "연구소장 / Director",
       "url": "https://baelab.pusan.ac.kr/baelab/63122/subview.do",
-      "startDate": "2022-01-01",
+      "startDate": "2022-03-01",
+      "endDate": "Now"
+    },
+    {
+      "name": "부산광역시 과학기술진흥위원회 기획전략위원회 / Pusan Science and Technology Promotion Committee",
+      "position": "위원 / Committee Member",
+      "url": "https://baelab.pusan.ac.kr/baelab/63122/subview.do",
+      "startDate": "2022-03-01",
       "endDate": "Now"
     },
     {
