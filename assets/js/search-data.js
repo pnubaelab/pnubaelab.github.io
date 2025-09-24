@@ -154,7 +154,12 @@ ninja.data = [{
             },},{id: "news-すごい-조상민-got-the-icicic2025-best-presentation-award",
           title: 'すごい!! 🎉🎉🎉    조상민 got the ICICIC2025 Best Presentation Award!!!!',
           description: "",
-          section: "News",},{id: "people-nur-ahmad-wahid",
+          section: "News",},{id: "news-제11회-39-부산-r-amp-d-주간-39-행사-25-26일-벡스코서-열려",
+          title: '제11회 &amp;#39;부산 R&amp;amp;D 주간&amp;#39; 행사 25~26일 벡스코서 열려',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2025-%EB%B6%80%EC%82%B0%EC%95%8C%EC%95%A4%EB%94%94%EC%A3%BC%EA%B0%84/";
+            },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
           section: "People",handler: () => {
