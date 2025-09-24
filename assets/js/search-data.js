@@ -694,6 +694,11 @@ ninja.data = [{
           description: "LOGMS2025, Sanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025LOGMS4/";
+            },},{id: "photo-2025년-logms",
+          title: '2025년 LOGMS',
+          description: "LOGMS2025, Sanghai, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025LOGMS5/";
             },},{id: "photo-2025년bpm발표-스페인",
           title: '2025년BPM발표, 스페인',
           description: "BPM MAIN TRACK!!, Seville, Spain",
