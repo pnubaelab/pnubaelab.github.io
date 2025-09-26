@@ -283,6 +283,12 @@ latest_posts:
     </a>
   </div>
   <div class="logo-item">
+  <a href="https://ds.pusan.ac.kr/ds/index.do" target="_blank" rel="noopener">
+    <img class="only-light" src="{{ '/assets/img/logo_dsb.png' | relative_url }}" alt="DS logo (light)">
+    <img class="only-dark" src="{{ '/assets/img/logo_dsd.png' | relative_url }}" alt="DS logo (dark)">
+    </a>
+  </div>
+  <div class="logo-item">
   <a href="https://scsc.pusan.ac.kr/scsc/index.do" target="_blank" rel="noopener">
       <img class="only-light" src="{{ '/assets/img/logo_scsc.png' | relative_url }}" alt="SCSC logo (light)">
       <img class="only-dark" src="{{ '/assets/img/logo_scsc1.png' | relative_url }}" alt="SCSC logo (dark)">
@@ -294,12 +300,7 @@ latest_posts:
     <img class="only-dark" src="{{ '/assets/img/logo_smartchain1.png' | relative_url }}" alt="Smart Chain logo (dark)">
     </a>
   </div>
-  <div class="logo-item">
-  <a href="https://ds.pusan.ac.kr/ds/index.do" target="_blank" rel="noopener">
-    <img class="only-light" src="{{ '/assets/img/logo_dsb.png' | relative_url }}" alt="DS logo (light)">
-    <img class="only-dark" src="{{ '/assets/img/logo_dsd.png' | relative_url }}" alt="DS logo (dark)">
-    </a>
-  </div>
+
 
 
 <div class="section-container">
