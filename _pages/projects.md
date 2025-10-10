@@ -51,7 +51,7 @@ horizontal: false
           <a class="news-title" href="{{ project.url | relative_url }}">{{ project.title }}</a>
         {% endif %}
         {% if project.author %}
-          <br><small class="text-muted">from {{ project.author }}</small>
+          <br><small class="text-muted">with {{ project.author }}</small>
         {% endif %}
       </td>
     </tr>

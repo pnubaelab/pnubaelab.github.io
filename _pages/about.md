@@ -31,15 +31,16 @@ latest_posts:
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
 
 .hero-section {
-  padding: 56px 16px; /* further reduced height */
-  margin: -40px -20px 0 -20px; /* remove bottom gap */
+  padding: 56px 16px;
+  margin: -40px -20px 0 -20px;
   text-align: center;
   position: relative;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
               url('{{ "/assets/img/LOGMS2025.jpg" | relative_url }}');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  /* background-attachment: fixed;  제거하여 스크롤 고정(parallax) 비활성화 */
+  background-attachment: scroll; /* 명시적으로 일반 스크롤 */
   color: white;
 }
 
@@ -240,7 +241,6 @@ latest_posts:
   .hero-section {
   padding: 48px 16px; /* further reduced on mobile */
   margin: -20px -20px 0 -20px; /* remove bottom gap on mobile */
-    background-attachment: scroll;
   }
   
   .section-grid {
