@@ -1489,3 +1489,29 @@ figure.cover {
     color: #23212d !important;
   }
 }
+
+/*******************************************************************************
+ * Navbar logo styles for light/dark mode
+ ******************************************************************************/
+.navbar-logo {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Light mode: show BAELAB_LOGO.png, hide BAELAB_LOGOB.png */
+html:not([data-theme='dark']) .navbar-logo-dark {
+  display: none;
+}
+
+html:not([data-theme='dark']) .navbar-logo-light {
+  display: inline-block;
+}
+
+/* Dark mode: show BAELAB_LOGOB.png, hide BAELAB_LOGO.png */
+html[data-theme='dark'] .navbar-logo-light {
+  display: none;
+}
+
+html[data-theme='dark'] .navbar-logo-dark {
+  display: inline-block;
+}

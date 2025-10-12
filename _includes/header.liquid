@@ -17,7 +17,8 @@
               {{- site.last_name -}}
             {% endif %}
           {% else %}
-            <span style="font-family: 'Paperlogy-8ExtraBold';">{{- site.title -}}</span>
+            <img src="{{ '/assets/img/BAELAB_LOGO.png' | relative_url }}" alt="{{ site.title }}" class="navbar-logo navbar-logo-light" style="height: 40px;">
+            <img src="{{ '/assets/img/BAELAB_LOGOB.png' | relative_url }}" alt="{{ site.title }}" class="navbar-logo navbar-logo-dark" style="height: 40px;">
           {% endif %}
         </a>
       {% elsif site.enable_navbar_social %}
