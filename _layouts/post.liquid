@@ -18,7 +18,16 @@ layout: default
     <h1 class="post-title">{{ page.title }}</h1>
     <p class="post-meta">
       Created on {{ page.date | date: '%B %d, %Y' }}
-      {% if page.author %}by {{ page.author }}{% endif %}
+      {%- assign author_field = page.author | default: page.authors -%}
+      {%- if author_field -%}
+        by 
+        {%- assign authors = author_field | arrayify -%}
+        {%- for a in authors -%}
+          {%- assign a_t = a | strip -%}
+          {%- if forloop.index > 1 -%}, {% endif -%}
+          {{ a_t }}
+        {%- endfor -%}
+      {%- endif -%}
       {% if page.last_updated %}, last updated on {{ page.last_updated | date: '%B %d, %Y' }}{% endif %}
       {% if page.meta %}• {{ page.meta }}{% endif %}
     </p>
@@ -86,6 +95,31 @@ layout: default
       {% include related_posts.liquid %}
     {% endif %}
   {% endif %}
+
+  {%- comment -%} Render small author images at the bottom if matching people are found {%- endcomment -%}
+  {%- assign author_field = page.author | default: page.authors -%}
+  {%- if author_field -%}
+    <div class="post-author-avatars" style="margin-top: 1.25rem; display: flex; align-items: center; flex-wrap: wrap; gap: 8px;">
+      {%- assign authors = author_field | arrayify -%}
+      {%- for a in authors -%}
+        {%- assign a_t = a | strip -%}
+        {%- assign person = site.people | where_exp: "p", "p.title and p.title contains a_t" | first -%}
+        {%- if person and person.img -%}
+          {%- assign redirect_url = person.redirect -%}
+          {%- if redirect_url and redirect_url contains '://' -%}
+            {%- assign person_href = redirect_url -%}
+          {%- elsif redirect_url -%}
+            {%- assign person_href = redirect_url | relative_url -%}
+          {%- else -%}
+            {%- assign person_href = person.url | relative_url -%}
+          {%- endif -%}
+          <a href="{{ person_href }}" target="_blank" rel="noopener">
+            <img src="{{ person.img | relative_url }}" alt="{{ a_t }}" title="{{ a_t }}" width="80" height="80" style="width:80px;height:80px;object-fit:cover;border-radius:50%;border:1px solid var(--global-border-color, #ddd);" loading="lazy" />
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 
   {% if site.disqus_shortname and page.disqus_comments %}
     {% include disqus.liquid %}

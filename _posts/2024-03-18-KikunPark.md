@@ -5,6 +5,7 @@ date: 2024-03-18 17:39:00
 description: 컨테이너 터미널 효율을 높이기 위한 GAIML 기법
 giscus_comments: true
 related_publications: true
+author: [박기군]
 tags: Discrete Event Simulation, Event, GAIML, AI, Genetic Algorithm, ML
 ---
 
