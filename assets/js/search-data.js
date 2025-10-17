@@ -163,7 +163,7 @@ ninja.data = [{
           title: '박대산 Accepted Advanced Engineering Informatics!!!',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/2025-09-04-BPM%20copy/";
+              window.location.href = "/news/2025-10-17-DSparkAdv/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
