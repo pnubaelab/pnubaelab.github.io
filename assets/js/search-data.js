@@ -126,10 +126,12 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/%EC%A3%BC%EC%A0%9C%EB%B0%9C%ED%91%9C%ED%95%98%EB%8A%94%20%EB%B0%B0%ED%98%9C%EB%A6%BC%20%EB%B6%80%EC%82%B0%EB%8C%80%20%EA%B5%90%EC%88%98/";
-            },},{id: "news-congratulation-daesan-park-and-hyunha-lee-have-accepted-their-presentation-in-informs-annual-meeting-2025",
-          title: 'Congratulation 🎓🍑 🇺🇸 !!! Daesan Park and Hyunha Lee have accepted their presentation...',
+            },},{id: "news-informs-2025",
+          title: 'INFORMS 2025',
           description: "",
-          section: "News",},{id: "news-selamat-tinggal-dan-selamat-️-mingi-han-has-submitted-a-paper-to-the-journal-of-the-korean-institute-of-industrial-engineers-jkiie",
+          section: "News",handler: () => {
+              window.location.href = "/news/informs2/";
+            },},{id: "news-selamat-tinggal-dan-selamat-️-mingi-han-has-submitted-a-paper-to-the-journal-of-the-korean-institute-of-industrial-engineers-jkiie",
           title: 'Selamat tinggal dan selamat! 🏝️ 🌋🐚 !!! Mingi Han has submitted a paper...',
           description: "",
           section: "News",},{id: "news-shiok-ah-dohee-kim-and-jaeeun-kwon-have-invited-in-informs-international-2025",
@@ -140,13 +142,17 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/%EB%B6%80%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%84%ED%81%AC/";
-            },},{id: "news-すごい-조상민-홍성문-presented-at-19th-international-conference-on-innovative-computing-information-and-control-icicic2025",
-          title: 'すごい!! 🎉🎉🎉 조상민, 홍성문 presented at 19th International Conference on Innovative Computing, Information...',
+            },},{id: "news-icicic-with-조상민-홍성문",
+          title: 'ICICIC with 조상민, 홍성문',
           description: "",
-          section: "News",},{id: "news-祝贺-추정호-이경훈-presented-at-13th-international-conference-on-logistics-and-maritime-systems-logms-2025-sanghai-china",
-          title: '祝贺!! 🎉🎉🎉🇨🇳 추정호 이경훈 presented at 13th International Conference on Logistics and Maritime...',
+          section: "News",handler: () => {
+              window.location.href = "/news/2025-09-04-ICICIC2025/";
+            },},{id: "news-logms-2025-with-추정호-이경훈",
+          title: 'LOGMS 2025 with 추정호, 이경훈',
           description: "",
-          section: "News",},{id: "news-bpm-2025-presenter-이용재",
+          section: "News",handler: () => {
+              window.location.href = "/news/2025-09-04-Informs2025/";
+            },},{id: "news-bpm-2025-presenter-이용재",
           title: 'BPM 2025 Presenter 이용재!!',
           description: "",
           section: "News",handler: () => {
