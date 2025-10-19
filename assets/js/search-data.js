@@ -51,7 +51,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/repositories/";
           },
-        },{id: "post-ct-forecasting-with-time-llm",
+        },{id: "post-queuing-based-operational-indicators-for-explaining-and-predicting-port-operations",
+        
+          title: "Queuing-Based Operational Indicators For Explaining and Predicting Port Operations",
+        
+        description: "Queuing-Based Operational Indicators For Explaining and Predicting Port Operations",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/QueuingIndicators/";
+          
+        },
+      },{id: "post-ct-forecasting-with-time-llm",
         
           title: "CT forecasting with Time-LLM",
         
