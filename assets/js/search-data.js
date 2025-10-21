@@ -181,6 +181,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-10-17-DSparkAdv/";
+            },},{id: "news-bistep-해양산업-전략-논의-미래기술혁신포럼-23일-개최",
+          title: 'BISTEP, 해양산업 전략 논의…미래기술혁신포럼 23일 개최',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2025BISTEP/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
