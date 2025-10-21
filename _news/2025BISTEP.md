@@ -1,0 +1,8 @@
+---
+layout: post
+date: 2025-10-21 16:55:00-0400
+inline: false
+related_posts: false
+title: BISTEP, 해양산업 전략 논의…미래기술혁신포럼 23일 개최
+redirect: https://www.kmib.co.kr/article/view.asp?arcid=0028857233&code=61141111&cp=nv
+---
