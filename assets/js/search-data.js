@@ -145,10 +145,12 @@ ninja.data = [{
             },},{id: "news-selamat-tinggal-dan-selamat-️-mingi-han-has-submitted-a-paper-to-the-journal-of-the-korean-institute-of-industrial-engineers-jkiie",
           title: 'Selamat tinggal dan selamat! 🏝️ 🌋🐚 !!! Mingi Han has submitted a paper...',
           description: "",
-          section: "News",},{id: "news-shiok-ah-dohee-kim-and-jaeeun-kwon-have-invited-in-informs-international-2025",
-          title: 'Shiok ah 🇸🇬🦁🌺~! Dohee Kim and Jaeeun Kwon have invited in INFORMS International...',
+          section: "News",},{id: "news-informs-international-2025-invitation-with-김도희-권재은",
+          title: 'INFORMS International 2025 Invitation with 김도희, 권재은',
           description: "",
-          section: "News",},{id: "news-부산-데이터-위크-개최-데이터-기반-혁신도시-도약",
+          section: "News",handler: () => {
+              window.location.href = "/news/informs/";
+            },},{id: "news-부산-데이터-위크-개최-데이터-기반-혁신도시-도약",
           title: '부산 데이터 위크 개최…“데이터 기반 혁신도시 도약”',
           description: "",
           section: "News",handler: () => {
