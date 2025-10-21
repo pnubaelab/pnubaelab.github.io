@@ -57,6 +57,13 @@
     font-weight: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'KorailJang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KORAILCondensed-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
 // Typography
 
 
@@ -82,7 +89,7 @@ strong {
 
 h1 {
   color: var(--global-text-color);
-  font-family: 'Oswald', 'Yangjin',sans-serif;
+  font-family: 'Oswald', 'KorailJang',sans-serif;
 }
 
 hr {
