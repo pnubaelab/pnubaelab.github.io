@@ -188,6 +188,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025BISTEP/";
+            },},{id: "news-paper-accepted-at-ieee-bigdata-2025-conference",
+          title: 'Paper Accepted at IEEE BigData 2025 Conference',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/BigData/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
@@ -743,6 +748,11 @@ ninja.data = [{
           description: "BPM, Seville, Spain",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%8A%A4%ED%8E%98%EC%9D%B8/";
+            },},{id: "photo-2025년연구실-단체축구-후-회식",
+          title: '2025년연구실 단체축구 후 회식',
+          description: "Soccer, 북구, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%97%B0%EA%B5%AC%EC%8B%A4%EC%B6%95%EA%B5%AC/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
