@@ -4,7 +4,7 @@ date: 2025-10-24 08:59:00-0400
 inline: false
 related_posts: true
 title: Paper Accepted at IEEE BigData 2025 Conference
-author: [박대산, 박택현, 이용재]
+author: [박대산, 박택현, 이용재, 김도희]
 related_publications: true
 giscus_comments: true
 ---
