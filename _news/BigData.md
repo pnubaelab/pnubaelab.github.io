@@ -8,9 +8,10 @@ author: [박대산, 박택현, 이용재, 김도희]
 related_publications: true
 giscus_comments: true
 ---
+**Gung1 Hei2(恭喜)!**
+Congratulations to Daesan Park, Taekhyun Park, and Yongjae Lee on their paper acceptance at [IEEE BigData 2025](https://conferences.cis.um.edu.mo/ieeebigdata2025/)!
 
 {% quote park2025justdense %}
 JustDense: Just using Dense instead of Sequence Mixer for Time Series analysis
 {% endquote %}
 
-Congratulations to Daesan Park, Taekhyun Park, and Yongjae Lee on their paper acceptance at [IEEE BigData 2025](https://conferences.cis.um.edu.mo/ieeebigdata2025/)!
