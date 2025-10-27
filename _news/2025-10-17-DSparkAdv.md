@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 박대산 Accepted Advanced Engineering Informatics!!!
+title: Paper was Accepted Advanced Engineering Informatics!!!
 date: 2025-10-17 01:42
 inline: false
 related_posts: false
@@ -10,7 +10,7 @@ author: [박대산]
 ---
 
 **Congratulations**!!!   🎉🎉🎉       
-박대산 accepted at Advanced Engineering Informatics(IF 9.9) !!!!
+박대산's paper was accepted at Advanced Engineering Informatics(IF 9.9) !!!!
 
 {% quote PARK2026103974 %}
 Time-series approach to vessel turnaround time forecasting using queuing-based operation indicators
