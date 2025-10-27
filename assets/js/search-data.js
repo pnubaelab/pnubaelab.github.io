@@ -177,7 +177,7 @@ ninja.data = [{
           title: '제11회 &amp;#39;부산 R&amp;amp;D 주간&amp;#39; 행사 25~26일 벡스코서 열려',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/2025-%EB%B6%80%EC%82%B0%EC%95%8C%EC%95%A4%EB%94%94%EC%A3%BC%EA%B0%84/";
+              window.location.href = "/news/2025-09-23-%EB%B6%80%EC%82%B0%EC%95%8C%EC%95%A4%EB%94%94%EC%A3%BC%EA%B0%84/";
             },},{id: "news-paper-was-accepted-advanced-engineering-informatics",
           title: 'Paper was Accepted Advanced Engineering Informatics!!!',
           description: "",
@@ -187,12 +187,12 @@ ninja.data = [{
           title: 'BISTEP, 해양산업 전략 논의…미래기술혁신포럼 23일 개최',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/2025BISTEP/";
-            },},{id: "news-paper-accepted-at-ieee-bigdata-2025-conference",
-          title: 'Paper Accepted at IEEE BigData 2025 Conference',
+              window.location.href = "/news/2025-10-21-BISTEP/";
+            },},{id: "news-gung1-hei2-恭喜-paper-accepted-at-ieee-bigdata-2025-conference",
+          title: 'Gung1 Hei2(恭喜)!!🎉🎉🎉 Paper Accepted at IEEE BigData 2025 Conference',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/BigData/";
+              window.location.href = "/news/2025-10-24-BigData/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
