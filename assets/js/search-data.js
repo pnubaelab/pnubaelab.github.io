@@ -178,8 +178,8 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-%EB%B6%80%EC%82%B0%EC%95%8C%EC%95%A4%EB%94%94%EC%A3%BC%EA%B0%84/";
-            },},{id: "news-박대산-accepted-advanced-engineering-informatics",
-          title: '박대산 Accepted Advanced Engineering Informatics!!!',
+            },},{id: "news-paper-was-accepted-advanced-engineering-informatics",
+          title: 'Paper was Accepted Advanced Engineering Informatics!!!',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-10-17-DSparkAdv/";
