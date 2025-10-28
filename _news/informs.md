@@ -8,4 +8,4 @@ author: [김도희, 권재은]
 ---
 
 Shiok ah 🇸🇬🦁🌺~!    
-Dohee Kim and Jaeeun Kwon have invited in INFORMS International 2025. 
+Dohee Kim and Jaeeun Kwon have invited in [INFORMS International 2025](https://meetings.informs.org/wordpress/2025international/). 
