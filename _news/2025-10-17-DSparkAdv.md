@@ -21,7 +21,7 @@ Time-series approach to vessel turnaround time forecasting using queuing-based o
 </div>
 
 <div class="col-sm mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/AdvancedEng.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    {% include figure.liquid path="https://ars.els-cdn.com/content/image/X14740346.jpg" class="img-fluid rounded z-depth-1" zoomable=true  max-width="300px"%}
 </div>
 <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid path="assets/img/AdvEngInfo.png" class="img-fluid rounded z-depth-1" zoomable=true %}
