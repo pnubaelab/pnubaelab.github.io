@@ -17,14 +17,16 @@
     .then(graph => {
       // Draw graph
       const width = container.clientWidth || 800;
+      // 모바일에서는 정사각형 비율(가독성 향상), 그 외엔 16:9 유지
       let height;
-      if (width < 500) {
-        // 모바일: 정사각형 또는 최소 높이 보장
-        height = Math.max(width);
+      if (width < 576) {
+        height = Math.max(Math.round(width), 360); // 1:1, 최소 360px
       } else {
-        // 데스크탑: 16:9 비율
-        height = width * 9 / 16;
+        height = Math.max(Math.round(width * 9 / 16), 320); // 16:9, 최소 320px
       }
+
+      // 컨테이너 실제 높이를 계산값으로 동기화하여 레이어 뒤틀림 방지
+      container.style.height = height + 'px';
 
       // Remove any existing SVG (fix double box issue)
       d3.select(container).selectAll('svg').remove();
@@ -40,26 +42,55 @@
       }));
 
       // Insert SVG for graph and starfield
+      // Prepare parallax layers refs (assigned after creation)
+      let starBackLayer, starMidLayer, starFrontLayer;
+      // Configure zoom so we can programmatically control it later
+      const zoom = d3.zoom()
+        .scaleExtent([0.3, 5])
+        .on('zoom', (event) => {
+          svg.select('g.zoomable').attr('transform', event.transform);
+          // Parallax: make subtler; stars do not scale
+          if (starBackLayer) starBackLayer.attr('transform', `translate(${event.transform.x * 0.08}, ${event.transform.y * 0.08})`);
+          if (starMidLayer)  starMidLayer.attr('transform',  `translate(${event.transform.x * 0.16}, ${event.transform.y * 0.16})`);
+          if (starFrontLayer)starFrontLayer.attr('transform',`translate(${event.transform.x * 0.28}, ${event.transform.y * 0.28})`);
+          updateLabelVisibility(event.transform);
+        });
+      const zoomMax = zoom.scaleExtent()[1];
+
       const svg = d3.select(container)
         .append('svg')
         .attr('viewBox', [0, 0, width, height])
         .style('width', '100%')
         .style('height', '100%')
         .style('border', '1px solid #e2e8f0')
-        .call(
-          d3.zoom()
-            .scaleExtent([0.3, 5])
-            .on('zoom', (event) => {
-              svg.select('g.zoomable').attr('transform', event.transform);
-              updateLabelVisibility(event.transform);
-            })
-        );
+        .call(zoom);
 
-      // Add starfield as a background layer
-      svg.append('g')
-        .attr('class', 'starfield')
-        .selectAll('circle')
-        .data(stars)
+      // Build multi-layer starfield for parallax depth
+      const backData  = Array.from({length: Math.round(starCount * 0.5)}, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.0 + 0.2,
+        o: Math.random() * 0.35 + 0.15
+      }));
+      const midData   = Array.from({length: Math.round(starCount * 0.35)}, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.3 + 0.3,
+        o: Math.random() * 0.45 + 0.25
+      }));
+      const frontData = Array.from({length: Math.round(starCount * 0.2)}, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 1.8 + 0.6,
+        o: Math.random() * 0.5 + 0.35
+      }));
+
+      starBackLayer  = svg.append('g').attr('class', 'starfield back');
+      starMidLayer   = svg.append('g').attr('class', 'starfield mid');
+      starFrontLayer = svg.append('g').attr('class', 'starfield front');
+
+      const starsBack = starBackLayer.selectAll('circle')
+        .data(backData)
         .join('circle')
         .attr('cx', d => d.x)
         .attr('cy', d => d.y)
@@ -67,6 +98,54 @@
         .attr('fill', '#fff')
         .attr('opacity', d => d.o)
         .attr('filter', 'url(#star-glow)');
+      const starsMid = starMidLayer.selectAll('circle')
+        .data(midData)
+        .join('circle')
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .attr('r', d => d.r)
+        .attr('fill', '#fff')
+        .attr('opacity', d => d.o)
+        .attr('filter', 'url(#star-glow)');
+      const starsFront = starFrontLayer.selectAll('circle')
+        .data(frontData)
+        .join('circle')
+        .attr('cx', d => d.x)
+        .attr('cy', d => d.y)
+        .attr('r', d => d.r)
+        .attr('fill', '#fff')
+        .attr('opacity', d => d.o)
+        .attr('filter', 'url(#star-glow)');
+
+      // Subtle twinkling animation for stars
+      function twinkleOne(star) {
+        // Subtler twinkle: narrower opacity band and slower cycles
+        const base = +star.attr('data-base-o') || (Math.random() * 0.3 + 0.25);
+        star.attr('data-base-o', base);
+        const target = Math.max(0.12, Math.min(1, base + (Math.random() * 0.24 - 0.12)));
+        star.transition()
+          .duration(2400 + Math.random() * 2400)
+          .ease(d3.easeSinInOut)
+          .attr('opacity', target)
+          .on('end', () => twinkleOne(star));
+      }
+      starsBack.each(function() { twinkleOne(d3.select(this)); });
+      starsMid.each(function() { twinkleOne(d3.select(this)); });
+      starsFront.each(function() { twinkleOne(d3.select(this)); });
+
+      // Vignette overlay (fixed to viewport; no pointer interception)
+      const vignetteGrad = svg.append('defs').append('radialGradient')
+        .attr('id', 'vignette-grad')
+        .attr('cx', '50%').attr('cy', '50%').attr('r', '65%');
+      vignetteGrad.append('stop').attr('offset', '65%').attr('stop-color', '#000').attr('stop-opacity', 0.0);
+      vignetteGrad.append('stop').attr('offset', '88%').attr('stop-color', '#000').attr('stop-opacity', 0.15);
+      vignetteGrad.append('stop').attr('offset', '100%').attr('stop-color', '#000').attr('stop-opacity', 0.28);
+      const vignette = svg.append('rect')
+        .attr('x', 0).attr('y', 0)
+        .attr('width', width).attr('height', height)
+        .attr('fill', 'url(#vignette-grad)')
+        .style('pointer-events', 'none');
+      vignette.raise();
 
       // Add a filter for glowing stars
       svg.append('defs').append('filter')
@@ -84,9 +163,11 @@
       // Create a group for zoom/pan
       const zoomable = svg.append('g').attr('class', 'zoomable');
 
+  const LINK_BASE_COLOR = '#e0f7fa';
+  const LINK_BASE_OPACITY = 0.04; // make connections lighter
       const link = zoomable.append('g')
-        .attr('stroke', '#e0f7fa')
-        .attr('stroke-opacity', 0.35)
+        .attr('stroke', LINK_BASE_COLOR)
+        .attr('stroke-opacity', LINK_BASE_OPACITY)
         .selectAll('line')
         .data(graph.links)
         .join('line')
@@ -166,14 +247,12 @@
 
       // Draw circles
 
-      // 노드에 네온 glow 효과 적용 (트윙클 제거로 드래그 부드럽게)
       node.append('circle')
         .attr('r', d => {
           if (d.value === maxValue) return 20 + Math.sqrt(d.value); // 1등 노드 더 크게
           return 6 + Math.sqrt(d.value);
         })
         .attr('fill', (d, i) => `url(#gradient-${i % shuffledColors.length})`)
-        .attr('filter', (d, i) => `url(#neon-glow-${i % shuffledColors.length})`)
         .attr('opacity', 1)
         .call(d3.drag()
           .on('start', dragstarted)
@@ -185,7 +264,7 @@
       function splitName(name) {
         // 콤마가 있으면 콤마 앞(성)만
         if (name.includes(',')) {
-          return name.split(',')[0].trim();
+          return name.split(',')[1].trim();
         }
         // 한글 이름: 성1글자만
         if (/^[가-힣]{2,}$/.test(name)) {
@@ -310,8 +389,87 @@
         }
       }
 
+      // Center the clicked node in view and flash-highlight briefly
+      function focusNode(d, opts = {}) {
+        const { k: kOverride, duration = 650 } = opts;
+        const t = d3.zoomTransform(svg.node());
+        const k = typeof kOverride === 'number' ? kOverride : zoomMax;
+        const tx = width / 2 - d.x * k;
+        const ty = height / 2 - d.y * k;
+        svg.transition()
+          .duration(duration)
+          .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(k));
+      }
+
+      function flash(selection) {
+        const c = selection.select('circle');
+        // Bring to front, then run a quick stroke-width flash
+        selection.raise();
+        c.interrupt()
+          .attr('stroke', '#fff')
+          .attr('stroke-opacity', 0.95)
+          .transition().duration(140)
+          .attr('stroke-width', 1)
+          .transition().duration(360)
+          .attr('stroke-width', 0)
+          .on('end', function() {
+            d3.select(this).attr('stroke', null).attr('stroke-opacity', null).attr('stroke-width', null);
+          });
+      }
+
+      // Briefly highlight links connected to the clicked node
+      function linkWidth(d) {
+        return 1.2 + Math.log(d.value);
+      }
+      function flashLinksForNode(nodeData) {
+        const isConnected = (l) => (l.source.id === nodeData.id) || (l.target.id === nodeData.id);
+        const sel = link.filter(isConnected);
+
+        sel.each(function(l, i) {
+          const el = d3.select(this);
+          const x1 = parseFloat(el.attr('x1'));
+          const y1 = parseFloat(el.attr('y1'));
+          const x2 = parseFloat(el.attr('x2'));
+          const y2 = parseFloat(el.attr('y2'));
+
+          // Gradient direction: from clicked node outward
+          let gx1, gy1, gx2, gy2;
+          if (l.source.id === nodeData.id) { gx1 = x1; gy1 = y1; gx2 = x2; gy2 = y2; }
+          else { gx1 = x2; gy1 = y2; gx2 = x1; gy2 = y1; }
+
+          const gid = `link-flash-${Date.now()}-${Math.floor(Math.random()*1e6)}-${i}`;
+          const grad = defs.append('linearGradient')
+            .attr('id', gid)
+            .attr('gradientUnits', 'userSpaceOnUse')
+            .attr('x1', gx1).attr('y1', gy1)
+            .attr('x2', gx2).attr('y2', gy2);
+
+          grad.append('stop').attr('offset', '0%').attr('stop-color', '#ffffff').attr('stop-opacity', 0.95);
+          grad.append('stop').attr('offset', '60%').attr('stop-color', '#ffffff').attr('stop-opacity', 0.35);
+          grad.append('stop').attr('offset', '100%').attr('stop-color', LINK_BASE_COLOR).attr('stop-opacity', 0);
+
+          el.interrupt()
+            .raise()
+            .transition().duration(140)
+            .attr('stroke', `url(#${gid})`)
+            .attr('stroke-opacity', 1)
+            .attr('stroke-width', linkWidth(l))
+            .transition().duration(420)
+            .attr('stroke', LINK_BASE_COLOR)
+            .attr('stroke-opacity', LINK_BASE_OPACITY)
+            .attr('stroke-width', linkWidth(l))
+            .on('end', () => {
+              defs.select(`#${gid}`).remove();
+            });
+        });
+      }
+
       node.on('click', (event, d) => {
         setBibSearchValue(extractFirstName(d.id));
+        // Center and flash the clicked node
+        focusNode(d, { k: zoomMax, duration: 1200 });
+        flash(d3.select(event.currentTarget));
+        flashLinksForNode(d);
       });
 
       node.append('title').text(d => d.id);

@@ -30,6 +30,13 @@ latest_posts:
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
 
+@font-face {
+    font-family: 'KorailJang';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KORAILCondensed-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-display: swap;
+}
+
 .hero-section {
   padding: 56px 16px;
   margin: -40px -20px 0 -20px;
@@ -56,7 +63,7 @@ latest_posts:
 }
 
 .hero-title {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'KorailJang', sans-serif;
   font-size: clamp(3.25rem, 12vw, 11rem); /* slightly wider visual footprint */
   font-weight: 700;
   text-transform: uppercase;
@@ -75,7 +82,7 @@ latest_posts:
 }
 
 .hero-subtitle {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'KorailJang', sans-serif;
   font-size: clamp(0.95rem, 2.2vw, 1.8rem); /* slightly smaller to keep hero compact */
   margin: 0;
   font-weight: 400;
@@ -115,7 +122,7 @@ latest_posts:
 }
 
 .card-title {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'KorailJang', sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
   color: #333 !important;
@@ -144,12 +151,12 @@ latest_posts:
 
 /* Document style intro override */
 .highlight-box.doc-intro { text-align:left; padding:10px 0 32px 0; margin:10px 0 40px 0; }
-.highlight-box.doc-intro .doc-heading { font-family:'Oswald'; font-size:2.2rem; font-weight:600; margin:0 0 14px 0; letter-spacing:.5px; text-transform:none; }
+.highlight-box.doc-intro .doc-heading { font-family:'KorailJang'; font-size:2.2rem; font-weight:600; margin:0 0 14px 0; letter-spacing:.5px; text-transform:none; }
 .highlight-box.doc-intro .doc-body { font-size:1rem; line-height:1.6; margin:0; max-width:860px;}
 .highlight-box.doc-intro.doc-center { text-align:center; }
 
 .highlight-text {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'KorailJang', sans-serif;
   font-size: clamp(1.4rem, 4vw, 2.1rem);
   font-weight: 600;
   text-transform: uppercase;
@@ -172,7 +179,7 @@ latest_posts:
   border-radius: 8px;
   text-align: center;
   color: #333;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'KorailJang', sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: -0.5px;
@@ -309,7 +316,7 @@ latest_posts:
       <p class="doc-body">We fuse advanced analytics, AI engineering, and domain knowledge to transform complex industrial processes into measurable, optimizable, and sustainable systems.</p>
     </div>
     <section class="doc-section" style="margin:0 0 42px 0;">
-      <h2 style="font-family:'Oswald',sans-serif;font-size:1.85rem;margin:0 0 14px 0;letter-spacing:.5px;">
+      <h2 style="font-family:'KorailJang',sans-serif;font-size:1.85rem;margin:0 0 14px 0;letter-spacing:.5px;">
         Research Scope
       </h2>
       <p style="margin:0 0 14px 0;line-height:1.55;">
@@ -330,7 +337,7 @@ latest_posts:
     </section>
 
   <section class="doc-section" style="margin:0 0 30px 0;">
-      <h2 style="font-family:'Oswald',sans-serif;font-size:1.85rem;margin:0 0 14px 0;letter-spacing:.5px;">Contact & Location</h2>
+      <h2 style="font-family:'KorailJang',sans-serif;font-size:1.85rem;margin:0 0 14px 0;letter-spacing:.5px;">Contact & Location</h2>
       <p style="margin:0 0 6px 0;">Room 602, 10th Engineering Building, Pusan National University</p>
       <p style="margin:0 0 10px 0;">Email: <a href="mailto:hrbae@pusan.ac.kr">hrbae@pusan.ac.kr</a></p>
   </section>
