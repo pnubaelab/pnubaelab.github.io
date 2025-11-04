@@ -263,6 +263,16 @@ ninja.data = [{
           description: "M.S. 신용보증기금",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B6%8C%ED%98%84%ED%98%B8/";
+            },},{id: "people-kihun-kim-김기훈",
+          title: 'Kihun Kim(김기훈)',
+          description: "Professor",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B9%80%EA%B8%B0%ED%9B%88/";
+            },},{id: "people-dowon-kim-김도원",
+          title: 'Dowon Kim(김도원)',
+          description: "Professor",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B9%80%EB%8F%84%EC%9B%90/";
             },},{id: "people-dohee-kim-김도희",
           title: 'Dohee Kim(김도희)',
           description: "PhD. Postdoctoral Researher at SCSC Research Center",
