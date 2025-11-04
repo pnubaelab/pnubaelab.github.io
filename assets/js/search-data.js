@@ -253,8 +253,8 @@ ninja.data = [{
           description: "M.S. 주임 at 파크랜드 월드",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B0%95%ED%95%9C%EC%84%9D/";
-            },},{id: "people-jaeun-kwon-권재은",
-          title: 'Jaeun Kwon(권재은)',
+            },},{id: "people-jaeeun-kwon-권재은",
+          title: 'Jaeeun Kwon(권재은)',
           description: "Integrated PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B6%8C%EC%9E%AC%EC%9D%80/";
@@ -423,8 +423,8 @@ ninja.data = [{
           description: "M.S.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EB%AF%BC%EC%84%AD/";
-            },},{id: "people-sang-jae-lee-이상재",
-          title: 'Sang Jae Lee(이상재)',
+            },},{id: "people-sangjae-lee-이상재",
+          title: 'Sangjae Lee(이상재)',
           description: "M.S. LG Energy Solution",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EC%83%81%EC%9E%AC/";
@@ -464,7 +464,7 @@ ninja.data = [{
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A0%95%EB%AF%BC%EC%9E%AC/";
             },},{id: "people-hyokyeong-jung-정효경",
-          title: 'HyoKyeong Jung(정효경)',
+          title: 'Hyokyeong Jung(정효경)',
           description: "M.S.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A0%95%ED%9A%A8%EA%B2%BD/";
@@ -473,8 +473,8 @@ ninja.data = [{
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A1%B0%EC%83%81%EB%AF%BC/";
-            },},{id: "people-suhyeon-jo-조수현",
-          title: 'Suhyeon Jo(조수현)',
+            },},{id: "people-suhyeon-cho-조수현",
+          title: 'Suhyeon Cho(조수현)',
           description: "M.S.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A1%B0%EC%88%98%ED%98%84/";
