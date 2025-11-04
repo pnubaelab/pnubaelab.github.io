@@ -6,11 +6,11 @@ inline: false
 related_posts: false
 related_publications: true
 giscus_comments: true
-author: [박대산]
+author: [Daesan Park]
 ---
 
 **Congratulations**!!!   🎉🎉🎉       
-박대산's paper was accepted at Advanced Engineering Informatics(IF 9.9) !!!!
+Daesan Park's paper was accepted at Advanced Engineering Informatics(IF 9.9) !!!!
 
 {% quote PARK2026103974 %}
 Time-series approach to vessel turnaround time forecasting using queuing-based operation indicators

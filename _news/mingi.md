@@ -3,6 +3,7 @@ layout: post
 date: 2025-07-07 08:59:00-0400
 inline: true
 related_posts: false
+author: [Mingi Han]
 ---
 
 Selamat tinggal dan selamat! 🏝️ 🌋🐚 !!!    
