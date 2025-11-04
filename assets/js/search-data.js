@@ -140,8 +140,8 @@ ninja.data = [{
             },},{id: "news-selamat-tinggal-dan-selamat-️-mingi-han-has-submitted-a-paper-to-the-journal-of-the-korean-institute-of-industrial-engineers-jkiie",
           title: 'Selamat tinggal dan selamat! 🏝️ 🌋🐚 !!! Mingi Han has submitted a paper...',
           description: "",
-          section: "News",},{id: "news-informs-international-2025-invitation-with-김도희-권재은",
-          title: 'INFORMS International 2025 Invitation with 김도희, 권재은',
+          section: "News",},{id: "news-informs-international-2025-invitation-with-dohee-kim-and-jaeeun-kwon",
+          title: 'INFORMS International 2025 Invitation with Dohee Kim and Jaeeun Kwon',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/informs/";
@@ -150,23 +150,23 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/%EB%B6%80%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%84%ED%81%AC/";
-            },},{id: "news-icicic-with-조상민-홍성문",
-          title: 'ICICIC with 조상민, 홍성문',
+            },},{id: "news-icicic-with-sangmin-jo-and-seongmoon-hong",
+          title: 'ICICIC with Sangmin Jo and Seongmoon Hong',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-09-04-ICICIC2025/";
-            },},{id: "news-logms-2025-with-추정호-이경훈",
-          title: 'LOGMS 2025 with 추정호, 이경훈',
+            },},{id: "news-logms-2025-with-jungho-choo-kyunghoon-lee",
+          title: 'LOGMS 2025 with Jungho Choo, Kyunghoon Lee',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-08-28-LOGMS2025/";
-            },},{id: "news-bpm-2025-presenter-이용재",
-          title: 'BPM 2025 Presenter 이용재!!',
+            },},{id: "news-bpm-2025-presenter-yongjae-lee",
+          title: 'BPM 2025 Presenter Yongjae Lee!!',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-09-04-BPM/";
-            },},{id: "news-すごい-조상민-got-the-icicic2025-best-presentation-award",
-          title: 'すごい!! 🎉🎉🎉    조상민 got the ICICIC2025 Best Presentation Award!!!!',
+            },},{id: "news-すごい-sangmin-jo-got-the-icicic2025-best-presentation-award",
+          title: 'すごい!! 🎉🎉🎉    Sangmin Jo got the ICICIC2025 Best Presentation Award!!!!',
           description: "",
           section: "News",},{id: "news-제11회-39-부산-r-amp-d-주간-39-행사-25-26일-벡스코서-열려",
           title: '제11회 &amp;#39;부산 R&amp;amp;D 주간&amp;#39; 행사 25~26일 벡스코서 열려',
@@ -379,7 +379,7 @@ ninja.data = [{
           section: "People",handler: () => {
               window.location.href = "/people/%EC%84%9C%EC%A4%80%ED%98%81/";
             },},{id: "people-sunghyun-sim-심성현",
-          title: 'SungHyun Sim(심성현)',
+          title: 'Sunghyun Sim(심성현)',
           description: "PhD. Professor at Changwon National Univ, School of Artificial Intelligence Convergence Engineering",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%8B%AC%EC%84%B1%ED%98%84/";
