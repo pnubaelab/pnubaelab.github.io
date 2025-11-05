@@ -1,3 +1,33 @@
+@inproceedings{lee2025darkvessel,
+  level = {International Conference},
+  abbr={LOGMS},
+  abstract={Illegal maritime operations, including AIS-off navigation and dark vessel activities, present persistent challenges to maritime domain awareness. This study proposes a real-time multimodal fusion framework that integrates X-band radar tracks and Automatic Identification System (AIS) data for robust detection and characterization of dark vessels. Temporal asynchrony between radar (3–4 s) and AIS (10–180 s) sampling is addressed through a three-stage alignment strategy combining nearest assignment, linear interpolation, and geodesic-based motion prediction. Candidate associations are refined via temporal, spatial, and angular gating, with final matches optimized by a composite cost function. A systematic hyperparameter search identifies an optimal configuration ensuring both matching reliability and spatial accuracy. Subsequently, unmatched radar tracks are processed through a six-stage rule-based checker—covering trajectory continuity, speed consistency, and update regularity—to filter out physically implausible motions. Applied to real maritime data collected near Busan Port (August 1, 2025), the system successfully identifies dark-vessel candidates with a 0.744 matching rate and ~106 m 90th-percentile error across 32,770 radar detections and 198 vessels. Finally, trajectories are projected into radar coordinates and rasterized for sensor-level validation, bridging the gap between traditional rule-based tracking and learning-based multimodal vessel classification. The proposed approach enables reliable dark-vessel monitoring even under limited AIS coverage, providing a scalable foundation for intelligent maritime surveillance systems.},
+  title={A Real-Time Dark Vessel Detection System Using Multimodal Fusion},
+  author={Lee, Kyunghoon and Kim, Seonghan and Bae, Hyerim and Changdong Lee},
+  booktitle={13th International Conference on Logistics and Maritime Systems (LOGMS 2025)},
+  year={2025},
+  organization={IEEE}
+}
+
+@inproceedings{choo2025ALMA,
+  level = {International Conference},
+  abbr={LOGMS},
+  abstract={To support sustainable maritime operations, international organizations have enforced stricter 
+environmental regulations, highlighting the need for accurate ship fuel consumption forecasting. However, 
+existing models face generalization challenges due to limited historical data, especially for newly deployed 
+vessels. We propose Adaptive Lag Moment Alignment (ALMA), a domain adaptation framework that 
+transfers knowledge from data-rich source ships to target ships with only a single recorded voyage. ALMA 
+introduces Lag Moment Discrepancy (LMD) to align temporal characteristics between domains and 
+combines it with prediction loss. To stabilize training and balance objectives, we incorporate Dynamic 
+Weight Averaging (DWA) into the loss function. Experimental results demonstrate that ALMA 
+significantly reduces domain gaps and improves prediction accuracy under data-scarce conditions, 
+offering a robust solution for maritime fuel forecasting in support of global sustainability efforts.},
+  title={ALMA: Adaptive Lag Moment Alignment for Domain-Adaptive Time Series Forecasting of Ship Fuel Consumption},
+  author={Choo, Jungho and Kim, Dohee and Lee, Hyunha and Kim, Minhee and Bae, Hyerim},
+  booktitle={13th International Conference on Logistics and Maritime Systems (LOGMS 2025)},
+  year={2025},
+}
+
 @misc{park2025reasoningawaregrpousingprocess,
       level = {Arxiv},
       abbr={arXiv},
