@@ -208,6 +208,11 @@ ninja.data = [{
           description: "PhD. Senior Research Engineer (선임) at IOChord (아이오코드)",
           section: "People",handler: () => {
               window.location.href = "/people/Iq%20Reviessay%20Pulshashi/";
+            },},{id: "people-ling-liu",
+          title: 'Ling Liu',
+          description: "Professor",
+          section: "People",handler: () => {
+              window.location.href = "/people/LingLiu/";
             },},{id: "people-nur-ichsan-utama",
           title: 'Nur Ichsan Utama',
           description: "PhD. Telkom university",
@@ -403,6 +408,11 @@ ninja.data = [{
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%95%88%EB%AF%BC%EC%A7%80/";
+            },},{id: "people-taesun-yu-유태선",
+          title: 'Taesun Yu (유태선)',
+          description: "Professor",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%9C%A0%ED%83%9C%EC%84%A0/";
             },},{id: "people-gawon-lee-이가원",
           title: 'Gawon Lee(이가원)',
           description: "M.S.",
