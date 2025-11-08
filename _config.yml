@@ -310,6 +310,7 @@ filtered_bibtex_keywords:
     arxiv,
     award,
     award_name,
+    level,
     bibtex_show,
     blog,
     code,
