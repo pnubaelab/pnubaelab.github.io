@@ -221,48 +221,6 @@
         {% endif %}
       {% endif %}
     <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
-    <a
-      class="copy-bibtex btn btn-sm z-depth-0"
-      role="button"
-      aria-label="Copy BibTeX"
-      title="Copy"
-      data-bibtex="{{- entry.bibtex | hideCustomBibtex | escape -}}"
-      onclick="(function(el){
-        try{
-          var t = el.getAttribute('data-bibtex');
-          if(!t){
-            var c = el.closest('.row');
-            var container = c && c.querySelector('div.bibtex');
-            if(container){
-              var code = container.querySelector('pre, code');
-              t = (code ? (code.innerText||code.textContent) : container.textContent)||'';
-              t = t.trim();
-            }
-          }
-          if(!t){ return; }
-          var onOK = function(){
-            el.dataset.originalText = el.dataset.originalText || el.textContent;
-            el.textContent = 'Copied!';
-            setTimeout(function(){ el.textContent = el.dataset.originalText; }, 1500);
-          };
-          if(window.navigator && navigator.clipboard && navigator.clipboard.writeText){
-            navigator.clipboard.writeText(t).then(onOK).catch(function(){
-              var ta=document.createElement('textarea');
-              ta.value=t; ta.style.position='fixed'; ta.style.top='-1000px';
-              document.body.appendChild(ta); ta.select();
-              try{ document.execCommand('copy'); onOK(); }catch(e){}
-              document.body.removeChild(ta);
-            });
-          }else{
-            var ta=document.createElement('textarea');
-            ta.value=t; ta.style.position='fixed'; ta.style.top='-1000px';
-            document.body.appendChild(ta); ta.select();
-            try{ document.execCommand('copy'); onOK(); }catch(e){}
-            document.body.removeChild(ta);
-          }
-        }catch(e){}
-      })(this);"
-    >Copy</a>
       {% if entry.video and site.enable_video_embedding %}
         <a class="abstract btn btn-sm z-depth-0" role="button">Video</a>
       {% elsif entry.video %}

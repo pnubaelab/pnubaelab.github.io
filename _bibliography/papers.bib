@@ -1,14 +1,32 @@
-@misc{lee2025darkvessel,
+@inproceedings{heo2025Trajectory,
+  level = {International Conference},
+  abbr={SCI2025},
+  title={An Integrated Framework for Probabilistic Standard Route Extraction and Transformer Anomaly Detection in AIS Data},
+  author={Heo, Jaehyeon and Park, Hanbyeol and Bae, Hyerim},
+  booktitle={The First Symposium on Computational Intelligence},
+  year={2025},
+}
+
+@inproceedings{choo2025Trajectory,
+  level = {International Conference},
+  abbr={SCI2025},
+  title={Trajectory Feature Enhanced Spatio Temporal Anomaly Detection for Automated Guided Vehicles},
+  author={Choo, Jungho and Kim, Minseop and Park, Hanbyeol and Bae, Hyerim},
+  booktitle={The First Symposium on Computational Intelligence},
+  year={2025},
+}
+
+@inproceedings{lee2025darkvessel,
   level = {International Conference},
   abbr={LOGMS},
   abstract={Illegal maritime operations, including AIS-off navigation and dark vessel activities, present persistent challenges to maritime domain awareness. This study proposes a real-time multimodal fusion framework that integrates X-band radar tracks and Automatic Identification System (AIS) data for robust detection and characterization of dark vessels. Temporal asynchrony between radar (3–4 s) and AIS (10–180 s) sampling is addressed through a three-stage alignment strategy combining nearest assignment, linear interpolation, and geodesic-based motion prediction. Candidate associations are refined via temporal, spatial, and angular gating, with final matches optimized by a composite cost function. A systematic hyperparameter search identifies an optimal configuration ensuring both matching reliability and spatial accuracy. Subsequently, unmatched radar tracks are processed through a six-stage rule-based checker—covering trajectory continuity, speed consistency, and update regularity—to filter out physically implausible motions. Applied to real maritime data collected near Busan Port (August 1, 2025), the system successfully identifies dark-vessel candidates with a 0.744 matching rate and ~106 m 90th-percentile error across 32,770 radar detections and 198 vessels. Finally, trajectories are projected into radar coordinates and rasterized for sensor-level validation, bridging the gap between traditional rule-based tracking and learning-based multimodal vessel classification. The proposed approach enables reliable dark-vessel monitoring even under limited AIS coverage, providing a scalable foundation for intelligent maritime surveillance systems.},
   title={A Real-Time Dark Vessel Detection System Using Multimodal Fusion},
   author={Lee, Kyunghoon and Kim, Seonghan and Bae, Hyerim and Changdong Lee},
-  booktitle={13th International Conference on Logistics and Maritime Systems (LOGMS 2025)},
+  journal={13th International Conference on Logistics and Maritime Systems},
   year={2025},
 }
 
-@misc{choo2025ALMA,
+@inproceedings{choo2025ALMA,
   level = {International Conference},
   abbr={LOGMS},
   abstract={To support sustainable maritime operations, international organizations have enforced stricter 
@@ -23,7 +41,7 @@ significantly reduces domain gaps and improves prediction accuracy under data-sc
 offering a robust solution for maritime fuel forecasting in support of global sustainability efforts.},
   title={ALMA: Adaptive Lag Moment Alignment for Domain-Adaptive Time Series Forecasting of Ship Fuel Consumption},
   author={Choo, Jungho and Kim, Dohee and Lee, Hyunha and Kim, Minhee and Bae, Hyerim},
-  booktitle={13th International Conference on Logistics and Maritime Systems (LOGMS 2025)},
+  journal={13th International Conference on Logistics and Maritime Systems},
   year={2025},
 }
 
@@ -79,7 +97,7 @@ selected={true},
 }
 
 
-@article{lee2025iconv,
+@misc{lee2025iconv,
   level = {Arxiv},
   abbr={arXiv},
   abstract={Real-world time-series data often exhibit non-stationarity, including changing trends, irregular seasonality, and residuals. In terms of changing trends, recently proposed multi-layer perceptron (MLP)-based models have shown excellent performance owing to their computational efficiency and ability to capture long-term dependency. However, the linear nature of MLP architectures poses limitations when applied to channels with diverse distributions, resulting in local variations such as seasonal patterns and residual components being ignored. However, convolutional neural networks (CNNs) can effectively incorporate these variations. To resolve the limitations of MLP, we propose combining them with CNNs. The overall trend is modeled using an MLP to consider long-term dependencies. The CNN uses diverse kernels to model fine-grained local patterns in conjunction with MLP trend predictions. To focus on modeling local variation, we propose IConv, a novel convolutional architecture that processes the temporal dependency channel independently and considers the inter-channel relationship through distinct layers. Independent channel processing enables the modeling of diverse local temporal dependencies and the adoption of a large kernel size. Distinct inter-channel considerations reduce computational cost. The proposed model is evaluated through extensive experiments on time-series datasets. The results reveal the superiority of the proposed method for multivariate time-series forecasting.},
