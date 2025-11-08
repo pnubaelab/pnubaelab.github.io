@@ -193,6 +193,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-10-29-informs/";
+            },},{id: "news-热烈祝贺-sci-2025-with-jungho-choo-jaehyeon-heo",
+          title: '热烈祝贺!!  🎉🎉🎉 SCI 2025 with Jungho Choo, Jaehyeon Heo',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2025-11-09-SCI2025/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
