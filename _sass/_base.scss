@@ -64,6 +64,9 @@
     font-weight: normal;
     font-display: swap;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+
 // Typography
 
 
@@ -77,19 +80,20 @@ h6,
 em,
 div,
 li,
-span {
+span,
+strong {
   color: var(--global-text-color);
-  font-family: 'Paperlogy-3Light';
+  font-family:  'Paperlogy-3Light', sans-serif;
 }
 
 strong {
   color: var(--global-theme-color);
-  font-family: 'Paperlogy-6SemiBold';
+  font-family:  'Paperlogy-6SemiBold',"Ma Shan Zheng", sans-serif;
 }
 
 h1 {
   color: var(--global-text-color);
-  font-family:'KorailJang',sans-serif;
+  font-family:  'KorailJang',"Ma Shan Zheng", sans-serif;
 }
 
 hr {
