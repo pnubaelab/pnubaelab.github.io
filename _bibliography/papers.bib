@@ -22,7 +22,7 @@
   abstract={Illegal maritime operations, including AIS-off navigation and dark vessel activities, present persistent challenges to maritime domain awareness. This study proposes a real-time multimodal fusion framework that integrates X-band radar tracks and Automatic Identification System (AIS) data for robust detection and characterization of dark vessels. Temporal asynchrony between radar (3–4 s) and AIS (10–180 s) sampling is addressed through a three-stage alignment strategy combining nearest assignment, linear interpolation, and geodesic-based motion prediction. Candidate associations are refined via temporal, spatial, and angular gating, with final matches optimized by a composite cost function. A systematic hyperparameter search identifies an optimal configuration ensuring both matching reliability and spatial accuracy. Subsequently, unmatched radar tracks are processed through a six-stage rule-based checker—covering trajectory continuity, speed consistency, and update regularity—to filter out physically implausible motions. Applied to real maritime data collected near Busan Port (August 1, 2025), the system successfully identifies dark-vessel candidates with a 0.744 matching rate and ~106 m 90th-percentile error across 32,770 radar detections and 198 vessels. Finally, trajectories are projected into radar coordinates and rasterized for sensor-level validation, bridging the gap between traditional rule-based tracking and learning-based multimodal vessel classification. The proposed approach enables reliable dark-vessel monitoring even under limited AIS coverage, providing a scalable foundation for intelligent maritime surveillance systems.},
   title={A Real-Time Dark Vessel Detection System Using Multimodal Fusion},
   author={Lee, Kyunghoon and Kim, Seonghan and Bae, Hyerim and Changdong Lee},
-  journal={13th International Conference on Logistics and Maritime Systems},
+  booktitle={13th International Conference on Logistics and Maritime Systems},
   year={2025},
 }
 
@@ -44,6 +44,20 @@ offering a robust solution for maritime fuel forecasting in support of global su
   journal={13th International Conference on Logistics and Maritime Systems},
   year={2025},
 }
+
+@inproceedings{hong2025LURKER,
+  level = {International Conference},
+  abbr={ICICIC},
+  title={LURKER: Language models for Unveiling maritime Risks via Knowledge-driven Event forecasting and Reasoning},
+  author={Hong, Seongmoon and Park, Taekhyun and Kim, Dohee and Jo, Sangmin and Bae, Hyerim},
+  abstract={Maritime accident risk prediction has highlighted the limitations of purely statistical classifiers and numerical scoring schemes, driving demand for scenario-driven analytical methods that can elucidate both the context and progression of incidents. In response, we propose LURKER (Language models for Unveiling maritime Risks via Knowledge-driven Event forecasting and Reasoning), an explainable framework that leverages the reasoning capabilities of large language models (LLMs) to analyze maritime accident severity. LURKER quantifies accident risk by integrating a tree-based classification model with isotonic regression for probability calibration, then generates dynamic scenarios through a prompt-engineering module that summarizes tribunal reports and incorporates real-time data. By employing few-shot learning and chain-of-thought prompting, LURKER produces context-rich descriptions of causal factors, incident progression, and potential impacts. This approach transcends purely numerical analysis, offering comprehensive explanations of accident causes and consequences, and functions as an intelligent decision-support tool. Case-based experiments integrating tribunal reports, AIS vessel-track data, and meteorological observations demonstrate LURKER’s feasibility and practical utility as a severity-prediction tool for operational maritime safety management.},
+  booktitle={19th International Conference on Innovative Computing, Information and Control (ICICIC 2025)},
+  address={Kitakyushu, Japan},
+  organization={ICIC International},
+  keywords={Maritime Accident, Large Language Model, Prompt Engineering, Severity Prediction, Probability Calibration},
+  year={2025},
+}
+
 
 @misc{park2025reasoningawaregrpousingprocess,
       level = {Arxiv},
