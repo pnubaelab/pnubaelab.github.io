@@ -1,505 +1,351 @@
 <div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
-  <div id="coauthor-graph" style="height: 420px; min-height: 320px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: radial-gradient(ellipse at 60% 40%, #222 0%, #1a237e 60%, #000 100%); position: relative; overflow: hidden;"></div>
+  <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
+    <div id="coauthor-graph-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd8dc;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading 3D Collaboration Graph…</div>
+  </div>
   <div style="margin-top: .25rem;">
     {% include pub_count_legend.liquid %}
   </div>
   <div id="coauthor-table" style="width: 100%;"></div>
 </div>
-<script src="https://d3js.org/d3.v7.min.js"></script>
-<script>
+<script src="//cdn.jsdelivr.net/npm/3d-force-graph"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three-spritetext": "https://esm.sh/three-spritetext@1"
+  }
+}
+</script>
+<script type="module">
+import SpriteText from 'three-spritetext';
+
 (() => {
-  // Bail out if the container is not present on the page.
   const container = document.getElementById('coauthor-graph');
   if (!container) return;
 
-  fetch('/assets/json/collabo_graph.json')
-    .then(response => response.json())
-    .then(graph => {
-      // Draw graph
-      const width = container.clientWidth || 800;
-      // 모바일에서는 정사각형 비율(가독성 향상), 그 외엔 16:9 유지
-      let height;
-      if (width < 576) {
-        height = Math.max(Math.round(width), 360); // 1:1, 최소 360px
-      } else {
-        height = Math.max(Math.round(width * 9 / 16), 320); // 16:9, 최소 320px
+  function extractFirstName(name) {
+    if (name.includes(',')) {
+      const parts = name.split(',');
+      return parts[1] ? parts[1].trim() : '';
+    }
+    if (/^[가-힣]{2,}$/.test(name)) return name.slice(-2);
+    if (/^[A-Za-z ]+$/.test(name.trim())) return name.trim().split(/\s+/)[0];
+    return name;
+  }
+  function setBibSearchValue(value, retries = 6) {
+    const searchBox = document.getElementById('bibsearch');
+    if (searchBox) {
+      searchBox.value = value;
+      searchBox.dispatchEvent(new Event('input', { bubbles: true }));
+      searchBox.focus();
+    } else if (retries > 0) {
+      setTimeout(() => setBibSearchValue(value, retries - 1), 250);
+    }
+  }
+
+  // Responsive height logic (preserve previous behavior with slight increase for 3D)
+  function computeHeight() {
+    const w = container.clientWidth || 800;
+    if (w < 576) return Math.max(Math.round(w), 400);
+    return Math.max(Math.round(w * 9/16), 420);
+  }
+  function resizeCanvas(graphInstance) {
+    const h = computeHeight();
+    container.style.height = h + 'px';
+    graphInstance && graphInstance.height(h).width(container.clientWidth || 800);
+  }
+
+  // Create multi-layered space background with depth
+  function addStarfield(graphInstance) {
+    const THREE = window.THREE;
+    if (!THREE) return;
+    
+    // Layer 1: Distant nebula-like background (furthest)
+    const nebulaGeometry = new THREE.SphereGeometry(1800, 32, 32);
+    const nebulaTexture = createNebulaTexture();
+    const nebulaMaterial = new THREE.MeshBasicMaterial({ 
+      map: nebulaTexture, 
+      side: THREE.BackSide, 
+      transparent: true, 
+      opacity: 0.15,
+      blending: THREE.AdditiveBlending
+    });
+    const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
+    nebula.name = 'collabo-nebula';
+    graphInstance.scene().add(nebula);
+    
+    // Layer 2: Distant stars (far background)
+    addStarLayer(graphInstance, 1400, 1600, 800, 1.2, 0.4, 'distant-stars');
+    
+    // Layer 3: Mid-distance stars (medium layer)
+    addStarLayer(graphInstance, 900, 1200, 600, 1.8, 0.6, 'mid-stars');
+    
+    // Layer 4: Near stars (close layer)
+    addStarLayer(graphInstance, 600, 800, 400, 2.5, 0.85, 'near-stars');
+    
+    // Layer 5: Twinkling accent stars (closest, animated)
+    const twinkleStars = addStarLayer(graphInstance, 400, 600, 150, 3.5, 1.0, 'twinkle-stars', true);
+    
+    // Animate twinkling stars
+    if (twinkleStars) {
+      const positions = twinkleStars.geometry.attributes.position.array;
+      const originalPositions = positions.slice();
+      let time = 0;
+      function animateTwinkle() {
+        time += 0.01;
+        const sizes = new Float32Array(positions.length / 3);
+        for (let i = 0; i < positions.length / 3; i++) {
+          const offset = i * 0.5;
+          sizes[i] = 3.5 + Math.sin(time * 2 + offset) * 1.5;
+        }
+        twinkleStars.material.size = 3.5 + Math.sin(time * 2) * 0.5;
+        requestAnimationFrame(animateTwinkle);
       }
-
-      // 컨테이너 실제 높이를 계산값으로 동기화하여 레이어 뒤틀림 방지
-      container.style.height = height + 'px';
-
-      // Remove any existing SVG (fix double box issue)
-      d3.select(container).selectAll('svg').remove();
-
-
-      // --- Add cosmic starfield background ---
-      const starCount = 120;
-      const stars = Array.from({length: starCount}, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.2 + 0.3,
-        o: Math.random() * 0.7 + 0.3
-      }));
-
-      // Insert SVG for graph and starfield
-      // Prepare parallax layers refs (assigned after creation)
-      let starBackLayer, starMidLayer, starFrontLayer;
-      // Configure zoom so we can programmatically control it later
-      const zoom = d3.zoom()
-        .scaleExtent([0.3, 5])
-        .on('zoom', (event) => {
-          svg.select('g.zoomable').attr('transform', event.transform);
-          // Parallax: make subtler; stars do not scale
-          if (starBackLayer) starBackLayer.attr('transform', `translate(${event.transform.x * 0.08}, ${event.transform.y * 0.08})`);
-          if (starMidLayer)  starMidLayer.attr('transform',  `translate(${event.transform.x * 0.16}, ${event.transform.y * 0.16})`);
-          if (starFrontLayer)starFrontLayer.attr('transform',`translate(${event.transform.x * 0.28}, ${event.transform.y * 0.28})`);
-          updateLabelVisibility(event.transform);
-        });
-      const zoomMax = zoom.scaleExtent()[1];
-
-      const svg = d3.select(container)
-        .append('svg')
-        .attr('viewBox', [0, 0, width, height])
-        .style('width', '100%')
-        .style('height', '100%')
-        .style('border', '1px solid #e2e8f0')
-        .call(zoom);
-
-      // Build multi-layer starfield for parallax depth
-      const backData  = Array.from({length: Math.round(starCount * 0.5)}, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.0 + 0.2,
-        o: Math.random() * 0.35 + 0.15
-      }));
-      const midData   = Array.from({length: Math.round(starCount * 0.35)}, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.3 + 0.3,
-        o: Math.random() * 0.45 + 0.25
-      }));
-      const frontData = Array.from({length: Math.round(starCount * 0.2)}, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        r: Math.random() * 1.8 + 0.6,
-        o: Math.random() * 0.5 + 0.35
-      }));
-
-      starBackLayer  = svg.append('g').attr('class', 'starfield back');
-      starMidLayer   = svg.append('g').attr('class', 'starfield mid');
-      starFrontLayer = svg.append('g').attr('class', 'starfield front');
-
-      const starsBack = starBackLayer.selectAll('circle')
-        .data(backData)
-        .join('circle')
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y)
-        .attr('r', d => d.r)
-        .attr('fill', '#fff')
-        .attr('opacity', d => d.o)
-        .attr('filter', 'url(#star-glow)');
-      const starsMid = starMidLayer.selectAll('circle')
-        .data(midData)
-        .join('circle')
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y)
-        .attr('r', d => d.r)
-        .attr('fill', '#fff')
-        .attr('opacity', d => d.o)
-        .attr('filter', 'url(#star-glow)');
-      const starsFront = starFrontLayer.selectAll('circle')
-        .data(frontData)
-        .join('circle')
-        .attr('cx', d => d.x)
-        .attr('cy', d => d.y)
-        .attr('r', d => d.r)
-        .attr('fill', '#fff')
-        .attr('opacity', d => d.o)
-        .attr('filter', 'url(#star-glow)');
-
-      // Subtle twinkling animation for stars
-      function twinkleOne(star) {
-        // Subtler twinkle: narrower opacity band and slower cycles
-        const base = +star.attr('data-base-o') || (Math.random() * 0.3 + 0.25);
-        star.attr('data-base-o', base);
-        const target = Math.max(0.12, Math.min(1, base + (Math.random() * 0.24 - 0.12)));
-        star.transition()
-          .duration(2400 + Math.random() * 2400)
-          .ease(d3.easeSinInOut)
-          .attr('opacity', target)
-          .on('end', () => twinkleOne(star));
-      }
-      starsBack.each(function() { twinkleOne(d3.select(this)); });
-      starsMid.each(function() { twinkleOne(d3.select(this)); });
-      starsFront.each(function() { twinkleOne(d3.select(this)); });
-
-      // Vignette overlay (fixed to viewport; no pointer interception)
-      const vignetteGrad = svg.append('defs').append('radialGradient')
-        .attr('id', 'vignette-grad')
-        .attr('cx', '50%').attr('cy', '50%').attr('r', '65%');
-      vignetteGrad.append('stop').attr('offset', '65%').attr('stop-color', '#000').attr('stop-opacity', 0.0);
-      vignetteGrad.append('stop').attr('offset', '88%').attr('stop-color', '#000').attr('stop-opacity', 0.15);
-      vignetteGrad.append('stop').attr('offset', '100%').attr('stop-color', '#000').attr('stop-opacity', 0.28);
-      const vignette = svg.append('rect')
-        .attr('x', 0).attr('y', 0)
-        .attr('width', width).attr('height', height)
-        .attr('fill', 'url(#vignette-grad)')
-        .style('pointer-events', 'none');
-      vignette.raise();
-
-      // Add a filter for glowing stars
-      svg.append('defs').append('filter')
-        .attr('id', 'star-glow')
-        .html('<feGaussianBlur stdDeviation="1.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>');
-
-      const simulation = d3.forceSimulation(graph.nodes)
-        .force('link', d3.forceLink(graph.links)
-          .id(d => d.id)
-          .distance(d => 40 + Math.log(d.value + 1) * 14)
-          .strength(d => 0.06 + d.value * 0.012)) // 중력 약화
-        .force('charge', d3.forceManyBody().strength(-40)) // 약간 약화
-        .force('center', d3.forceCenter(width / 2, height / 2)) // 중앙으로 포스 추가
-
-      // Create a group for zoom/pan
-      const zoomable = svg.append('g').attr('class', 'zoomable');
-
-  const LINK_BASE_COLOR = '#e0f7fa';
-  const LINK_BASE_OPACITY = 0.04; // make connections lighter
-      const link = zoomable.append('g')
-        .attr('stroke', LINK_BASE_COLOR)
-        .attr('stroke-opacity', LINK_BASE_OPACITY)
-        .selectAll('line')
-        .data(graph.links)
-        .join('line')
-        .attr('stroke-width', d => 1.2 + Math.log(d.value));
-
-
-      // 네온/야광 팔레트 (더 밝고 화려하게)
-      const neonColors = [
-        '#39ff14', // Neon green
-        '#00fff7', // Neon cyan
-        '#ff00ea', // Neon magenta
-        '#ffe600', // Neon yellow
-        '#ff1744', // Neon red
-        '#00e676', // Neon mint
-        '#2979ff', // Neon blue
-        '#f50057', // Neon pink
-        '#00ff90', // Neon teal
-        '#fff700', // Neon lemon
-        '#ff6ec7', // Pink nebula
-        '#00bfff', // Electric blue
-        '#ffb300', // Neon orange
-        '#e040fb', // Neon purple
-        '#76ff03', // Neon lime
-      ];
-      // 매 로드마다 색상 순서를 랜덤화 (일관된 세션 내 매핑 유지)
-      const shuffledColors = neonColors.slice();
-      for (let i = shuffledColors.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffledColors[i], shuffledColors[j]] = [shuffledColors[j], shuffledColors[i]];
-      }
-      const color = d3.scaleOrdinal(shuffledColors);
-
-  // 각 색상별로 glow filter 동적 생성 (셔플된 팔레트 적용)
-  const defs = svg.append('defs');
-  shuffledColors.forEach((c, i) => {
-        defs.append('filter')
-          .attr('id', `neon-glow-${i}`)
-          .html(`
-            <feGaussianBlur stdDeviation="7" result="blur"/>
-            <feFlood flood-color="${c}" flood-opacity="0.55"/>
-            <feComposite in2="blur" operator="in"/>
-            <feMerge>
-              <feMergeNode/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          `);
-      });
-
-      // 노드에 그라데이션 효과 추가 (안쪽은 투명도 0, 바깥쪽은 투명하게)
-      const gradientDefs = svg.append('defs');
+      animateTwinkle();
+    }
+    
+    // Add cosmic dust particles
+    addCosmicDust(graphInstance);
+  }
+  
+  function addStarLayer(graphInstance, minRadius, maxRadius, count, size, opacity, name, colorful = false) {
+    const THREE = window.THREE;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
+    
+    for (let i = 0; i < count; i++) {
+      const radius = minRadius + Math.random() * (maxRadius - minRadius);
+      const theta = Math.acos(2 * Math.random() - 1);
+      const phi = 2 * Math.PI * Math.random();
       
-      // 각 색상별로 radial gradient 생성
-      shuffledColors.forEach((c, i) => {
-        gradientDefs.append('radialGradient')
-          .attr('id', `gradient-${i}`)
-          .attr('cx', '50%')
-          .attr('cy', '50%')
-          .attr('r', '50%')
-          .html(`
-            <stop offset="0%" style="stop-color:${c};stop-opacity:1"/>
-            <stop offset="70%" style="stop-color:${c};stop-opacity:0.8"/>
-            <stop offset="100%" style="stop-color:${c};stop-opacity:0.5"/>
-            <stop offset="100%" style="stop-color:${c};stop-opacity:0.1"/>
-          `);
+      positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
+      positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
+      positions[i * 3 + 2] = radius * Math.cos(theta);
+      
+      // Color variation for space atmosphere
+      if (colorful) {
+        const colorPalette = [
+          [1.0, 1.0, 1.0],    // white
+          [0.8, 0.9, 1.0],    // light blue
+          [1.0, 0.9, 0.7],    // warm white
+          [0.7, 0.8, 1.0],    // cool blue
+          [1.0, 0.8, 0.9]     // pink tint
+        ];
+        const colorChoice = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+        colors[i * 3] = colorChoice[0];
+        colors[i * 3 + 1] = colorChoice[1];
+        colors[i * 3 + 2] = colorChoice[2];
+      } else {
+        const brightness = 0.7 + Math.random() * 0.3;
+        colors[i * 3] = brightness;
+        colors[i * 3 + 1] = brightness;
+        colors[i * 3 + 2] = brightness + Math.random() * 0.1;
+      }
+    }
+    
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    
+    const material = new THREE.PointsMaterial({ 
+      size: size, 
+      sizeAttenuation: true, 
+      transparent: true, 
+      opacity: opacity,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending
+    });
+    
+    const stars = new THREE.Points(geometry, material);
+    stars.name = 'collabo-' + name;
+    graphInstance.scene().add(stars);
+    return stars;
+  }
+  
+  function addCosmicDust(graphInstance) {
+    const THREE = window.THREE;
+    const dustCount = 300;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(dustCount * 3);
+    const colors = new Float32Array(dustCount * 3);
+    
+    for (let i = 0; i < dustCount; i++) {
+      const radius = 700 + Math.random() * 600;
+      const theta = Math.acos(2 * Math.random() - 1);
+      const phi = 2 * Math.PI * Math.random();
+      
+      positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
+      positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
+      positions[i * 3 + 2] = radius * Math.cos(theta);
+      
+      // Colorful cosmic dust (cyan, purple, pink hues)
+      const dustColors = [
+        [0.0, 0.8, 1.0],    // cyan
+        [0.8, 0.0, 1.0],    // purple
+        [1.0, 0.4, 0.8],    // pink
+        [0.4, 0.6, 1.0],    // light blue
+      ];
+      const colorChoice = dustColors[Math.floor(Math.random() * dustColors.length)];
+      colors[i * 3] = colorChoice[0];
+      colors[i * 3 + 1] = colorChoice[1];
+      colors[i * 3 + 2] = colorChoice[2];
+    }
+    
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+    
+    const material = new THREE.PointsMaterial({ 
+      size: 4, 
+      sizeAttenuation: true, 
+      transparent: true, 
+      opacity: 0.3,
+      vertexColors: true,
+      blending: THREE.AdditiveBlending
+    });
+    
+    const dust = new THREE.Points(geometry, material);
+    dust.name = 'collabo-cosmic-dust';
+    graphInstance.scene().add(dust);
+  }
+  
+  function createNebulaTexture() {
+    const THREE = window.THREE;
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 512;
+    const ctx = canvas.getContext('2d');
+    
+    // Create gradient nebula effect
+    const gradient = ctx.createRadialGradient(256, 256, 50, 256, 256, 256);
+    gradient.addColorStop(0, 'rgba(100, 50, 150, 0.3)');
+    gradient.addColorStop(0.3, 'rgba(50, 20, 100, 0.2)');
+    gradient.addColorStop(0.6, 'rgba(20, 10, 60, 0.1)');
+    gradient.addColorStop(1, 'rgba(5, 2, 20, 0)');
+    
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 512, 512);
+    
+    // Add some noise for texture
+    for (let i = 0; i < 2000; i++) {
+      const x = Math.random() * 512;
+      const y = Math.random() * 512;
+      const size = Math.random() * 3;
+      const alpha = Math.random() * 0.3;
+      ctx.fillStyle = `rgba(150, 100, 200, ${alpha})`;
+      ctx.fillRect(x, y, size, size);
+    }
+    
+    return new THREE.CanvasTexture(canvas);
+  }
+
+  function buildGraph(data) {
+    // Backwards compatibility if file still has old keys
+    data.nodes.forEach(n => {
+      if (n.value != null && n.val == null) n.val = n.value;
+      if (!n.name) n.name = n.id;
+    });
+
+    const maxVal = Math.max(...data.nodes.map(n => n.val||1));
+    // Top authors (limit 6 like before)
+    const topSet = new Set([...data.nodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,6).map(n=>n.id));
+
+    const g = ForceGraph3D({ controlType: 'orbit' })(container)
+      .graphData(data)
+      .backgroundColor('#020611')
+      .showNavInfo(false)
+      .nodeId('id')
+      .nodeLabel(n => `<div style="font-size:12px;line-height:1.2"><strong>${n.name}</strong><br/>Papers: ${n.val}</div>`)
+      .nodeVal(n => 0.1 + 0.3*(n.val || 1))
+      .nodeOpacity(0.96)
+      .linkOpacity(0.1)
+      .linkWidth(l => 0.5 + ((l.value||1)+1))
+      .linkDirectionalParticles(l => (l.__highlight ? 6 : 0))
+      .linkDirectionalParticleSpeed(0.004)
+      .linkColor(l => l.__highlight ? '#ffffff' : 'rgba(160,255,255,0.4)')
+      .nodeColor(n => {
+        // Neon-like palette mapping by hashing id
+        const palette = ['#39ff14','#00fff7','#ff00ea','#ffe600','#ff1744','#00e676','#2979ff','#f50057','#00ff90','#fff700','#ff6ec7','#00bfff','#ffb300','#e040fb','#76ff03'];
+        const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
+        let base = palette[h % palette.length];
+        if (n.val === maxVal) return '#ffffff';
+        return base;
+      })
+      .onNodeClick(node => {
+        // Camera focus
+        const dist = 100 + Math.sqrt(node.val||1)*22;
+        const ratio = 1 + dist / Math.hypot(node.x,node.y,node.z);
+        g.cameraPosition({ x: node.x*ratio, y: node.y*ratio, z: node.z*ratio }, { x: node.x, y: node.y, z: node.z }, 2000);
+        setBibSearchValue(extractFirstName(node.id));
+        flashLinks(node, g);
+      })
+      .onNodeHover(node => {
+        container.style.cursor = node ? 'pointer':'default';
       });
 
-      // Find the top author (max value) and top 5 authors
-      let maxValue = Math.max(...graph.nodes.map(d => d.value));
-      // Sort nodes by value descending and get top 5
-      const top5 = [...graph.nodes].sort((a, b) => b.value - a.value).slice(0, 6).map(d => d.id);
-
-      const nodeGroup = zoomable.append('g');
-      const node = nodeGroup
-        .selectAll('g')
-        .data(graph.nodes)
-        .join('g');
-
-      // Draw circles
-
-      node.append('circle')
-        .attr('r', d => {
-          if (d.value === maxValue) return 20 + Math.sqrt(d.value); // 1등 노드 더 크게
-          return 6 + Math.sqrt(d.value);
-        })
-        .attr('fill', (d, i) => `url(#gradient-${i % shuffledColors.length})`)
-        .attr('opacity', 1)
-        .call(d3.drag()
-          .on('start', dragstarted)
-          .on('drag', dragged)
-          .on('end', dragended));
-
-
-      // Add name labels: top 5 to the right, others inside
-      function splitName(name) {
-        // 콤마가 있으면 콤마 앞(성)만
-        if (name.includes(',')) {
-          return name.split(',')[1].trim();
-        }
-        // 한글 이름: 성1글자만
-        if (/^[가-힣]{2,}$/.test(name)) {
-          return name[0];
-        }
-        // 영문 이름: 공백으로 분리해서 첫 단어만
-        if (/^[A-Za-z ]+$/.test(name.trim())) {
-          return name.trim().split(/\s+/)[0];
-        }
-        return name;
+    // Add SpriteText labels for all nodes
+    g.nodeThreeObjectExtend(true);
+    g.nodeThreeObject(n => {
+      // Create text sprite for all nodes
+      const sprite = new SpriteText(n.name);
+      
+      // Styling based on whether it's a top author
+      if (topSet.has(n.id)) {
+        sprite.color = '#ffffff';
+        sprite.textHeight = 8 + Math.sqrt(n.val||1) * 0.7;
+        sprite.fontWeight = '600';
+      } else {
+        sprite.color = '#ffffff';
+        sprite.textHeight = 5 + Math.sqrt(n.val||1) * 0.3;
+        sprite.fontWeight = '400';
       }
+      
+      // Position above the node
+      const offset = Math.sqrt(n.val||1) * 3 + 8;
+      sprite.position.set(0, offset, 0);
+      
+      return sprite;
+    });
 
-      // Main label (inside for non-top5, hidden for top5)
-      const label = node.append('text')
-        .text(d => splitName(d.id))
-        .attr('text-anchor', 'middle')
-        .attr('dominant-baseline', 'middle')
-        .attr('pointer-events', 'none')
-        .attr('fill', '#fff')
-        .attr('font-size', d => {
-          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
-          return Math.max(8, r * 0.7); // 살짝 키움
-        })
-        .style('white-space', 'pre-line')
-        .style('display', d => top5.includes(d.id) ? 'none' : 'none'); // top5는 기본 숨김
-
-      // Side label for top 5
-      const sideLabel = node.append('text')
-        .filter(d => top5.includes(d.id))
-        .text(d => d.id)
-        .attr('x', d => {
-          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
-          return r + 10;
-        })
-        .attr('y', 2)
-        .attr('text-anchor', 'start')
-        .attr('dominant-baseline', 'middle')
-        .attr('pointer-events', 'none')
-        .attr('fill', '#fff')
-        .attr('font-size', d => {
-          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
-          return Math.max(12, r * 0.85);
-        })
-        .attr('stroke', '#222')
-        .attr('stroke-width', 2)
-        .attr('paint-order', 'stroke')
-        .style('display', 'block');
-
-
-      // Show/hide labels based on zoom level and node size
-      function updateLabelVisibility(transform) {
-        label.each(function(d) {
-          const r = (d.value === maxValue) ? 12 + Math.sqrt(d.value) : 4 + Math.sqrt(d.value);
-          // threshold: label shows if node radius * zoom > 16
-          if (!top5.includes(d.id) && (r * transform.k) > 16) {
-            d3.select(this).style('display', 'block');
-          } else {
-            d3.select(this).style('display', 'none');
-          }
-        });
-        sideLabel.each(function(d) {
-          // top5는 항상 보이게
-          d3.select(this).style('display', top5.includes(d.id) ? 'block' : 'none');
-        });
-      }
-      // Initial label visibility
-      updateLabelVisibility({k: 1});
-
-      // Tooltip for displaying author names on hover.
-      const tooltip = d3.select('body')
-        .append('div')
-        .attr('class', 'graph-tooltip')
-        .style('position', 'absolute')
-        .style('padding', '4px 8px')
-        .style('background', 'rgba(0,0,0,0.7)')
-        .style('color', '#fff')
-        .style('border-radius', '4px')
-        .style('font-size', '0.75rem')
-        .style('pointer-events', 'none')
-        .style('opacity', 0);
-
-      node.on('mouseover', (event, d) => {
-        tooltip
-          .style('opacity', 1)
-          .html(`<strong>${d.id}</strong><br/>Papers: ${d.value}`);
-      }).on('mousemove', (event) => {
-        tooltip
-          .style('left', (event.pageX + 10) + 'px')
-          .style('top', (event.pageY + 10) + 'px');
-      }).on('mouseout', () => {
-        tooltip.style('opacity', 0);
+    function flashLinks(node, gInstance) {
+      const related = new Set();
+      gInstance.graphData().links.forEach(l => {
+        if (l.source.id === node.id || l.target.id === node.id) related.add(l);
       });
+      related.forEach(l => { l.__highlight = true; });
+      gInstance.refresh();
+      setTimeout(() => { related.forEach(l => { l.__highlight = false; }); gInstance.refresh(); }, 1300);
+    }
 
-
-      // 이름만 추출 ("Kim, Minhee" → "Minhee", "Minhee Kim" → "Minhee", "김민희" → "민희")
-      function extractFirstName(name) {
-        if (name.includes(',')) {
-          // "성, 이름" 형태: 콤마 기준으로만 분리
-          const parts = name.split(',');
-          return parts[1] ? parts[1].trim() : '';
-        }
-        // 한글 이름: 2글자 이상이면 마지막 2글자
-        if (/^[가-힣]{2,}$/.test(name)) {
-          return name.slice(-2);
-        }
-        // 영문 이름: 공백으로 분리해서 첫 단어가 이름일 확률 높음
-        if (/^[A-Za-z ]+$/.test(name.trim())) {
-          return name.trim().split(/\s+/)[0];
-        }
-        return name;
+    // Starfield + post-processing bloom (optional)
+    addStarfield(g);
+    try {
+      const composer = g.postProcessingComposer();
+      if (window.THREE && composer) {
+        const UnrealBloomPass = window.THREE.UnrealBloomPass || undefined;
+        // If external bloom script was not loaded, skip silently.
       }
+    } catch (e) { /* ignore */ }
 
-      // bib_search input이 생성될 때까지 재시도하며 값 입력
-      function setBibSearchValue(value, retries = 5) {
-        const searchBox = document.getElementById('bibsearch');
-        if (searchBox) {
-          searchBox.value = value;
-          searchBox.dispatchEvent(new Event('input', { bubbles: true }));
-          searchBox.focus();
-        } else if (retries > 0) {
-          setTimeout(() => setBibSearchValue(value, retries - 1), 200);
-        }
-      }
+    // Initial sizing
+    resizeCanvas(g);
+    window.addEventListener('resize', () => resizeCanvas(g));
 
-      // Center the clicked node in view and flash-highlight briefly
-      function focusNode(d, opts = {}) {
-        const { k: kOverride, duration = 650 } = opts;
-        const t = d3.zoomTransform(svg.node());
-        const k = typeof kOverride === 'number' ? kOverride : zoomMax;
-        const tx = width / 2 - d.x * k;
-        const ty = height / 2 - d.y * k;
-        svg.transition()
-          .duration(duration)
-          .call(zoom.transform, d3.zoomIdentity.translate(tx, ty).scale(k));
-      }
+    // Remove loader
+    const loader = document.getElementById('coauthor-graph-loader');
+    if (loader) loader.remove();
 
-      function flash(selection) {
-        const c = selection.select('circle');
-        // Bring to front, then run a quick stroke-width flash
-        selection.raise();
-        c.interrupt()
-          .attr('stroke', '#fff')
-          .attr('stroke-opacity', 0.95)
-          .transition().duration(140)
-          .attr('stroke-width', 1)
-          .transition().duration(360)
-          .attr('stroke-width', 0)
-          .on('end', function() {
-            d3.select(this).attr('stroke', null).attr('stroke-opacity', null).attr('stroke-width', null);
-          });
-      }
+    // Auto fit view after small warmup
+    setTimeout(() => {
+      g.zoomToFit(800, 40);
+    }, 1200);
+  }
 
-      // Briefly highlight links connected to the clicked node
-      function linkWidth(d) {
-        return 1.2 + Math.log(d.value);
-      }
-      function flashLinksForNode(nodeData) {
-        const isConnected = (l) => (l.source.id === nodeData.id) || (l.target.id === nodeData.id);
-        const sel = link.filter(isConnected);
-
-        sel.each(function(l, i) {
-          const el = d3.select(this);
-          const x1 = parseFloat(el.attr('x1'));
-          const y1 = parseFloat(el.attr('y1'));
-          const x2 = parseFloat(el.attr('x2'));
-          const y2 = parseFloat(el.attr('y2'));
-
-          // Gradient direction: from clicked node outward
-          let gx1, gy1, gx2, gy2;
-          if (l.source.id === nodeData.id) { gx1 = x1; gy1 = y1; gx2 = x2; gy2 = y2; }
-          else { gx1 = x2; gy1 = y2; gx2 = x1; gy2 = y1; }
-
-          const gid = `link-flash-${Date.now()}-${Math.floor(Math.random()*1e6)}-${i}`;
-          const grad = defs.append('linearGradient')
-            .attr('id', gid)
-            .attr('gradientUnits', 'userSpaceOnUse')
-            .attr('x1', gx1).attr('y1', gy1)
-            .attr('x2', gx2).attr('y2', gy2);
-
-          grad.append('stop').attr('offset', '0%').attr('stop-color', '#ffffff').attr('stop-opacity', 0.95);
-          grad.append('stop').attr('offset', '60%').attr('stop-color', '#ffffff').attr('stop-opacity', 0.35);
-          grad.append('stop').attr('offset', '100%').attr('stop-color', LINK_BASE_COLOR).attr('stop-opacity', 0);
-
-          el.interrupt()
-            .raise()
-            .transition().duration(140)
-            .attr('stroke', `url(#${gid})`)
-            .attr('stroke-opacity', 1)
-            .attr('stroke-width', linkWidth(l))
-            .transition().duration(420)
-            .attr('stroke', LINK_BASE_COLOR)
-            .attr('stroke-opacity', LINK_BASE_OPACITY)
-            .attr('stroke-width', linkWidth(l))
-            .on('end', () => {
-              defs.select(`#${gid}`).remove();
-            });
-        });
-      }
-
-      node.on('click', (event, d) => {
-        setBibSearchValue(extractFirstName(d.id));
-        // Center and flash the clicked node
-        focusNode(d, { k: zoomMax, duration: 1200 });
-        flash(d3.select(event.currentTarget));
-        flashLinksForNode(d);
-      });
-
-      node.append('title').text(d => d.id);
-
-      simulation.on('tick', () => {
-        link
-          .attr('x1', d => d.source.x)
-          .attr('y1', d => d.source.y)
-          .attr('x2', d => d.target.x)
-          .attr('y2', d => d.target.y);
-        node.attr('transform', d => `translate(${d.x},${d.y})`);
-      });
-
-      function dragstarted(event, d) {
-        if (!event.active) simulation.alphaTarget(0.1).restart(); // 더 낮은 값으로 부드럽게
-        d.fx = d.x;
-        d.fy = d.y;
-        
-        // 드래그 중에는 트랜지션 중단
-        d3.select(event.sourceEvent.target).interrupt();
-      }
-      function dragged(event, d) {
-        d.fx = event.x;
-        d.fy = event.y;
-      }
-      function dragended(event, d) {
-        if (!event.active) simulation.alphaTarget(0).restart(); // 부드러운 종료
-        d.fx = null;
-        d.fy = null;
-      }
+  fetch('/assets/json/collabo_graph.json')
+    .then(r => r.json())
+    .then(data => buildGraph(data))
+    .catch(err => {
+      const loader = document.getElementById('coauthor-graph-loader');
+      if (loader) loader.textContent = 'Failed to load graph data.';
+      console.error('Graph load error', err);
     });
 })();
 </script>
