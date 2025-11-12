@@ -337,6 +337,49 @@ import SpriteText from 'three-spritetext';
     setTimeout(() => {
       g.zoomToFit(800, 40);
     }, 1200);
+
+    // Auto-rotation animation
+    let autoRotateAngle = 0;
+    let isAutoRotating = true;
+    let userInteracted = false;
+
+    // Detect user interaction to pause auto-rotation temporarily
+    container.addEventListener('mousedown', () => {
+      userInteracted = true;
+      isAutoRotating = false;
+    });
+
+    container.addEventListener('mouseup', () => {
+      // Resume auto-rotation after 3 seconds of no interaction
+      setTimeout(() => {
+        if (userInteracted) {
+          isAutoRotating = true;
+          userInteracted = false;
+        }
+      }, 3000);
+    });
+
+    // Smooth rotation animation loop
+    function animate() {
+      if (isAutoRotating) {
+        autoRotateAngle += 0.2; // Rotation speed (degrees per frame)
+        const distance = 400;
+        const angleRad = autoRotateAngle * Math.PI / 180;
+        
+        // Circular camera path around the graph
+        g.cameraPosition({
+          x: distance * Math.sin(angleRad),
+          y: distance * 0.3 * Math.sin(angleRad * 0.5), // Slight vertical movement
+          z: distance * Math.cos(angleRad)
+        }, { x: 0, y: 0, z: 0 }, 0); // Look at center, no transition time for smooth animation
+      }
+      requestAnimationFrame(animate);
+    }
+    
+    // Start animation after initial zoom
+    setTimeout(() => {
+      animate();
+    }, 2000);
   }
 
   fetch('/assets/json/collabo_graph.json')
