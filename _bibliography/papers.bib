@@ -1,3 +1,29 @@
+
+@inproceedings{park2025Synthetic,
+  level = {International Conference},
+  abbr={INFORMS2025},
+  title={Synthetic–Empirical Log Fusion for Deep Learning Prediction of Outpatient Queue Dynamics},
+  author={Park, Daesan and Kim, Dohee and Bae, Hyerim},
+  abstract={Classical queueing formulas provide closed-form steady-state metrics and clear managerial insights 
+into system sensitivity under stable loads; however, their analytical reach diminishes when demand spikes or 
+service rules change. Discrete-event simulation (DES) accurately reproduces such dynamics, but repeated runs 
+and calibration hinder real-time use. Recent deep learning predictors enhance speed, but most are trained only on 
+synthetic DES episodes—introducing model bias—or solely on sparse field logs, which leaves them insufficiently 
+exposed to rare transients and measurement noise. 
+To address these limitations, we propose a data fusion framework that provides an off-the-shelf deep learning 
+predictor with both synthetic and empirical samples. A configurable simulator generates both routine and stress 
+scenarios. Each episode delivers queue length paths and moments of waiting time, while the clinic logs contribute 
+the same indicators under routine conditions. Within this framework, we systematically adjust the ratio of 
+synthetic to empirical data to train the predictor and analyze how this ratio balances steady-state accuracy against 
+responsiveness under stress. The proposed framework is validated using outpatient clinic data to demonstrate its 
+practical applicability while still offering rapid inference for operational decision support. 
+Results demonstrate (i) how prediction error varies with log share across routine and stress conditions, (ii) that 
+fusion training remains resilient to measurement noise and log sparsity, and (iii) offers practical guidance for 
+selecting simulation-to-log ratios—uniting the strengths of analytic formulas, simulation, and deep learning.},
+  booktitle={2025 INFORMS Annual Meeting},
+  year={2025},
+}
+
 @article{JO2026123452,
 abbr={Ocean Eng.},
 title = {Deep learning framework for regional maritime collision risk assessment using CNN and Grad-CAM},
