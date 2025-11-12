@@ -173,8 +173,8 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-09-23-%EB%B6%80%EC%82%B0%EC%95%8C%EC%95%A4%EB%94%94%EC%A3%BC%EA%B0%84/";
-            },},{id: "news-paper-was-accepted-advanced-engineering-informatics",
-          title: 'Paper was Accepted Advanced Engineering Informatics!!!',
+            },},{id: "news-paper-accepted-to-advanced-engineering-informatics",
+          title: 'Paper Accepted to Advanced Engineering Informatics!!!',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-10-17-DSparkAdv/";
@@ -198,6 +198,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-11-09-SCI2025/";
+            },},{id: "news-paper-accepted-to-ocean-engineering",
+          title: 'Paper accepted to Ocean Engineering!',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2025-10-17-DSparkAdv%20copy/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
@@ -488,8 +493,8 @@ ninja.data = [{
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A1%B0%EC%83%81%EB%AF%BC/";
-            },},{id: "people-suhyeon-cho-조수현",
-          title: 'Suhyeon Cho(조수현)',
+            },},{id: "people-suhyeon-jo-조수현",
+          title: 'Suhyeon Jo(조수현)',
           description: "M.S.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A1%B0%EC%88%98%ED%98%84/";
