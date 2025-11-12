@@ -341,22 +341,10 @@ import SpriteText from 'three-spritetext';
     // Auto-rotation animation
     let autoRotateAngle = 0;
     let isAutoRotating = true;
-    let userInteracted = false;
 
-    // Detect user interaction to pause auto-rotation temporarily
+    // Detect user interaction to pause auto-rotation permanently
     container.addEventListener('mousedown', () => {
-      userInteracted = true;
       isAutoRotating = false;
-    });
-
-    container.addEventListener('mouseup', () => {
-      // Resume auto-rotation after 3 seconds of no interaction
-      setTimeout(() => {
-        if (userInteracted) {
-          isAutoRotating = true;
-          userInteracted = false;
-        }
-      }, 3000);
     });
 
     // Smooth rotation animation loop
