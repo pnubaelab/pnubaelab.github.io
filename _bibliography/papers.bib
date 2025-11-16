@@ -1,3 +1,46 @@
+
+@inproceedings{park2025Synthetic,
+  level = {International Conference},
+  abbr={INFORMS2025},
+  title={Synthetic–Empirical Log Fusion for Deep Learning Prediction of Outpatient Queue Dynamics},
+  author={Park, Daesan and Kim, Dohee and Bae, Hyerim},
+  abstract={Classical queueing formulas provide closed-form steady-state metrics and clear managerial insights 
+into system sensitivity under stable loads; however, their analytical reach diminishes when demand spikes or 
+service rules change. Discrete-event simulation (DES) accurately reproduces such dynamics, but repeated runs 
+and calibration hinder real-time use. Recent deep learning predictors enhance speed, but most are trained only on 
+synthetic DES episodes—introducing model bias—or solely on sparse field logs, which leaves them insufficiently 
+exposed to rare transients and measurement noise. 
+To address these limitations, we propose a data fusion framework that provides an off-the-shelf deep learning 
+predictor with both synthetic and empirical samples. A configurable simulator generates both routine and stress 
+scenarios. Each episode delivers queue length paths and moments of waiting time, while the clinic logs contribute 
+the same indicators under routine conditions. Within this framework, we systematically adjust the ratio of 
+synthetic to empirical data to train the predictor and analyze how this ratio balances steady-state accuracy against 
+responsiveness under stress. The proposed framework is validated using outpatient clinic data to demonstrate its 
+practical applicability while still offering rapid inference for operational decision support. 
+Results demonstrate (i) how prediction error varies with log share across routine and stress conditions, (ii) that 
+fusion training remains resilient to measurement noise and log sparsity, and (iii) offers practical guidance for 
+selecting simulation-to-log ratios—uniting the strengths of analytic formulas, simulation, and deep learning.},
+  booktitle={2025 INFORMS Annual Meeting},
+  year={2025},
+}
+
+@article{JO2026123452,
+abbr={Ocean Eng.},
+title = {Deep learning framework for regional maritime collision risk assessment using CNN and Grad-CAM},
+journal = {Ocean Engineering},
+volume = {343},
+pages = {123452},
+year = {2026},
+issn = {0029-8018},
+doi = {https://doi.org/10.1016/j.oceaneng.2025.123452},
+html = {https://www.sciencedirect.com/science/article/pii/S0029801825031348},
+author = {Jo, Suhyeon and Lee, Gawon and Park, Sekil and Heo, Jaehyeon and Kim, Dohee and Sim, Sunghyun and Bae, Hyerim},
+keywords = {Regional maritime collision risk assessment, Relative traffic representation, Risk influence distribution map, Centroid radial distribution, Convolution neural network, Grad-CAM},
+abstract = {Maritime transport handles over 80% of global trade but rising traffic density and congestion have increased collision risk. Traditional assessment methods, including the ship domain and closest point-of-approach approaches, are limited to pairwise interactions and cannot capture regional traffic dynamics. To overcome these shortcomings, we propose a regional collision risk assessment framework integrating AIS-derived relative traffic representations, convolutional neural networks, and explainable artificial intelligence. A gradient-weighted class activation mapping framework generated risk influence distribution maps and a centroid radial distribution, while a novel indicator, the risk influence radius (RIR), quantified radial influence patterns. Experiments with 3,660 low-risk and 366 high-risk cases from South Korean coastal waters revealed that the Visual Geometry Group (VGG) network backbone achieved the highest performance, with an average F1-score of 0.9324, outperforming ResNeXt, EfficientNet, ResNet, and MobileNetV3 models. Statistical tests revealed a significant difference in RIR (p < 0.05) between high- and low-risk collision areas at 10 and 20 km, but not at 30 km. These results confirm RIR as an interpretable indicator of collision risk at regional scales, while highlighting its limitations at broader ranges. The framework combines accuracy with interpretability and supports practical applications such as maritime monitoring, route planning, and early warning systems.applications such as maritime monitoring, route planning, and early warning systems.},
+additional_info={. **JCR Q1, Top 3.08%!!!**},
+selected={true},
+}
+
 @inproceedings{heo2025Trajectory,
   level = {International Conference},
   abbr={SCI2025},
@@ -1135,7 +1178,7 @@ Maintenance(CBM) to various equipment that utilizes time-series data.},
   html={https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE11723845},
   doi={10.7838/jsebs.2024.29.1.057},
   title={해양사고 데이터 기반 해역 그리드화 및 심각도 지표 도출 연구},
-  author={Kim, Dohee and Lee, Sangjae and Cho, Suhyeon and Park, Segil and Bae, Hyerim},
+  author={Kim, Dohee and Lee, Sangjae and Jo, Suhyeon and Park, Segil and Bae, Hyerim},
   journal={The Journal of Society for e-Business Studies},
   volume={29},
   number={1},
@@ -1389,7 +1432,7 @@ Maintenance(CBM) to various equipment that utilizes time-series data.},
   level = {Domestic Conference},
   abbr={대한산업공학회},
   title={항만 정시성 예측을 위한 선박 ETA/RTA 예측 알고리즘},
-  author={Cho, Suhyeon and Park, Kikun and Lee, Gawon and Jo, Sangmin and Bae, Hyerim},
+  author={Jo, Suhyeon and Park, Kikun and Lee, Gawon and Jo, Sangmin and Bae, Hyerim},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={4087--4095},
   year={2023}
