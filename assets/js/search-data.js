@@ -783,6 +783,31 @@ ninja.data = [{
           description: "Soccer, 북구, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%97%B0%EA%B5%AC%EC%8B%A4%EC%B6%95%EA%B5%AC/";
+            },},{id: "photo-추계학술대회",
+          title: '추계학술대회',
+          description: "2025 대한산업공학회 추계학술대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%B6%94%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
+            },},{id: "photo-추계학술대회",
+          title: '추계학술대회',
+          description: "2025 대한산업공학회 추계학술대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%B6%94%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C2/";
+            },},{id: "photo-추계학술대회",
+          title: '추계학술대회',
+          description: "2025 대한산업공학회 추계학술대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%B6%94%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C3/";
+            },},{id: "photo-2025년-logms",
+          title: '2025년 LOGMS',
+          description: "SCI2025, Jinan, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025SCI1/";
+            },},{id: "photo-2025년-logms",
+          title: '2025년 LOGMS',
+          description: "SCI2025, Jinan, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025SCI2/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
