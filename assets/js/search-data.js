@@ -203,6 +203,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-10-17-DSparkAdv%20copy/";
+            },},{id: "news-ai시대-동남권-미래-논의-부산서-통계-데이터-첫-공동-포럼-열려",
+          title: 'AI시대 동남권 미래 논의…부산서 통계·데이터 첫 공동 포럼 열려',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%EB%B6%80%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%84%ED%81%AC%20copy/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
