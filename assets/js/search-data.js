@@ -203,6 +203,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-10-17-DSparkAdv%20copy/";
+            },},{id: "news-트레드링스-부산대와-ai-기반-공급망-예측-모델-공동-개발-mou-체결",
+          title: '트레드링스, 부산대와 ‘AI 기반 공급망 예측 모델’ 공동 개발 MOU 체결',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%ED%8A%B8%EB%A0%88%EB%93%9C%EB%A7%81%EC%8A%A4/";
             },},{id: "news-ai시대-동남권-미래-논의-부산서-통계-데이터-첫-공동-포럼-열려",
           title: 'AI시대 동남권 미래 논의…부산서 통계·데이터 첫 공동 포럼 열려',
           description: "",
