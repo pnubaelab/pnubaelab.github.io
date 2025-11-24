@@ -1,4 +1,35 @@
-<div style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap">
+<style>
+  .collabo-section,
+  .collabo-section * {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .collabo-node-tooltip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.3;
+    min-width: 120px;
+  }
+  .collabo-node-photo-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    background: #0b0f1c;
+  }
+  #coauthor-graph-loader {
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+</style>
+<div class="collabo-section" style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
   <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
     <div id="coauthor-graph-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd8dc;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading 3D Collaboration Graph…</div>
   </div>
@@ -16,11 +47,68 @@
 }
 </script>
 <script type="module">
+{% assign firstPhoto = true %}
+const COLLABO_PHOTOS = {
+{% for person in site.people %}
+  {% if person.img %}
+    {% unless firstPhoto %},{% endunless %}
+    "{{ person.title | split:'(' | first | strip | replace:'"','\\"' }}": "{{ person.img | strip }}"
+    {% assign firstPhoto = false %}
+  {% endif %}
+{% endfor %}
+};
+const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
+
 import SpriteText from 'three-spritetext';
 
 (() => {
   const container = document.getElementById('coauthor-graph');
   if (!container) return;
+
+  const htmlEscape = (str = '') => str.replace(/[&<>"']/g, ch => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[ch]);
+
+  function buildNameVariants(rawName = '') {
+    const variants = new Set();
+    const base = rawName.trim();
+    if (!base) return [];
+    variants.add(base);
+    variants.add(base.replace(/\s+/g, ' '));
+
+    if (base.includes(',')) {
+      const [lastPart, ...rest] = base.split(',');
+      const last = lastPart.trim();
+      const first = rest.join(',').trim();
+      if (first && last) {
+        variants.add(`${first} ${last}`.trim());
+        variants.add(`${last} ${first}`.trim());
+      }
+    } else {
+      const tokens = base.split(/\s+/);
+      if (tokens.length >= 2) {
+        const last = tokens[tokens.length - 1];
+        const first = tokens.slice(0, -1).join(' ');
+        variants.add(`${last}, ${first}`.trim());
+        variants.add(`${first} ${last}`.trim());
+      }
+    }
+
+    variants.add(base.replace(/[.,]/g, '').trim());
+    return [...variants].filter(Boolean);
+  }
+
+  function getNodePhoto(name) {
+    const variants = buildNameVariants(name);
+    for (const candidate of variants) {
+      if (COLLABO_PHOTOS[candidate]) return COLLABO_PHOTOS[candidate];
+    }
+    return null;
+  }
 
   function extractFirstName(name) {
     if (name.includes(',')) {
@@ -253,14 +341,18 @@ import SpriteText from 'three-spritetext';
       .backgroundColor('#020611')
       .showNavInfo(false)
       .nodeId('id')
-      .nodeLabel(n => `<div style="font-size:12px;line-height:1.2"><strong>${n.name}</strong><br/>Papers: ${n.val}</div>`)
+      .nodeLabel(n => {
+        const escapedName = htmlEscape(n.name);
+        const photo = getNodePhoto(n.name);
+        const photoMarkup = photo ? `<img class="collabo-node-photo-img" src="${photo}" alt="${escapedName}" loading="lazy"/>` : '';
+        return `<div class="collabo-node-tooltip">${photoMarkup}<div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
+      })
       .nodeVal(n => 0.1 + 0.3*(n.val || 1))
-      .nodeOpacity(0.96)
-      .linkOpacity(0.1)
-      .linkWidth(l => 0.5 + ((l.value||1)+1))
-      .linkDirectionalParticles(l => (l.__highlight ? 6 : 0))
-      .linkDirectionalParticleSpeed(0.004)
-      .linkColor(l => l.__highlight ? '#ffffff' : 'rgba(160,255,255,0.4)')
+      .nodeOpacity(0.75)
+      .linkOpacity(0.05)
+      .linkWidth(l => 0.1 + 0.2 * ((l.value||1)))
+      .linkDirectionalParticles(0)
+      .linkColor('#ffffff') 
       .nodeColor(n => {
         // Neon-like palette mapping by hashing id
         const palette = ['#39ff14','#00fff7','#ff00ea','#ffe600','#ff1744','#00e676','#2979ff','#f50057','#00ff90','#fff700','#ff6ec7','#00bfff','#ffb300','#e040fb','#76ff03'];
@@ -281,11 +373,39 @@ import SpriteText from 'three-spritetext';
         container.style.cursor = node ? 'pointer':'default';
       });
 
+    // Smooth OrbitControls tuning (replaces manual camera animation)
+    const controls = g.controls();
+    if (controls) {
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.12;
+      controls.rotateSpeed = 0.65;
+      controls.zoomSpeed = 0.9;
+      controls.enablePan = true;
+      controls.minPolarAngle = 0.005 * Math.PI; // virtually no upper clamp
+      controls.maxPolarAngle = 0.995 * Math.PI; // virtually no lower clamp
+      controls.minDistance = 140;
+      controls.maxDistance = 1400;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 0.6;
+
+      const stopAutoRotate = () => {
+        controls.autoRotate = false;
+        container.removeEventListener('pointerdown', stopAutoRotate);
+        container.removeEventListener('wheel', stopAutoRotate);
+        container.removeEventListener('touchstart', stopAutoRotate);
+      };
+
+      container.addEventListener('pointerdown', stopAutoRotate);
+      container.addEventListener('wheel', stopAutoRotate);
+      container.addEventListener('touchstart', stopAutoRotate);
+    }
+
     // Add SpriteText labels for all nodes
     g.nodeThreeObjectExtend(true);
     g.nodeThreeObject(n => {
       // Create text sprite for all nodes
       const sprite = new SpriteText(n.name);
+      sprite.fontFace = 'Oswald,sans-serif';
       
       // Styling based on whether it's a top author
       if (topSet.has(n.id)) {
@@ -338,36 +458,6 @@ import SpriteText from 'three-spritetext';
       g.zoomToFit(800, 40);
     }, 1200);
 
-    // Auto-rotation animation
-    let autoRotateAngle = 0;
-    let isAutoRotating = true;
-
-    // Detect user interaction to pause auto-rotation permanently
-    container.addEventListener('mousedown', () => {
-      isAutoRotating = false;
-    });
-
-    // Smooth rotation animation loop
-    function animate() {
-      if (isAutoRotating) {
-        autoRotateAngle += 0.2; // Rotation speed (degrees per frame)
-        const distance = 400;
-        const angleRad = autoRotateAngle * Math.PI / 180;
-        
-        // Circular camera path around the graph
-        g.cameraPosition({
-          x: distance * Math.sin(angleRad),
-          y: distance * 0.3 * Math.sin(angleRad * 0.5), // Slight vertical movement
-          z: distance * Math.cos(angleRad)
-        }, { x: 0, y: 0, z: 0 }, 0); // Look at center, no transition time for smooth animation
-      }
-      requestAnimationFrame(animate);
-    }
-    
-    // Start animation after initial zoom
-    setTimeout(() => {
-      animate();
-    }, 2000);
   }
 
   fetch('/assets/json/collabo_graph.json')
