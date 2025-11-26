@@ -1,3 +1,18 @@
+@ARTICLE{11264535,
+  level = {SCI},
+  abbr={IEEE Access},
+  author={Iman, Alif Nur and Kamal, Imam Mustafa and Kim, Dohee and Bae, Hyerim},
+  journal={IEEE Access}, 
+  title={Continual Learning Approach with Adaptive Memory Mechanism for Predictive Process Monitoring in Dynamic Business Environments}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-1},
+  abstact={Predictive process monitoring (PPM) faces challenges when process patterns evolve over time, as prediction models experience performance degradation due to concept drift while losing accuracy on previously learned process variants through catastrophic forgetting. This study addresses these challenges in outcome-oriented PPM by integrating continual learning principles with process mining domain knowledge. We propose an adaptive memory mechanism that extracts process structure information through activity relationship analysis, categorizing relationships between activities as "Always Follows," "Sometimes Follows," or "Never Follows." The mechanism computes relation entropy vectors to characterize process patterns and uses cosine similarity between current and historical process patterns to adaptively weight memory buffers during model training. This allows the model to weight historically relevant process knowledge based on pattern similarity. We evaluate the mechanism using stability, plasticity, and trade-off metrics on the Business Process Intelligence Challenge 2015 dataset across multiple temporal splits. Results show that the adaptive memory mechanism achieves stability of 0.87 ± 0.06, plasticity of 0.84 ± 0.11, and trade-off of 0.85 ± 0.08, achieving competitive performance compared to established baseline methods. The mechanism provides explainability through visualizations that demonstrate how the model weights different memory buffers during training. Validation using concept drift detection techniques confirms that the mechanism’s behavior aligns with observable process changes, indicating adaptation to evolving process patterns while reducing catastrophic forgetting.},
+  keywords={Adaptation models;Business;Concept drift;Continuing education;Process monitoring;Data models;Computational modeling;Encoding;Accuracy;Predictive models;Predictive process monitoring;outcome-oriented prediction;process mining;dynamic business process;continual learning;concept drift},
+  doi={10.1109/ACCESS.2025.3636194},
+}
+
 
 @inproceedings{park2025Synthetic,
   level = {International Conference},
@@ -5,40 +20,40 @@
   title={Synthetic–Empirical Log Fusion for Deep Learning Prediction of Outpatient Queue Dynamics},
   author={Park, Daesan and Kim, Dohee and Bae, Hyerim},
   abstract={Classical queueing formulas provide closed-form steady-state metrics and clear managerial insights 
-into system sensitivity under stable loads; however, their analytical reach diminishes when demand spikes or 
-service rules change. Discrete-event simulation (DES) accurately reproduces such dynamics, but repeated runs 
-and calibration hinder real-time use. Recent deep learning predictors enhance speed, but most are trained only on 
-synthetic DES episodes—introducing model bias—or solely on sparse field logs, which leaves them insufficiently 
-exposed to rare transients and measurement noise. 
-To address these limitations, we propose a data fusion framework that provides an off-the-shelf deep learning 
-predictor with both synthetic and empirical samples. A configurable simulator generates both routine and stress 
-scenarios. Each episode delivers queue length paths and moments of waiting time, while the clinic logs contribute 
-the same indicators under routine conditions. Within this framework, we systematically adjust the ratio of 
-synthetic to empirical data to train the predictor and analyze how this ratio balances steady-state accuracy against 
-responsiveness under stress. The proposed framework is validated using outpatient clinic data to demonstrate its 
-practical applicability while still offering rapid inference for operational decision support. 
-Results demonstrate (i) how prediction error varies with log share across routine and stress conditions, (ii) that 
-fusion training remains resilient to measurement noise and log sparsity, and (iii) offers practical guidance for 
-selecting simulation-to-log ratios—uniting the strengths of analytic formulas, simulation, and deep learning.},
+  into system sensitivity under stable loads; however, their analytical reach diminishes when demand spikes or 
+  service rules change. Discrete-event simulation (DES) accurately reproduces such dynamics, but repeated runs 
+  and calibration hinder real-time use. Recent deep learning predictors enhance speed, but most are trained only on 
+  synthetic DES episodes—introducing model bias—or solely on sparse field logs, which leaves them insufficiently 
+  exposed to rare transients and measurement noise. 
+  To address these limitations, we propose a data fusion framework that provides an off-the-shelf deep learning 
+  predictor with both synthetic and empirical samples. A configurable simulator generates both routine and stress 
+  scenarios. Each episode delivers queue length paths and moments of waiting time, while the clinic logs contribute 
+  the same indicators under routine conditions. Within this framework, we systematically adjust the ratio of 
+  synthetic to empirical data to train the predictor and analyze how this ratio balances steady-state accuracy against 
+  responsiveness under stress. The proposed framework is validated using outpatient clinic data to demonstrate its 
+  practical applicability while still offering rapid inference for operational decision support. 
+  Results demonstrate (i) how prediction error varies with log share across routine and stress conditions, (ii) that 
+  fusion training remains resilient to measurement noise and log sparsity, and (iii) offers practical guidance for 
+  selecting simulation-to-log ratios—uniting the strengths of analytic formulas, simulation, and deep learning.},
   booktitle={2025 INFORMS Annual Meeting},
   year={2025},
 }
 
 @article{JO2026123452,
-abbr={Ocean Eng.},
-title = {Deep learning framework for regional maritime collision risk assessment using CNN and Grad-CAM},
-journal = {Ocean Engineering},
-volume = {343},
-pages = {123452},
-year = {2026},
-issn = {0029-8018},
-doi = {https://doi.org/10.1016/j.oceaneng.2025.123452},
-html = {https://www.sciencedirect.com/science/article/pii/S0029801825031348},
-author = {Jo, Suhyeon and Lee, Gawon and Park, Sekil and Heo, Jaehyeon and Kim, Dohee and Sim, Sunghyun and Bae, Hyerim},
-keywords = {Regional maritime collision risk assessment, Relative traffic representation, Risk influence distribution map, Centroid radial distribution, Convolution neural network, Grad-CAM},
-abstract = {Maritime transport handles over 80% of global trade but rising traffic density and congestion have increased collision risk. Traditional assessment methods, including the ship domain and closest point-of-approach approaches, are limited to pairwise interactions and cannot capture regional traffic dynamics. To overcome these shortcomings, we propose a regional collision risk assessment framework integrating AIS-derived relative traffic representations, convolutional neural networks, and explainable artificial intelligence. A gradient-weighted class activation mapping framework generated risk influence distribution maps and a centroid radial distribution, while a novel indicator, the risk influence radius (RIR), quantified radial influence patterns. Experiments with 3,660 low-risk and 366 high-risk cases from South Korean coastal waters revealed that the Visual Geometry Group (VGG) network backbone achieved the highest performance, with an average F1-score of 0.9324, outperforming ResNeXt, EfficientNet, ResNet, and MobileNetV3 models. Statistical tests revealed a significant difference in RIR (p < 0.05) between high- and low-risk collision areas at 10 and 20 km, but not at 30 km. These results confirm RIR as an interpretable indicator of collision risk at regional scales, while highlighting its limitations at broader ranges. The framework combines accuracy with interpretability and supports practical applications such as maritime monitoring, route planning, and early warning systems.applications such as maritime monitoring, route planning, and early warning systems.},
-additional_info={. **JCR Q1, Top 3.08%!!!**},
-selected={true},
+  abbr={Ocean Eng.},
+  title = {Deep learning framework for regional maritime collision risk assessment using CNN and Grad-CAM},
+  journal = {Ocean Engineering},
+  volume = {343},
+  pages = {123452},
+  year = {2026},
+  issn = {0029-8018},
+  doi = {https://doi.org/10.1016/j.oceaneng.2025.123452},
+  html = {https://www.sciencedirect.com/science/article/pii/S0029801825031348},
+  author = {Jo, Suhyeon and Lee, Gawon and Park, Sekil and Heo, Jaehyeon and Kim, Dohee and Sim, Sunghyun and Bae, Hyerim},
+  keywords = {Regional maritime collision risk assessment, Relative traffic representation, Risk influence distribution map, Centroid radial distribution, Convolution neural network, Grad-CAM},
+  abstract = {Maritime transport handles over 80% of global trade but rising traffic density and congestion have increased collision risk. Traditional assessment methods, including the ship domain and closest point-of-approach approaches, are limited to pairwise interactions and cannot capture regional traffic dynamics. To overcome these shortcomings, we propose a regional collision risk assessment framework integrating AIS-derived relative traffic representations, convolutional neural networks, and explainable artificial intelligence. A gradient-weighted class activation mapping framework generated risk influence distribution maps and a centroid radial distribution, while a novel indicator, the risk influence radius (RIR), quantified radial influence patterns. Experiments with 3,660 low-risk and 366 high-risk cases from South Korean coastal waters revealed that the Visual Geometry Group (VGG) network backbone achieved the highest performance, with an average F1-score of 0.9324, outperforming ResNeXt, EfficientNet, ResNet, and MobileNetV3 models. Statistical tests revealed a significant difference in RIR (p < 0.05) between high- and low-risk collision areas at 10 and 20 km, but not at 30 km. These results confirm RIR as an interpretable indicator of collision risk at regional scales, while highlighting its limitations at broader ranges. The framework combines accuracy with interpretability and supports practical applications such as maritime monitoring, route planning, and early warning systems.applications such as maritime monitoring, route planning, and early warning systems.},
+  additional_info={. **JCR Q1, Top 3.08%!!!**},
+  selected={true},
 }
 
 @inproceedings{heo2025Trajectory,
@@ -73,15 +88,15 @@ selected={true},
   level = {International Conference},
   abbr={LOGMS},
   abstract={To support sustainable maritime operations, international organizations have enforced stricter 
-environmental regulations, highlighting the need for accurate ship fuel consumption forecasting. However, 
-existing models face generalization challenges due to limited historical data, especially for newly deployed 
-vessels. We propose Adaptive Lag Moment Alignment (ALMA), a domain adaptation framework that 
-transfers knowledge from data-rich source ships to target ships with only a single recorded voyage. ALMA 
-introduces Lag Moment Discrepancy (LMD) to align temporal characteristics between domains and 
-combines it with prediction loss. To stabilize training and balance objectives, we incorporate Dynamic 
-Weight Averaging (DWA) into the loss function. Experimental results demonstrate that ALMA 
-significantly reduces domain gaps and improves prediction accuracy under data-scarce conditions, 
-offering a robust solution for maritime fuel forecasting in support of global sustainability efforts.},
+  environmental regulations, highlighting the need for accurate ship fuel consumption forecasting. However, 
+  existing models face generalization challenges due to limited historical data, especially for newly deployed 
+  vessels. We propose Adaptive Lag Moment Alignment (ALMA), a domain adaptation framework that 
+  transfers knowledge from data-rich source ships to target ships with only a single recorded voyage. ALMA 
+  introduces Lag Moment Discrepancy (LMD) to align temporal characteristics between domains and 
+  combines it with prediction loss. To stabilize training and balance objectives, we incorporate Dynamic 
+  Weight Averaging (DWA) into the loss function. Experimental results demonstrate that ALMA 
+  significantly reduces domain gaps and improves prediction accuracy under data-scarce conditions, 
+  offering a robust solution for maritime fuel forecasting in support of global sustainability efforts.},
   title={ALMA: Adaptive Lag Moment Alignment for Domain-Adaptive Time Series Forecasting of Ship Fuel Consumption},
   author={Choo, Jungho and Kim, Dohee and Lee, Hyunha and Kim, Minhee and Bae, Hyerim},
   journal={13th International Conference on Logistics and Maritime Systems},
@@ -119,38 +134,38 @@ offering a robust solution for maritime fuel forecasting in support of global su
 }
 
 @article{PARK2025111610,
-level = {SCI},
-abbr={Comput.Ind.Eng.},
-title = {Optimizing yard truck deployment at container terminals: a machine learning-enhanced non-dominated sorting genetic algorithm},
-journal = {Computers & Industrial Engineering},
-pages = {111610},
-year = {2025},
-issn = {0360-8352},
-doi = {https://doi.org/10.1016/j.cie.2025.111610},
-pdf = {https://www.sciencedirect.com/science/article/pii/S0360835225007569},
-author = {Park, Kikun  and Kim, Kihun and Kim, Minseop and Bae, Hyerim},
-keywords = {Container terminal operations, Yard truck deployment, Non-dominated sorting genetic algorithm 2, Mult-objective optimization with tradeoff relationship},
-abstract = {The continuous rise in global container traffic has necessitated more efficient operational strategies at container terminals (CTs). However, developing effective strategies requires mitigating delays in handling equipment operations. Yard trucks (YTs) are pivotal for transporting containers between quay cranes (QCs) and yard cranes (YCs). A YT shortage can cause operational delays for both QCs and YCs, extending the makespan of main-vessel operations at the berth. Conversely, deploying an excessive number of YTs eliminates these delays but incurs higher operational costs. Consequently, determining the optimal number of YTs constitutes a bi-objective optimization problem involving a tradeoff between minimizing the operational makespan and associated YT deployment costs. This study introduces a machine learning (ML)-enhanced non-dominated sorting genetic algorithm 2 (NSGA-2) approach designed to address this challenge by minimizing both the makespan and deployment costs. The proposed method uses ML models to predict fitness scores and efficiently guide the search toward optimal solutions, while also assisting in generating, selecting, and mutating promising solutions during the optimization process. The effectiveness of ML-enhanced NSGA-2 was validated using empirical data from Busan Port Terminal in South Korea. The results highlight the superior performance and practical applicability of the proposed approach, which achieved a significant reduction of 16% in deployed YTs compared to existing strategies.},
-additional_info={. **JCR Q1, Top 14.29%!!!**},
-selected={true},
+  level = {SCI},
+  abbr={Comput.Ind.Eng.},
+  title = {Optimizing yard truck deployment at container terminals: a machine learning-enhanced non-dominated sorting genetic algorithm},
+  journal = {Computers & Industrial Engineering},
+  pages = {111610},
+  year = {2025},
+  issn = {0360-8352},
+  doi = {https://doi.org/10.1016/j.cie.2025.111610},
+  pdf = {https://www.sciencedirect.com/science/article/pii/S0360835225007569},
+  author = {Park, Kikun  and Kim, Kihun and Kim, Minseop and Bae, Hyerim},
+  keywords = {Container terminal operations, Yard truck deployment, Non-dominated sorting genetic algorithm 2, Mult-objective optimization with tradeoff relationship},
+  abstract = {The continuous rise in global container traffic has necessitated more efficient operational strategies at container terminals (CTs). However, developing effective strategies requires mitigating delays in handling equipment operations. Yard trucks (YTs) are pivotal for transporting containers between quay cranes (QCs) and yard cranes (YCs). A YT shortage can cause operational delays for both QCs and YCs, extending the makespan of main-vessel operations at the berth. Conversely, deploying an excessive number of YTs eliminates these delays but incurs higher operational costs. Consequently, determining the optimal number of YTs constitutes a bi-objective optimization problem involving a tradeoff between minimizing the operational makespan and associated YT deployment costs. This study introduces a machine learning (ML)-enhanced non-dominated sorting genetic algorithm 2 (NSGA-2) approach designed to address this challenge by minimizing both the makespan and deployment costs. The proposed method uses ML models to predict fitness scores and efficiently guide the search toward optimal solutions, while also assisting in generating, selecting, and mutating promising solutions during the optimization process. The effectiveness of ML-enhanced NSGA-2 was validated using empirical data from Busan Port Terminal in South Korea. The results highlight the superior performance and practical applicability of the proposed approach, which achieved a significant reduction of 16% in deployed YTs compared to existing strategies.},
+  additional_info={. **JCR Q1, Top 14.29%!!!**},
+  selected={true},
 }
 
 @article{PARK2026103974,
-level = {SCI},
-title = {Time-series approach to vessel turnaround time forecasting using queuing-based operation indicators},
-journal = {Advanced Engineering Informatics},
-abbr={Adv.Eng.Info},
-volume = {69},
-pages = {103974},
-year = {2026},
-issn = {1474-0346},
-doi = {https://doi.org/10.1016/j.aei.2025.103974},
-pdf = {https://www.sciencedirect.com/science/article/pii/S1474034625008675},
-author = {Park, Daesan and Noh, Taeeon and Koo, Yohan and Lee, Hyeonjik and Kim, Dowon and Bae, Hyerim},
-keywords = {Maritime transport, Vessel turnaround time, Operation indicator, Two-stage queuing system, Time-series forecasting},
-abstract = {As global supply chains grow increasingly complex and cargo volumes continue to rise, the accurate prediction of vessel turnaround time (VTT) has become essential for enhancing port operational efficiency. Previous studies primarily utilized static features, such as vessel specifications and container volumes, often failing to capture the dynamic nature of real-world operations. To address this limitation, we propose a forecasting framework that incorporates dynamic operation indicators (OIs) from a two-stage queuing model into time-series models. Leveraging operational data from Busan Port, our approach achieves of up to 28% improvement in mean absolute percentage error compared with existing techniques. Explainability analysis using Shapley additive explanations (SHAP) further demonstrates that OIs rank among the most influential features. By providing more reliable VTT predictions, port operators can enhance berth planning, optimize resource allocation, minimize scheduling delays, and enhance overall port efficiency. These results highlight the practical value of the framework for data-driven decision-making in port operations.},
-additional_info={. **JCR Q1, Top 2.00%!!!**},
-selected={true},
+  level = {SCI},
+  title = {Time-series approach to vessel turnaround time forecasting using queuing-based operation indicators},
+  journal = {Advanced Engineering Informatics},
+  abbr={Adv.Eng.Info},
+  volume = {69},
+  pages = {103974},
+  year = {2026},
+  issn = {1474-0346},
+  doi = {https://doi.org/10.1016/j.aei.2025.103974},
+  pdf = {https://www.sciencedirect.com/science/article/pii/S1474034625008675},
+  author = {Park, Daesan and Noh, Taeeon and Koo, Yohan and Lee, Hyeonjik and Kim, Dowon and Bae, Hyerim},
+  keywords = {Maritime transport, Vessel turnaround time, Operation indicator, Two-stage queuing system, Time-series forecasting},
+  abstract = {As global supply chains grow increasingly complex and cargo volumes continue to rise, the accurate prediction of vessel turnaround time (VTT) has become essential for enhancing port operational efficiency. Previous studies primarily utilized static features, such as vessel specifications and container volumes, often failing to capture the dynamic nature of real-world operations. To address this limitation, we propose a forecasting framework that incorporates dynamic operation indicators (OIs) from a two-stage queuing model into time-series models. Leveraging operational data from Busan Port, our approach achieves of up to 28% improvement in mean absolute percentage error compared with existing techniques. Explainability analysis using Shapley additive explanations (SHAP) further demonstrates that OIs rank among the most influential features. By providing more reliable VTT predictions, port operators can enhance berth planning, optimize resource allocation, minimize scheduling delays, and enhance overall port efficiency. These results highlight the practical value of the framework for data-driven decision-making in port operations.},
+  additional_info={. **JCR Q1, Top 2.00%!!!**},
+  selected={true},
 }
 
 
@@ -169,27 +184,27 @@ selected={true},
   level= {Arxiv},
   abbr={Authorea},
   abstract={The continuous growth in global trade and rising
-uncertainty have driven extensive research on container
-throughput (CT) forecasting at monthly and annual scales.
-Recently, the demand for high-resolution CT forecasting has
-emerged to support real-time decision-making by practitioners.
-However, this presents challenges in effectively utilizing realtime port operation information and managing high-noise time
-series data. To address these limitations, this study introduces a
-preprocessing strategy and novel neural network architecture
-for forecasting hourly CT with a 72-hour horizon, an approach
-not attempted in previous studies. In the preprocessing strategy,
-we examined the electronic data interchange (EDI) system and
-extracted key factors affecting CT. Additionally, we present a
-novel neural network architecture—the decomposition
-pairwise mixer (DPM)—which is designed to effectively capture
-interactions among these factors. Extensive experiments were
-conducted with real operational data from the port of Busan in
-Korea, the world’s sixth-busiest port. The results reveal two key
-findings: derived key factors enhance the forecasting
-performance, and the proposed method outperforms state-ofthe-art time-series forecasting models. These findings suggest
-that the proposed method is not limited to long-term planning
-but can also substantially enhance short-term operational
-decision-making, thereby improving port operation efficiency.},
+  uncertainty have driven extensive research on container
+  throughput (CT) forecasting at monthly and annual scales.
+  Recently, the demand for high-resolution CT forecasting has
+  emerged to support real-time decision-making by practitioners.
+  However, this presents challenges in effectively utilizing realtime port operation information and managing high-noise time
+  series data. To address these limitations, this study introduces a
+  preprocessing strategy and novel neural network architecture
+  for forecasting hourly CT with a 72-hour horizon, an approach
+  not attempted in previous studies. In the preprocessing strategy,
+  we examined the electronic data interchange (EDI) system and
+  extracted key factors affecting CT. Additionally, we present a
+  novel neural network architecture—the decomposition
+  pairwise mixer (DPM)—which is designed to effectively capture
+  interactions among these factors. Extensive experiments were
+  conducted with real operational data from the port of Busan in
+  Korea, the world’s sixth-busiest port. The results reveal two key
+  findings: derived key factors enhance the forecasting
+  performance, and the proposed method outperforms state-ofthe-art time-series forecasting models. These findings suggest
+  that the proposed method is not limited to long-term planning
+  but can also substantially enhance short-term operational
+  decision-making, thereby improving port operation efficiency.},
   pdf={https://d197for5662m48.cloudfront.net/documents/publicationstatus/277654/preprint_pdf/311668491e95663eaf73d410e37c395e.pdf},
   title={Forecasting Hourly Container Throughput with EDI-Derived Factors and a Decomposition Pairwise Mixer},
   author={Kim, Minseop and Park, Kikun and Park, Hanbyeol and Lee, Kyunghoon and Kim, Kihun and Bae, Hyerim},
@@ -402,15 +417,15 @@ decision-making, thereby improving port operation efficiency.},
   pdf={http://www.icicelb.org/ellb/contents/2024/10/elb-15-10-06.pdf},
   doi={https://doi.org/10.24507/icicelb.15.10.1033},
   abstract={Simulation models offer the advantage of unrestricted exploration of various
-solutions, including those for complex or difficult-to-formulate problems. In this context,
-simulation has been widely employed to address scheduling problems, which often demand
-extensive trial-and-error approaches. However, the computational time required to identify optimal solutions increases exponentially with problem size, rendering exhaustive evaluation of all possible scenarios impractical. Moreover, the prolonged search time makes
-the simulation method susceptible to disruptions such as unexpected machine failures or
-additional orders. To enhance the computational speed, we propose the application of
-Machine Learning (ML) models as an alternative to simulation. By leveraging ML models, we aim to preserve the expressive power of complex simulations while significantly
-reducing the required trial time. We evaluate the performance of various ML models and
-compare their prediction accuracy and computational efficiency. The results demonstrate
-promising prediction accuracy alongside a substantial reduction in computational time},
+  solutions, including those for complex or difficult-to-formulate problems. In this context,
+  simulation has been widely employed to address scheduling problems, which often demand
+  extensive trial-and-error approaches. However, the computational time required to identify optimal solutions increases exponentially with problem size, rendering exhaustive evaluation of all possible scenarios impractical. Moreover, the prolonged search time makes
+  the simulation method susceptible to disruptions such as unexpected machine failures or
+  additional orders. To enhance the computational speed, we propose the application of
+  Machine Learning (ML) models as an alternative to simulation. By leveraging ML models, we aim to preserve the expressive power of complex simulations while significantly
+  reducing the required trial time. We evaluate the performance of various ML models and
+  compare their prediction accuracy and computational efficiency. The results demonstrate
+  promising prediction accuracy alongside a substantial reduction in computational time},
   author={Lee, Gawon and Park, Kikun and Ramadhan, Muhammad Hanif and Lee, Jungho and Bae, Hyerim},
   journal={ICIC Express Letters Part B : Applications},
   year={2024},
@@ -472,18 +487,18 @@ promising prediction accuracy alongside a substantial reduction in computational
   abbr={ICIC-B},
   pdf={https://cir.nii.ac.jp/crid/1390862036396901888},
   abstract={Recently, Feature Selection (FS) methods have been extensively researched
-using eXplainable Artificial Intelligence (XAI). Among these methods, SHapley Additive
-exPlanations (SHAP) is a representative approach. SHAP evaluates the impact of feature
-subset on predicted values based on game theory. Consequently, the feature importance
-can vary when iterated, and change depending on the prediction model used. In this
-paper, we propose a robust FS method based on order statistics. We determine feature
-ranking through two approaches: Feature Importance (FI) derived from the model-specific
-using different prediction models and model-agnostic using iterative experiments. Finally,
-we construct feature subsets based on the sum of these rankings and criteria. Through
-experiments, we validate the robustness and efficiency of our approach. By utilizing this
-approach, we can identify suitable feature subsets without the need to explore various FS
-methodologies, regardless of the prediction model and data dimension.},
-doi={10.24507/icicel.18.03.255},
+  using eXplainable Artificial Intelligence (XAI). Among these methods, SHapley Additive
+  exPlanations (SHAP) is a representative approach. SHAP evaluates the impact of feature
+  subset on predicted values based on game theory. Consequently, the feature importance
+  can vary when iterated, and change depending on the prediction model used. In this
+  paper, we propose a robust FS method based on order statistics. We determine feature
+  ranking through two approaches: Feature Importance (FI) derived from the model-specific
+  using different prediction models and model-agnostic using iterative experiments. Finally,
+  we construct feature subsets based on the sum of these rankings and criteria. Through
+  experiments, we validate the robustness and efficiency of our approach. By utilizing this
+  approach, we can identify suitable feature subsets without the need to explore various FS
+  methodologies, regardless of the prediction model and data dimension.},
+  doi={10.24507/icicel.18.03.255},
   title={A Robust Explainable Feature Selection Method Based on Order Statistics},
   author={Kim, Dohee and Lee, Sangjae and Sim, Sunghyun and Bae, Hyerim},
   journal={革新的コンピューティング・情報・制御に関する速報},
@@ -800,7 +815,6 @@ doi={10.24507/icicel.18.03.255},
 @article{wahid2019predictive,
   level = {SCOPUS},
   abbr={Procedia Comput.},
-
   title={Predictive business process monitoring--remaining time prediction using deep neural network with entity embedding},
   author={Wahid, Nur Ahmad and Adi, Taufik Nur and Bae, Hyerim and Choi, Yulim},
   journal={Procedia Computer Science},
@@ -1016,36 +1030,36 @@ doi={10.24507/icicel.18.03.255},
 ######################################국내 논문######################################
 
 @article{추정호2025장비,
-abbr={대한산업공학회지},
-level = {KCI},
-abstract ={The Health Indicator (HI) is used to monitor equipment conditions. Supervised HI extraction methods assume a general degradation pattern, ensuring robustness. However, existing degradation functions are often designed assuming monotonic degradation without reflecting actual equipment characteristics. When the assumed pattern deviates from reality, the extracted HI may suffer from performance loss. This study aims to enhance HI extraction by identifying failure stages and designing degradation functions that better reflect real degradation patterns. A change point detection algorithm was used to identify failure stages, which were then used to construct the degradation function. The proposed method was validated using real-world data from a Weapon System. Compared to conventional linear and exponential degradation functions, the proposed approach improved HI performance by up to 29.13% in terms of Monotonicity. As the proposed degradation function can be applied to various equipment types, it is expected to enhance HI extraction in practical applications.},
-author={Choo, Jungho and Park, Hanbyeol and Park, Yeonkyung and Bae, Hyerim},
-title={장비의 고장 단계 함수를 이용한 상태 지표 추출},
-journal={대한산업공학회지},
-doi={10.7232/JKIIE.2025.51.5.412},
-html={https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003254702},
-issn={1225-0988},
-year={2025},
-volume={51},
-number={5},
-pages={412-424}
+  abbr={대한산업공학회지},
+  level = {KCI},
+  abstract ={The Health Indicator (HI) is used to monitor equipment conditions. Supervised HI extraction methods assume a general degradation pattern, ensuring robustness. However, existing degradation functions are often designed assuming monotonic degradation without reflecting actual equipment characteristics. When the assumed pattern deviates from reality, the extracted HI may suffer from performance loss. This study aims to enhance HI extraction by identifying failure stages and designing degradation functions that better reflect real degradation patterns. A change point detection algorithm was used to identify failure stages, which were then used to construct the degradation function. The proposed method was validated using real-world data from a Weapon System. Compared to conventional linear and exponential degradation functions, the proposed approach improved HI performance by up to 29.13% in terms of Monotonicity. As the proposed degradation function can be applied to various equipment types, it is expected to enhance HI extraction in practical applications.},
+  author={Choo, Jungho and Park, Hanbyeol and Park, Yeonkyung and Bae, Hyerim},
+  title={장비의 고장 단계 함수를 이용한 상태 지표 추출},
+  journal={대한산업공학회지},
+  doi={10.7232/JKIIE.2025.51.5.412},
+  html={https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003254702},
+  issn={1225-0988},
+  year={2025},
+  volume={51},
+  number={5},
+  pages={412-424}
 }
 
 @article{ART003254703,
-abbr={대한산업공학회지},
-level = {KCI},
-abstract={The maritime industry plays a central role in global trade but also contributes significantly to environmental degradation due to high fuel consumption. Accordingly, the International Maritime Organization (IMO) has introduced environmental regulations, including the Carbon Intensity Indicator (CII). Complying with these regulations requires accurate fuel consumption forecasting to support optimal voyage planning. However, ship operation data frequently contain missing and anomalous values due to sensor failures, which reduce the accuracy of forecasts that rely on time-series characteristics. Although previous studies have applied machine learning and time-series models, they often fail to employ temporal dependencies or maintain data continuity. This study proposes a time-series forecasting framework that separates movement and anchorage states and performs imputation using environmental variables and similar trajectory group. The proposed method effectively leverages sensor data, despite frequent missing and anomalous values, and improves forecasting performance. The proposed framework facilitates voyage optimization by enabling accurate speed estimation and ensuring compliance with CII regulations.},
-author={Lee, Hyunha and Kim, Dohee and Choo, Jungho and Jo, Sangmin and Bae, Hyerim},
-title={센서 데이터의 시계열 특성을 고려한 선박 연료 소모량 예측 프레임워크},
-doi={10.7232/JKIIE.2025.51.5.425},
-pdf={https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12418307&language=ko_KR&hasTopBanner=true&nowDate=20251028_4&minify=.min&cdnUrl=https%3A%2F%2Fcdn.dbpia.co.kr%2Fstatic},
-html={https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003254703},
-journal={대한산업공학회지},
-issn={1225-0988},
-year={2025},
-volume={51},
-number={5},
-pages={425-438}
+  abbr={대한산업공학회지},
+  level = {KCI},
+  abstract={The maritime industry plays a central role in global trade but also contributes significantly to environmental degradation due to high fuel consumption. Accordingly, the International Maritime Organization (IMO) has introduced environmental regulations, including the Carbon Intensity Indicator (CII). Complying with these regulations requires accurate fuel consumption forecasting to support optimal voyage planning. However, ship operation data frequently contain missing and anomalous values due to sensor failures, which reduce the accuracy of forecasts that rely on time-series characteristics. Although previous studies have applied machine learning and time-series models, they often fail to employ temporal dependencies or maintain data continuity. This study proposes a time-series forecasting framework that separates movement and anchorage states and performs imputation using environmental variables and similar trajectory group. The proposed method effectively leverages sensor data, despite frequent missing and anomalous values, and improves forecasting performance. The proposed framework facilitates voyage optimization by enabling accurate speed estimation and ensuring compliance with CII regulations.},
+  author={Lee, Hyunha and Kim, Dohee and Choo, Jungho and Jo, Sangmin and Bae, Hyerim},
+  title={센서 데이터의 시계열 특성을 고려한 선박 연료 소모량 예측 프레임워크},
+  doi={10.7232/JKIIE.2025.51.5.425},
+  pdf={https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12418307&language=ko_KR&hasTopBanner=true&nowDate=20251028_4&minify=.min&cdnUrl=https%3A%2F%2Fcdn.dbpia.co.kr%2Fstatic},
+  html={https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003254703},
+  journal={대한산업공학회지},
+  issn={1225-0988},
+  year={2025},
+  volume={51},
+  number={5},
+  pages={425-438}
 }
 
 
@@ -1083,18 +1097,18 @@ pages={425-438}
   pages={276--287},
   pdf={https://www.jkiie.org/xml/46056/46056.pdf},
   abstract ={The radar detection weapon system is a surveillance and reconnaissance system designed to precisely detect
-long-range targets and determine their position and status. A critical component of the radar detection weapon
-system is the wave guide, which serves as a path for high-frequency signals. Maintaining appropriate
-temperature and humidity levels is essential to ensure seamless signal transmission, and this is regulated using
-an air compressor. However, if compressed air leakage occurs, temperature and humidity may rise, leading to
-performance degradation and potential component failure, necessitating early fault detection. The sensor data
-collected form actual operations exhibits high-dimensional and nonlinear characteristics, with abnormal patterns
-appearing irregularly, making numerical approaches challenging. Furthermore, such methods face limitations in
-effectively learning overall patterns and dependencies over time. In this paper, we propose an anomaly detection
-model that combines time-domain feature with image encoding to effectively capture nonlinear signal patterns.
-Experimental result using real-world operational data demonstrate that the proposed method outperforms
-existing approaches. The proposed approach is expected to be useful for applying Condition-Based
-Maintenance(CBM) to various equipment that utilizes time-series data.},
+  long-range targets and determine their position and status. A critical component of the radar detection weapon
+  system is the wave guide, which serves as a path for high-frequency signals. Maintaining appropriate
+  temperature and humidity levels is essential to ensure seamless signal transmission, and this is regulated using
+  an air compressor. However, if compressed air leakage occurs, temperature and humidity may rise, leading to
+  performance degradation and potential component failure, necessitating early fault detection. The sensor data
+  collected form actual operations exhibits high-dimensional and nonlinear characteristics, with abnormal patterns
+  appearing irregularly, making numerical approaches challenging. Furthermore, such methods face limitations in
+  effectively learning overall patterns and dependencies over time. In this paper, we propose an anomaly detection
+  model that combines time-domain feature with image encoding to effectively capture nonlinear signal patterns.
+  Experimental result using real-world operational data demonstrate that the proposed method outperforms
+  existing approaches. The proposed approach is expected to be useful for applying Condition-Based
+  Maintenance(CBM) to various equipment that utilizes time-series data.},
   year={2025}
 }
 
