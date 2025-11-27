@@ -208,6 +208,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/%ED%8A%B8%EB%A0%88%EB%93%9C%EB%A7%81%EC%8A%A4/";
+            },},{id: "news-pusan-national-university-researchers-develop-model-to-accurately-predict-vessel-turnaround-time",
+          title: 'Pusan National University researchers develop model to accurately predict vessel turnaround time',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/Pusan%20National%20University%20researchers%20develop%20model%20to%20accurately%20predict%20vessel%20turnaround%20time/";
             },},{id: "news-ai시대-동남권-미래-논의-부산서-통계-데이터-첫-공동-포럼-열려",
           title: 'AI시대 동남권 미래 논의…부산서 통계·데이터 첫 공동 포럼 열려',
           description: "",
