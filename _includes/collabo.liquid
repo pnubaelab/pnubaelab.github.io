@@ -347,7 +347,7 @@ import SpriteText from 'three-spritetext';
         const photoMarkup = photo ? `<img class="collabo-node-photo-img" src="${photo}" alt="${escapedName}" loading="lazy"/>` : '';
         return `<div class="collabo-node-tooltip">${photoMarkup}<div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
       })
-      .nodeVal(n => 0.1 + 0.3*(n.val || 1))
+      .nodeVal(n => 0.05 + 0.4*(n.val || 1))
       .nodeOpacity(0.75)
       .linkOpacity(0.05)
       .linkWidth(l => 0.1 + 0.2 * ((l.value||1)))
