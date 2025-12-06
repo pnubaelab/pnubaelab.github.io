@@ -406,13 +406,13 @@ import SpriteText from 'three-spritetext';
         // Different color scheme for keywords vs authors
         if (n.type === 'keyword') {
           // White/light gray palette for keywords
-          const kwPalette = ['#ffffff','#f5f5f5','#e0e0e0','#fafafa','#eeeeee','#f0f0f0','#e8e8e8','#fcfcfc'];
+          const kwPalette = ['#ffffff','#fffafa','#fffff0'];
           const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
           return kwPalette[h % kwPalette.length];
         }
         
         // Blue palette for authors
-        const palette = ['#00bfff','#2979ff','#3e8ede','#1e90ff','#4169e1','#0073cf','#03a9f4','#0288d1','#007fff','#4d4dff'];
+        const palette = ['#120a8f','#2979ff','#3e8ede','#1e90ff','#4169e1','#0073cf','#00356b','#0288d1','#007fff','#4d4dff'];
         const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
         let base = palette[h % palette.length];
         if (n.val === maxAuthorVal) return '#2979ff';
