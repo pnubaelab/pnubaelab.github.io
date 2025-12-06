@@ -389,6 +389,20 @@
       </div>
     {% endif %}
 
+    {% if entry.keywords %}
+      <!-- Keywords block -->
+      <div class="keywords" style="margin-top: 0.5rem;">
+        <span style="color: var(--global-text-color-light, #6c757d); font-size: 0.85rem;">Keywords: </span>
+        {% assign keywords_array = entry.keywords | split: ',' %}
+        {% for keyword in keywords_array %}
+          {% assign kw = keyword | strip %}
+          {% if kw != '' %}
+            <a href="#{{ kw | url_encode }}" class="keyword-tag" style="display: inline-block; padding: 0.15rem 0.5rem; margin: 0.1rem 0.15rem; background-color: rgba(255, 110, 199, 0.1); color: #ff6ec7; font-size: 0.8rem; border-radius: 4px; text-decoration: none; border: 1px solid rgba(255, 110, 199, 0.3); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(255, 110, 199, 0.25)'" onmouseout="this.style.backgroundColor='rgba(255, 110, 199, 0.1)'" onclick="event.preventDefault(); var searchBox = document.getElementById('bibsearch'); if(searchBox) { searchBox.value = '{{ kw | escape }}'; searchBox.dispatchEvent(new Event('input', {bubbles: true})); searchBox.scrollIntoView({behavior: 'smooth', block: 'center'}); }">{{ kw }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
     
   </div>
 </div>

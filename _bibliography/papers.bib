@@ -40,7 +40,7 @@
   number={},
   pages={1-1},
   abstract={Predictive process monitoring (PPM) faces challenges when process patterns evolve over time, as prediction models experience performance degradation due to concept drift while losing accuracy on previously learned process variants through catastrophic forgetting. This study addresses these challenges in outcome-oriented PPM by integrating continual learning principles with process mining domain knowledge. We propose an adaptive memory mechanism that extracts process structure information through activity relationship analysis, categorizing relationships between activities as "Always Follows," "Sometimes Follows," or "Never Follows." The mechanism computes relation entropy vectors to characterize process patterns and uses cosine similarity between current and historical process patterns to adaptively weight memory buffers during model training. This allows the model to weight historically relevant process knowledge based on pattern similarity. We evaluate the mechanism using stability, plasticity, and trade-off metrics on the Business Process Intelligence Challenge 2015 dataset across multiple temporal splits. Results show that the adaptive memory mechanism achieves stability of 0.87 ± 0.06, plasticity of 0.84 ± 0.11, and trade-off of 0.85 ± 0.08, achieving competitive performance compared to established baseline methods. The mechanism provides explainability through visualizations that demonstrate how the model weights different memory buffers during training. Validation using concept drift detection techniques confirms that the mechanism’s behavior aligns with observable process changes, indicating adaptation to evolving process patterns while reducing catastrophic forgetting.},
-  keywords={Adaptation models;Business;Concept drift;Continuing education;Process monitoring;Data models;Computational modeling;Encoding;Accuracy;Predictive models;Predictive process monitoring;outcome-oriented prediction;process mining;dynamic business process;continual learning;concept drift},
+  keywords={Adaptation models, Business, Concept drift, Continuing education, Process monitoring, Data models, Computational modeling, Encoding, Accuracy, Predictive models, Predictive process monitoring, outcome-oriented prediction, process mining, dynamic business process, continual learning, concept drift},
   doi={10.1109/ACCESS.2025.3636194},
 }
 
@@ -50,6 +50,7 @@
   abbr={INFORMS2025},
   title={Synthetic–Empirical Log Fusion for Deep Learning Prediction of Outpatient Queue Dynamics},
   author={Park, Daesan and Kim, Dohee and Bae, Hyerim},
+  keywords={Deep learning, Queueing theory, Discrete-event simulation, Data fusion, Healthcare operations, Queue dynamics prediction},
   abstract={Classical queueing formulas provide closed-form steady-state metrics and clear managerial insights 
   into system sensitivity under stable loads; however, their analytical reach diminishes when demand spikes or 
   service rules change. Discrete-event simulation (DES) accurately reproduces such dynamics, but repeated runs 
@@ -92,6 +93,7 @@
   abbr={SCI2025},
   title={An Integrated Framework for Probabilistic Standard Route Extraction and Transformer Anomaly Detection in AIS Data},
   author={Heo, Jaehyeon and Park, Hanbyeol and Bae, Hyerim},
+  keywords={AIS data, Anomaly detection, Transformer, Maritime trajectory, Standard route extraction, Probabilistic modeling},
   booktitle={The First Symposium on Computational Intelligence},
   year={2025},
 }
@@ -101,6 +103,7 @@
   abbr={SCI2025},
   title={Trajectory Feature Enhanced Spatio Temporal Anomaly Detection for Automated Guided Vehicles},
   author={Choo, Jungho and Kim, Minseop and Park, Hanbyeol and Bae, Hyerim},
+  keywords={Automated Guided Vehicles, Anomaly detection, Spatiotemporal analysis, Trajectory features, Deep learning},
   booktitle={The First Symposium on Computational Intelligence},
   year={2025},
 }
@@ -108,6 +111,7 @@
 @inproceedings{lee2025darkvessel,
   level = {International Conference},
   abbr={LOGMS},
+  keywords={Dark vessel detection, Multimodal fusion, AIS data, Radar tracking, Maritime surveillance, Real-time detection},
   abstract={Illegal maritime operations, including AIS-off navigation and dark vessel activities, present persistent challenges to maritime domain awareness. This study proposes a real-time multimodal fusion framework that integrates X-band radar tracks and Automatic Identification System (AIS) data for robust detection and characterization of dark vessels. Temporal asynchrony between radar (3–4 s) and AIS (10–180 s) sampling is addressed through a three-stage alignment strategy combining nearest assignment, linear interpolation, and geodesic-based motion prediction. Candidate associations are refined via temporal, spatial, and angular gating, with final matches optimized by a composite cost function. A systematic hyperparameter search identifies an optimal configuration ensuring both matching reliability and spatial accuracy. Subsequently, unmatched radar tracks are processed through a six-stage rule-based checker—covering trajectory continuity, speed consistency, and update regularity—to filter out physically implausible motions. Applied to real maritime data collected near Busan Port (August 1, 2025), the system successfully identifies dark-vessel candidates with a 0.744 matching rate and ~106 m 90th-percentile error across 32,770 radar detections and 198 vessels. Finally, trajectories are projected into radar coordinates and rasterized for sensor-level validation, bridging the gap between traditional rule-based tracking and learning-based multimodal vessel classification. The proposed approach enables reliable dark-vessel monitoring even under limited AIS coverage, providing a scalable foundation for intelligent maritime surveillance systems.},
   title={A Real-Time Dark Vessel Detection System Using Multimodal Fusion},
   author={Lee, Kyunghoon and Kim, Seonghan and Bae, Hyerim and Changdong Lee},
@@ -118,6 +122,7 @@
 @inproceedings{choo2025ALMA,
   level = {International Conference},
   abbr={LOGMS},
+  keywords={Domain adaptation, Ship fuel consumption, Time series forecasting, Transfer learning, Maritime sustainability, Lag moment discrepancy},
   abstract={To support sustainable maritime operations, international organizations have enforced stricter 
   environmental regulations, highlighting the need for accurate ship fuel consumption forecasting. However, 
   existing models face generalization challenges due to limited historical data, especially for newly deployed 
@@ -154,6 +159,7 @@
       journal={arXiv preprint},
       title={Reasoning-Aware GRPO using Process Mining}, 
       author={Park, Taekhyun and Lee, Yongjae and Bae, Hyerim},
+      keywords={Reinforcement learning, Process mining, Large language models, Reasoning, GRPO, Conformance reward},
       abstract={Reinforcement learning (RL)-based post-training has been crucial for enabling multi-step reasoning in large reasoning models (LRMs), yet current reward schemes are typically outcome-centric. We propose PM4GRPO, a reasoning-aware Group Relative Policy Optimization (GRPO) that augments standard answer/format rewards with signals over the reasoning procedure. To this end, process mining techniques are utilized to compute a scalar conformance reward that measures how closely a policy model's reasoning aligns with the pretrained teacher model. The empirical results on five benchmarks demonstrate that PM4GRPO significantly outperforms existing methodologies for GRPO-based post-training. These results highlight that leveraging process mining for reasoning-aware GRPO effectively enhances the reasoning capabilities of policy models.},
       year={2025},
       eprint={2510.25065},
@@ -203,6 +209,7 @@
 @misc{lee2025iconv,
   level = {Arxiv},
   abbr={arXiv},
+  keywords={Time series forecasting, Convolutional neural network, Channel independent convolution, Multivariate forecasting, MLP, Local variation modeling},
   abstract={Real-world time-series data often exhibit non-stationarity, including changing trends, irregular seasonality, and residuals. In terms of changing trends, recently proposed multi-layer perceptron (MLP)-based models have shown excellent performance owing to their computational efficiency and ability to capture long-term dependency. However, the linear nature of MLP architectures poses limitations when applied to channels with diverse distributions, resulting in local variations such as seasonal patterns and residual components being ignored. However, convolutional neural networks (CNNs) can effectively incorporate these variations. To resolve the limitations of MLP, we propose combining them with CNNs. The overall trend is modeled using an MLP to consider long-term dependencies. The CNN uses diverse kernels to model fine-grained local patterns in conjunction with MLP trend predictions. To focus on modeling local variation, we propose IConv, a novel convolutional architecture that processes the temporal dependency channel independently and considers the inter-channel relationship through distinct layers. Independent channel processing enables the modeling of diverse local temporal dependencies and the adoption of a large kernel size. Distinct inter-channel considerations reduce computational cost. The proposed model is evaluated through extensive experiments on time-series datasets. The results reveal the superiority of the proposed method for multivariate time-series forecasting.},
   title={IConv: Focusing on Local Variation with Channel Independent Convolution for Multivariate Time Series Forecasting},
   author={Lee, Gawon and Park, Hanbyeol and Kim, Minseop and Kim, Dohee and Bae, Hyerim},
@@ -214,6 +221,7 @@
 @article{kim2025forecasting,
   level= {Arxiv},
   abbr={Authorea},
+  keywords={Container throughput forecasting, EDI data, Decomposition pairwise mixer, Port operations, Time series prediction, Neural network},
   abstract={The continuous growth in global trade and rising
   uncertainty have driven extensive research on container
   throughput (CT) forecasting at monthly and annual scales.
@@ -256,7 +264,7 @@
   volume={13},
   number={},
   pages={164486-164507},
-  keywords={Fluctuations;Degradation;Market research;Computer architecture;Vectors;Logic gates;Microprocessors;Predictive models;Accuracy;Maintenance;Decomposition;health indicators;interdependent patterns;long-term predictions;remaining useful life (RUL) prediction;temporal dependencies},
+  keywords={Fluctuations, Degradation, Market research, Computer architecture, Vectors, Logic gates, Microprocessors, Predictive models, Accuracy, Maintenance, Decomposition, health indicators, interdependent patterns, long-term predictions, remaining useful life (RUL) prediction, temporal dependencies},
   doi={10.1109/ACCESS.2025.3607444}}
 
 @inproceedings{lee2025multi,
@@ -264,6 +272,7 @@
   abbr={BPM},
   html={https://link.springer.com/chapter/10.1007/978-3-032-02867-9_22},
   doi={https://doi.org/10.1007/978-3-032-02867-9_22},
+  keywords={Business process anomaly detection, Graph neural network, Multi-task learning, Process mining, Event log analysis, Semi-supervised learning},
   abstract={Anomaly detection in business processes is crucial to prevent erroneous organizational decision-making. Existing anomaly detection methods often assume access to a clean event log without anomalies, a scenario that is impractical in the real world. To solve this problem, MuGAD is proposed, a novel framework that detects anomalies in scenarios where only a limited number of labeled anomalies are available. By converting traces into a newly designed graph structure, the framework captures the control flow, order of events, and attribute information, facilitating the effective use of graph neural networks. Furthermore, MuGAD uses a two-stage training procedure designed to (1) reduce the risks posed by unlabeled traces and (2) enable the detection of anomalous traces and events. Comparative experiments are conducted on five real-life event logs to validate our proposed framework. The experimental results indicate that MuGAD outperforms the existing methods and provides better detection accuracy along with better interpretability in terms of F1-score.},
   title={Multi-task Trained Graph Neural Network for Business Process Anomaly Detection with a Limited Number of Labeled Anomalies},
   author={Lee, Yongjae and Kim, Dohee and Kim, Donghwan and Bae, Hyerim},
@@ -276,6 +285,7 @@
   level = {Arxiv},
   abbr={arXiv},
   arxiv={2508.09153},
+  keywords={Time series analysis, Sequence mixer, Dense layer, MatrixMixer, Neural architecture, Empirical study},
   abstract = {Sequence and channel mixers, the core mechanism in sequence models, have become the de facto standard in time series analysis (TSA). However, recent studies have questioned the necessity of complex sequence mixers, such as attention mechanisms, demonstrating that simpler architectures can achieve comparable or even superior performance. This suggests that the benefits attributed to complex sequencemixers might instead emerge from other architectural or optimization factors. Based on this observation, we pose a central question: Are common sequence mixers necessary for time-series analysis? Therefore, we propose JustDense, an empirical study that systematically replaces sequence mixers in various well-established TSA models with dense layers. Grounded in the MatrixMixer framework, JustDense treats any sequence mixer as a mixing matrix and replaces it with a dense layer. This substitution isolates the mixing operation, enabling a clear theoretical foundation for understanding its role. Therefore, we conducted extensive experiments on 29 benchmarks covering five representative TSA tasks using seven state-of-the-art TSA models to address our research question. The results show that replacing sequence mixers with dense layers yields comparable or even superior performance. In the cases where dedicated sequence mixers still offer benefits, JustDense challenges the assumption that "deeper and more complex architectures are inherently better" in TSA.},
   title={JustDense: Just using Dense instead of Sequence Mixer for Time Series analysis},
   author={Park, Taekhyun and Lee, Yongjae and Park, Daesan and Kim, Dohee and Bae, Hyerim},
@@ -288,6 +298,7 @@
   abbr={J. Forecasting},
   pdf={https://onlinelibrary.wiley.com/doi/pdf/10.1002/for.3176},
   html={https://onlinelibrary.wiley.com/doi/full/10.1002/for.3176},
+  keywords={Maritime economics forecasting, Time series decomposition, Two-stage attention, LSTM, Container volume prediction, Baltic Panamax Index},
   abstract={Forecasting the maritime economics index, including container volume and Baltic Panamax Index, is essential for long-term planning and decision-making in the shipping industry. However, studies on container volume prediction are not sufficient, and the bulk freight index has highly fluctuating characteristics, which pose a challenge in long-term prediction. This study proposes a new hybrid framework for the long-term prediction of the maritime economics index. The framework consists of time-series decomposition to break down a time-series into several components (trend, seasonality, and residual), a two-stage attention mechanism that prioritizes important variables to increase long-term prediction accuracy and a long short-term memory network that predicts and combines all components to derive the final predictive outcome. Extensive experiments are conducted using the container volume data, bulk freight index data, and various external variables. The proposed framework achieved a better predictive performance than existing time-series methods, including conventional machine learning and deep learning-based models, in the long-term prediction of container volume and the Baltic Panamax Index. Hence, the proposed method can help in decision-making through accurate long-term predictions of the maritime economics index.},
   title={Long-term forecasting of maritime economics index using time-series decomposition and two-stage attention},
   author={Kim, Dohee and Lee, Eunju and Kamal, Imam Mustafa and Bae, Hyerim},
@@ -308,6 +319,7 @@
   pdf={https://ieeexplore.ieee.org/abstract/document/10264112/},
   html={https://ieeexplore.ieee.org/document/10264112},
   arxiv={https://arxiv.org/pdf/2211.16653},
+  keywords={Time series forecasting, Correlation recurrent unit, Time series decomposition, Neural architecture, Autocorrelation, Deep learning},
   abstract={Time-series forecasting (TSF) is a traditional problem in the field of artificial intelligence, and models such as recurrent neural network, long short-term memory, and gate recurrent units have contributed to improving its predictive accuracy. Furthermore, model structures have been proposed to combine time-series decomposition methods such as seasonal-trend decomposition using LOESS. However, this approach is learned in an independent model for each component, and therefore, it cannot learn the relationships between the time-series components. In this study, we propose a new neural architecture called a correlation recurrent unit (CRU) that can perform time-series decomposition within a neural cell and learn correlations (autocorrelation and correlation) between each decomposition component. The proposed neural architecture was evaluated through comparative experiments with previous studies using four univariate and four multivariate time-series datasets. The results showed that long- and short-term predictive performance was improved by more than 10%. The experimental results indicate that the proposed CRU is an excellent method for TSF problems compared to other neural architectures.},
   title={Correlation recurrent units: A novel neural architecture for improving the predictive performance of time-series data},
   author={Sim, Sunghyun and Kim, Dohee and Bae, Hyerim},
@@ -326,6 +338,7 @@
 @article{park2021vessel,
   level = {SCOPUS},
   abbr={MARTRA},
+  keywords={Vessel ETA prediction, AIS data mining, Reinforcement learning, Markov Chain, Bayesian sampling, Intelligent port system},
   abstract={Port operation efficiency has grown in importance as container volumes and vessel sizes have increased. For improved port operations efficiency, the estimated time of arrival (ETA) of sea-going vessels must be accurately predicted. In this paper, an AIS data-driven method- ology is proposed for the estimation of vessel ETA at ports. For ETA prediction, we first introduce how to find possible vessel trajectories using AIS data mining methods and reinforcement learning (RL); next, we introduce the Markov Chain property and Bayesian Sampling to estimate the speed over ground (SOG) of a vessel. Experimentation comparing the proposed methodology with an existing one was performed to verify the former's performance. We expect the proposed ETA prediction methodology to predict ETA to help build an intelligent port system.},
   html={https://www.sciencedirect.com/science/article/pii/S2666822X21000046},
   pdf={https://pdf.sciencedirectassets.com/777836/1-s2.0-S2666822X20X00037/1-s2.0-S2666822X21000046/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFgaCXVzLWVhc3QtMSJGMEQCIHFk3nzK11vzxMd3NkgxaplqfR5WNFAn6CZZk8p%2FphdLAiB%2F%2B9c7390ewXqs0mzB%2BgV%2FDbvzjO3dTur0IAaRlXeBECqyBQhxEAUaDDA1OTAwMzU0Njg2NSIMCK8ZpSIbK2vqDSpQKo8Fa6VD9AAgbC1NB3k%2FRDXuc7%2FFhc122cmkULkvx%2F%2FLNnJ0do3VYu2QXGuF3tyO27S3a%2BgeIt%2BiQ05qp8SZHYE1g3kLgsQzaGBCrUb59CSMGSKlkMpHs1LzfVPBINy1AbPU3htAFr8AF%2BgB2x8Iku2CXABhhCXp%2Fj0OVbniQ13JO2GG8BfBJ4aqrl0BX0MOKa%2FsgPXAQTGHV9f%2FXSiKqIbqXObEJKM8HPhQQIQC%2FOLbXQTxj4eIO8FxaKkUHSqpoc5x0g6hFgyb5%2B6Uwwt8bmmxcNtXVcU%2BJwQ3IyDvqTafI0c4YVlxm2hBaDI5yNllF0us6wRxTCOGT5KpHz7mZMpongaDvwxNJ2%2FSvyCXFDZkLN2QP2HeIkNGq8o%2BB0yGrkkWpnN2BdKAtK%2FJK2xTzLqU9hykuLZnJsGlXI5rVwEEybpp8wK6p%2F5RegWrSpzwdakfLX%2Fwv3tLh%2FWaqJHgiQx4tlcWUORx1I2%2F8YG8WboDy9EI2CZjw9nN1eXFcOF7KTQOWfRRb6x72BYIfIfJjHCaRYJJwPAdVAUBQli9sVih5QRgi4ag2d4n5dpEd15G1TW9gRDPl%2BDiAMTsOWsNhLCHpaUHdYa1YZD1DEwAC0WkTv7aJfRaXmpwDjB2hhf3TL9%2FOwUyUOqiSWdQncS6%2FMOzmrBNU%2FD4bW7D9kqAPTNtvB5s4T6TcvRqcpJ9nBSHdQMPL9JkbcE8Y8usRY4s0z32vRpcmRRFzi1tTSu3SlOieP7xEX5B2y1AvWownslzv1yMvIOoQE1XTq2OtOF%2FsVWpWmgVDZFGDLMOLmWN4GIT%2BMLE8uVzqeIWWsy4Mbtshz6BVwehTixlnMuFv6uB3l91l9BYE%2BQwHcC9G0rKUmJx9TCk1uLDBjqyAQ%2Bly%2BBigJ6CwVJTImkPZZIFJOFEVTplfzOC%2BSlWp5ZVNiKeQj43xUNxVZ%2BMAg9Bkqu3nuXe8hiBDXFtoCXsdHrKuLfpJfq7yV1Qa4dLh%2FpC6%2BGiSDdm9YMEW8xeNUsuNEkHfGUtSGrosCon3dRvQcF8pY4pLGWCIF9komGtCW2Rsf571vFluHBXf8OYnz6qgUxAYeKDF%2B%2FQywYr%2FHFYs%2BB6d8TelR21bGA1ewa4%2BjrJJqU%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250717T083354Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYSRPBHLCV%2F20250717%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=b8eee71e54e10c129d11aadb391a98ab14625d98474718625e9b12e9338a2714&hash=6104713d8ffbdd018ce1f6df7cfac228845ad9ef5b5d2097396b807415262060&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S2666822X21000046&tid=spdf-7d8b9a45-21b3-4f6d-98c0-ed7c6c9973d1&sid=c680fefb693ec144b06af9f80b26f78ecdcegxrqa&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&rh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=11145f51555c5450000250&rr=960865ac6e293f1b&cc=kr},
@@ -347,6 +360,7 @@
   pdf={https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=1318584},
   title={Automatic control of workflow processes using ECA rules},
   author={Bae, Joonsoo and Bae, Hyerim and Kang, Suk-Ho and Kim, Yeongho},
+  keywords={Workflow management, ECA rules, Event-condition-action, Process automation, Business process management},
   journal={IEEE transactions on knowledge and data engineering},
   volume={16},
   number={8},
@@ -361,6 +375,7 @@
     pdf={https://arxiv.org/pdf/2211.15200},
   title={Angular triangle distance for ordinal metric learning},
   author={Kamal, Imam Mustafa and Bae, Hyerim and Liu, Ling},
+  keywords={Ordinal metric learning, Angular distance, Deep learning, Representation learning, Distance metric},
   journal={Applied Intelligence},
   volume={55},
   number={11},
@@ -374,6 +389,7 @@
   abbr={arXiv},
   arxiv={2411.03324},
   title={A Surrogate Model for Quay Crane Scheduling Problem},
+  keywords={Quay crane scheduling, Surrogate model, Genetic algorithm, Machine learning, Port operations, Optimization},
   abstract={In ports, a variety of tasks are carried out, and scheduling these tasks is crucial due to its significant impact on productivity, making the generation of precise plans essential. This study proposes a method to solve the Quay Crane Scheduling Problem (QCSP), a representative task scheduling problem in ports known to be NP-Hard, more quickly and accurately. First, the study suggests a method to create more accurate work plans for Quay Cranes (QCs) by learning from actual port data to accurately predict the working speed of QCs. Next, a Surrogate Model is proposed by combining a Machine Learning (ML) model with a Genetic Algorithm (GA), which is widely used to solve complex optimization problems, enabling faster and more precise exploration of solutions. Unlike methods that use fixed-dimensional chromosome encoding, the proposed methodology can provide solutions for encodings of various dimensions. To validate the performance of the newly proposed methodology, comparative experiments were conducted, demonstrating faster search speeds and improved fitness scores. The method proposed in this study can be applied not only to QCSP but also to various NP-Hard problems, and it opens up possibilities for the further development of advanced search algorithms by combining heuristic algorithms with ML models.},
   author={Park, Kikun and Bae, Hyerim},
   journal={arXiv},
@@ -387,6 +403,7 @@
   html={https://www.sciencedirect.com/science/article/pii/S0278612525001153?casa_token=4DUFhyz4OK4AAAAA:aPhaHIxsa4OOanThJK6ytRhJT3ewZXBbDKTTgYB7cvp_UaeVngp6OF1lRsdyXd1YQbfoaXW5Ng},
   title={Comprehensive issue identification for manufacturing data analytics implementation: Systematic literature review and case studies},
   author={Park, Sa-Eun and Lee, Sangjae and Bae, Hyerim and Kim, Kihun and Kang, Eung-Jun and Kim, Jae-Sung and Park, Yong-Min and Park, Min-Ji},
+  keywords={Manufacturing data analytics, Systematic literature review, Industry 4.0, Smart manufacturing, Data-driven decision making},
   journal={Journal of Manufacturing Systems},
   volume={82},
   pages={42--59},
@@ -401,6 +418,7 @@
   level = {SCOPUS},
   abbr={MARTRA},
   title={Identifying key factors influencing import container dwell time using eXplainable Artificial Intelligence},
+  keywords={Container dwell time, Explainable AI, Process mining, Container terminal operations, Feature importance, SHAP},
   abstract={In a container terminal, the length of time that containers remain in the yard, known as Container Dwell Time (CDT), is considered one of the significant operational indicators due to its direct correlation with terminal productivity and efficiency. However, due to complex processing procedure and the involvement of various logistics stakeholders, CDT is subject to high uncertainty, making it more difficult for the terminal to manage. To address this issue, this paper presents a comprehensive framework to identify the Key Factors (KFs) influencing prolongation of CDT for import containers. In order to elucidate abnormal cases from dataset which contains yard loading information, the Process Mining (PM) method is utilized. Subsequently, XAI has been utilized to identify the KFs of import CDT. To reflect reality as closely as possible, we collected event data from a container terminal in Busan, Korea. Based on experiments, the KFs thus identified were: 1) Temperature, 2) Weight of container, 3) Voyage number of container 4) Block, 5) Shipping company, and 6) Month of discharging. To conclude, we formulated domain knowledge-based interpretations of the six most influential KFs.},
   author={Lee, Yongjae and Park, Kikun and Lee, Hyunjae and Son, Jongpyo and Kim, Seonhwan and Bae, Hyerim},
   journal={Maritime Transport Research},
@@ -419,6 +437,7 @@
   pdf={https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=10835654},
   title={Neural Bezier Interpolation with Manifold Learning for Reliable Vessel Trajectory Prediction},
   author={Lee, Gawon and Kim, Dohee and Park, Segil and Sim, Sunghyun and Liu, Ling and Bae, Hyerim},
+  keywords={Vessel trajectory prediction, Bezier interpolation, Manifold learning, Deep learning, Maritime navigation},
   booktitle={2024 IEEE 6th International Conference on Cognitive Machine Intelligence (CogMI)},
   pages={189--196},
   year={2024},
@@ -429,6 +448,7 @@
   level = {SCI},
   abbr={Eng. Optim.},
   doi={https://doi.org/10.1080/0305215X.2024.2346930},
+  keywords={Contrastive learning, Rubber physical properties, Dynamic margin, Representation learning, Neural network, Manufacturing},
   abstract={Predicting the physical properties of rubber presents difficulties because of the intricate and nonlinear relationships between its constituent elements. The laborious nature of rubber manufacture results in restricted data sets, hence exacerbating this difficulty. To achieve successful training of a neural network with a smaller amount of data, it is crucial to use an appropriate weight initialization approach and carefully construct the network architecture to avoid overfitting. This study presents a novel approach to representation learning that uses a contrastive loss with dynamic margin loss function. The approach is specifically designed to capture semantic similarities in rubber material quantities and physical-property recipes. In addition, a novel neural network architecture is proposed that uses latent vectors for assigning initial weights. The proposed approach, validated using data from a rubber manufacturing company, showed a significant improvement of up to 30% in predictive accuracy for physical properties with a restricted amount of data.},
   pdf={https://www.researchgate.net/profile/Kikun-Park/publication/383133591_Contrastive_loss_with_dynamic_margin_for_rubber-recipe_physical-property_prediction/links/68346c80df0e3f544f59ee2d/Contrastive-loss-with-dynamic-margin-for-rubber-recipe-physical-property-prediction.pdf},
   title={Contrastive loss with dynamic margin for rubber-recipe physical-property prediction},
@@ -447,6 +467,7 @@
   title={SIMULATION LEARNING FOR PREDICTING THE MAKESPAN FOR SCHEDULING PROBLEM},
   pdf={http://www.icicelb.org/ellb/contents/2024/10/elb-15-10-06.pdf},
   doi={https://doi.org/10.24507/icicelb.15.10.1033},
+  keywords={Simulation learning, Makespan prediction, Scheduling problem, Machine learning, Computational efficiency},
   abstract={Simulation models offer the advantage of unrestricted exploration of various
   solutions, including those for complex or difficult-to-formulate problems. In this context,
   simulation has been widely employed to address scheduling problems, which often demand
@@ -469,6 +490,7 @@
   pdf={https://cir.nii.ac.jp/crid/1390019590260801280},
   title={Predictive Process Monitoring for Remaining Time Prediction with Transfer Learning},
   author={Iman, Alif Nur and Kamal, Imam Mustafa and Ramadhan, Muhammad Hanif and Kim, Dohee and Lee, Yongjae and Bae, Hyerim},
+  keywords={Predictive process monitoring, Transfer learning, Remaining time prediction, Transformer, Business process management},
   abstract={Recent advancements in predictive process monitoring (PPM) have led to an improved performance by incorporating deep learning methodologies. However, some of these approaches employ a massive parameter architecture that requires a large dataset for training, posing challenges in many business process management scenarios. This study presents a transformer-based model with transfer learning for estimating remaining time prediction. We aim to improve the efficiency of business process management by accurately predicting the remaining time of a process. Additionally, we assessed the feasibility and transferability of the transfer learning method to enhance the performance of predictive process monitoring. We conducted experiments on four publicly available event logs. Our proposed architecture outperforms prior work, with a significant 53% improvement over the best baseline in the Helpdesk dataset. Additionally, the use of transfer learning leads to both positive and negative performance outcomes, depending on characteristics of the source and target process model.},
   journal={革新的コンピューティング・情報・制御に関する速報},
   doi={10.24507/icicel.18.08.851},
@@ -483,6 +505,7 @@
   level = {SCI},
   abbr={IEEE},
   pdf={https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=10500701},
+  keywords={Container terminal, Discrete event simulation, Operation time prediction, Support vector machine, Container handling equipment},
   abstract={Container terminals (CTs) play a crucial role within the global supply chain in the context of the global container transportation business. The primary obligation associated with these terminals involves ensuring the punctual execution of primary vessel operations, while strictly adhering to the Estimated Time of Departure (ETD) for vessels. To accomplish this goal, it is crucial to develop rigorous and exact operating strategies. Nonetheless, the accurate prediction of operation times in CT presents a significant challenge due to the concurrent involvement of various Container Handling Equipment (CHE) and the occurrence of unforeseen situations. To address this issue, this study proposes a novel approach called Predictive Discrete Event Simulation (PDES) that utilizes data collected from CT to predict the operation times. The PDES is an advanced approach that builds upon the widely used Discrete Event Simulation (DES) technique in the field of simulations. It is specifically designed to provide precise predictions of the operation times in CTs, where multiple events take place concurrently. The PDES in this paper aims to overcome the shortcomings of current simulation-based approaches for prediction in CT. These approaches often rely on predefined task sequences and assumed time for job handling time of CHE in their scenarios, which can result in reduced accuracy when predicting operation times. Through the resolution of these issues, the proposed PDES exhibits the capacity to improve predictive performance. To enhance the predictive performance of operation times in CTs through PDES, two approaches are introduced. The first approach entails the application of Support Vector Machine (SVM) algorithms for the purpose of predicting operation times. This approach is further augmented by integrating it with DES to improve the accuracy of predictive performance. The second approach involves predicting by simulating real-world operational scenarios in CTs using algorithms for CHE assignment. The predictive performance of the proposed PDES is assessed through the utilization of data gathered from Busan Port Terminal (BPT) in South Korea, demonstrating superior performance compared to alternative prediction approaches.},
   html={https://ieeexplore.ieee.org/document/10500701},
   title={A predictive discrete event simulation for predicting operation times in container terminal},
@@ -501,6 +524,7 @@
   arxiv={2211.15153},
   doi={https://doi.org/10.1016/j.aei.2024.102441},
   html={https://www.sciencedirect.com/science/article/abs/pii/S1474034624000892},
+  keywords={Semi-supervised learning, Binary classification, Latent distance learning, Representation learning, Angular space},
   abstract={Binary classification (BC) is a practical task that is ubiquitous in real-world problems, such as distinguishing healthy and unhealthy objects in biomedical diagnostics and defective and non-defective products in manufacturing inspections. Nonetheless, fully annotated data are commonly required to effectively solve this problem, and their collection by domain experts is a tedious and expensive procedure. In contrast to BC, several significant semi-supervised learning techniques that heavily rely on stochastic data augmentation techniques have been devised for solving multi-class classification. In this study, we demonstrate that the stochastic data augmentation technique is less suitable for solving typical BC problems because it can omit crucial features that strictly distinguish between positive and negative samples. To address this issue, we propose a new learning representation to solve the BC problem using a few labels with a random pair cross-distance learning mechanism. First, by harnessing a few labeled samples, the encoder network learns the projection of positive and negative samples in angular spaces to maximize and minimize their inter-class and intra-class distances, respectively. Second, the classifier learns to discriminate between positive and negative samples using on-the-fly labels generated based on the angular space and labeled samples to solve BC tasks. Extensive experiments were conducted using four real-world publicly available BC datasets. With few labels and without any data augmentation techniques, the proposed method outperformed state-of-the-art semi-supervised and self-supervised learning methods. Moreover, with 10% labeling, our semi-supervised classifier could obtain competitive accuracy compared with a fully supervised setting.},
   title={Semi-supervised binary classification with latent distance learning},
   author={Kamal, Imam Mustafa and Bae, Hyerim},
@@ -517,6 +541,7 @@
   level = {SCOPUS},
   abbr={ICIC-B},
   pdf={https://cir.nii.ac.jp/crid/1390862036396901888},
+  keywords={Feature selection, Explainable AI, SHAP, Order statistics, Feature importance},
   abstract={Recently, Feature Selection (FS) methods have been extensively researched
   using eXplainable Artificial Intelligence (XAI). Among these methods, SHapley Additive
   exPlanations (SHAP) is a representative approach. SHAP evaluates the impact of feature
@@ -546,6 +571,7 @@
   pdf={https://www.mdpi.com/2077-1312/11/11/2103},
   title={Solving the inter-terminal truck routing problem for delay minimization using simulated annealing with normalized exploration rate},
   author={Ramadhan, Muhammad Hanif and Kamal, Imam Mustafa and Kim, Dohee and Bae, Hyerim},
+  keywords={Inter-terminal truck routing, Simulated annealing, Delay minimization, Port logistics, Optimization},
   journal={Journal of Marine Science and Engineering},
   volume={11},
   number={11},
@@ -560,6 +586,7 @@
   pdf={https://cir.nii.ac.jp/crid/1390577740948088192},
   title={Ensemble Method for Feature Selection in Time-Series Prediction Based on Image Similarity},
   author={Lee, Hyunjae and Kim, Dohee and Lee, Sangjae and Park, Hanbyeol and Bae, Hyerim and Choi, Keonwoo},
+  keywords={Ensemble method, Feature selection, Time series prediction, Image similarity, Deep learning},
   journal={革新的コンピューティング・情報・制御に関する速報-B: 応用},
   volume={14},
   number={07},
@@ -574,6 +601,7 @@
   pdf={https://ieeexplore.ieee.org/abstract/document/9979792/},
   title={A data-driven recipe simulation for synthetic rubber production},
   author={Park, Kikun and Park, Hanbyeol and Bae, Hyerim},
+  keywords={Data-driven simulation, Synthetic rubber production, Recipe optimization, Manufacturing process, Machine learning},
   journal={IEEE Access},
   volume={10},
   pages={129408--129418},
@@ -584,6 +612,7 @@
 @article{sim2022deep,
   level = {SCI},
   abbr={TRD},
+  keywords={Port air pollution, Deep collaborative learning, AIS data, Convolutional LSTM, Ship emissions, Environmental prediction},
   abstract={Air pollution in port cities is aggravated by ship pollutant emissions. A deep collaborative learning (DCL)-based prediction model using automatic identification system (AIS) is proposed in this study to predict this type of pollution. In the model training process, a novel data preprocessing method was devised to efficiently handle heterogeneous data: air pollution, weather conditions, and AIS data. To combine these data together, a pretraining step is introduced using an autoencoder-based model, which is a customized convolutional long short-term memory network model, followed by a DCL method for the prediction of highly accurate air pollution values (for both short- and long-term predictions). Compared with other approaches, this method showed on an average, a performance improvement of nearly 10% in terms of the root mean squared error. Experiments to test and validate the model were conducted near the North/Old Busan Port, Republic of Korea.},
   html={https://www.sciencedirect.com/science/article/pii/S1361920922002577},
   title={Deep collaborative learning model for port-air pollutants prediction using automatic identification system},
@@ -602,6 +631,7 @@
   html={https://www.sciencedirect.com/science/article/abs/pii/S0167865522002045},
   title={Cooperative auto-classifier networks for boosting discriminant capacity},
   author={Kamal, Imam Mustafa and Bae, Hyerim},
+  keywords={Cooperative learning, Auto-classifier, Discriminant capacity, Neural network, Pattern recognition},
   journal={Pattern Recognition Letters},
   volume={160},
   pages={82--89},
@@ -615,6 +645,7 @@
   pdf={https://cir.nii.ac.jp/crid/1390010457669375232},
   title={Improving the Performance of Mixing-Process Machine Classification Based on Feature Engineering Techniques: A Case Study in Rubber-Belt Industry},
   author={Iman, Alif Nur and Kim, Jinuk and Son, Jeong Su and Ramadhan, Muhammad Hanif and Bae, Hyerim},
+  keywords={Feature engineering, Machine classification, Rubber-belt industry, Mixing process, Manufacturing},
   journal={革新的コンピューティング・情報・制御に関する速報-B: 応用},
   volume={13},
   number={06},
@@ -629,6 +660,7 @@
   pdf={https://www.mdpi.com/2076-3417/12/13/6346},
   title={Big data and AI for process innovation in the Industry 4.0 era},
   author={Park, Jaehun and Bae, Hyerim},
+  keywords={Big data, Artificial intelligence, Industry 4.0, Process innovation, Smart manufacturing},
   journal={Applied Sciences},
   volume={12},
   number={13},
@@ -643,6 +675,7 @@
   pdf={http://www.icicelb.org/ellb/contents/2022/5/elb-13-05-10.pdf},
   title={Obtaining lightweight human activity recognition model through knowledge distillation of deep neural network},
   author={Ramadhan, Muhammad Hanif and Adi, Taufik Nur and Bae, Hyerim and Kim, Hyemee},
+  keywords={Human activity recognition, Knowledge distillation, Deep neural network, Lightweight model, Model compression},
   journal={ICIC Express Letters, Part B: Applications},
   volume={13},
   number={5},
@@ -653,6 +686,7 @@
 @article{kamal2022super,
   level = {SCI},
   abbr={PR},
+  keywords={Dimensionality reduction, Autoencoder, Super-encoder, Cooperative learning, Latent representation, Deep learning},
   abstract={Dimensionality reduction plays a crucial role in classification, object detection, and pattern recognition tasks. Its main objective is to decrease the dimension of the original data while retaining the most distinctive information. With the emergence of deep learning, an autoencoder has become a state-of-the-art non-linear dimensionality-reduction method. Nonetheless, as the existing autoencoder models are devised to follow the data distribution and employ similarity techniques, preserving distinctive information can be problematic. To tackle this issue, we propose super-encoder (SE) networks trained in a supervised and cooperative manner. The SE consists of an encoder, separator, and decoder networks. The encoder combined with separator networks are dedicated to generating separable latent representation based on the label, and the decoder network should be able to reconstruct it to the original data simultaneously. Herein, we introduce a novel cooperative learning mechanism with a new loss function; therefore, the encoder, separator, and decoder networks can cooperate to achieve these objectives. Extensive experiments using benchmark datasets were conducted. The results indicated that the SE is more effective in extracting separable latent code than the existing supervised and unsupervised dimensionality-reduction models. Furthermore, as a generator, it can obtain highly competitive realistic images.},
   doi={https://doi.org/10.1016/j.patcog.2022.108562},
   html={https://www.sciencedirect.com/science/article/pii/S0031320322000437},
@@ -672,6 +706,7 @@
   pdf={https://ieeexplore.ieee.org/abstract/document/9682686},
   title={Automatic conversion of event data to event logs using CNN and event density embedding},
   author={Sim, Sunghyun and Sutrisnowati, Riska Asriana and Won, Seokrae and Lee, Sanghwa and Bae, Hyerim},
+  keywords={Event log conversion, CNN, Event density embedding, Process mining, Deep learning},
   journal={IEEE Access},
   volume={10},
   pages={15994--16009},
@@ -685,6 +720,7 @@
   pdf={https://www.mdpi.com/2076-3417/11/21/9848},
   title={Parallel-structure deep learning for prediction of remaining time of process instances},
   author={Wahid, Nur Ahmad and Bae, Hyerim and Adi, Taufik Nur and Choi, Yulim and Iskandar, Yelita Anggiane},
+  keywords={Remaining time prediction, Parallel-structure deep learning, Process mining, Business process management},
   journal={Applied Sciences},
   volume={11},
   number={21},
@@ -699,6 +735,7 @@
   pdf={https://www.mdpi.com/2076-3417/11/19/8995},
   title={Container volume prediction using time-series decomposition with a long short-term memory models},
   author={Lee, Eunju and Kim, Dohee and Bae, Hyerim},
+  keywords={Container volume prediction, Time series decomposition, LSTM, Maritime logistics, Deep learning},
   journal={Applied Sciences},
   volume={11},
   number={19},
@@ -713,6 +750,7 @@
   pdf={https://ieeexplore.ieee.org/abstract/document/9566796},
   title={Bagging recurrent event imputation for repair of imperfect event log with missing categorical events},
   author={Sim, Sunghyun and Bae, Hyerim and Liu, Ling},
+  keywords={Event log imputation, Bagging, Recurrent neural network, Process mining, Missing data},
   journal={IEEE Transactions on Services Computing},
   volume={16},
   number={1},
@@ -729,6 +767,7 @@
   pdf={https://www.mdpi.com/2227-9717/9/10/1728},
   title={Interterminal truck routing optimization using cooperative multiagent deep reinforcement learning},
   author={Adi, Taufik Nur and Bae, Hyerim and Iskandar, Yelita Anggiane},
+  keywords={Inter-terminal truck routing, Multi-agent reinforcement learning, Deep reinforcement learning, Port logistics, Optimization},
   journal={Processes},
   volume={9},
   number={10},
@@ -743,6 +782,7 @@
   pdf={https://www.mdpi.com/2227-9717/9/7/1121},
   title={Residual life prediction for induction furnace by sequential encoder with s-convolutional LSTM},
   author={Choi, Yulim and Kwun, Hyeunho and Kim, Dohee and Lee, Eunju and Bae, Hyerim},
+  keywords={Remaining useful life prediction, Induction furnace, Sequential encoder, Convolutional LSTM, Predictive maintenance},
   journal={Processes},
   volume={9},
   number={7},
@@ -757,6 +797,7 @@
   pdf={http://www.icicel.org/ell/contents/2021/7/el-15-07-07.pdf},
   title={Adversarial multivariate regression and auto-regression for predicting completion time of container terminals operation},
   author={Kamal, Imam Mustafa and Bae, Hyerim},
+  keywords={Adversarial learning, Multivariate regression, Container terminal operations, Completion time prediction, Deep learning},
   journal={ICIC Express Letters},
   volume={5},
   pages={737--746},
@@ -769,6 +810,7 @@
   pdf={https://www.researchgate.net/profile/Kikun-Park/publication/359440521_Prediction_of_the_quay_crane's_handling_time_with_external_handling_factors/links/663c5f7035243041538296d2/Prediction-of-the-quay-cranes-handling-time-with-external-handling-factors.pdf},
   title={Prediction of the quay crane's handling time with external handling factors},
   author={Lee, Eunju and Park, Kikun and Kim, Dohee and Bae, Hyerim and Hong, Changwoo},
+  keywords={Quay crane, Handling time prediction, External factors, Container terminal, Machine learning},
   journal={ICIC Exp. Lett., B, Appl.},
   volume={12},
   pages={351--358},
@@ -781,6 +823,7 @@
   pdf={https://ieeexplore.ieee.org/abstract/document/9264156},
   title={Trajectory linkage and spreader centrality for social epidemic networks},
   author={Kamal, Imam Mustafa and Bae, Hyerim and Cho, Ki Haing},
+  keywords={Epidemic networks, Trajectory linkage, Spreader centrality, Social network analysis, Disease spreading},
   journal={IEEE Access},
   volume={8},
   pages={210922--210934},
@@ -794,6 +837,7 @@
   abbr={Appl. Sci.},
   pdf={https://www.mdpi.com/2076-3417/10/20/7202},
   author={Utama, Nur Ichsan and Sutrisnowati, Riska Asriana and Kamal, Imam Mustafa and Bae, Hyerim and Park, You-Jin},
+  keywords={Process mining, Shift work operation, Event log analysis, Workflow pattern, Manufacturing},
   journal={Applied Sciences},
   volume={10},
   number={20},
@@ -808,6 +852,7 @@
   abbr={ICIC-B},
   pdf={http://www.icicelb.org/ellb/contents/2020/10/elb-11-10-11.pdf},
   author={Adi, Taufik Nur and Iskandar, Yelita Anggiane and Bae, Hyerim},
+  keywords={Q-learning, Inter-terminal transportation, Empty truck reduction, Reinforcement learning, Port logistics},
   journal={ICIC Express Letters, Part B: Applications},
   volume={11},
   number={10},
@@ -821,6 +866,7 @@
   pdf={https://www.mdpi.com/2076-3417/10/4/1504},
   title={DERN: Deep ensemble learning model for short-and long-term prediction of baltic dry index},
   author={Kamal, Imam Mustafa and Bae, Hyerim and Sim, Sunghyun and Yun, Heesung},
+  keywords={Baltic Dry Index, Deep ensemble learning, Time series forecasting, Maritime economics, LSTM},
   journal={Applied Sciences},
   volume={10},
   number={4},
@@ -835,6 +881,7 @@
   pdf={https://www.sciencedirect.com/science/article/pii/S0925231219313293},
   title={Data pixelization for predicting completion time of events},
   author={Kamal, Imam Mustafa and Bae, Hyerim and Utama, Nur Ichsan and Choi, Yulim},
+  keywords={Data pixelization, Completion time prediction, Deep learning, Process mining, Image encoding},
   journal={Neurocomputing},
   volume={374},
   pages={64--76},
@@ -848,6 +895,7 @@
   abbr={Procedia Comput.},
   title={Predictive business process monitoring--remaining time prediction using deep neural network with entity embedding},
   author={Wahid, Nur Ahmad and Adi, Taufik Nur and Bae, Hyerim and Choi, Yulim},
+  keywords={Predictive business process monitoring, Remaining time prediction, Deep neural network, Entity embedding, Process mining},
   journal={Procedia Computer Science},
   volume={161},
   pages={1080--1088},
@@ -861,6 +909,7 @@
   pdf={https://www.mdpi.com/2220-9964/8/6/272},
   title={Simplification and detection of outlying trajectories from batch and streaming data recorded in harsh environments},
   author={Pulshashi, Iq Reviessay and Bae, Hyerim and Choi, Hyunsuk and Mun, Seunghwan and Sutrisnowati, Riska Asriana},
+  keywords={Trajectory simplification, Outlier detection, Streaming data, Harsh environments, Geo-information},
   journal={ISPRS International Journal of Geo-Information},
   volume={8},
   number={6},
@@ -875,6 +924,7 @@
   pdf={https://www.researchgate.net/profile/Imam-Kamal/publication/332715094_Forecasting_High-dimensional_Multivariate_Regression_of_Baltic_Dry_Index_BDI_Using_Deep_Neural_Networks_DNN/links/5cc9274e92851c8d22105d86/Forecasting-High-dimensional-Multivariate-Regression-of-Baltic-Dry-Index-BDI-Using-Deep-Neural-Networks-DNN.pdf},
   title={Forecasting high-dimensional multivariate regression of Baltic dry index (BDI) using deep neural networks (DNN)},
   author={Kamal, Imam Mustafa and Bae, Hyerim and Sim, Sunghyun and Kim, Hyemee and Kim, Dohee and Choi, Yulim and Yun, Heesung},
+  keywords={Baltic Dry Index, Multivariate regression, Deep neural networks, Time series forecasting, Maritime economics},
   journal={ICIC Express Letters},
   volume={13},
   number={5},
@@ -888,6 +938,7 @@
   pdf={http://www.icicelb.org/ellb/contents/2018/12/elb-09-12-12.pdf},
   title={Gear classification for defect detection in vision inspection system using deep convolutional neural networks},
   author={Kamal, Imam Mustafa and Sutrisnowati, Riska Asriana and Bae, Hyerim and Lim, Taesoo},
+  keywords={Gear classification, Defect detection, Vision inspection, Convolutional neural networks, Deep learning},
   journal={ICIC Express Letters},
   volume={9},
   number={12},
@@ -901,6 +952,7 @@
   abbr={ICIC-B},
   title={Cloud-Based Predictive Maintenance Framework for Sensor Data Analytics},
   author={Adi, Taufik Nur and Wahid, Nur Ahmad and Sutrisnowati, Riska Asriana and Choi, Yulim and Bae, Hyerim and Seo, Chang Sung and Jeong, Soo Hwan and Seo, Tae Young},
+  keywords={Cloud computing, Predictive maintenance, Sensor data analytics, IoT, Machine learning},
   journal={ICIC Express Letters, Part B: Applications},
   volume={9},
   number={11},
@@ -914,6 +966,7 @@
   pdf={http://www.icicelb.org/ellb/contents/2018/10/elb-09-10-07.pdf},
   title={Petri Nets simulation for operational analytics based on process data: An overview},
   author={Wirawan, Natanael Yabes and Sutrisnowati, Riska Asriana and Sim, Sunghyun and Utama, Nur Ichsan and Wahid, Nur Ahmad and Adi, Taufik Nur and Choi, Yulim and Kamal, Imam Mustafa and Pulshashi, Iq Reviessay and Bae, Hyerim},
+  keywords={Petri Nets, Simulation, Operational analytics, Process data, Business process modeling},
   journal={ICIC Experss Letters, Part B: Applications},
   volume={9},
   number={9},
@@ -927,6 +980,7 @@
   pdf={http://www.icicelb.org/ellb/contents/2018/8/elb-09-08-17.pdf},
   title={Production scheduling in steel manufacturing with cutting and parallel operations},
   author={Won, Sujin and Bae, Hyerim and Sutrisnowati, Riska Asriana},
+  keywords={Production scheduling, Steel manufacturing, Cutting operations, Parallel operations, Optimization},
   journal={ICIC Express Letters, Part B: Applications},
   volume={9},
   number={8},
@@ -940,6 +994,7 @@
   pdf={https://www.researchgate.net/profile/Yong-Jeong-Kim/publication/321839265_A_study_on_the_quality-embedded_efficiency_measurement_in_DEA/links/5fa9d9f8a6fdcc062420bdf2/A-study-on-the-quality-embedded-efficiency-measurement-in-DEA.pdf},
   title={A study on the quality-embedded efficiency measurement in DEA},
   author={Park, Jaehun and Sung, Si-Il and Kim, Yong-Jeong and Lee, Byungkwon and Bae, Hyerim},
+  keywords={Data envelopment analysis, Quality efficiency, Performance measurement, Operations research},
   journal={INFOR: Information Systems and Operational Research},
   volume={56},
   number={2},
@@ -954,6 +1009,7 @@
   pdf={https://www.worldscientific.com/doi/abs/10.1142/s0218843018500028},
   title={Statistical verification of process model conformance to execution log considering model abstraction},
   author={Sim, Sunghyun and Bae, Hyerim and Choi, Yulim and Liu, Ling},
+  keywords={Process conformance, Statistical verification, Process mining, Model abstraction, Event log},
   journal={International Journal of Cooperative Information Systems},
   volume={27},
   number={02},
@@ -984,6 +1040,7 @@
     pdf={https://d1wqtxts1xzle7.cloudfront.net/94934859/j.cie.2016.05.01020221128-1-5dbxn0-libre.pdf?1669602120=&response-content-disposition=inline%3B+filename%3DDomain_driven_actionable_process_model_d.pdf&Expires=1761076549&Signature=dS-PCFSUL4Ec5vivW8rXgrWJQVftvgIKbkN3u36prqdIbABDCVqBLshR5wlOY17KfF06ZZp4wXVi7RPRt-P-PFdSi-veb6kHn7iKnYHU08IZaQGIfzFEVNN-gAoLm4ntWa1RLgJm-NqdHre6QrkPHGUogo9qwnlxTMu8iKVJ1WBMuDpEFAN2fBn~IM3wfqDYvF4EAeWB1YakrpCqNZgco9-1e0LAagcQTBiO~PIboKkJ~5L2JNG7UsLvXwnoflOFIchqifsD2udJs33tFDYV2q62HwpGJQ5OPAkHkeG3IqCIJKTDc0BJal0VMeCLWQC8nOqDjB7G9WKyaICl96dVrQ__&Key-Pair-Id=APKAJLOHF5GGSLRBV4ZA},
   title={Domain-driven actionable process model discovery},
   author={Yahya, Bernardo Nugroho and Song, Minseok and Bae, Hyerim and Sul, Sung-ook and Wu, Jei-Zheng},
+  keywords={Domain-driven discovery, Actionable process model, Process mining, Business process management},
   journal={Computers \& Industrial Engineering},
   volume={99},
   pages={382--400},
@@ -997,6 +1054,7 @@
     abbr={IJICIC},
   title={Generating valid reference business process model using genetic algorithm},
   author={Yahya, Bernardo Nugroho and Bae, Hyerim and Bae, Joonsoo and Kim, Dongsoo},
+  keywords={Genetic algorithm, Business process model, Reference model, Process optimization},
   journal={International Journal of Innovative Computing, Information and Control},
   volume={8},
   number={2},
@@ -1014,7 +1072,8 @@
   number={7},
   pages={1979--2001},
   year={2012},
-  publisher={Taylor \& Francis}
+  publisher={Taylor \& Francis},
+  keywords={Flexible job-shop scheduling, Precedence constraints, Production scheduling, Optimization, Operations research}
 }
 
 @article{lim2011study,
@@ -1022,6 +1081,7 @@
     abbr={ESA},
   title={A study on the selection of benchmarking paths in DEA},
   author={Lim, Sungmook and Bae, Hyerim and Lee, Loo Hay},
+  keywords={Data envelopment analysis, Benchmarking, Performance evaluation, Operations research},
   journal={Expert Systems with Applications},
   volume={38},
   number={6},
@@ -1035,6 +1095,7 @@
     abbr={ISF},
   title={Increasing the efficiency of business processes using a theory of constraints},
   author={Rhee, Seung-Hyun and Cho, Nam Wook and Bae, Hyerim},
+  keywords={Theory of constraints, Business process efficiency, Process improvement, Operations management},
   journal={Information Systems Frontiers},
   volume={12},
   number={4},
@@ -1048,6 +1109,7 @@
     abbr={AMC},
   title={Analytic hierarchy process to assess and optimize distribution network},
   author={Sharma, Mithun J and Moon, Ilkyeong and Bae, Hyerim},
+  keywords={Analytic hierarchy process, Distribution network optimization, Supply chain management, Decision making},
   journal={Applied mathematics and computation},
   volume={202},
   number={1},
@@ -1063,6 +1125,7 @@
 @article{추정호2025장비,
   abbr={대한산업공학회지},
   level = {KCI},
+  keywords={Health indicator, Degradation function, Change point detection, Condition-based maintenance, Weapon system},
   abstract ={The Health Indicator (HI) is used to monitor equipment conditions. Supervised HI extraction methods assume a general degradation pattern, ensuring robustness. However, existing degradation functions are often designed assuming monotonic degradation without reflecting actual equipment characteristics. When the assumed pattern deviates from reality, the extracted HI may suffer from performance loss. This study aims to enhance HI extraction by identifying failure stages and designing degradation functions that better reflect real degradation patterns. A change point detection algorithm was used to identify failure stages, which were then used to construct the degradation function. The proposed method was validated using real-world data from a Weapon System. Compared to conventional linear and exponential degradation functions, the proposed approach improved HI performance by up to 29.13% in terms of Monotonicity. As the proposed degradation function can be applied to various equipment types, it is expected to enhance HI extraction in practical applications.},
   author={Choo, Jungho and Park, Hanbyeol and Park, Yeonkyung and Bae, Hyerim},
   title={장비의 고장 단계 함수를 이용한 상태 지표 추출},
@@ -1079,6 +1142,7 @@
 @article{ART003254703,
   abbr={대한산업공학회지},
   level = {KCI},
+  keywords={Ship fuel consumption, Time series forecasting, Missing data imputation, CII regulations, Maritime sustainability},
   abstract={The maritime industry plays a central role in global trade but also contributes significantly to environmental degradation due to high fuel consumption. Accordingly, the International Maritime Organization (IMO) has introduced environmental regulations, including the Carbon Intensity Indicator (CII). Complying with these regulations requires accurate fuel consumption forecasting to support optimal voyage planning. However, ship operation data frequently contain missing and anomalous values due to sensor failures, which reduce the accuracy of forecasts that rely on time-series characteristics. Although previous studies have applied machine learning and time-series models, they often fail to employ temporal dependencies or maintain data continuity. This study proposes a time-series forecasting framework that separates movement and anchorage states and performs imputation using environmental variables and similar trajectory group. The proposed method effectively leverages sensor data, despite frequent missing and anomalous values, and improves forecasting performance. The proposed framework facilitates voyage optimization by enabling accurate speed estimation and ensuring compliance with CII regulations.},
   author={Lee, Hyunha and Kim, Dohee and Choo, Jungho and Jo, Sangmin and Bae, Hyerim},
   title={센서 데이터의 시계열 특성을 고려한 선박 연료 소모량 예측 프레임워크},
@@ -1099,6 +1163,7 @@
   level = {Domestic Conference},
   title={항만 혼잡 정보를 반영한 2-Stage 선박 도착 시간 예측 방법론 연구},
   author={Kim, Seonghan and Han, Mingi and Kim, Minseop and Bae, Hyerim},
+  keywords={Vessel arrival time prediction, Port congestion, Two-stage prediction, Maritime logistics},
   journal={대한산업공학회지},
   pages={4369--4379},
   year={2025},
@@ -1108,6 +1173,7 @@
 @article{박은희2025인공위성,
   title={인공위성 이미지 기반 미세먼지 예측 및 고해상도 공간 해석 프레임워크},
   author={Park, Eunhee and Kim, Minseop and Park, Hanbyeol and Bae, Hyerim},
+  keywords={Satellite image, Fine dust prediction, High-resolution spatial analysis, Deep learning, Environmental monitoring},
   journal={대한산업공학회지},
   pages={2268--2276},
   year={2025},
@@ -1122,6 +1188,7 @@
   abbr={대한산업공학회},
   title={무기체계 상태기반정비를 위한 이미지 인코딩 기반 시계열 데이터 이상탐지},
   author={Lee, Minseop and Park, Kikun and Park, Hanbyeol and Park, Yeon-kyung and Bae, Hyerim},
+  keywords={Anomaly detection, Image encoding, Time series data, Condition-based maintenance, Weapon system},
   journal={대한산업공학회지},
   volume={51},
   number={4},
@@ -1148,6 +1215,7 @@
   level = {Domestic Conference},
   title={LLM 기반의 시계열 예측 모형을 활용한 컨테이너 물동량 예측 방법론 연구},
   author={Kim, Minseop and Kwon, Jaeeun and Park, Taekhyun and Hong, Seongmoon and Bae, Hyerim},
+  keywords={Large language model, Container throughput prediction, Time series forecasting, Deep learning},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={2303--2312},
   year={2025},
@@ -1159,6 +1227,7 @@
   abbr={대한산업공학회},
   title={현실적 QC 작업 계획 수립을 위한 TSP 기반 프레임워크},
   author={Kim, Minhee and Park, Kikun and Kim, Kihun and Bae, Hyerim},
+  keywords={Quay crane scheduling, TSP, Container terminal, Work planning, Optimization},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={4342--4351},
   html={https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE12292866},
@@ -1170,6 +1239,7 @@
   abbr={대한산업공학회},
   title={딥러닝 기반 직접 발화 음성과 딥보이스 판별 시스템 구축},
   author={Lee, Kyunghoon and Cho, Sujin and Park, Kikun and Bae, Hyerim},
+  keywords={Deep learning, Voice recognition, Deepfake detection, Speech classification, Audio analysis},
   journal={대한산업공학회 추계학술대회 논문집},
   pages={418--428},
   year={2024}
@@ -1181,6 +1251,7 @@
   pdf={https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE12101231},
   title={랜덤 포레스트와 전자 데이터 교환 정보를 활용한 수입 컨테이너 체류 시간 예측 연구},
   author={Park, Hanbyeol and Park, Kikun and Heo, Jaehyeon and Kim, Minseop and Nam, Jaehyeon and Bae, Hyerim},
+  keywords={Container dwell time prediction, Random forest, EDI data, Port operations, Machine learning},
   journal={한국전자거래학회지},
   volume={30},
   number={1},
@@ -1195,6 +1266,7 @@
   abbr={한국빅데이터학회지},
   html={https://kiss.kstudy.com/Detail/Ar?key=4149119},
   doi={10.36498/kbigdt.2024.9.2.123},
+  keywords={SCFI prediction, Text data, NF-LF methodology, Maritime freight index, Natural language processing},
   abstract={다양한 매체를 통해 생성되는 비정형 데이터는 많은 정보를 내포하고 있으며, 이에 대한 활용의 필요성이 증가하고 있다. 하지만 텍스트 데이터를 효과적으로 정량화하여 예측 모델의 성능을 향상시키는 연구는 많이 이루어지고 있지 않다. 이러한 문제를 해결하기 위해 텍스트 데이터에 포함된 영향도를 정량화하여 외부 변수로 활용할 수 있는 Noun-Frequency Link Frequency 방법론을 제안한다. 제안하는 방법론은 텍스트 데이터를 활용해 주간 키워드와 키워드의 상대적 영향도를 정량화된 수치의 형태로 추출하며, 이러한 정보를 반영하여, 상하이 컨테이너 운임 지수(SCFI) 예측 모델의 성능을 향상시키는 효과적인 방법론이라는 것을 검증하였다. 본 연구를 통해, 사회적, 심리적 영향을 미치는 이벤트가 텍스트 데이터에 등장하였을 때, 이러한 정보를 포착하고 예측 성능을 향상시킴과 동시에 등장하는 키워드들을 분석하여 해석 가능성을 높일 수 있다.},
   title={SCFI 지수 예측 모형의 성능 향상을 위한 텍스트 데이터 기반 문자열 가중치 추출 연구},
   author={Kim, Minseop and Heo, Jaehyeon and Kim, Dohee and Bae, Hyerim},
@@ -1211,6 +1283,7 @@
     abbr={대한산업공학회},
   title={유전 알고리즘 기반의 지능형 네트워크 구조 탐색을 활용한 Automatic Identification System 데이터 복원 연구},
   author={Heo, Jaehyeon and Park, Kikun and Park, Hanbyeol and Kim, Minseop and Park, Se-Gil and Bae, Hyerim},
+  keywords={Genetic algorithm, Neural architecture search, AIS data recovery, Deep learning, Maritime data},
   journal={대한산업공학회 추계학술대회 논문집},
   pages={1304--1313},
   year={2024}
@@ -1219,6 +1292,7 @@
 @article{김도희2024해양사고,
   level = {KCI},
   abbr={한국전자거래학회지},
+  keywords={Maritime accident, Grid-based analysis, Severity index, KeyBERT, Maritime safety},
   abstract={우리나라는 해상 물동량 및 통항량이 증가하면서 해상교통 환경의 복잡도와 해양사고의 위험이 증가하고 있다. 해양사고는 다른 운송 수단에 비해 사고 비율은 상대적으로 낮지만 상당한 손실을 초래하는 심각한 사고로 이어지기도 한다. 해양사고 기록은 해양사고의 심판에 붙일 경우 해양안전심판원의 재결서를 통해 기록되고, 심판불필요처분에 대해서는 해양사고 통계에 기록되며 공공데이터로 공개되어 있다. 해양사고를 줄이기 위해 많은 연구들이 이루어졌다. 해양사고의 주요 원인을 규명하고, 심각도를 정의 및 도출하는 연구가 주로 이루어졌는데, 이들 연구는 주로 심판재결서와 해양사고통계 중 하나의 데이터만을 이용하였다. 본 연구에서는 해양사고의 원인을 도출하고, 심각도를 산출하는 데 있어 중요한 두 가지 데이터를 함께 고려할 수 있는 프레임워크를 제안한다. 해양사고에 대한 다각적 고려를 위해 심각도 기준을 재정의 하였으며, KeyBERT모델을 활용하여 사고의 주요 원인이 될 수 있는 키워드를 도출하였다. 또한 이를 해역별 그리드로 표현하여 사고의 심각도와 원인 키워드에 대해 시각화하여 정보를 제공한다. 추후 이를 해사 안전의 정량적 평가를 위한 안전지표 개발의 기초 자료로서 활용하고자 한다.},
   html={https://www.dbpia.co.kr/Journal/articleDetail?nodeId=NODE11723845},
   doi={10.7838/jsebs.2024.29.1.057},
@@ -1236,6 +1310,7 @@
     abbr={대한산업공학회},
   title={시공간정보를 활용한 선박 연료 소모량 예측 프레임워크},
   author={Lee, Hyunha and Choo, Jungho and Jo, Sangmin and Lee, Yongjae and Kim, Dohee and Bae, Hyerim and Kang, Seongpil},
+  keywords={Spatiotemporal data, Ship fuel consumption prediction, Maritime logistics, Deep learning},
   journal={대한산업공학회 추계학술대회 논문집},
   pages={1314--1324},
   year={2024}
@@ -1260,6 +1335,7 @@
   abbr={지능정보연구},
   html={https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003031986},
   title={화물의 특성 및 적재 공간을 고려한 LCL 화물 적재 알고리즘},
+  keywords={LCL cargo loading, Container loading algorithm, Space optimization, Logistics, 3D bin packing},
   abstract={다품종 소량 생산 품목의 수요 증가와 전자상거래 시장의 발달로 인하여 소량화물(Less than Container Load, LCL)의수출입 비중이 확대되고 있다. 이에 따라 국제물류주선업에서 소량화물을 다루는 업체의 비중이 늘어나고 있다. 화물 크기의 다양성과 이해당사자의 이익 구조가 맞물려, 컨테이너의 공간 효율성을 최대화할 수 있는 화물 적재 방법론이 중요 해지고 있다. 그러나, 화물 적재 계획을 미리 수립하여 컨테이너 조작장(Container Freight Station, CFS)에 전달하는 현 상황의 특성상, 산업현장에서 확인 가능한 변수들을 적재 계획에 반영할 수 없다는 한계가 있다.
 따라서, 본 연구에서는 산업현장에서 적재 계획의 수정이 용이한 화물 적재 방법론을 제시한다. 화물의 특성에 따른 불용 공간과 컨테이너 내부 현황을 고려할 수 있도록 하여 산업 현장의 요구사항을 반영하고, 3차원 공간을 2차원 평면 레이어로 조작하여 적재 계획을 수립하여 시간 복잡도를 줄임으로써 산업현장의 활용성을 높였다. 본 연구에서 제시하는 방법론을 통해 화물 적재 계획 품질의 일관성을 높이고, 적재 계획 수립 자동화에 기여를 할 수 있다.},
   author={Park, Daesan and Jo, Sangmin and Park, Dongyoon and Lee, Yongjae and Kim, Dohee and Bae, Hyerim},
@@ -1275,6 +1351,7 @@
   abbr={한국빅데이터논문지},
   title={대리운전 시장의 지역별 수요 예측 모형의성능 향상을 위한 방법론 연구},
   author={Kim, Minseop and Park, Kikun and Heo, Jaehyeon and Kwon, Jaeeun and Bae, Hyerim},
+  keywords={Demand prediction, Designated driver service, Regional forecasting, Machine learning},
   journal={한국빅데이터논문지 제},
   volume={8},
   number={1},
@@ -1286,6 +1363,7 @@
   abbr={해운물류연구},
   title={설명가능한 인공지능을 활용한 컨테이너 운임 예측 모형 연구},
   html={https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE11579750},
+  keywords={Container freight rate prediction, Explainable AI, SHAP, Deep learning, SCFI, Maritime economics},
   abstract={컨테이너 운임은 대외 수출 비중이 높은 우리나라 산업의 물류비용을 결정하는 중요한 요인 중 하나이며, 산업 및 물가에 직접적인 영향을 미치는 중요한 경제 지표 중 하나이다. COVID-19 발생 이후 강한 충격에 급격히 상승한 운임에 대해 관련 영향 요인을 파악하고, 이를 정확히 예측하는 모델의 필요성이 대두되었다. 본 연구에서는 컨테이너 운임 지수 중 하나인 SCFI에 대한 정확한 예측을 목표로 하는 딥러닝 모델 기반의 프레임워크를 제안하고, 설명할 수 있는 인공지능 방법론 중 하나인 SHAP을 이용하여 사후 분석을 수행하였다. GRU, LSTM, RNN 모형 중 GRU 모형이 가장 좋은 예측 성능을 보였으며, 1주, 4주 예측 시 90%이상의 높은 예측 정확도를 보였으나, 12주 예측 시 80%이상의 예측 정확도를 보였다. 또한 SHAP 분석을 통해 변수 별 중요도를 바탕으로 구성한 변수 조합으로 실험 시 예측 성능이 개선되는 것을 확인하였다. 이를 통해 딥러닝 방법론이 가지고 있던 고질적인 한계점인 설명력 문제를 일부 해소하고, 예측력 개선에서도 활용할 수 있을 것이라 기대된다.},
   author={Kim, Dohee and Bae, Hyerim and Lee, Sangjae},
   journal={해운물류연구},
@@ -1300,6 +1378,7 @@
   abbr={한국산업정보학회논문지},
   title={벌크항만의 하역 최적화를 위한 정수계획모형},
   author={Yu, Taesun and Lee, Yusin and Park, Hyun-gon and Kim, Dohee and Bae, Hyerim},
+  keywords={Bulk port, Cargo handling optimization, Integer programming, Port operations, Mathematical modeling},
   journal={한국산업정보학회논문지},
   volume={27},
   number={6},
@@ -1313,6 +1392,7 @@
   abbr={한국빅데이터논문지},
   title={LSTM-AutoEncoder 를 활용한선박 메인엔진의 이상 탐지 및 라벨링},
   author={Kim, Dohee and Han, Yeongjae and Kim, Hyemee and Kang, Seongpil and Kim, Kihun and Bae, Hyerim},
+  keywords={LSTM-AutoEncoder, Ship main engine, Anomaly detection, Labeling, Predictive maintenance},
   journal={한국빅데이터논문지 제},
   volume={7},
   number={1},
@@ -1326,6 +1406,7 @@
   pdf={https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002855665},
   title={밀도기반 선박 도메인을 이용한 안전 성능 지표 활용성 연구},
   author={Han, Yeongjae and Sim, Sunghyun and Bae, Hyerim},
+  keywords={Density-based ship domain, Safety performance indicator, Maritime safety, AIS data analysis},
   journal={한국빅데이터학회지},
   volume={7},
   number={1},
@@ -1343,7 +1424,8 @@
   volume={6},
   number={1},
   pages={197--206},
-  year={2021}
+  year={2021},
+  keywords={CNN, Semi-supervised learning, GPR image, Image classification, Deep learning}
 }
 
 @article{박기군2020글로벌,
@@ -1354,7 +1436,8 @@
   journal={한국빅데이터논문지},
   year={2020},
   volume={5},
-  number={2}
+  number={2},
+  keywords={Global pandemic, Emergency relief fund, Budget allocation, Policy analysis, COVID-19}
 }
 
 @article{권현호2020시계열,
@@ -1365,7 +1448,8 @@
   journal={한국빅데이터논문지},
   volume={5},
   number={1},
-  year={2020}
+  year={2020},
+  keywords={Time series clustering, COVID-19, Infectious disease policy, Busan, Public health}
 }
 
 @article{박은정2019컨테이너,
@@ -1378,7 +1462,8 @@
   number={1},
   pages={11--27},
   year={2019},
-  publisher={(사) 한국빅데이터학회}
+  publisher={(사) 한국빅데이터학회},
+  keywords={Container terminal, Performance evaluation, Event log, Data preprocessing, Process mining}
 }
 
 @article{prastyabudi2018utilizing,
@@ -1390,7 +1475,8 @@
   volume={44},
   number={1},
   pages={18--37},
-  year={2018}
+  year={2018},
+  keywords={Big data, Fuzzy inference, Port operations, Performance evaluation, Maritime logistics}
 }
 
 @article{adi2019automatic,
@@ -1403,7 +1489,8 @@
   number={2},
   pages={139--147},
   year={2019},
-  publisher={Korean Society of Computer Information}
+  publisher={Korean Society of Computer Information},
+  keywords={False alarm, Sensor data, Automatic labeling, Anomaly detection, Data quality}
 }
 
 @article{kim2019hyper,
@@ -1415,7 +1502,8 @@
   volume={24},
   number={1},
   pages={137--143},
-  year={2019}
+  year={2019},
+  keywords={Hyperparameter tuning, LSTM, Sampling method, Deep learning, Model optimization}
 }
 
 @article{lee2018study,
@@ -1428,7 +1516,8 @@
   number={11},
   pages={103--109},
   year={2018},
-  publisher={Korean Society of Computer Information}
+  publisher={Korean Society of Computer Information},
+  keywords={Business process re-engineering, Semi-automated framework, Process mining, Workflow optimization, BPM}
 }
 
 @article{김도희2019딥러닝을,
@@ -1440,7 +1529,8 @@
   volume={45},
   number={2},
   pages={111--116},
-  year={2019}
+  year={2019},
+  keywords={Deep learning, Bulk dry index, Freight rate prediction, Maritime economics, Time series forecasting}
 }
 
 @article{박민규2023무기체계,
@@ -1450,7 +1540,8 @@
   author={Park, Mingyu and Park, Hanbyeol and Kim, Minseop and Kwon, Jaeeun and Kim, Dohee and Bae, Hyerim and Park, Yeonkyung},
   journal={한국신뢰성학회 학술대회논문집},
   pages={60--60},
-  year={2023}
+  year={2023},
+  keywords={Weapon system, Condition-based maintenance, Neural network, Condition diagnosis, Reliability engineering}
 }
 
 @article{이상재2023gps,
@@ -1460,7 +1551,8 @@
   author={Lee, Sangjae and Park, Kikun and Iman, Alif Nur and Ramadhan, Muhammad Hanif and Bae, Hyerim},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={4224--4233},
-  year={2023}
+  year={2023},
+  keywords={GPS data, Internal truck, Route prediction, Container terminal, Logistics optimization}
 }
 
 @article{허재현2023외부,
@@ -1470,7 +1562,8 @@
   author={Heo, Jaehyeon and Kim, Minseop and Kim, Dohee and Park, Daesan and Bae, Hyerim},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={4213--4223},
-  year={2023}
+  year={2023},
+  keywords={External shock, Text data, NF-LF methodology, Time series forecasting, Natural language processing}
 }
 
 @article{조수현2023항만,
@@ -1480,7 +1573,8 @@
   author={Jo, Suhyeon and Park, Kikun and Lee, Gawon and Jo, Sangmin and Bae, Hyerim},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={4087--4095},
-  year={2023}
+  year={2023},
+  keywords={Port punctuality, ETA prediction, RTA prediction, Vessel arrival, Maritime logistics}
 }
 
 @article{권재은2023고무,
@@ -1490,7 +1584,8 @@
   author={Kwon, Jaeeun and Park, Hanbyeol and Park, Mingyu and Jung, Hyokyeong and Bae, Hyerim},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={2512--2520},
-  year={2023}
+  year={2023},
+  keywords={Rubber property prediction, Clustering, Machine learning, Material science, Framework development}
 }
 
 @article{심성현2023독립변수들,
@@ -1500,7 +1595,8 @@
   author={Sim, Sunghyun and Kim, Dohee and Bae, Hyerim},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={2115--2127},
-  year={2023}
+  year={2023},
+  keywords={CoRepNet, Variable correlation, Deep learning, Feature interaction, Representation learning}
 }
 
 @article{김도희2018lstm,
@@ -1509,7 +1605,8 @@
   author={Kim, Dohee and Kim, Hyemee and Sim, Sunghyun and Choi, Yulim and Bae, Hyerim and Yoon, Heeseong},
   journal={대한산업공학회 춘계공동학술대회 논문집},
   pages={2195--2202},
-  year={2018}
+  year={2018},
+  keywords={LSTM, BDI, Bulk Dry Index, Freight rate prediction, Deep learning}
 }
 
 @article{kamal2023metric,
@@ -1517,6 +1614,7 @@
   abbr={Trans. Serv. Comput.},
   title={Metric learning as a service with covariance embedding},
   author={Kamal, Imam Mustafa and Bae, Hyerim and Liu, Ling},
+  keywords={Metric learning, Covariance embedding, Service computing, Deep learning, Representation learning},
   journal={IEEE Transactions on Services Computing},
   volume={16},
   number={5},
@@ -1530,6 +1628,7 @@
   abbr={해양환경안전학회지},
   title={Maritime Safety Tribunal Ruling Analysis using SentenceBERT},
   author={Yoon, Bori and Park, SeKil and Bae, Hyerim and Sim, Sunghyun},
+  keywords={Maritime safety, Tribunal ruling analysis, SentenceBERT, Natural language processing, Text analysis},
   journal={Journal of the Korean Society of Marine Environment \& Safety},
   volume={29},
   number={7},
@@ -1544,6 +1643,7 @@
   pdf={https://ieeexplore.ieee.org/abstract/document/10020492/},
   title={TDTA: A new hybrid framework for long-term forecasting of container volume},
   author={Kim, Dohee and Bae, Hyerim},
+  keywords={Container volume forecasting, Hybrid framework, Time series prediction, Deep learning, Maritime logistics},
   booktitle={2022 IEEE International Conference on Big Data (Big Data)},
   pages={6718--6720},
   year={2022},

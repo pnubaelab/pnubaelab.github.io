@@ -28,6 +28,36 @@
     font-weight: 400;
     text-transform: uppercase;
   }
+  .collabo-legend {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(2, 6, 17, 0.85);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .collabo-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #cfd8dc;
+  }
+  .collabo-legend-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+  }
+  .collabo-legend-dot.author {
+    background: linear-gradient(135deg, #00bfff, #2979ff);
+  }
+  .collabo-legend-dot.keyword {
+    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    border-radius: 4px;
+  }
 </style>
 <div class="collabo-section" style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
   <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
@@ -330,11 +360,19 @@ import SpriteText from 'three-spritetext';
     data.nodes.forEach(n => {
       if (n.value != null && n.val == null) n.val = n.value;
       if (!n.name) n.name = n.id;
+      // Ensure type field exists for older data
+      if (!n.type) n.type = 'author';
     });
 
-    const maxVal = Math.max(...data.nodes.map(n => n.val||1));
+    // Separate author and keyword nodes for sizing
+    const authorNodes = data.nodes.filter(n => n.type === 'author');
+    const keywordNodes = data.nodes.filter(n => n.type === 'keyword');
+    
+    const maxAuthorVal = Math.max(...authorNodes.map(n => n.val||1), 1);
+    const maxKeywordVal = Math.max(...keywordNodes.map(n => n.val||1), 1);
+    
     // Top authors (limit 6 like before)
-    const topSet = new Set([...data.nodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,6).map(n=>n.id));
+    const topSet = new Set([...authorNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,6).map(n=>n.id));
 
     const g = ForceGraph3D({ controlType: 'orbit' })(container)
       .graphData(data)
@@ -342,23 +380,42 @@ import SpriteText from 'three-spritetext';
       .showNavInfo(false)
       .nodeId('id')
       .nodeLabel(n => {
-        const escapedName = htmlEscape(n.name);
+        const displayName = n.name || n.id.replace(/^kw:/, '');
+        const escapedName = htmlEscape(displayName);
+        
+        if (n.type === 'keyword') {
+          return `<div class="collabo-node-tooltip"><div style="color:#ffffff;font-size:12px;">🏷️ KEYWORD</div><div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
+        }
+        
         const photo = getNodePhoto(n.name);
         const photoMarkup = photo ? `<img class="collabo-node-photo-img" src="${photo}" alt="${escapedName}" loading="lazy"/>` : '';
         return `<div class="collabo-node-tooltip">${photoMarkup}<div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
       })
-      .nodeVal(n => 0.05 + 0.4*(n.val || 1))
+      .nodeVal(n => {
+        if (n.type === 'keyword') {
+          return 0.03 + 0.1 * (n.val || 1);
+        }
+        return 0.05 + 0.4 * (n.val || 1);
+      })
       .nodeOpacity(0.75)
       .linkOpacity(0.05)
-      .linkWidth(l => 0.1 + 0.2 * ((l.value||1)))
+      .linkWidth(l => 0.1 + 0.2 * (l.value||1))
       .linkDirectionalParticles(0)
-      .linkColor('#ffffff') 
+      .linkColor('#ffffff')
       .nodeColor(n => {
-        // Neon-like palette mapping by hashing id
-        const palette = ['#39ff14','#00fff7','#ff00ea','#ffe600','#ff1744','#00e676','#2979ff','#f50057','#00ff90','#fff700','#ff6ec7','#00bfff','#ffb300','#e040fb','#76ff03'];
+        // Different color scheme for keywords vs authors
+        if (n.type === 'keyword') {
+          // White/light gray palette for keywords
+          const kwPalette = ['#ffffff','#f5f5f5','#e0e0e0','#fafafa','#eeeeee','#f0f0f0','#e8e8e8','#fcfcfc'];
+          const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
+          return kwPalette[h % kwPalette.length];
+        }
+        
+        // Blue palette for authors
+        const palette = ['#00bfff','#2979ff','#00fff7','#1e90ff','#4fc3f7','#29b6f6','#03a9f4','#0288d1','#00acc1','#26c6da'];
         const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
         let base = palette[h % palette.length];
-        if (n.val === maxVal) return '#ffffff';
+        if (n.val === maxAuthorVal) return '#2979ff';
         return base;
       })
       .onNodeClick(node => {
@@ -366,7 +423,14 @@ import SpriteText from 'three-spritetext';
         const dist = 100 + Math.sqrt(node.val||1)*22;
         const ratio = 1 + dist / Math.hypot(node.x,node.y,node.z);
         g.cameraPosition({ x: node.x*ratio, y: node.y*ratio, z: node.z*ratio }, { x: node.x, y: node.y, z: node.z }, 2000);
-        setBibSearchValue(extractFirstName(node.id));
+        
+        // For keywords, search by the keyword name; for authors, search by first name
+        if (node.type === 'keyword') {
+          const keywordName = node.name || node.id.replace(/^kw:/, '');
+          setBibSearchValue(keywordName);
+        } else {
+          setBibSearchValue(extractFirstName(node.id));
+        }
         flashLinks(node, g);
       })
       .onNodeHover(node => {
@@ -403,16 +467,22 @@ import SpriteText from 'three-spritetext';
     // Add SpriteText labels for all nodes
     g.nodeThreeObjectExtend(true);
     g.nodeThreeObject(n => {
-      // Create text sprite for all nodes
-      const sprite = new SpriteText(n.name);
+      const displayName = n.name || n.id.replace(/^kw:/, '');
+      const sprite = new SpriteText(displayName);
       sprite.fontFace = 'Oswald,sans-serif';
       
-      // Styling based on whether it's a top author
-      if (topSet.has(n.id)) {
+      if (n.type === 'keyword') {
+        // Keywords: white color, smaller text
+        sprite.color = '#ffffff';
+        sprite.textHeight = 4 + Math.sqrt(n.val||1) * 0.4;
+        sprite.fontWeight = '400';
+      } else if (topSet.has(n.id)) {
+        // Top authors: white, larger text
         sprite.color = '#ffffff';
         sprite.textHeight = 8 + Math.sqrt(n.val||1) * 0.7;
         sprite.fontWeight = '600';
       } else {
+        // Regular authors: light blue text
         sprite.color = '#ffffff';
         sprite.textHeight = 5 + Math.sqrt(n.val||1) * 0.3;
         sprite.fontWeight = '400';
@@ -434,6 +504,8 @@ import SpriteText from 'three-spritetext';
       gInstance.refresh();
       setTimeout(() => { related.forEach(l => { l.__highlight = false; }); gInstance.refresh(); }, 1300);
     }
+    
+
 
     // Starfield + post-processing bloom (optional)
     addStarfield(g);
