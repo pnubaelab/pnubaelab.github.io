@@ -412,7 +412,7 @@ import SpriteText from 'three-spritetext';
         }
         
         // Blue palette for authors
-        const palette = ['#00bfff','#2979ff','#00fff7','#1e90ff','#4fc3f7','#29b6f6','#03a9f4','#0288d1','#00acc1','#26c6da'];
+        const palette = ['#00bfff','#2979ff','#3e8ede','#1e90ff','#4169e1','#0073cf','#03a9f4','#0288d1','#007fff','#4d4dff'];
         const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
         let base = palette[h % palette.length];
         if (n.val === maxAuthorVal) return '#2979ff';
