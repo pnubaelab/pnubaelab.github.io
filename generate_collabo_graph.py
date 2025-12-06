@@ -19,7 +19,7 @@ author_keyword_links = defaultdict(int)  # (author, keyword) -> count
 def normalize_keyword(kw):
     """Normalize keyword for consistent grouping"""
     kw = kw.strip()
-    # Remove common prefixes/suffixes and normalize case
+    # Remove extra whitespace
     kw = re.sub(r'\s+', ' ', kw)
     return kw
 
