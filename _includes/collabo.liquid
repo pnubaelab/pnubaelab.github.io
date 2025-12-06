@@ -374,6 +374,9 @@ import SpriteText from 'three-spritetext';
     // Top authors (limit 6 like before)
     const topSet = new Set([...authorNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,6).map(n=>n.id));
 
+    // Top 5 keywords (highlighted in red)
+    const topKeywords = new Set([...keywordNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,5).map(n=>n.id));
+
     const g = ForceGraph3D({ controlType: 'orbit' })(container)
       .graphData(data)
       .backgroundColor('#020611')
@@ -397,7 +400,7 @@ import SpriteText from 'three-spritetext';
         }
         return 0.05 + 0.4 * (n.val || 1);
       })
-      .nodeOpacity(0.75)
+      .nodeOpacity(0.85)
       .linkOpacity(0.05)
       .linkWidth(l => 0.1 + 0.2 * (l.value||1))
       .linkDirectionalParticles(0)
@@ -405,7 +408,11 @@ import SpriteText from 'three-spritetext';
       .nodeColor(n => {
         // Different color scheme for keywords vs authors
         if (n.type === 'keyword') {
-          // White/light gray palette for keywords
+          // Top 5 keywords: red color
+          if (topKeywords.has(n.id)) {
+            return '#ff4444';
+          }
+          // Other keywords: white/light gray palette
           const kwPalette = ['#ffffff','#fffafa','#fffff0'];
           const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
           return kwPalette[h % kwPalette.length];
@@ -472,10 +479,17 @@ import SpriteText from 'three-spritetext';
       sprite.fontFace = 'Oswald,sans-serif';
       
       if (n.type === 'keyword') {
-        // Keywords: white color, smaller text
-        sprite.color = '#ffffff';
-        sprite.textHeight = 4 + Math.sqrt(n.val||1) * 0.4;
-        sprite.fontWeight = '400';
+        // Top 5 keywords: red color, larger text
+        if (topKeywords.has(n.id)) {
+          sprite.color = '#ff4444';
+          sprite.textHeight = 6 + Math.sqrt(n.val||1) * 0.6;
+          sprite.fontWeight = '600';
+        } else {
+          // Other keywords: white color, smaller text
+          sprite.color = '#ffffff';
+          sprite.textHeight = 4 + Math.sqrt(n.val||1) * 0.4;
+          sprite.fontWeight = '400';
+        }
       } else if (topSet.has(n.id)) {
         // Top authors: white, larger text
         sprite.color = '#ffffff';
