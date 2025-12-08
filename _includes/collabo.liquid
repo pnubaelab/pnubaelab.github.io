@@ -375,7 +375,7 @@ import SpriteText from 'three-spritetext';
     const topSet = new Set([...authorNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,6).map(n=>n.id));
 
     // Top 5 keywords (highlighted in red)
-    const topKeywords = new Set([...keywordNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,5).map(n=>n.id));
+    const topKeywords = new Set([...keywordNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,7).map(n=>n.id));
 
     const g = ForceGraph3D({ controlType: 'orbit' })(container)
       .graphData(data)
