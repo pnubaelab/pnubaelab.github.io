@@ -58,25 +58,65 @@
     background: linear-gradient(135deg, #ffffff, #e0e0e0);
     border-radius: 4px;
   }
+  .node-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6);
+  }
+  #cluster-legend-container {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1000;
+    pointer-events: none;
+  }
+  .cluster-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.5rem 0.65rem;
+    background: rgba(2, 6, 17, 0.92);
+    border-radius: 6px;
+    font-size: 0.7rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    max-width: 140px;
+  }
+  .cluster-legend-title {
+    color: #90a4ae;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.15rem;
+    text-align: left;
+  }
+  .cluster-item {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: #b0bec5;
+    font-size: 0.65rem;
+  }
+  .cluster-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 </style>
 <div class="collabo-section" style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
-  <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
-    <div id="coauthor-graph-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd8dc;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading 3D Collaboration Graph…</div>
+  <div id="coauthor-graph-wrapper" style="position: relative;">
+    <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
+      <div id="coauthor-graph-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd8dc;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
+    </div>
+    <div id="cluster-legend-container"></div>
   </div>
   <div style="margin-top: .25rem;">
     {% include pub_count_legend.liquid %}
   </div>
   <div id="coauthor-table" style="width: 100%;"></div>
 </div>
-<script src="//cdn.jsdelivr.net/npm/3d-force-graph"></script>
-<script type="importmap">
-{
-  "imports": {
-    "three-spritetext": "https://esm.sh/three-spritetext@1"
-  }
-}
-</script>
-<script type="module">
+<script src="//cdn.jsdelivr.net/npm/force-graph"></script>
+<script>
 {% assign firstPhoto = true %}
 const COLLABO_PHOTOS = {
 {% for person in site.people %}
@@ -88,8 +128,6 @@ const COLLABO_PHOTOS = {
 {% endfor %}
 };
 const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
-
-import SpriteText from 'three-spritetext';
 
 (() => {
   const container = document.getElementById('coauthor-graph');
@@ -160,7 +198,7 @@ import SpriteText from 'three-spritetext';
     }
   }
 
-  // Responsive height logic (preserve previous behavior with slight increase for 3D)
+  // Responsive height logic for 2D graph
   function computeHeight() {
     const w = container.clientWidth || 800;
     if (w < 576) return Math.max(Math.round(w), 400);
@@ -172,187 +210,132 @@ import SpriteText from 'three-spritetext';
     graphInstance && graphInstance.height(h).width(container.clientWidth || 800);
   }
 
-  // Create multi-layered space background with depth
-  function addStarfield(graphInstance) {
-    const THREE = window.THREE;
-    if (!THREE) return;
+  // K-means clustering based on keyword connections
+  function kMeansClustering(authorNodes, keywordNodes, links, k = 6, excludeIds = new Set()) {
+    // Build author-keyword feature vectors
+    const kwIds = keywordNodes.map(n => n.id);
+    const authorFeatures = new Map();
     
-    // Layer 1: Distant nebula-like background (furthest)
-    const nebulaGeometry = new THREE.SphereGeometry(1800, 32, 32);
-    const nebulaTexture = createNebulaTexture();
-    const nebulaMaterial = new THREE.MeshBasicMaterial({ 
-      map: nebulaTexture, 
-      side: THREE.BackSide, 
-      transparent: true, 
-      opacity: 0.15,
-      blending: THREE.AdditiveBlending
-    });
-    const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
-    nebula.name = 'collabo-nebula';
-    graphInstance.scene().add(nebula);
-    
-    // Layer 2: Distant stars (far background)
-    addStarLayer(graphInstance, 1400, 1600, 800, 1.2, 0.4, 'distant-stars');
-    
-    // Layer 3: Mid-distance stars (medium layer)
-    addStarLayer(graphInstance, 900, 1200, 600, 1.8, 0.6, 'mid-stars');
-    
-    // Layer 4: Near stars (close layer)
-    addStarLayer(graphInstance, 600, 800, 400, 2.5, 0.85, 'near-stars');
-    
-    // Layer 5: Twinkling accent stars (closest, animated)
-    const twinkleStars = addStarLayer(graphInstance, 400, 600, 150, 3.5, 1.0, 'twinkle-stars', true);
-    
-    // Animate twinkling stars
-    if (twinkleStars) {
-      const positions = twinkleStars.geometry.attributes.position.array;
-      const originalPositions = positions.slice();
-      let time = 0;
-      function animateTwinkle() {
-        time += 0.01;
-        const sizes = new Float32Array(positions.length / 3);
-        for (let i = 0; i < positions.length / 3; i++) {
-          const offset = i * 0.5;
-          sizes[i] = 3.5 + Math.sin(time * 2 + offset) * 1.5;
-        }
-        twinkleStars.material.size = 3.5 + Math.sin(time * 2) * 0.5;
-        requestAnimationFrame(animateTwinkle);
+    // Initialize feature vectors for each author (excluding specified nodes)
+    authorNodes.forEach(author => {
+      if (!excludeIds.has(author.id)) {
+        authorFeatures.set(author.id, new Array(kwIds.length).fill(0));
       }
-      animateTwinkle();
-    }
+    });
     
-    // Add cosmic dust particles
-    addCosmicDust(graphInstance);
-  }
-  
-  function addStarLayer(graphInstance, minRadius, maxRadius, count, size, opacity, name, colorful = false) {
-    const THREE = window.THREE;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
-    
-    for (let i = 0; i < count; i++) {
-      const radius = minRadius + Math.random() * (maxRadius - minRadius);
-      const theta = Math.acos(2 * Math.random() - 1);
-      const phi = 2 * Math.PI * Math.random();
+    // Fill feature vectors based on keyword connections
+    links.forEach(link => {
+      const sourceId = typeof link.source === 'object' ? link.source.id : link.source;
+      const targetId = typeof link.target === 'object' ? link.target.id : link.target;
       
-      positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
-      positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
-      positions[i * 3 + 2] = radius * Math.cos(theta);
-      
-      // Color variation for space atmosphere
-      if (colorful) {
-        const colorPalette = [
-          [1.0, 1.0, 1.0],    // white
-          [0.8, 0.9, 1.0],    // light blue
-          [1.0, 0.9, 0.7],    // warm white
-          [0.7, 0.8, 1.0],    // cool blue
-          [1.0, 0.8, 0.9]     // pink tint
-        ];
-        const colorChoice = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-        colors[i * 3] = colorChoice[0];
-        colors[i * 3 + 1] = colorChoice[1];
-        colors[i * 3 + 2] = colorChoice[2];
+      let authorId, keywordId;
+      if (sourceId.startsWith('kw:')) {
+        keywordId = sourceId;
+        authorId = targetId;
+      } else if (targetId.startsWith('kw:')) {
+        keywordId = targetId;
+        authorId = sourceId;
       } else {
-        const brightness = 0.7 + Math.random() * 0.3;
-        colors[i * 3] = brightness;
-        colors[i * 3 + 1] = brightness;
-        colors[i * 3 + 2] = brightness + Math.random() * 0.1;
+        return; // author-author link, skip
+      }
+      
+      const kwIndex = kwIds.indexOf(keywordId);
+      if (kwIndex >= 0 && authorFeatures.has(authorId)) {
+        const vec = authorFeatures.get(authorId);
+        vec[kwIndex] = (link.value || 1);
+      }
+    });
+    
+    // Convert to array format
+    const authorIds = [...authorFeatures.keys()];
+    const vectors = authorIds.map(id => authorFeatures.get(id));
+    
+    if (vectors.length === 0 || vectors[0].length === 0) {
+      // Fallback: assign clusters based on hash
+      const result = new Map();
+      authorNodes.forEach(n => {
+        const h = [...n.id].reduce((a,c) => a + c.charCodeAt(0), 0);
+        result.set(n.id, h % k);
+      });
+      return result;
+    }
+    
+    // Normalize vectors
+    vectors.forEach(vec => {
+      const mag = Math.sqrt(vec.reduce((s, v) => s + v * v, 0)) || 1;
+      for (let i = 0; i < vec.length; i++) vec[i] /= mag;
+    });
+    
+    // K-means++ initialization
+    const centroids = [];
+    const usedIndices = new Set();
+    
+    // First centroid: random
+    let idx = Math.floor(Math.random() * vectors.length);
+    centroids.push([...vectors[idx]]);
+    usedIndices.add(idx);
+    
+    // Remaining centroids: probability proportional to distance squared
+    for (let c = 1; c < k && c < vectors.length; c++) {
+      const distances = vectors.map((vec, i) => {
+        if (usedIndices.has(i)) return 0;
+        let minDist = Infinity;
+        centroids.forEach(cent => {
+          const d = vec.reduce((s, v, j) => s + (v - cent[j]) ** 2, 0);
+          if (d < minDist) minDist = d;
+        });
+        return minDist;
+      });
+      const totalDist = distances.reduce((a, b) => a + b, 0);
+      if (totalDist === 0) break;
+      
+      let r = Math.random() * totalDist;
+      for (let i = 0; i < distances.length; i++) {
+        r -= distances[i];
+        if (r <= 0 && !usedIndices.has(i)) {
+          centroids.push([...vectors[i]]);
+          usedIndices.add(i);
+          break;
+        }
       }
     }
     
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    
-    const material = new THREE.PointsMaterial({ 
-      size: size, 
-      sizeAttenuation: true, 
-      transparent: true, 
-      opacity: opacity,
-      vertexColors: true,
-      blending: THREE.AdditiveBlending
-    });
-    
-    const stars = new THREE.Points(geometry, material);
-    stars.name = 'collabo-' + name;
-    graphInstance.scene().add(stars);
-    return stars;
-  }
-  
-  function addCosmicDust(graphInstance) {
-    const THREE = window.THREE;
-    const dustCount = 300;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(dustCount * 3);
-    const colors = new Float32Array(dustCount * 3);
-    
-    for (let i = 0; i < dustCount; i++) {
-      const radius = 700 + Math.random() * 600;
-      const theta = Math.acos(2 * Math.random() - 1);
-      const phi = 2 * Math.PI * Math.random();
+    // K-means iterations
+    let assignments = new Array(vectors.length).fill(0);
+    for (let iter = 0; iter < 20; iter++) {
+      // Assign each point to nearest centroid
+      const newAssignments = vectors.map(vec => {
+        let bestCluster = 0;
+        let bestDist = Infinity;
+        centroids.forEach((cent, ci) => {
+          const d = vec.reduce((s, v, j) => s + (v - cent[j]) ** 2, 0);
+          if (d < bestDist) {
+            bestDist = d;
+            bestCluster = ci;
+          }
+        });
+        return bestCluster;
+      });
       
-      positions[i * 3] = radius * Math.sin(theta) * Math.cos(phi);
-      positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(phi);
-      positions[i * 3 + 2] = radius * Math.cos(theta);
+      // Check convergence
+      if (newAssignments.every((a, i) => a === assignments[i])) break;
+      assignments = newAssignments;
       
-      // Colorful cosmic dust (cyan, purple, pink hues)
-      const dustColors = [
-        [0.0, 0.8, 1.0],    // cyan
-        [0.8, 0.0, 1.0],    // purple
-        [1.0, 0.4, 0.8],    // pink
-        [0.4, 0.6, 1.0],    // light blue
-      ];
-      const colorChoice = dustColors[Math.floor(Math.random() * dustColors.length)];
-      colors[i * 3] = colorChoice[0];
-      colors[i * 3 + 1] = colorChoice[1];
-      colors[i * 3 + 2] = colorChoice[2];
+      // Update centroids
+      for (let ci = 0; ci < centroids.length; ci++) {
+        const members = vectors.filter((_, i) => assignments[i] === ci);
+        if (members.length > 0) {
+          for (let j = 0; j < centroids[ci].length; j++) {
+            centroids[ci][j] = members.reduce((s, v) => s + v[j], 0) / members.length;
+          }
+        }
+      }
     }
     
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    
-    const material = new THREE.PointsMaterial({ 
-      size: 4, 
-      sizeAttenuation: true, 
-      transparent: true, 
-      opacity: 0.3,
-      vertexColors: true,
-      blending: THREE.AdditiveBlending
-    });
-    
-    const dust = new THREE.Points(geometry, material);
-    dust.name = 'collabo-cosmic-dust';
-    graphInstance.scene().add(dust);
-  }
-  
-  function createNebulaTexture() {
-    const THREE = window.THREE;
-    const canvas = document.createElement('canvas');
-    canvas.width = 512;
-    canvas.height = 512;
-    const ctx = canvas.getContext('2d');
-    
-    // Create gradient nebula effect
-    const gradient = ctx.createRadialGradient(256, 256, 50, 256, 256, 256);
-    gradient.addColorStop(0, 'rgba(100, 50, 150, 0.3)');
-    gradient.addColorStop(0.3, 'rgba(50, 20, 100, 0.2)');
-    gradient.addColorStop(0.6, 'rgba(20, 10, 60, 0.1)');
-    gradient.addColorStop(1, 'rgba(5, 2, 20, 0)');
-    
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, 512, 512);
-    
-    // Add some noise for texture
-    for (let i = 0; i < 2000; i++) {
-      const x = Math.random() * 512;
-      const y = Math.random() * 512;
-      const size = Math.random() * 3;
-      const alpha = Math.random() * 0.3;
-      ctx.fillStyle = `rgba(150, 100, 200, ${alpha})`;
-      ctx.fillRect(x, y, size, size);
-    }
-    
-    return new THREE.CanvasTexture(canvas);
+    // Return cluster assignments as Map
+    const result = new Map();
+    authorIds.forEach((id, i) => result.set(id, assignments[i]));
+    return result;
   }
 
   function buildGraph(data) {
@@ -374,13 +357,38 @@ import SpriteText from 'three-spritetext';
     // Top authors (limit 6 like before)
     const topSet = new Set([...authorNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,6).map(n=>n.id));
 
-    // Top 5 keywords (highlighted in red)
-    const topKeywords = new Set([...keywordNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,7).map(n=>n.id));
+    // Top keywords (highlighted)
+    const topKeywords = new Set([...keywordNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,5).map(n=>n.id));
 
-    const g = ForceGraph3D({ controlType: 'orbit' })(container)
+    // Find the largest node to exclude from clustering
+    const largestAuthor = authorNodes.find(n => n.val === maxAuthorVal);
+    const excludeFromClustering = new Set(largestAuthor ? [largestAuthor.id] : []);
+
+    // Cluster authors by keyword connections using K-means (7 clusters, excluding largest node)
+    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 7, excludeFromClustering);
+    
+    // Largest node gets special cluster ID (-1 means no cluster)
+    if (largestAuthor) {
+      authorClusters.set(largestAuthor.id, -1);
+    }
+    
+    // Distinct color palette for clusters (colorblind-friendly)
+    const clusterPalette = [
+      '#2979ff', // blue
+      '#00c853', // green
+      '#ff6d00', // orange
+      '#aa00ff', // purple
+      '#00bcd4', // cyan
+      '#ffab00', // amber
+      '#e91e63', // pink
+      '#76ff03', // light green
+      '#ff1744', // red
+      '#651fff'  // deep purple
+    ];
+
+    const g = ForceGraph()(container)
       .graphData(data)
       .backgroundColor('#020611')
-      .showNavInfo(false)
       .nodeId('id')
       .nodeLabel(n => {
         const displayName = n.name || n.id.replace(/^kw:/, '');
@@ -390,46 +398,106 @@ import SpriteText from 'three-spritetext';
           return `<div class="collabo-node-tooltip"><div style="color:#ffffff;font-size:12px;">🏷️ KEYWORD</div><div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
         }
         
+        const clusterId = authorClusters.get(n.id);
         const photo = getNodePhoto(n.name);
         const photoMarkup = photo ? `<img class="collabo-node-photo-img" src="${photo}" alt="${escapedName}" loading="lazy"/>` : '';
-        return `<div class="collabo-node-tooltip">${photoMarkup}<div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
-      })
-      .nodeVal(n => {
-        if (n.type === 'keyword') {
-          return 0.03 + 0.1 * (n.val || 1);
-        }
-        return 0.05 + 0.4 * (n.val || 1);
-      })
-      .nodeOpacity(0.85)
-      .linkOpacity(0.05)
-      .linkWidth(l => 0.1 + 0.2 * (l.value||1))
-      .linkDirectionalParticles(0)
-      .linkColor('#ffffff')
-      .nodeColor(n => {
-        // Different color scheme for keywords vs authors
-        if (n.type === 'keyword') {
-          // Top 5 keywords: red color
-          if (topKeywords.has(n.id)) {
-            return '#ff4444';
-          }
-          // Other keywords: white/light gray palette
-          const kwPalette = ['#ffffff','#fffafa','#fffff0'];
-          const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
-          return kwPalette[h % kwPalette.length];
+        
+        // Largest node (cluster -1) shows as special
+        if (clusterId === -1) {
+          return `<div class="collabo-node-tooltip">${photoMarkup}<div><strong>${escapedName}</strong><br/>Papers: ${n.val}<br/><span style="color:#ffffff">★ Main Author</span></div></div>`;
         }
         
-        // Blue palette for authors
-        const palette = ['#120a8f','#2979ff','#3e8ede','#1e90ff','#4169e1','#0073cf','#00356b','#0288d1','#007fff','#4d4dff'];
-        const h = [...n.id].reduce((a,c)=> a + c.charCodeAt(0),0);
-        let base = palette[h % palette.length];
-        if (n.val === maxAuthorVal) return '#2979ff';
-        return base;
+        const clusterColor = clusterPalette[(clusterId || 0) % clusterPalette.length];
+        return `<div class="collabo-node-tooltip">${photoMarkup}<div><strong>${escapedName}</strong><br/>Papers: ${n.val}<br/><span style="color:${clusterColor}">● Cluster ${(clusterId || 0) + 1}</span></div></div>`;
+      })
+      .nodeVal(n => {
+        // Reduced node sizes for better visualization
+        if (n.type === 'keyword') {
+          return 0.1 + Math.sqrt(n.val || 1) * 0.15;
+        }
+        return 0.25 + Math.sqrt(n.val || 1) * 0.3;
+      })
+      .linkWidth(l => 0.3 + 0.2 * Math.sqrt(l.value||1))
+      .linkColor(() => 'rgba(255,255,255,0.08)')
+      .nodeColor(n => {
+        // Largest node (max val) is always white
+        if (n.val === maxAuthorVal && n.type === 'author') {
+          return '#ffffff';
+        }
+        
+        // Keywords: white/gray
+        if (n.type === 'keyword') {
+          if (topKeywords.has(n.id)) {
+            return '#ffffff';
+          }
+          return 'rgba(200,200,200,0.7)';
+        }
+        
+        // Authors: color by cluster (cluster -1 means largest node, already handled above)
+        const clusterId = authorClusters.get(n.id);
+        if (clusterId === -1 || clusterId === undefined) {
+          return '#ffffff';
+        }
+        return clusterPalette[clusterId % clusterPalette.length];
+      })
+      .nodeCanvasObjectMode(() => 'after')
+      .nodeCanvasObject((node, ctx, globalScale) => {
+        const displayName = node.name || node.id.replace(/^kw:/, '');
+        
+        // Keywords: do not show labels
+        if (node.type === 'keyword') {
+          return;
+        }
+        
+        // Authors: show labels based on zoom level and node size
+        // Higher zoom (larger globalScale) = show more labels
+        // Larger nodes (higher val) = show at lower zoom levels
+        const nodeVal = node.val || 1;
+        const visibilityThreshold = Math.sqrt(nodeVal) * globalScale;
+        
+        // Threshold levels:
+        // - Top authors (topSet): always visible when zoom > 0.5
+        // - Large nodes (val > 10): visible when zoom > 0.8
+        // - Medium nodes (val > 5): visible when zoom > 1.2
+        // - Small nodes: visible when zoom > 2
+        let shouldShow = false;
+        if (topSet.has(node.id)) {
+          shouldShow = globalScale > 0.5;
+        } else if (visibilityThreshold > 4) {
+          shouldShow = true;
+        } else if (visibilityThreshold > 2.5) {
+          shouldShow = globalScale > 1;
+        } else if (visibilityThreshold > 1.5) {
+          shouldShow = globalScale > 1.5;
+        } else {
+          shouldShow = globalScale > 2.5;
+        }
+        
+        if (!shouldShow) return;
+        
+        const fontSize = Math.max(11 / globalScale, 2.5);
+        const isTop = topSet.has(node.id);
+        ctx.font = `${isTop ? '600' : '400'} ${fontSize}px Oswald, sans-serif`;
+        
+        // Largest node (cluster -1) text is white, others match cluster color
+        const clusterId = authorClusters.get(node.id);
+        if (clusterId === -1 || clusterId === undefined) {
+          ctx.fillStyle = '#ffffff';
+        } else {
+          ctx.fillStyle = clusterPalette[clusterId % clusterPalette.length];
+        }
+        
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // Position text above node
+        const nodeRadius = Math.sqrt(nodeVal) * 1.5 + 2;
+        ctx.fillText(displayName, node.x, node.y - nodeRadius - fontSize * 0.5);
       })
       .onNodeClick(node => {
-        // Camera focus
-        const dist = 100 + Math.sqrt(node.val||1)*22;
-        const ratio = 1 + dist / Math.hypot(node.x,node.y,node.z);
-        g.cameraPosition({ x: node.x*ratio, y: node.y*ratio, z: node.z*ratio }, { x: node.x, y: node.y, z: node.z }, 2000);
+        // Center on clicked node
+        g.centerAt(node.x, node.y, 1000);
+        g.zoom(2, 1000);
         
         // For keywords, search by the keyword name; for authors, search by first name
         if (node.type === 'keyword') {
@@ -442,72 +510,11 @@ import SpriteText from 'three-spritetext';
       })
       .onNodeHover(node => {
         container.style.cursor = node ? 'pointer':'default';
-      });
-
-    // Smooth OrbitControls tuning (replaces manual camera animation)
-    const controls = g.controls();
-    if (controls) {
-      controls.enableDamping = true;
-      controls.dampingFactor = 0.12;
-      controls.rotateSpeed = 0.65;
-      controls.zoomSpeed = 0.9;
-      controls.enablePan = true;
-      controls.minPolarAngle = 0.005 * Math.PI; // virtually no upper clamp
-      controls.maxPolarAngle = 0.995 * Math.PI; // virtually no lower clamp
-      controls.minDistance = 140;
-      controls.maxDistance = 1400;
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.6;
-
-      const stopAutoRotate = () => {
-        controls.autoRotate = false;
-        container.removeEventListener('pointerdown', stopAutoRotate);
-        container.removeEventListener('wheel', stopAutoRotate);
-        container.removeEventListener('touchstart', stopAutoRotate);
-      };
-
-      container.addEventListener('pointerdown', stopAutoRotate);
-      container.addEventListener('wheel', stopAutoRotate);
-      container.addEventListener('touchstart', stopAutoRotate);
-    }
-
-    // Add SpriteText labels for all nodes
-    g.nodeThreeObjectExtend(true);
-    g.nodeThreeObject(n => {
-      const displayName = n.name || n.id.replace(/^kw:/, '');
-      const sprite = new SpriteText(displayName);
-      sprite.fontFace = 'Oswald,sans-serif';
-      
-      if (n.type === 'keyword') {
-        // Top 5 keywords: red color, larger text
-        if (topKeywords.has(n.id)) {
-          sprite.color = '#ff4444';
-          sprite.textHeight = 6 + Math.sqrt(n.val||1) * 0.6;
-          sprite.fontWeight = '600';
-        } else {
-          // Other keywords: white color, smaller text
-          sprite.color = '#ffffff';
-          sprite.textHeight = 4 + Math.sqrt(n.val||1) * 0.4;
-          sprite.fontWeight = '400';
-        }
-      } else if (topSet.has(n.id)) {
-        // Top authors: white, larger text
-        sprite.color = '#ffffff';
-        sprite.textHeight = 8 + Math.sqrt(n.val||1) * 0.7;
-        sprite.fontWeight = '600';
-      } else {
-        // Regular authors: light blue text
-        sprite.color = '#ffffff';
-        sprite.textHeight = 5 + Math.sqrt(n.val||1) * 0.3;
-        sprite.fontWeight = '400';
-      }
-      
-      // Position above the node
-      const offset = Math.sqrt(n.val||1) * 3 + 8;
-      sprite.position.set(0, offset, 0);
-      
-      return sprite;
-    });
+      })
+      .enableZoomInteraction(true)
+      .enablePanInteraction(true)
+      .minZoom(0.3)
+      .maxZoom(8);
 
     function flashLinks(node, gInstance) {
       const related = new Set();
@@ -515,21 +522,41 @@ import SpriteText from 'three-spritetext';
         if (l.source.id === node.id || l.target.id === node.id) related.add(l);
       });
       related.forEach(l => { l.__highlight = true; });
-      gInstance.refresh();
-      setTimeout(() => { related.forEach(l => { l.__highlight = false; }); gInstance.refresh(); }, 1300);
+      setTimeout(() => { related.forEach(l => { l.__highlight = false; }); }, 1300);
+    }
+
+    // Build cluster legend dynamically (inside graph, top-left)
+    function buildClusterLegend() {
+      const legendContainer = document.getElementById('cluster-legend-container');
+      if (!legendContainer) return;
+      
+      // Count members per cluster (exclude cluster -1 which is the largest node)
+      const clusterCounts = new Map();
+      authorClusters.forEach((clusterId) => {
+        if (clusterId >= 0) {  // Skip cluster -1 (largest node)
+          clusterCounts.set(clusterId, (clusterCounts.get(clusterId) || 0) + 1);
+        }
+      });
+      
+      // Sort clusters by cluster ID for consistent ordering
+      const sortedClusters = [...clusterCounts.entries()].sort((a, b) => a[0] - b[0]);
+      
+      let html = '<div class="cluster-legend">';
+      html += '<div class="cluster-legend-title">Clusters</div>';
+      
+      sortedClusters.forEach(([clusterId, count]) => {
+        const color = clusterPalette[clusterId % clusterPalette.length];
+        html += `<div class="cluster-item"><span class="cluster-dot" style="background:${color}"></span><span>${count}</span></div>`;
+      });
+      
+      // Add keyword indicator
+      html += `<div class="cluster-item"><span class="cluster-dot" style="background:#ffffff;border:1px solid #555"></span><span>KW</span></div>`;
+      
+      html += '</div>';
+      legendContainer.innerHTML = html;
     }
     
-
-
-    // Starfield + post-processing bloom (optional)
-    addStarfield(g);
-    try {
-      const composer = g.postProcessingComposer();
-      if (window.THREE && composer) {
-        const UnrealBloomPass = window.THREE.UnrealBloomPass || undefined;
-        // If external bloom script was not loaded, skip silently.
-      }
-    } catch (e) { /* ignore */ }
+    buildClusterLegend();
 
     // Initial sizing
     resizeCanvas(g);
