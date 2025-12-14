@@ -222,7 +222,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
   // K-means clustering based on keyword connections
   function kMeansClustering(authorNodes, keywordNodes, links, k = 6, excludeIds = new Set()) {
     // Fixed seed for reproducibility
-    const random = seededRandom(2026);
+    const random = seededRandom(2019);
     
     // Build author-keyword feature vectors
     const kwIds = keywordNodes.map(n => n.id);
@@ -432,25 +432,24 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const excludeFromClustering = new Set(largestAuthor ? [largestAuthor.id] : []);
 
     // Cluster authors by keyword connections using K-means (10 clusters, excluding largest node)
-    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 10, excludeFromClustering);
+    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 9, excludeFromClustering);
     
     // Largest node gets special cluster ID (-1 means no cluster)
     if (largestAuthor) {
       authorClusters.set(largestAuthor.id, -1);
     }
     
-    // Distinct color palette for clusters (colorblind-friendly)
+    // Distinct color palette for clusters (rainbow + extended)
     const clusterPalette = [
-      '#2979ff', // blue
-      '#00c853', // green
-      '#ff6d00', // orange
-      '#aa00ff', // purple
-      '#00bcd4', // cyan
-      '#ffab00', // amber
-      '#e91e63', // pink
-      '#76ff03', // light green
-      '#ff1744', // red
-      '#651fff'  // deep purple
+        '#ff1744', // red
+        '#ff6d00', // orange
+        '#ffab00', // amber/yellow
+        '#76ff03', // lime
+        '#00c853', // green
+        '#00bcd4', // cyan
+        '#2979ff', // blue
+        '#651fff', // indigo
+        '#aa00ff', // purple
     ];
 
     const g = ForceGraph()(container)
@@ -481,6 +480,10 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         // Reduced node sizes for better visualization
         if (n.type === 'keyword') {
           return 0.1 + Math.sqrt(n.val || 1) * 0.15;
+        }
+        // Make the largest node significantly bigger
+        if (n.val === maxAuthorVal) {
+          return 0.5 + Math.sqrt(n.val || 1) * 0.6;
         }
         return 0.25 + Math.sqrt(n.val || 1) * 0.3;
       })
