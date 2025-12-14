@@ -210,8 +210,20 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     graphInstance && graphInstance.height(h).width(container.clientWidth || 800);
   }
 
+  // Seeded random number generator for reproducibility
+  function seededRandom(seed) {
+    let s = seed;
+    return function() {
+      s = (s * 1103515245 + 12345) & 0x7fffffff;
+      return s / 0x7fffffff;
+    };
+  }
+
   // K-means clustering based on keyword connections
   function kMeansClustering(authorNodes, keywordNodes, links, k = 6, excludeIds = new Set()) {
+    // Fixed seed for reproducibility
+    const random = seededRandom(2026);
+    
     // Build author-keyword feature vectors
     const kwIds = keywordNodes.map(n => n.id);
     const authorFeatures = new Map();
@@ -260,18 +272,65 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       return result;
     }
     
-    // Normalize vectors
+    // Calculate IDF weights for each keyword (emphasize rare shared keywords)
+    const numAuthors = vectors.length;
+    const idfWeights = new Array(kwIds.length).fill(0);
+    for (let j = 0; j < kwIds.length; j++) {
+      // Count how many authors have this keyword
+      let docFreq = 0;
+      for (let i = 0; i < numAuthors; i++) {
+        if (vectors[i][j] > 0) docFreq++;
+      }
+      // IDF: log(N / (df + 1)) - rare keywords get higher weight
+      idfWeights[j] = Math.log((numAuthors + 1) / (docFreq + 1)) + 1;
+    }
+    
+    // Apply TF-IDF weighting to vectors
+    vectors.forEach(vec => {
+      for (let j = 0; j < vec.length; j++) {
+        vec[j] = vec[j] * idfWeights[j];
+      }
+    });
+    
+    // Normalize vectors to unit length
     vectors.forEach(vec => {
       const mag = Math.sqrt(vec.reduce((s, v) => s + v * v, 0)) || 1;
       for (let i = 0; i < vec.length; i++) vec[i] /= mag;
     });
     
-    // K-means++ initialization
+    // Enhanced distance function: combines cosine distance with Jaccard bonus for common keywords
+    function enhancedDistance(vec1, vec2) {
+      // Cosine similarity (vectors are already normalized)
+      let dotProduct = 0;
+      for (let i = 0; i < vec1.length; i++) {
+        dotProduct += vec1[i] * vec2[i];
+      }
+      const cosineSim = dotProduct;
+      
+      // Jaccard-style bonus for shared keywords (emphasize common keywords)
+      let commonCount = 0, unionCount = 0;
+      for (let i = 0; i < vec1.length; i++) {
+        const has1 = vec1[i] > 0.001;
+        const has2 = vec2[i] > 0.001;
+        if (has1 && has2) commonCount++;
+        if (has1 || has2) unionCount++;
+      }
+      const jaccardSim = unionCount > 0 ? commonCount / unionCount : 0;
+      
+      // Combined similarity (weighted average)
+      // Higher weight on Jaccard to emphasize common keywords
+      const combinedSim = 0.5 * cosineSim + 0.5 * jaccardSim;
+      
+      // Convert similarity to distance
+      return 1 - combinedSim;
+    }
+    
+    // K-means++ initialization with enhanced distance
     const centroids = [];
     const usedIndices = new Set();
     
-    // First centroid: random
-    let idx = Math.floor(Math.random() * vectors.length);
+    // First centroid: seeded random
+    let idx = Math.floor(random() * vectors.length);
     centroids.push([...vectors[idx]]);
     usedIndices.add(idx);
     
@@ -281,15 +340,15 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         if (usedIndices.has(i)) return 0;
         let minDist = Infinity;
         centroids.forEach(cent => {
-          const d = vec.reduce((s, v, j) => s + (v - cent[j]) ** 2, 0);
+          const d = enhancedDistance(vec, cent);
           if (d < minDist) minDist = d;
         });
-        return minDist;
+        return minDist * minDist; // squared for K-means++
       });
       const totalDist = distances.reduce((a, b) => a + b, 0);
       if (totalDist === 0) break;
       
-      let r = Math.random() * totalDist;
+      let r = random() * totalDist;
       for (let i = 0; i < distances.length; i++) {
         r -= distances[i];
         if (r <= 0 && !usedIndices.has(i)) {
@@ -300,15 +359,15 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       }
     }
     
-    // K-means iterations
+    // K-means iterations with enhanced distance
     let assignments = new Array(vectors.length).fill(0);
-    for (let iter = 0; iter < 20; iter++) {
+    for (let iter = 0; iter < 30; iter++) {
       // Assign each point to nearest centroid
       const newAssignments = vectors.map(vec => {
         let bestCluster = 0;
         let bestDist = Infinity;
         centroids.forEach((cent, ci) => {
-          const d = vec.reduce((s, v, j) => s + (v - cent[j]) ** 2, 0);
+          const d = enhancedDistance(vec, cent);
           if (d < bestDist) {
             bestDist = d;
             bestCluster = ci;
@@ -321,13 +380,21 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       if (newAssignments.every((a, i) => a === assignments[i])) break;
       assignments = newAssignments;
       
-      // Update centroids
+      // Update centroids (mean of cluster members)
       for (let ci = 0; ci < centroids.length; ci++) {
-        const members = vectors.filter((_, i) => assignments[i] === ci);
-        if (members.length > 0) {
+        const memberIndices = [];
+        for (let i = 0; i < vectors.length; i++) {
+          if (assignments[i] === ci) memberIndices.push(i);
+        }
+        if (memberIndices.length > 0) {
           for (let j = 0; j < centroids[ci].length; j++) {
-            centroids[ci][j] = members.reduce((s, v) => s + v[j], 0) / members.length;
+            let sum = 0;
+            memberIndices.forEach(mi => sum += vectors[mi][j]);
+            centroids[ci][j] = sum / memberIndices.length;
           }
+          // Re-normalize centroid
+          const mag = Math.sqrt(centroids[ci].reduce((s, v) => s + v * v, 0)) || 1;
+          for (let j = 0; j < centroids[ci].length; j++) centroids[ci][j] /= mag;
         }
       }
     }
@@ -364,8 +431,8 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const largestAuthor = authorNodes.find(n => n.val === maxAuthorVal);
     const excludeFromClustering = new Set(largestAuthor ? [largestAuthor.id] : []);
 
-    // Cluster authors by keyword connections using K-means (7 clusters, excluding largest node)
-    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 7, excludeFromClustering);
+    // Cluster authors by keyword connections using K-means (10 clusters, excluding largest node)
+    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 10, excludeFromClustering);
     
     // Largest node gets special cluster ID (-1 means no cluster)
     if (largestAuthor) {
