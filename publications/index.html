@@ -513,12 +513,17 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
   }
 
   // K-means clustering based on keyword connections
-  function kMeansClustering(authorNodes, keywordNodes, links, k = 6, excludeIds = new Set()) {
+  // Optionally applies keyword-keyword similarity smoothing (precomputed offline)
+  function kMeansClustering(authorNodes, keywordNodes, links, k = 6, excludeIds = new Set(), keywordSimData = null) {
     // Fixed seed for reproducibility
     const random = seededRandom(2019);
+
+    const simPayload = keywordSimData && (keywordSimData.similarities || keywordSimData);
+    const simAlpha = (keywordSimData && typeof keywordSimData.alpha === 'number') ? keywordSimData.alpha : 0.35;
     
     // Build author-keyword feature vectors
     const kwIds = keywordNodes.map(n => n.id);
+    const kwIndexById = new Map(kwIds.map((id, idx) => [id, idx]));
     const authorFeatures = new Map();
     
     // Initialize feature vectors for each author (excluding specified nodes)
@@ -544,7 +549,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         return; // author-author link, skip
       }
       
-      const kwIndex = kwIds.indexOf(keywordId);
+      const kwIndex = kwIndexById.get(keywordId);
       if (kwIndex >= 0 && authorFeatures.has(authorId)) {
         const vec = authorFeatures.get(authorId);
         vec[kwIndex] = (link.value || 1);
@@ -584,6 +589,35 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         vec[j] = vec[j] * idfWeights[j];
       }
     });
+
+    // Keyword similarity smoothing (semantic propagation across similar keywords)
+    // This helps when authors use slightly different but semantically close keywords.
+    if (simPayload && simAlpha > 0) {
+      vectors.forEach(vec => {
+        const out = vec.slice();
+        for (let i = 0; i < vec.length; i++) {
+          const v = vec[i];
+          if (!v) continue;
+          const kwId = kwIds[i];
+          const sims = simPayload[kwId];
+          if (!Array.isArray(sims)) continue;
+          for (let s = 0; s < sims.length; s++) {
+            const pair = sims[s];
+            if (!pair || pair.length < 2) continue;
+            const otherId = pair[0];
+            const sim = Number(pair[1]);
+            if (!otherId || !Number.isFinite(sim) || sim <= 0) continue;
+            const j = kwIndexById.get(otherId);
+            if (j === undefined) continue;
+            out[j] += simAlpha * v * sim;
+          }
+        }
+        // Replace vector in-place, prune tiny noise to keep Jaccard meaningful
+        for (let i = 0; i < vec.length; i++) {
+          vec[i] = out[i] < 1e-6 ? 0 : out[i];
+        }
+      });
+    }
     
     // Normalize vectors to unit length
     vectors.forEach(vec => {
@@ -698,7 +732,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     return result;
   }
 
-  function buildGraph(data) {
+  function buildGraph(data, keywordSimData = null) {
     // Backwards compatibility if file still has old keys
     data.nodes.forEach(n => {
       if (n.value != null && n.val == null) n.val = n.value;
@@ -725,7 +759,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const excludeFromClustering = new Set(largestAuthor ? [largestAuthor.id] : []);
 
     // Cluster authors by keyword connections using K-means (10 clusters, excluding largest node)
-    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 9, excludeFromClustering);
+    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 9, excludeFromClustering, keywordSimData);
     
     // Largest node gets special cluster ID (-1 means no cluster)
     if (largestAuthor) {
@@ -936,9 +970,13 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
 
   }
 
-  fetch('/assets/json/collabo_graph.json')
-    .then(r => r.json())
-    .then(data => buildGraph(data))
+  Promise.all([
+    fetch('/assets/json/collabo_graph.json').then(r => r.json()),
+    fetch('/assets/json/keyword_similarity.json')
+      .then(r => r.ok ? r.json() : null)
+      .catch(() => null)
+  ])
+    .then(([data, keywordSimData]) => buildGraph(data, keywordSimData))
     .catch(err => {
       const loader = document.getElementById('coauthor-graph-loader');
       if (loader) loader.textContent = 'Failed to load graph data.';
