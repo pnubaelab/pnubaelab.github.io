@@ -448,6 +448,77 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       if (!n.type) n.type = 'author';
     });
 
+    // Hover highlight: build adjacency once (id -> Set(neighborIds))
+    const adjacency = new Map();
+    const addAdj = (a, b) => {
+      if (!a || !b) return;
+      if (!adjacency.has(a)) adjacency.set(a, new Set());
+      adjacency.get(a).add(b);
+    };
+    (data.links || []).forEach(l => {
+      const s = typeof l.source === 'object' ? l.source.id : l.source;
+      const t = typeof l.target === 'object' ? l.target.id : l.target;
+      addAdj(s, t);
+      addAdj(t, s);
+    });
+    let hoveredNodeId = null;
+    let pinnedNodeId = null; // keep focus during click/drag
+
+    // Shared dimming strength for both node fill + labels
+    const DIM_ALPHA = 0.05;
+
+    const fadeColor = (color, alpha) => {
+      if (!color) return color;
+      const c = String(color).trim();
+
+      // #rgb or #rrggbb
+      if (c[0] === '#') {
+        const hex = c.length === 4
+          ? `${c[1]}${c[1]}${c[2]}${c[2]}${c[3]}${c[3]}`
+          : c.slice(1);
+        if (hex.length === 6) {
+          const r = parseInt(hex.slice(0, 2), 16);
+          const g = parseInt(hex.slice(2, 4), 16);
+          const b = parseInt(hex.slice(4, 6), 16);
+          return `rgba(${r},${g},${b},${alpha})`;
+        }
+      }
+
+      // rgb(r,g,b)
+      if (c.startsWith('rgb(')) {
+        const inside = c.slice(4, -1);
+        return `rgba(${inside},${alpha})`;
+      }
+
+      // rgba(r,g,b,a)
+      if (c.startsWith('rgba(')) {
+        const inside = c.slice(5, -1).split(',').slice(0, 3).join(',');
+        return `rgba(${inside},${alpha})`;
+      }
+
+      return c;
+    };
+
+    const getFocusNodeId = () => hoveredNodeId || pinnedNodeId;
+
+    const getLinkEndpointId = (endpoint) => (typeof endpoint === 'object' ? endpoint.id : endpoint);
+    const isLinkConnectedToFocus = (link) => {
+      const focusId = getFocusNodeId();
+      if (!focusId || !link) return false;
+      const s = getLinkEndpointId(link.source);
+      const t = getLinkEndpointId(link.target);
+      return s === focusId || t === focusId;
+    };
+
+    const isConnectedToHovered = (node) => {
+      const focusId = getFocusNodeId();
+      if (!focusId) return true;
+      if (!node) return false;
+      const id = node.id;
+      if (id === focusId) return true;
+      return adjacency.get(focusId)?.has(id) || false;
+    };
+
     // Separate author and keyword nodes for sizing
     const authorNodes = data.nodes.filter(n => n.type === 'author');
     const keywordNodes = data.nodes.filter(n => n.type === 'keyword');
@@ -522,27 +593,38 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         return 0.25 + Math.sqrt(n.val || 1) * 0.3;
       })
       .linkWidth(l => 0.3 + 0.2 * Math.sqrt(l.value||1))
-      .linkColor(() => 'rgba(255,255,255,0.08)')
+      .linkColor(l => {
+        // Brighten edges connected to the focused node (hover or drag)
+        if (l && l.__highlight) return 'rgba(255,255,255,0.55)';
+        const focusId = getFocusNodeId();
+        if (!focusId) return 'rgba(255,255,255,0.08)';
+        return isLinkConnectedToFocus(l)
+          ? 'rgba(255,255,255,0.35)'
+          : 'rgba(255,255,255,0.02)';
+      })
       .nodeColor(n => {
+        const isConnected = isConnectedToHovered(n);
+
         // Largest node (max val) is always white
         if (n.val === maxAuthorVal && n.type === 'author') {
-          return '#ffffff';
+          return isConnected ? '#ffffff' : fadeColor('#ffffff', DIM_ALPHA);
         }
         
         // Keywords: white/gray
         if (n.type === 'keyword') {
           if (topKeywords.has(n.id)) {
-            return '#ffffff';
+            return isConnected ? '#ffffff' : fadeColor('#ffffff', DIM_ALPHA);
           }
-          return 'rgba(200,200,200,0.7)';
+          return isConnected ? 'rgba(200,200,200,0.7)' : fadeColor('rgba(200,200,200,0.7)', DIM_ALPHA);
         }
         
         // Authors: color by cluster (cluster -1 means largest node, already handled above)
         const clusterId = authorClusters.get(n.id);
         if (clusterId === -1 || clusterId === undefined) {
-          return '#ffffff';
+          return isConnected ? '#ffffff' : fadeColor('#ffffff', DIM_ALPHA);
         }
-        return clusterPalette[clusterId % clusterPalette.length];
+        const base = clusterPalette[clusterId % clusterPalette.length];
+        return isConnected ? base : fadeColor(base, DIM_ALPHA);
       })
       .nodeCanvasObjectMode(() => 'after')
       .nodeCanvasObject((node, ctx, globalScale) => {
@@ -582,13 +664,16 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         const fontSize = Math.max(11 / globalScale, 2.5);
         const isTop = topSet.has(node.id);
         ctx.font = `${isTop ? '600' : '400'} ${fontSize}px Oswald, sans-serif`;
+
+        const isConnected = isConnectedToHovered(node);
         
         // Largest node (cluster -1) text is white, others match cluster color
         const clusterId = authorClusters.get(node.id);
         if (clusterId === -1 || clusterId === undefined) {
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = isConnected ? '#ffffff' : fadeColor('#ffffff', DIM_ALPHA);
         } else {
-          ctx.fillStyle = clusterPalette[clusterId % clusterPalette.length];
+          const base = clusterPalette[clusterId % clusterPalette.length];
+          ctx.fillStyle = isConnected ? base : fadeColor(base, DIM_ALPHA);
         }
         
         ctx.textAlign = 'center';
@@ -613,7 +698,31 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         flashLinks(node, g);
       })
       .onNodeHover(node => {
+        const nextId = node ? node.id : null;
+        if (hoveredNodeId !== nextId) {
+          hoveredNodeId = nextId;
+          // Re-evaluate colors
+          g.nodeColor(g.nodeColor());
+          g.linkColor(g.linkColor());
+        }
         container.style.cursor = node ? 'pointer':'default';
+      })
+      .onNodeDrag(node => {
+        // While dragging, keep focus pinned so non-neighbors stay dim
+        const nextId = node ? node.id : null;
+        if (pinnedNodeId !== nextId) {
+          pinnedNodeId = nextId;
+          g.nodeColor(g.nodeColor());
+          g.linkColor(g.linkColor());
+        }
+      })
+      .onNodeDragEnd(node => {
+        // Clear pin after drag so dimming doesn't stick
+        if (pinnedNodeId !== null) {
+          pinnedNodeId = null;
+          g.nodeColor(g.nodeColor());
+          g.linkColor(g.linkColor());
+        }
       })
       .enableZoomInteraction(true)
       .enablePanInteraction(true)
@@ -626,7 +735,11 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         if (l.source.id === node.id || l.target.id === node.id) related.add(l);
       });
       related.forEach(l => { l.__highlight = true; });
-      setTimeout(() => { related.forEach(l => { l.__highlight = false; }); }, 1300);
+      gInstance.linkColor(gInstance.linkColor());
+      setTimeout(() => {
+        related.forEach(l => { l.__highlight = false; });
+        gInstance.linkColor(gInstance.linkColor());
+      }, 1300);
     }
 
     // Build cluster legend dynamically (inside graph, top-left)
