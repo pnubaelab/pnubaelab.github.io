@@ -590,7 +590,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const excludeFromClustering = new Set(largestAuthor ? [largestAuthor.id] : []);
 
     // Cluster authors by keyword connections using K-means (10 clusters, excluding largest node)
-    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 9, excludeFromClustering, keywordSimData);
+    const authorClusters = kMeansClustering(authorNodes, keywordNodes, data.links, 10, excludeFromClustering, keywordSimData);
     
     // Largest node gets special cluster ID (-1 means no cluster)
     if (largestAuthor) {
@@ -600,14 +600,15 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     // Distinct color palette for clusters (rainbow + extended)
     const clusterPalette = [
         '#bf1932', // red
+        '#ffbe98',
         '#e2583e', // orange
-        '#f0c05a', // amber/yellow
         '#7bc4c4', // lime
         '#88b04b', // green
         '#00bcd4', // cyan
         '#0f4c81', // blue
-        '#651fff', // indigo
+        '#a47764', // indigo
         '#645495', // purple
+        '#dd4124'
     ];
 
     const g = ForceGraph()(container)
@@ -756,8 +757,8 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         ctx.textBaseline = 'middle';
         
         // Position text above node
-        const nodeRadius = Math.sqrt(nodeVal) * 1.5 + 2;
-        ctx.fillText(displayName, node.x, node.y - nodeRadius - fontSize * 0.5);
+        const nodeRadius = Math.sqrt(nodeVal) + 1.5;
+        ctx.fillText(displayName, node.x, node.y - nodeRadius - fontSize * 0.7);
       })
       .onNodeClick(node => {
         // Center on clicked node
