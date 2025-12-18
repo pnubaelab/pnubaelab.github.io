@@ -55,7 +55,7 @@
     background: linear-gradient(135deg, #00bfff, #2979ff);
   }
   .collabo-legend-dot.keyword {
-    background: linear-gradient(135deg, #ffffff, #e0e0e0);
+    background: #f1f0ec;
     border-radius: 4px;
   }
   .node-label {
@@ -467,6 +467,12 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     // Shared dimming strength for both node fill + labels
     const DIM_ALPHA = 0.05;
 
+    // Hover grow animation (nice, subtle)
+    let hoverAnimT = 0;
+    let hoverAnimTarget = 0;
+    let hoverAnimRaf = 0;
+    let hoverAnimLastTs = 0;
+
     const fadeColor = (color, alpha) => {
       if (!color) return color;
       const c = String(color).trim();
@@ -500,6 +506,53 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     };
 
     const getFocusNodeId = () => hoveredNodeId || pinnedNodeId;
+
+    const requestGraphRedraw = (graphInstance) => {
+      if (!graphInstance) return;
+      if (typeof graphInstance.refresh === 'function') {
+        graphInstance.refresh();
+        return;
+      }
+      // Fallback: re-assign accessor to force a redraw
+      graphInstance.nodeCanvasObject(graphInstance.nodeCanvasObject());
+    };
+
+    const startHoverAnimation = (graphInstance) => {
+      if (hoverAnimRaf) return;
+      const step = (ts) => {
+        const dt = hoverAnimLastTs ? Math.min(64, ts - hoverAnimLastTs) : 16;
+        hoverAnimLastTs = ts;
+
+        // Smooth approach (critically damped-ish)
+        const k = 1 - Math.exp(-dt / 110);
+        hoverAnimT += (hoverAnimTarget - hoverAnimT) * k;
+
+        requestGraphRedraw(graphInstance);
+
+        if (Math.abs(hoverAnimTarget - hoverAnimT) < 0.002) {
+          hoverAnimT = hoverAnimTarget;
+          hoverAnimLastTs = 0;
+          hoverAnimRaf = 0;
+          requestGraphRedraw(graphInstance);
+          return;
+        }
+        hoverAnimRaf = requestAnimationFrame(step);
+      };
+      hoverAnimRaf = requestAnimationFrame(step);
+    };
+
+    const getNodeBaseColor = (n) => {
+      if (!n) return '#ffffff';
+      // Match the non-dimmed nodeColor rules
+      if (n.type === 'keyword') {
+        return '#f1f0ec';
+      }
+
+      if (n.val === maxAuthorVal && n.type === 'author') return '#ffffff';
+      const clusterId = authorClusters.get(n.id);
+      if (clusterId === -1 || clusterId === undefined) return '#ffffff';
+      return clusterPalette[clusterId % clusterPalette.length];
+    };
 
     const getLinkEndpointId = (endpoint) => (typeof endpoint === 'object' ? endpoint.id : endpoint);
     const isLinkConnectedToFocus = (link) => {
@@ -546,15 +599,15 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     
     // Distinct color palette for clusters (rainbow + extended)
     const clusterPalette = [
-        '#ff1744', // red
-        '#ff6d00', // orange
-        '#ffab00', // amber/yellow
-        '#76ff03', // lime
-        '#00c853', // green
+        '#bf1932', // red
+        '#e2583e', // orange
+        '#f0c05a', // amber/yellow
+        '#7bc4c4', // lime
+        '#88b04b', // green
         '#00bcd4', // cyan
-        '#2979ff', // blue
+        '#0f4c81', // blue
         '#651fff', // indigo
-        '#aa00ff', // purple
+        '#645495', // purple
     ];
 
     const g = ForceGraph()(container)
@@ -566,7 +619,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         const escapedName = htmlEscape(displayName);
         
         if (n.type === 'keyword') {
-          return `<div class="collabo-node-tooltip"><div style="color:#ffffff;font-size:12px;">🏷️ KEYWORD</div><div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
+          return `<div class="collabo-node-tooltip"><div style="color:#f1f0ec;font-size:12px;">🏷️ KEYWORD</div><div><strong>${escapedName}</strong><br/>Papers: ${n.val}</div></div>`;
         }
         
         const clusterId = authorClusters.get(n.id);
@@ -610,12 +663,10 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           return isConnected ? '#ffffff' : fadeColor('#ffffff', DIM_ALPHA);
         }
         
-        // Keywords: white/gray
+        // Keywords: fixed color
         if (n.type === 'keyword') {
-          if (topKeywords.has(n.id)) {
-            return isConnected ? '#ffffff' : fadeColor('#ffffff', DIM_ALPHA);
-          }
-          return isConnected ? 'rgba(200,200,200,0.7)' : fadeColor('rgba(200,200,200,0.7)', DIM_ALPHA);
+          const kw = '#f1f0ec';
+          return isConnected ? kw : fadeColor(kw, DIM_ALPHA);
         }
         
         // Authors: color by cluster (cluster -1 means largest node, already handled above)
@@ -629,6 +680,28 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       .nodeCanvasObjectMode(() => 'after')
       .nodeCanvasObject((node, ctx, globalScale) => {
         const displayName = node.name || node.id.replace(/^kw:/, '');
+
+        // Hover: draw a subtle growing halo behind the node
+        if (hoveredNodeId && node.id === hoveredNodeId) {
+          const rawVal = node.val || 1;
+          const baseR = 3.4 + Math.sqrt(rawVal) * 0.85;
+          const grow = 1 + 0.22 * hoverAnimT;
+          const pulse = 1 + 0.04 * Math.sin((performance.now() || 0) / 140);
+          const r = baseR * grow * pulse;
+
+          const baseColor = getNodeBaseColor(node);
+          // Softer, more transparent halo
+          const haloAlpha = 0.08 + 0.12 * hoverAnimT;
+
+          ctx.save();
+          // Draw behind existing node even though we're in 'after'
+          ctx.globalCompositeOperation = 'destination-over';
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+          ctx.fillStyle = fadeColor(baseColor, haloAlpha);
+          ctx.fill();
+          ctx.restore();
+        }
         
         // Keywords: do not show labels
         if (node.type === 'keyword') {
@@ -701,9 +774,14 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         flashLinks(node, g);
       })
       .onNodeHover(node => {
+        const prevId = hoveredNodeId;
         const nextId = node ? node.id : null;
         if (hoveredNodeId !== nextId) {
           hoveredNodeId = nextId;
+          // Restart hover grow when switching nodes
+          if (nextId && nextId !== prevId) hoverAnimT = 0;
+          hoverAnimTarget = nextId ? 1 : 0;
+          startHoverAnimation(g);
           // Re-evaluate colors
           g.nodeColor(g.nodeColor());
           g.linkColor(g.linkColor());
@@ -770,7 +848,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       });
       
       // Add keyword indicator
-      html += `<div class="cluster-item"><span class="cluster-dot" style="background:#ffffff;border:1px solid #555"></span><span>KW</span></div>`;
+      html += `<div class="cluster-item"><span class="cluster-dot" style="background:#f1f0ec;border:1px solid #555"></span><span>KW</span></div>`;
       
       html += '</div>';
       legendContainer.innerHTML = html;
