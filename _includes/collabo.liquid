@@ -661,7 +661,10 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         
         if (!shouldShow) return;
         
-        const fontSize = Math.max(11 / globalScale, 2.5);
+        const baseFontSize = 11 / globalScale;
+        // Scale label size with node size (node.val) but keep it bounded.
+        const sizeBoost = Math.min(1.4, Math.max(0.5, 0.95 + 0.22 * Math.log2((nodeVal || 1) + 1)));
+        const fontSize = Math.max(baseFontSize * sizeBoost, 2.5);
         const isTop = topSet.has(node.id);
         ctx.font = `${isTop ? '600' : '400'} ${fontSize}px Oswald, sans-serif`;
 
