@@ -361,6 +361,11 @@ Photo formatting is made simple using [Bootstrap's grid system](https://getboots
 
 ---
 
+#### Journey globe (overseas photos)
+
+The `/journey/` page can show overseas photo locations on a 3D globe.
+Marker coordinates are generated into `assets/json/photo_overseas_locations.json` by running `generate_photo_overseas_locations.py`.
+
 ### Other features
 
 #### GitHub's repositories and user stats
