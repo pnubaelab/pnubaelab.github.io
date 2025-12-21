@@ -695,12 +695,12 @@ ninja.data = [{
               window.location.href = "/photo/2024%EB%85%84%EC%B6%94%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
             },},{id: "photo-2024년중국zpmc워크숍",
           title: '2024년중국ZPMC워크숍',
-          description: "ZPMC 미팅",
+          description: "ZPMC, Shanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%A4%91%EA%B5%ADZPMC%EB%AF%B8%ED%8C%85/";
             },},{id: "photo-2024년중국관광",
           title: '2024년중국관광',
-          description: "중국관광",
+          description: "Workshop, Shanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%A4%91%EA%B5%AD%EA%B4%80%EA%B4%91/";
             },},{id: "photo-2025년배랩단합대회",
@@ -823,6 +823,21 @@ ninja.data = [{
           description: "SCI2025, Jinan, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025SCI2/";
+            },},{id: "photo-2025년-ieee-bigdata",
+          title: '2025년 IEEE BIGDATA',
+          description: "IEEE BIGDATA 2025, Macau SAR, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025IEEEBIGDATA1/";
+            },},{id: "photo-2025년-ieee-bigdata",
+          title: '2025년 IEEE BIGDATA',
+          description: "IEEE BIGDATA 2025, Macau SAR, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025IEEEBIGDATA2/";
+            },},{id: "photo-2025년-ieee-bigdata",
+          title: '2025년 IEEE BIGDATA',
+          description: "IEEE BIGDATA 2025, Macau SAR, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025IEEEBIGDATA3/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
