@@ -60,6 +60,12 @@
       ]
     ],
     "kw:Deep learning": [],
+    "kw:Optimization": [
+      [
+        "kw:Process optimization",
+        0.75
+      ]
+    ],
     "kw:Queueing theory": [],
     "kw:Discrete Event Simulation": [],
     "kw:Explainable AI": [],
@@ -73,6 +79,8 @@
       ]
     ],
     "kw:Large Language Model": [],
+    "kw:Prompt Engineering": [],
+    "kw:Severity Prediction": [],
     "kw:Container terminal operations": [
       [
         "kw:Container terminal",
@@ -136,12 +144,6 @@
     ],
     "kw:Representation learning": [],
     "kw:Quay crane scheduling": [],
-    "kw:Optimization": [
-      [
-        "kw:Process optimization",
-        0.75
-      ]
-    ],
     "kw:Industry 4.0": [],
     "kw:Smart manufacturing": [
       [
