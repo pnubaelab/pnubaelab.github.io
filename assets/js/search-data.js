@@ -218,6 +218,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/%EB%B6%80%EC%82%B0%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%9C%84%ED%81%AC%20copy/";
+            },},{id: "news-dr-dohee-kim-appointed-as-professor-at-changwon-national-university",
+          title: 'Dr. Dohee Kim Appointed as Professor at Changwon National University',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2025-12-01-Prof_DoheeKim/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
@@ -305,7 +310,7 @@ ninja.data = [{
               window.location.href = "/people/%EA%B9%80%EB%8F%84%EC%9B%90/";
             },},{id: "people-dohee-kim-김도희",
           title: 'Dohee Kim(김도희)',
-          description: "PhD. Postdoctoral Researher at SCSC Research Center",
+          description: "PhD. Assistant Professor at Changwon National Univ, School of Artificial Intelligence Convergence Engineering",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EB%8F%84%ED%9D%AC/";
             },},{id: "people-minseop-kim-김민섭",
