@@ -5,14 +5,6 @@
   "threshold": 0.72,
   "topk": 8,
   "similarities": {
-    "kw:Reinforcement learning": [],
-    "kw:Vessel trajectory prediction": [],
-    "kw:Transfer learning": [
-      [
-        "kw:Machine learning",
-        0.7273
-      ]
-    ],
     "kw:AIS data": [
       [
         "kw:AIS Data",
@@ -29,6 +21,21 @@
       [
         "kw:GPS data",
         0.75
+      ]
+    ],
+    "kw:Machine learning": [
+      [
+        "kw:Transfer learning",
+        0.7273
+      ]
+    ],
+    "kw:LLM": [],
+    "kw:Reinforcement learning": [],
+    "kw:Vessel trajectory prediction": [],
+    "kw:Transfer learning": [
+      [
+        "kw:Machine learning",
+        0.7273
       ]
     ],
     "kw:Ship Emissions": [],
@@ -88,12 +95,6 @@
       ]
     ],
     "kw:Genetic algorithm": [],
-    "kw:Machine learning": [
-      [
-        "kw:Transfer learning",
-        0.7273
-      ]
-    ],
     "kw:Port operations": [],
     "kw:Neural Network": [],
     "kw:EDI data": [
