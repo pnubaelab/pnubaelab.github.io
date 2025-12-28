@@ -313,6 +313,11 @@ ninja.data = [{
           description: "PhD. Assistant Professor at Changwon National Univ, School of Artificial Intelligence Convergence Engineering",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EB%8F%84%ED%9D%AC/";
+            },},{id: "people-dongwoo-kim-김동우",
+          title: 'Dongwoo Kim(김동우)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EA%B9%80%EB%8F%99%EC%9A%B0/";
             },},{id: "people-minseop-kim-김민섭",
           title: 'Minseop Kim(김민섭)',
           description: "Integrated PhD program",
