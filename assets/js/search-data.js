@@ -353,6 +353,11 @@ ninja.data = [{
           description: "Doctor Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%ED%98%9C%EB%AF%B8/";
+            },},{id: "people-jonghyun-nam-남종현",
+          title: 'Jonghyun Nam(남종현)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EB%82%A8%EC%A2%85%ED%98%84/";
             },},{id: "people-changho-moon-문창호",
           title: 'Changho Moon(문창호)',
           description: "M.S Program",
