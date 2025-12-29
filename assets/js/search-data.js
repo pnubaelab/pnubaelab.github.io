@@ -813,6 +813,11 @@ ninja.data = [{
           description: "Soccer, 북구, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%97%B0%EA%B5%AC%EC%8B%A4%EC%B6%95%EA%B5%AC/";
+            },},{id: "photo-2025-informs-annual-meeting",
+          title: '2025 INFORMS ANNUAL MEETING',
+          description: "2025 INFORMS ANNUAL MEETING, Atlanta, USA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025INFORMSANNUAL/";
             },},{id: "photo-추계학술대회",
           title: '추계학술대회',
           description: "2025 대한산업공학회 추계학술대회",
