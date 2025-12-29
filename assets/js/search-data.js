@@ -703,6 +703,51 @@ ninja.data = [{
           description: "제1회 탁구대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%ED%83%81%EA%B5%AC%EB%8C%80%ED%9A%8C1/";
+            },},{id: "photo-2024년-logms",
+          title: '2024년 LOGMS',
+          description: "LOGMS 2024, Hamburg, Germany",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024LOGMS1/";
+            },},{id: "photo-2024년-logms",
+          title: '2024년 LOGMS',
+          description: "LOGMS 2024, Hamburg, Germany",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024LOGMS2/";
+            },},{id: "photo-2024년-logms",
+          title: '2024년 LOGMS',
+          description: "LOGMS 2024, Hamburg, Germany",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024LOGMS3/";
+            },},{id: "photo-2024년-logms",
+          title: '2024년 LOGMS',
+          description: "LOGMS 2024, Hamburg, Germany",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024LOGMS4/";
+            },},{id: "photo-2024년-logms",
+          title: '2024년 LOGMS',
+          description: "LOGMS 2024, Hamburg, Germany",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024LOGMS5md/";
+            },},{id: "photo-2024년-logms",
+          title: '2024년 LOGMS',
+          description: "LOGMS 2024, Hamburg, Germany",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024LOGMS6/";
+            },},{id: "photo-sdp2024",
+          title: 'SDP2024',
+          description: "SDP, Rotterdam, Netherlands",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/SDP2024/";
+            },},{id: "photo-sdp2024",
+          title: 'SDP2024',
+          description: "SDP, Rotterdam, Netherlands",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/SDP20241/";
+            },},{id: "photo-sdp2024",
+          title: 'SDP2024',
+          description: "SDP, Rotterdam, Netherlands",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/SDP20242/";
             },},{id: "photo-추계학술대회",
           title: '추계학술대회',
           description: "2024 대한산업공학회 추계학술대회",
