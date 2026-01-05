@@ -223,6 +223,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2025-12-01-Prof_DoheeKim/";
+            },},{id: "news-2025년도-제4회-해양수산-과학기술-혁신포럼-발표",
+          title: '2025년도 제4회 해양수산 과학기술 혁신포럼 발표',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%5B2025%EB%85%84%EB%8F%84%20%EC%A0%9C4%ED%9A%8C%20%ED%95%B4%EC%96%91%EC%88%98%EC%82%B0%20%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%20%ED%98%81%EC%8B%A0%ED%8F%AC%EB%9F%BC%5D%20%EB%B0%9C%ED%91%9C3%20-%20%EB%B6%80%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90%20%EB%B0%B0%ED%98%9C%EB%A6%BC%20%EA%B5%90%EC%88%98/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
