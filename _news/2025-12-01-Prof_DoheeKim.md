@@ -4,7 +4,6 @@ date: 2025-12-01 01:10
 inline: false
 related_posts: true
 title: Dr. Dohee Kim Appointed as Professor at Changwon National University
-related_publications: true
 giscus_comments: true
 author: [Dohee Kim]
 ---
