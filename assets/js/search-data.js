@@ -265,7 +265,7 @@ ninja.data = [{
               window.location.href = "/people/ShuzhuZHANG/";
             },},{id: "people-taufik-nur-adi",
           title: 'Taufik Nur Adi',
-          description: ":PhD. Permanent Lecturer at Telkom University",
+          description: "PhD. Permanent Lecturer at Telkom University",
           section: "People",handler: () => {
               window.location.href = "/people/Taufik%20Adi/";
             },},{id: "people-yelita-anggiane-iskandar",
@@ -518,9 +518,14 @@ ninja.data = [{
           description: "Undergraduate Student",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A0%95%EB%AF%BC%EC%9E%AC/";
+            },},{id: "people-jaeyoung-jeong-정재영",
+          title: 'Jaeyoung Jeong(정재영)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%A0%95%EC%9E%AC%EC%98%81/";
             },},{id: "people-hyokyeong-jung-정효경",
           title: 'Hyokyeong Jung(정효경)',
-          description: "M.S.",
+          description: "M.S. COUPANG",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A0%95%ED%9A%A8%EA%B2%BD/";
             },},{id: "people-sangmin-jo-조상민",
