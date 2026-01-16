@@ -353,8 +353,8 @@ ninja.data = [{
           description: "Undergraduate Student",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EC%A2%85%EB%AF%BC/";
-            },},{id: "people-taekhyeong-kim-김탁형",
-          title: 'Taekhyeong Kim(김탁형)',
+            },},{id: "people-takhyeong-kim-김탁형",
+          title: 'Takhyeong Kim(김탁형)',
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%ED%83%81%ED%98%95/";
