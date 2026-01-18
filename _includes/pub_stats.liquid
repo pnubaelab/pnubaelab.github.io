@@ -1,0 +1,105 @@
+{% assign pub_count = site.data.pub_count %}
+
+<style>
+.pub-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 1rem 0 1.5rem;
+  flex-wrap: wrap;
+}
+
+.pub-legend {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pub-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pub-legend-label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--legend-primary-color);
+}
+
+.pub-legend-value {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--legend-secondary-color);
+}
+
+.pub-total-display {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.pub-total-number {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--legend-primary-color);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.pub-total-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--legend-secondary-color);
+}
+
+@media (max-width: 768px) {
+  .pub-stats-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  
+  .pub-total-number {
+    font-size: 2.5rem;
+  }
+}
+</style>
+
+<div class="pub-stats-row">
+  <div class="pub-legend">
+    <div class="pub-legend-item">
+      <span class="pub-legend-label">KCI</span>
+      <span class="pub-legend-value">{{ pub_count.kci }}</span>
+    </div>
+    <div class="pub-legend-item">
+      <span class="pub-legend-label">SCOPUS</span>
+      <span class="pub-legend-value">{{ pub_count.scopus }}</span>
+    </div>
+    <div class="pub-legend-item">
+      <span class="pub-legend-label">SCI</span>
+      <span class="pub-legend-value">{{ pub_count.sci }}</span>
+    </div>
+    <div class="pub-legend-item">
+      <span class="pub-legend-label">Intl. Conf.</span>
+      <span class="pub-legend-value">{{ pub_count.international_conference }}</span>
+    </div>
+    <div class="pub-legend-item">
+      <span class="pub-legend-label">Dom. Conf.</span>
+      <span class="pub-legend-value">{{ pub_count.domestic_conference }}</span>
+    </div>
+    <div class="pub-legend-item">
+      <span class="pub-legend-label">Arxiv</span>
+      <span class="pub-legend-value">{{ pub_count.arxiv }}</span>
+    </div>
+  </div>
+  
+  <div class="pub-total-display">
+    <span class="pub-total-number" data-countup="{{ pub_count.total }}" data-duration="2">0</span>
+    <span class="pub-total-label">Publications</span>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/count-up.js' | relative_url }}"></script>
