@@ -563,6 +563,11 @@ ninja.data = [{
           description: "Integrated PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%ED%95%98%EB%8B%88%ED%94%84/";
+            },},{id: "people-mingi-han-한민기",
+          title: 'Mingi Han(한민기)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%ED%95%9C%EB%AF%BC%EA%B8%B0/";
             },},{id: "people-yeongjae-han-한영재",
           title: 'Yeongjae Han(한영재)',
           description: "M.S. LG Electronics.",
