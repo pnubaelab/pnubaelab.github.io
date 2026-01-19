@@ -1,6 +1,12 @@
 {% assign pub_count = site.data.pub_count %}
+{% assign scholar_data = site.data.scholar_citations %}
+{% assign total_citations = scholar_data.total_citations | default: 2565 %}
 
 <style>
+.pub-stats-container {
+  margin: 2rem 0;
+}
+
 .pub-stats-row {
   display: flex;
   align-items: center;
@@ -68,37 +74,43 @@
 }
 </style>
 
-<div class="pub-stats-row">
-  <div class="pub-legend">
-    <div class="pub-legend-item">
-      <span class="pub-legend-label">KCI</span>
-      <span class="pub-legend-value">{{ pub_count.kci }}</span>
+<div class="pub-stats-container">
+  <div class="pub-stats-row">
+    <div class="pub-legend">
+      
+      <div class="pub-legend-item">
+        <span class="pub-legend-label">KCI</span>
+        <span class="pub-legend-value">{{ pub_count.kci }}</span>
+      </div>
+      <div class="pub-legend-item">
+        <span class="pub-legend-label">SCOPUS</span>
+        <span class="pub-legend-value">{{ pub_count.scopus }}</span>
+      </div>
+      <div class="pub-legend-item">
+        <span class="pub-legend-label">SCI</span>
+        <span class="pub-legend-value">{{ pub_count.sci }}</span>
+      </div>
+      <div class="pub-legend-item">
+        <span class="pub-legend-label">Intl. Conf.</span>
+        <span class="pub-legend-value">{{ pub_count.international_conference }}</span>
+      </div>
+      <div class="pub-legend-item">
+        <span class="pub-legend-label">Dom. Conf.</span>
+        <span class="pub-legend-value">{{ pub_count.domestic_conference }}</span>
+      </div>
+      <div class="pub-legend-item">
+        <span class="pub-legend-label">Arxiv</span>
+        <span class="pub-legend-value">{{ pub_count.arxiv }}</span>
+      </div>
     </div>
-    <div class="pub-legend-item">
-      <span class="pub-legend-label">SCOPUS</span>
-      <span class="pub-legend-value">{{ pub_count.scopus }}</span>
+    <br>
+    <div class="pub-total-display">
+      <span class="pub-total-number" data-countup="{{ pub_count.total }}" data-duration="2">0</span>
+      <span class="pub-total-label">Publications</span>
+
+      <span class="pub-total-number" data-countup="{{ total_citations }}" data-duration="2">0</span>
+      <span class="pub-total-label"> Citations</span>
     </div>
-    <div class="pub-legend-item">
-      <span class="pub-legend-label">SCI</span>
-      <span class="pub-legend-value">{{ pub_count.sci }}</span>
-    </div>
-    <div class="pub-legend-item">
-      <span class="pub-legend-label">Intl. Conf.</span>
-      <span class="pub-legend-value">{{ pub_count.international_conference }}</span>
-    </div>
-    <div class="pub-legend-item">
-      <span class="pub-legend-label">Dom. Conf.</span>
-      <span class="pub-legend-value">{{ pub_count.domestic_conference }}</span>
-    </div>
-    <div class="pub-legend-item">
-      <span class="pub-legend-label">Arxiv</span>
-      <span class="pub-legend-value">{{ pub_count.arxiv }}</span>
-    </div>
-  </div>
-  
-  <div class="pub-total-display">
-    <span class="pub-total-number" data-countup="{{ pub_count.total }}" data-duration="2">0</span>
-    <span class="pub-total-label">Publications</span>
   </div>
 </div>
 
