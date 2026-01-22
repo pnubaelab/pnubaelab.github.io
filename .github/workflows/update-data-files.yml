@@ -55,5 +55,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add _data/pub_count.yml _data/scholar_citations.yml assets/json/collabo_graph.json assets/json/keyword_similarity.json
-          git commit -m "chore: update data files [skip ci]"
+          git commit -m "chore: update data files"
           git push
