@@ -5,6 +5,29 @@
   "threshold": 0.72,
   "topk": 8,
   "similarities": {
+    "kw:Process mining": [
+      [
+        "kw:Process monitoring",
+        0.8125
+      ],
+      [
+        "kw:Process modeling",
+        0.8
+      ],
+      [
+        "kw:Process integration",
+        0.7273
+      ]
+    ],
+    "kw:Time Series Forecasting": [
+      [
+        "kw:Time series decomposition",
+        0.75
+      ]
+    ],
+    "kw:Deep learning": [],
+    "kw:Neural Network": [],
+    "kw:Local variation modeling": [],
     "kw:LLM": [],
     "kw:Reinforcement learning": [],
     "kw:Vessel trajectory prediction": [],
@@ -33,12 +56,6 @@
       ]
     ],
     "kw:Ship Emissions": [],
-    "kw:Time Series Forecasting": [
-      [
-        "kw:Time series decomposition",
-        0.75
-      ]
-    ],
     "kw:Transformer": [],
     "kw:Predictive process monitoring": [
       [
@@ -46,21 +63,6 @@
         0.766
       ]
     ],
-    "kw:Process mining": [
-      [
-        "kw:Process monitoring",
-        0.8125
-      ],
-      [
-        "kw:Process modeling",
-        0.8
-      ],
-      [
-        "kw:Process integration",
-        0.7273
-      ]
-    ],
-    "kw:Deep learning": [],
     "kw:Optimization": [
       [
         "kw:Process optimization",
@@ -96,7 +98,6 @@
       ]
     ],
     "kw:Port operations": [],
-    "kw:Neural Network": [],
     "kw:EDI data": [
       [
         "kw:AIS data",
