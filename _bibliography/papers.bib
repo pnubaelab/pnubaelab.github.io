@@ -1,3 +1,16 @@
+@misc{lee2026acformermitigatingnonlinearityauto,
+      level = {Arxiv},
+      abbr={arXiv}, 
+      arxiv={2601.20611},
+      title={ACFormer: Mitigating Non-linearity with Auto Convolutional Encoder for Time Series Forecasting}, 
+      author={Lee, Gawon and Park, Hanbyeol and Kim, Minseop and Kim, Dohee and Bae, Hyerim},
+      year={2026},
+      abstract={Time series forecasting (TSF) faces challenges in modeling complex intra-channel temporal dependencies and inter-channel correlations. Although recent research has highlighted the efficiency of linear architectures in capturing global trends, these models often struggle with non-linear signals. To address this gap, we conducted a systematic receptive field analysis of convolutional neural network (CNN) TSF models. We introduce the "individual receptive field" to uncover granular structural dependencies, revealing that convolutional layers act as feature extractors that mirror channel-wise attention while exhibiting superior robustness to non-linear fluctuations. Based on these insights, we propose ACFormer, an architecture designed to reconcile the efficiency of linear projections with the non-linear feature-extraction power of convolutions. ACFormer captures fine-grained information through a shared compression module, preserves temporal locality via gated attention, and reconstructs variable-specific temporal patterns using an independent patch expansion layer. Extensive experiments on multiple benchmark datasets demonstrate that ACFormer consistently achieves state-of-the-art performance, effectively mitigating the inherent drawbacks of linear models in capturing high-frequency components.},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2601.20611}, 
+      keywords={Time Series Forecasting, Deep learning, Convolutional Neural Network, Auto Convolution, Neural Network, Local variation modeling},
+}
 
 
 @misc{Jo2025BERTDenoising,
@@ -184,7 +197,7 @@
   level = {International Conference},
   abbr={ICICIC},
   title={Identifying Severity of Maritime Accidents Based on Weighted Kernel Density Estimation},
-  author={Hong, Seongmoon and Park, Taekhyun and Kim, Dohee and Jo, Sangmin and Bae, Hyerim},
+  author={Jo, Sangmin and Park, Taekhyun and Kim, Dohee and Hong, Seongmoon and Bae, Hyerim},
   abstract={Maritime accident risk prediction has highlighted the limitations of purely statistical classifiers and numerical scoring schemes, driving demand for scenario-driven analytical methods that can elucidate both the context and progression of incidents. In response, we propose LURKER (Language models for Unveiling maritime Risks via Knowledge-driven Event forecasting and Reasoning), an explainable framework that leverages the reasoning capabilities of LLMs (LLMs) to analyze maritime accident severity. LURKER quantifies accident risk by integrating a tree-based classification model with isotonic regression for probability calibration, then generates dynamic scenarios through a prompt-engineering module that summarizes tribunal reports and incorporates real-time data. By employing few-shot learning and chain-of-thought prompting, LURKER produces context-rich descriptions of causal factors, incident progression, and potential impacts. This approach transcends purely numerical analysis, offering comprehensive explanations of accident causes and consequences, and functions as an intelligent decision-support tool. Case-based experiments integrating tribunal reports, AIS vessel-track data, and meteorological observations demonstrate LURKER’s feasibility and practical utility as a severity-prediction tool for operational maritime safety management.},
   booktitle={19th International Conference on Innovative Computing, Information and Control (ICICIC 2025)},
   address={Kitakyushu, Japan},
