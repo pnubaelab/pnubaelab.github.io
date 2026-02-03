@@ -330,7 +330,7 @@ ninja.data = [{
               window.location.href = "/people/%EA%B9%80%EB%AF%BC%EC%84%AD/";
             },},{id: "people-minhee-kim-김민희",
           title: 'Minhee Kim(김민희)',
-          description: "M.S Program",
+          description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EB%AF%BC%ED%9D%AC/";
             },},{id: "people-seonghan-kim-김성한",
@@ -380,7 +380,7 @@ ninja.data = [{
               window.location.href = "/people/%EB%B0%95%EA%B8%B0%EA%B5%B0/";
             },},{id: "people-daesan-park-박대산",
           title: 'Daesan Park(박대산)',
-          description: "M.S Program",
+          description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EB%8C%80%EC%82%B0/";
             },},{id: "people-myeongsoon-park-박명순",
@@ -400,7 +400,7 @@ ninja.data = [{
               window.location.href = "/people/%EB%B0%95%EC%83%81%ED%98%81/";
             },},{id: "people-eunhee-park-박은희",
           title: 'Eunhee Park(박은희)',
-          description: "M.S Program",
+          description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EC%9D%80%ED%9D%AC/";
             },},{id: "people-jaehun-park-박재훈",
@@ -485,7 +485,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%9D%B4%EC%83%81%EC%9E%AC/";
             },},{id: "people-yongjae-lee-이용재",
           title: 'Yongjae Lee(이용재)',
-          description: "M.S Program",
+          description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EC%9A%A9%EC%9E%AC/";
             },},{id: "people-eunju-lee-이은주",
@@ -530,7 +530,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%A0%95%ED%9A%A8%EA%B2%BD/";
             },},{id: "people-sangmin-jo-조상민",
           title: 'Sangmin Jo(조상민)',
-          description: "M.S Program",
+          description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A1%B0%EC%83%81%EB%AF%BC/";
             },},{id: "people-suhyeon-jo-조수현",
@@ -580,7 +580,7 @@ ninja.data = [{
               window.location.href = "/people/%ED%97%88%EC%9E%AC%ED%98%84/";
             },},{id: "people-seongmoon-hong-홍성문",
           title: 'Seongmoon Hong(홍성문)',
-          description: "M.S Program",
+          description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%ED%99%8D%EC%84%B1%EB%AC%B8/";
             },},{id: "photo-2022-연구실-단체사진2",
