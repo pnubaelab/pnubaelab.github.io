@@ -409,7 +409,7 @@ ninja.data = [{
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EC%9E%AC%ED%9B%88/";
             },},{id: "people-junseo-park-박준서",
-          title: 'JunSeo Park(박준서)',
+          title: 'Junseo Park(박준서)',
           description: "Undergraduate Student",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EC%A4%80%EC%84%9C/";
