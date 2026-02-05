@@ -345,12 +345,12 @@ ninja.data = [{
               window.location.href = "/people/%EA%B9%80%EC%86%8C%EB%AA%85/";
             },},{id: "people-yerin-kim-김예린",
           title: 'Yerin Kim(김예린)',
-          description: "Integrated PhD program",
+          description: "PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EC%98%88%EB%A6%B0/";
             },},{id: "people-jongmin-kim-김종민",
           title: 'Jongmin Kim(김종민)',
-          description: "Undergraduate Student",
+          description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EC%A2%85%EB%AF%BC/";
             },},{id: "people-takhyeong-kim-김탁형",
