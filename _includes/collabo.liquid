@@ -5,6 +5,15 @@
     font-family: 'Oswald', sans-serif;
     letter-spacing: 0.02em;
   }
+  .cluster-legend,
+  .cluster-legend *,
+  .collabo-legend,
+  .collabo-legend *,
+  .collabo-node-tooltip,
+  .collabo-node-tooltip *,
+  #coauthor-graph-loader {
+    color: #ffffff !important;
+  }
   .collabo-node-tooltip {
     display: flex;
     flex-direction: column;
@@ -43,7 +52,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #cfd8dc;
+    color: #ffffff !important;
   }
   .collabo-legend-dot {
     width: 14px;
@@ -82,7 +91,7 @@
     max-width: 140px;
   }
   .cluster-legend-title {
-    color: #90a4ae;
+    color: #ffffff !important;
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -93,7 +102,7 @@
     display: flex;
     align-items: center;
     gap: 0.3rem;
-    color: #b0bec5;
+    color: #ffffff !important;
     font-size: 0.65rem;
   }
   .cluster-dot {
@@ -106,7 +115,7 @@
 <div class="collabo-section" style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
   <div id="coauthor-graph-wrapper" style="position: relative;">
     <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
-      <div id="coauthor-graph-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#cfd8dc;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
+      <div id="coauthor-graph-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
     </div>
     <div id="cluster-legend-container"></div>
   </div>
