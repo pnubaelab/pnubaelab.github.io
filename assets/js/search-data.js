@@ -923,6 +923,11 @@ ninja.data = [{
           description: "IEEE BIGDATA 2025, Macau SAR, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025IEEEBIGDATA3/";
+            },},{id: "photo-2025년-송년회",
+          title: '2025년 송년회',
+          description: "호우양꼬치, Busandaehak-ro , Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EC%97%B0%EB%A7%90%ED%9A%8C%EC%8B%9D/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
