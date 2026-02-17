@@ -11,5 +11,5 @@ assets/libs/
 node_modules/
 vendor
 .idea
-
+*.log
 __pycache__/
