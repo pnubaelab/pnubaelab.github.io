@@ -723,11 +723,6 @@ ninja.data = [{
           description: "2024년 대한산업공학회 춘계공동학술대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2024%EB%85%84%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
-            },},{id: "photo-2025춘계산업공학회학술대회",
-          title: '2025춘계산업공학회학술대회',
-          description: "2025년춘계산업공학회, Jeju, Korea",
-          section: "Photo",handler: () => {
-              window.location.href = "/photo/2025%EB%85%84%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C2/";
             },},{id: "photo-제1회-탁구대회",
           title: '제1회 탁구대회',
           description: "제1회 탁구대회",
@@ -828,6 +823,11 @@ ninja.data = [{
           description: "2025년 대한산업공학회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
+            },},{id: "photo-2025춘계산업공학회학술대회",
+          title: '2025춘계산업공학회학술대회',
+          description: "2025년춘계산업공학회, Jeju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C2/";
             },},{id: "photo-icpr28-chía-colombia",
           title: 'ICPR28,Chía, Colombia',
           description: "ICPR28,Chía, Colombia",
