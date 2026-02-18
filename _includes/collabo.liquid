@@ -115,7 +115,7 @@
 <div class="collabo-section" style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
   <div id="coauthor-graph-wrapper" style="position: relative;">
     <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
-      <div id="coauthor-graph-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
+      <div id="coauthor-graph-loader" style="position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
     </div>
     <div id="cluster-legend-container"></div>
   </div>
@@ -141,6 +141,324 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
 (() => {
   const container = document.getElementById('coauthor-graph');
   if (!container) return;
+
+  function initGalaxyBackground(target) {
+    const galaxyCanvas = document.createElement('canvas');
+    const ctx = galaxyCanvas.getContext('2d', { alpha: true });
+    if (!ctx) return null;
+
+    galaxyCanvas.setAttribute('aria-hidden', 'true');
+    galaxyCanvas.style.position = 'absolute';
+    galaxyCanvas.style.inset = '0';
+    galaxyCanvas.style.width = '100%';
+    galaxyCanvas.style.height = '100%';
+    galaxyCanvas.style.zIndex = '0';
+    galaxyCanvas.style.pointerEvents = 'none';
+    target.prepend(galaxyCanvas);
+
+    const dpr = () => Math.min(window.devicePixelRatio || 1, 2);
+    let width = 1;
+    let height = 1;
+    let mouseX = 0.5;
+    let mouseY = 0.5;
+    let smoothMouseX = 0.5;
+    let smoothMouseY = 0.5;
+
+    const stars = [];
+    function createStars(count) {
+      stars.length = 0;
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random(),
+          y: Math.random(),
+          z: 0.3 + Math.random() * 0.7,
+          size: 0.3 + Math.random() * 1.6,
+          twinkle: Math.random() * Math.PI * 2,
+          twinkleSpeed: 0.2 + Math.random() * 1.2,
+          hue: 190 + Math.random() * 70
+        });
+      }
+    }
+
+    const onMouseMove = (e) => {
+      const rect = target.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left) / Math.max(1, rect.width);
+      mouseY = (e.clientY - rect.top) / Math.max(1, rect.height);
+    };
+
+    const updateResolution = () => {
+      width = Math.max(1, target.clientWidth || 1);
+      height = Math.max(1, target.clientHeight || 1);
+      const ratio = dpr();
+      galaxyCanvas.width = Math.max(1, Math.floor(width * ratio));
+      galaxyCanvas.height = Math.max(1, Math.floor(height * ratio));
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      const density = Math.max(140, Math.min(420, Math.round((width * height) / 2200)));
+      createStars(density);
+    };
+
+    const drawNebula = (t) => {
+      const cx = width * (0.5 + (smoothMouseX - 0.5) * 0.06);
+      const cy = height * (0.5 + (smoothMouseY - 0.5) * 0.06);
+
+      const g1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(width, height) * 0.65);
+      g1.addColorStop(0, 'rgba(40,95,180,0.23)');
+      g1.addColorStop(0.5, 'rgba(86,42,145,0.16)');
+      g1.addColorStop(1, 'rgba(2,6,17,0)');
+      ctx.fillStyle = g1;
+      ctx.fillRect(0, 0, width, height);
+
+      const angle = t * 0.00006;
+      const rx = Math.cos(angle) * width * 0.12;
+      const ry = Math.sin(angle * 1.2) * height * 0.1;
+      const g2 = ctx.createRadialGradient(
+        cx + rx,
+        cy + ry,
+        0,
+        cx + rx,
+        cy + ry,
+        Math.max(width, height) * 0.45
+      );
+      g2.addColorStop(0, 'rgba(129,93,255,0.15)');
+      g2.addColorStop(1, 'rgba(2,6,17,0)');
+      ctx.fillStyle = g2;
+      ctx.fillRect(0, 0, width, height);
+    };
+
+    const drawStars = (t) => {
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+        const tw = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(s.twinkle + t * 0.001 * s.twinkleSpeed));
+        const px = s.x * width + (smoothMouseX - 0.5) * 30 * s.z;
+        const py = s.y * height + (smoothMouseY - 0.5) * 24 * s.z;
+        const r = s.size * s.z * (0.6 + tw * 0.9);
+        const alpha = 0.18 + tw * 0.55;
+
+        const starGrad = ctx.createRadialGradient(px, py, 0, px, py, Math.max(0.8, r * 3.8));
+        starGrad.addColorStop(0, `hsla(${s.hue}, 85%, 78%, ${alpha})`);
+        starGrad.addColorStop(1, `hsla(${s.hue}, 90%, 65%, 0)`);
+        ctx.fillStyle = starGrad;
+        ctx.beginPath();
+        ctx.arc(px, py, Math.max(0.8, r * 3.8), 0, Math.PI * 2);
+        ctx.fill();
+      }
+    };
+
+    target.addEventListener('mousemove', onMouseMove);
+    const resizeObserver = new ResizeObserver(updateResolution);
+    resizeObserver.observe(target);
+    updateResolution();
+
+    let rafId = 0;
+    const render = (t) => {
+      rafId = requestAnimationFrame(render);
+      smoothMouseX += (mouseX - smoothMouseX) * 0.05;
+      smoothMouseY += (mouseY - smoothMouseY) * 0.05;
+
+      ctx.clearRect(0, 0, width, height);
+      drawNebula(t);
+      drawStars(t);
+    };
+    rafId = requestAnimationFrame(render);
+
+    const cleanup = () => {
+      cancelAnimationFrame(rafId);
+      resizeObserver.disconnect();
+      target.removeEventListener('mousemove', onMouseMove);
+      if (galaxyCanvas.parentNode === target) target.removeChild(galaxyCanvas);
+    };
+
+    window.addEventListener('pagehide', cleanup, { once: true });
+    return cleanup;
+  }
+
+  function initGalaxyFramePainter(target) {
+    let mouseX = 0.5;
+    let mouseY = 0.5;
+    let smoothMouseX = 0.5;
+    let smoothMouseY = 0.5;
+    let mouseActive = 0;
+    let smoothMouseActive = 0;
+    let width = 0;
+    let height = 0;
+    const stars = [];
+
+    const createStars = (count) => {
+      stars.length = 0;
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          angle: Math.random() * Math.PI * 2,
+          radius: Math.pow(Math.random(), 0.62),
+          z: 0.3 + Math.random() * 0.7,
+          size: 0.12 + Math.random() * 0.7,
+          twinkle: Math.random() * Math.PI * 2,
+          twinkleSpeed: 0.2 + Math.random() * 1.1,
+          spin: (Math.random() * 2 - 1) * 0.24,
+          phase: Math.random(),
+          speed: 0.12 + Math.random() * 0.24
+        });
+      }
+    };
+
+    const ensureStars = (w, h) => {
+      if (w === width && h === height && stars.length) return;
+      width = w;
+      height = h;
+      const density = Math.max(160, Math.min(500, Math.round((w * h) / 2800)));
+      createStars(density);
+    };
+
+    const onMouseMove = (e) => {
+      const rect = target.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left) / Math.max(1, rect.width);
+      mouseY = (e.clientY - rect.top) / Math.max(1, rect.height);
+      mouseActive = 1;
+    };
+    const onMouseLeave = () => {
+      mouseX = 0.5;
+      mouseY = 0.5;
+      mouseActive = 0;
+    };
+    target.addEventListener('mousemove', onMouseMove);
+    target.addEventListener('mouseleave', onMouseLeave);
+
+    return {
+      draw(ctx, t) {
+        const w = ctx.canvas.width;
+        const h = ctx.canvas.height;
+        if (!w || !h) return;
+        ensureStars(w, h);
+
+        const time = t * 0.001;
+
+        smoothMouseX += (mouseX - smoothMouseX) * 0.05;
+        smoothMouseY += (mouseY - smoothMouseY) * 0.05;
+        smoothMouseActive += (mouseActive - smoothMouseActive) * 0.06;
+
+        const centerX = w * 0.5;
+        const centerY = h * 0.5;
+        const focusX = w * smoothMouseX;
+        const focusY = h * smoothMouseY;
+
+        const cx = focusX;
+        const cy = focusY;
+        const globalRot = time * 0.08;
+
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+
+        ctx.fillStyle = 'rgba(1, 3, 10, 0.94)';
+        ctx.fillRect(0, 0, w, h);
+
+        const nebulaA = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.62);
+        nebulaA.addColorStop(0, 'rgba(20,45,90,0.2)');
+        nebulaA.addColorStop(0.55, 'rgba(35,20,70,0.12)');
+        nebulaA.addColorStop(1, 'rgba(2,6,17,0)');
+        ctx.fillStyle = nebulaA;
+        ctx.fillRect(0, 0, w, h);
+
+        const angle = t * 0.00006;
+        const rx = Math.cos(angle) * w * 0.12;
+        const ry = Math.sin(angle * 1.2) * h * 0.1;
+        const nebulaB = ctx.createRadialGradient(cx + rx, cy + ry, 0, cx + rx, cy + ry, Math.max(w, h) * 0.46);
+        nebulaB.addColorStop(0, 'rgba(55,70,130,0.1)');
+        nebulaB.addColorStop(1, 'rgba(2,6,17,0)');
+        ctx.fillStyle = nebulaB;
+        ctx.fillRect(0, 0, w, h);
+
+        const core = ctx.createRadialGradient(focusX, focusY, 0, focusX, focusY, Math.max(w, h) * 0.18);
+        core.addColorStop(0, `rgba(165, 215, 255, ${0.12 + smoothMouseActive * 0.1})`);
+        core.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = core;
+        ctx.fillRect(0, 0, w, h);
+
+        const lensRadius = Math.max(w, h) * (0.18 + 0.14 * smoothMouseActive);
+        const lensReach = lensRadius * 2.2;
+        const clamp01 = (v) => Math.max(0, Math.min(1, v));
+        const distortPoint = (x, y, strength = 1) => {
+          const dx = x - focusX;
+          const dy = y - focusY;
+          const dist = Math.hypot(dx, dy);
+          if (dist >= lensReach || dist < 0.0001) return { x, y };
+
+          const nx = dx / dist;
+          const ny = dy / dist;
+          const falloff = 1 - clamp01(dist / lensReach);
+          const pinch = (0.1 + 0.22 * smoothMouseActive) * falloff * falloff * strength;
+          const twist = (0.08 + 0.2 * smoothMouseActive) * falloff * falloff * strength;
+
+          const warpedX = x - nx * dist * pinch + (-ny) * dist * twist;
+          const warpedY = y - ny * dist * pinch + (nx) * dist * twist;
+          return { x: warpedX, y: warpedY };
+        };
+
+        if (smoothMouseActive > 0.02) {
+          const ring = ctx.createRadialGradient(focusX, focusY, lensRadius * 0.45, focusX, focusY, lensRadius * 1.05);
+          ring.addColorStop(0, `rgba(255,255,255,${0.02 + smoothMouseActive * 0.02})`);
+          ring.addColorStop(1, 'rgba(255,255,255,0)');
+          ctx.fillStyle = ring;
+          ctx.beginPath();
+          ctx.arc(focusX, focusY, lensRadius * 1.05, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        for (let i = 0; i < stars.length; i++) {
+          const s = stars[i];
+          const tw = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(s.twinkle + time * s.twinkleSpeed));
+          const depth = (s.phase + time * s.speed) % 1;
+          const zoom = 2.0 - 1.86 * depth;
+          const driftAngle = s.angle + time * s.spin + globalRot;
+          const orbitX = Math.cos(driftAngle) * s.radius * w * 0.92;
+          const orbitY = Math.sin(driftAngle) * s.radius * h * 0.92;
+
+          let px = cx + orbitX * zoom;
+          let py = cy + orbitY * zoom;
+
+          const dx = px - focusX;
+          const dy = py - focusY;
+          const dist = Math.hypot(dx, dy) + 0.0001;
+          const nx = dx / dist;
+          const ny = dy / dist;
+          const influence = Math.exp(-dist / (Math.max(w, h) * 0.6));
+          const inv = 1 / (dist + 28);
+          const active = 0.08 + 0.92 * smoothMouseActive;
+          const pullBase = (3120 * inv) * (0.4 + 0.9 * s.z) * active;
+          const swirlBase = (1900 * inv) * (0.35 + 0.65 * s.z) * active;
+          const depthFlow = 0.45 + 1.4 * (1 - depth);
+          const suction = pullBase * depthFlow * influence;
+          const swirl = swirlBase * (0.4 + 0.8 * (1 - depth)) * influence;
+
+          const vx = -nx * suction + -ny * swirl;
+          const vy = -ny * suction + nx * swirl;
+          px += vx;
+          py += vy;
+
+          const warped = distortPoint(px, py, 0.65 + 0.55 * s.z);
+          px = warped.x;
+          py = warped.y;
+
+          const r = s.size * s.z * (0.6 + tw * 0.9);
+          const alpha = 0.22 + tw * 0.5;
+
+          const starGrad = ctx.createRadialGradient(px, py, 0, px, py, Math.max(0.6, r * 2.4));
+          starGrad.addColorStop(0, `rgba(255,255,255,${alpha})`);
+          starGrad.addColorStop(1, 'rgba(255,255,255,0)');
+          ctx.fillStyle = starGrad;
+          ctx.beginPath();
+          ctx.arc(px, py, Math.max(0.6, r * 2.4), 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.restore();
+      },
+      destroy() {
+        target.removeEventListener('mousemove', onMouseMove);
+        target.removeEventListener('mouseleave', onMouseLeave);
+      }
+    };
+  }
+
+  const galaxyPainter = initGalaxyFramePainter(container);
 
   const htmlEscape = (str = '') => str.replace(/[&<>"']/g, ch => ({
     '&': '&amp;',
@@ -217,6 +535,14 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const h = computeHeight();
     container.style.height = h + 'px';
     graphInstance && graphInstance.height(h).width(container.clientWidth || 800);
+    const canvases = container.querySelectorAll('canvas');
+    canvases.forEach((canvas, idx) => {
+      if (idx === 0) return;
+      canvas.style.position = 'absolute';
+      canvas.style.inset = '0';
+      canvas.style.zIndex = '1';
+      canvas.style.background = 'transparent';
+    });
   }
 
   // Seeded random number generator for reproducibility
@@ -622,7 +948,10 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
 
     const g = ForceGraph()(container)
       .graphData(data)
-      .backgroundColor('#020611')
+      .backgroundColor('rgba(0,0,0,0)')
+      .onRenderFramePre((ctx) => {
+        galaxyPainter.draw(ctx, performance.now());
+      })
       .nodeId('id')
       .nodeLabel(n => {
         const displayName = n.name || n.id.replace(/^kw:/, '');
@@ -878,6 +1207,23 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     setTimeout(() => {
       g.zoomToFit(800, 40);
     }, 1200);
+
+    const GALAXY_FRAME_INTERVAL = 1000 / 30;
+    const galaxyTimerId = window.setInterval(() => {
+      if (document.hidden) return;
+      g.refresh();
+    }, GALAXY_FRAME_INTERVAL);
+
+    const onVisibilityChange = () => {
+      if (!document.hidden) g.refresh();
+    };
+    document.addEventListener('visibilitychange', onVisibilityChange);
+
+    window.addEventListener('pagehide', () => {
+      window.clearInterval(galaxyTimerId);
+      document.removeEventListener('visibilitychange', onVisibilityChange);
+      galaxyPainter.destroy();
+    }, { once: true });
 
   }
 
