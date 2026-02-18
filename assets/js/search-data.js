@@ -945,7 +945,7 @@ ninja.data = [{
               window.location.href = "/photo/2025%EC%97%B0%EB%A7%90%ED%9A%8C%EC%8B%9D/";
             },},{id: "photo-aaai2026",
           title: 'AAAI2026',
-          description: "AAAI2026, EXPO, Singapore",
+          description: "AAAI 2026, SINGEX, Singapore",
           section: "Photo",handler: () => {
               window.location.href = "/photo/AAAI2026/";
             },},{id: "photo-aaai2026",
@@ -958,6 +958,11 @@ ninja.data = [{
           description: "Marina Bay Sands, Singapore",
           section: "Photo",handler: () => {
               window.location.href = "/photo/AAAI20263/";
+            },},{id: "photo-aaai2026",
+          title: 'AAAI2026',
+          description: "AAAI 2026, SINGEX, Singapore",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/AAAI20264/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
