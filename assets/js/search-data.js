@@ -943,6 +943,21 @@ ninja.data = [{
           description: "호우양꼬치, Busandaehak-ro , Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EC%97%B0%EB%A7%90%ED%9A%8C%EC%8B%9D/";
+            },},{id: "photo-aaai2026",
+          title: 'AAAI2026',
+          description: "EXPO, Singapore",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/AAAI2026/";
+            },},{id: "photo-aaai2026",
+          title: 'AAAI2026',
+          description: "The HIVE, NTU, Singapore",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/AAAI20262/";
+            },},{id: "photo-aaai2026",
+          title: 'AAAI2026',
+          description: "Marina Bay Sands, Singapore",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/AAAI20263/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
