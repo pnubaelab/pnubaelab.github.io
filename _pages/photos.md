@@ -22,16 +22,29 @@ display_categories: [2025,2024,2023,2022,2021,2020]
 }
 
 .photo-masonry {
-  columns: 3;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-flow: dense;
   column-gap: 8px;
+  row-gap: 5px;
   margin: 20px 0;
+}
+
+.photo-masonry.is-masonry {
+  grid-auto-rows: 8px;
 }
 
 .photo-masonry .grid-item {
   width: 100% !important;
-  margin-bottom: 8px !important;
-  break-inside: avoid;
-  display: inline-block;
+  margin-bottom: 0 !important;
+}
+
+.photo-masonry.is-masonry .grid-item {
+  grid-row-end: span var(--masonry-row-span, 1);
+}
+
+.photo-masonry .grid-item.grid-item--wide {
+  grid-column: span 2;
 }
 
 .photo-masonry .card {
@@ -84,21 +97,20 @@ display_categories: [2025,2024,2023,2022,2021,2020]
 /* 반응형 컬럼 수 조정 */
 @media (max-width: 1200px) {
   .photo-masonry {
-    columns: 3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     column-gap: 6px;
-  }
-  .photo-masonry .grid-item {
-    margin-bottom: 6px !important;
+    row-gap: 4px;
   }
 }
 
 @media (max-width: 768px) {
   .photo-masonry {
-    columns: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 5px;
+    row-gap: 3px;
   }
-  .photo-masonry .grid-item {
-    margin-bottom: 5px !important;
+  .photo-masonry .grid-item.grid-item--wide {
+    grid-column: span 2;
   }
   .category-title {
     font-size: 1.6rem;
@@ -107,8 +119,11 @@ display_categories: [2025,2024,2023,2022,2021,2020]
 
 @media (max-width: 480px) {
   .photo-masonry {
-    columns: 1;
-    column-gap: 0;
+    grid-template-columns: 1fr;
+    row-gap: 3px;
+  }
+  .photo-masonry .grid-item.grid-item--wide {
+    grid-column: span 1;
   }
   .photo-gallery {
     padding: 0 3px;
@@ -120,30 +135,38 @@ display_categories: [2025,2024,2023,2022,2021,2020]
 </style>
 
 <div class="photo-gallery">
-  {% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-    {% for category in page.display_categories %}
-      <div class="category-section">
-        <h2 class="category-title">{{ category }}</h2>
-        {% assign categorized_projects = site.photo | where: "category", category %}
-        {% assign sorted_projects = categorized_projects | sort: 'date' | reverse %}
-        <!-- Generate cards for each project -->
-        <div class="photo-masonry">
-          {% for project in sorted_projects %}
-            {% include photo.html %}
-          {% endfor %}
-        </div>
-      </div>
-    {% endfor %}
+  {% assign sorted_projects = site.photo | sort: 'date' | reverse %}
 
+  {% if page.display_categories %}
+    {% for year in page.display_categories %}
+      {% assign year_str = year | append: '' %}
+      {% assign has_year_projects = false %}
+      {% for project in sorted_projects %}
+        {% assign project_year = project.date | date: "%Y" %}
+        {% if project_year == year_str %}
+          {% assign has_year_projects = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+      {% if has_year_projects %}
+        <div class="category-section">
+          <h2 class="category-title">{{ year }}</h2>
+          <div class="photo-masonry">
+            {% for project in sorted_projects %}
+              {% assign project_year = project.date | date: "%Y" %}
+              {% if project_year == year_str %}
+                {% include photo.html %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
   {% else %}
-  <!-- Display projects without categories -->
-    {% assign sorted_projects = site.photo | sort: 'date' | reverse %}
-    <!-- Generate cards for each project -->
     <div class="photo-masonry">
       {% for project in sorted_projects %}
         {% include photo.html %}
-      {% endfor %}      
+      {% endfor %}
     </div>
   {% endif %}
 </div>
@@ -153,3 +176,49 @@ display_categories: [2025,2024,2023,2022,2021,2020]
 La photographie est l’art d’arrêter le temps. <br>
 Roland Barthes
 </div>
+
+<script>
+  (function () {
+    function applyMasonry(grid) {
+      var computedStyle = window.getComputedStyle(grid);
+      var rowHeight = parseFloat(computedStyle.getPropertyValue('grid-auto-rows'));
+      var rowGap = parseFloat(computedStyle.getPropertyValue('row-gap'));
+
+      if (!rowHeight || rowHeight <= 0) return;
+
+      var items = grid.querySelectorAll('.grid-item');
+      items.forEach(function (item) {
+        var content = item.querySelector('.card') || item;
+        var contentHeight = content.getBoundingClientRect().height;
+        var rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+        item.style.setProperty('--masonry-row-span', rowSpan);
+      });
+    }
+
+    function layoutAllMasonry() {
+      var grids = document.querySelectorAll('.photo-masonry');
+      grids.forEach(function (grid) {
+        grid.classList.add('is-masonry');
+        applyMasonry(grid);
+      });
+    }
+
+    var resizeTimer;
+    function onResize() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layoutAllMasonry, 120);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      layoutAllMasonry();
+
+      document.querySelectorAll('.photo-masonry .photo-img').forEach(function (img) {
+        if (img.complete) return;
+        img.addEventListener('load', layoutAllMasonry, { once: true });
+        img.addEventListener('error', layoutAllMasonry, { once: true });
+      });
+    });
+
+    window.addEventListener('resize', onResize);
+  })();
+</script>
