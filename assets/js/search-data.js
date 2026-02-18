@@ -945,7 +945,7 @@ ninja.data = [{
               window.location.href = "/photo/2025%EC%97%B0%EB%A7%90%ED%9A%8C%EC%8B%9D/";
             },},{id: "photo-aaai2026",
           title: 'AAAI2026',
-          description: "EXPO, Singapore",
+          description: "AAAI2026, EXPO, Singapore",
           section: "Photo",handler: () => {
               window.location.href = "/photo/AAAI2026/";
             },},{id: "photo-aaai2026",
