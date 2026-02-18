@@ -4,7 +4,7 @@ title: 📸Photos
 permalink: /photos/
 description: 
 nav: true
-display_categories: [2025,2024,2023,2022,2021,2020]
+display_categories: [2026,2025,2024,2023,2022,2021,2020]
 ---
 
 <style>
