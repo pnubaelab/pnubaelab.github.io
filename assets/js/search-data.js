@@ -510,7 +510,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%9D%B4%ED%98%84%EC%A3%BC/";
             },},{id: "people-hyunha-lee-이현하",
           title: 'Hyunha Lee(이현하)',
-          description: "Undergraduate Student",
+          description: "Undergraduate Student, Hanwha Aerospace",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%ED%98%84%ED%95%98/";
             },},{id: "people-jinhong-lim-임진홍",
