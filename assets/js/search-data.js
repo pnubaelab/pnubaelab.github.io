@@ -978,6 +978,11 @@ ninja.data = [{
           description: "2026년 2월 졸업식, BUSAN, KOREA",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EC%B6%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D2/";
+            },},{id: "photo-2026춘계졸업식3",
+          title: '2026춘계졸업식3',
+          description: "2026년 2월 졸업식, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%B6%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D3/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
