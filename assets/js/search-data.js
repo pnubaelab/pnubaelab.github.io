@@ -598,16 +598,16 @@ ninja.data = [{
           description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%ED%99%8D%EC%84%B1%EB%AC%B8/";
-            },},{id: "photo-2022-연구실-단체사진2",
-          title: '2022 연구실 단체사진2',
-          description: "2022 연구실 단체사진",
-          section: "Photo",handler: () => {
-              window.location.href = "/photo/2022%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%8B%A8%EC%B2%B4%EC%82%AC%EC%A7%842/";
             },},{id: "photo-2022-연구실-단체사진",
           title: '2022 연구실 단체사진',
           description: "2022 연구실 단체사진",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2022%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%8B%A8%EC%B2%B4%EC%82%AC%EC%A7%84/";
+            },},{id: "photo-2022-연구실-단체사진2",
+          title: '2022 연구실 단체사진2',
+          description: "2022 연구실 단체사진",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2022%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%8B%A8%EC%B2%B4%EC%82%AC%EC%A7%842/";
             },},{id: "photo-2022-연구실-단체사진",
           title: '2022 연구실 단체사진',
           description: "2022 연구실 단체사진",
