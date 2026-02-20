@@ -122,6 +122,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "news-부산대-배혜림-교수-김승-씨-39-icicic-2011-39-논문상-수상",
+          title: '부산대 배혜림 교수·김승 씨, &amp;#39;ICICIC 2011&amp;#39; 논문상 수상',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/ICICIC2012/";
             },},{id: "news-시계열-예측을-위한-새로운-인공신경망-cru-부산대-저명-학술지-ieee-tpami-논문-게재",
           title: '시계열 예측을 위한 새로운 인공신경망 CRU 부산대, 저명 학술지 『IEEE TPAMI』 논문 게재...',
           description: "",
@@ -228,16 +233,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-02-09-%EC%98%81%EC%82%B0%EB%8C%80%EB%B6%81%EA%B7%B9%ED%95%AD%EB%A1%9C/";
-            },},{id: "news-",
-          title: '',
+            },},{id: "news-졸업을-축하합니다",
+          title: '🎉🎉🎉졸업을 축하합니다!!!!!🎉🎉🎉',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/2026-02-20-%EC%A1%B8%EC%97%85/";
-            },},{id: "news-부산대-배혜림-교수-김승-씨-39-icicic-2011-39-논문상-수상",
-          title: '부산대 배혜림 교수·김승 씨, &amp;#39;ICICIC 2011&amp;#39; 논문상 수상',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/ICICIC2012/";
+              window.location.href = "/news/2026-02-20-%EC%A1%B8%EC%97%85%EC%B6%95%ED%95%98/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
