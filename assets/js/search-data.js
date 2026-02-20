@@ -598,11 +598,6 @@ ninja.data = [{
           description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%ED%99%8D%EC%84%B1%EB%AC%B8/";
-            },},{id: "photo-2022-연구실-단체사진",
-          title: '2022 연구실 단체사진',
-          description: "2022 연구실 단체사진",
-          section: "Photo",handler: () => {
-              window.location.href = "/photo/2022%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%8B%A8%EC%B2%B4%EC%82%AC%EC%A7%84/";
             },},{id: "photo-2022-연구실-단체사진2",
           title: '2022 연구실 단체사진2',
           description: "2022 연구실 단체사진",
@@ -613,6 +608,11 @@ ninja.data = [{
           description: "2022 연구실 단체사진",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2022%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%8B%A8%EC%B2%B4%EC%82%AC%EC%A7%843/";
+            },},{id: "photo-2022-연구실-단체사진",
+          title: '2022 연구실 단체사진',
+          description: "2022 연구실 단체사진",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2022%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%8B%A8%EC%B2%B4%EC%82%AC%EC%A7%84/";
             },},{id: "photo-2022년5월홈커밍데이",
           title: '2022년5월홈커밍데이',
           description: "2022년5월홈커밍데이",
@@ -833,6 +833,16 @@ ninja.data = [{
           description: "2025년춘계산업공학회, Jeju, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C2/";
+            },},{id: "photo-2025춘계산업공학회학술대회",
+          title: '2025춘계산업공학회학술대회',
+          description: "2025년춘계산업공학회, Jeju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C3/";
+            },},{id: "photo-2025은퇴식",
+          title: '2025은퇴식',
+          description: "낙양, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%AF%BC%EA%B8%B0%EC%9D%80%ED%87%B4%EC%8B%9D/";
             },},{id: "photo-icpr28-chía-colombia",
           title: 'ICPR28,Chía, Colombia',
           description: "ICPR28,Chía, Colombia",
