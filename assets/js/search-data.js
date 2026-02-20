@@ -122,11 +122,6 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "news-부산대-배혜림-교수-김승-씨-39-icicic-2011-39-논문상-수상",
-          title: '부산대 배혜림 교수·김승 씨, &amp;#39;ICICIC 2011&amp;#39; 논문상 수상',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/ICICIC2012/";
             },},{id: "news-시계열-예측을-위한-새로운-인공신경망-cru-부산대-저명-학술지-ieee-tpami-논문-게재",
           title: '시계열 예측을 위한 새로운 인공신경망 CRU 부산대, 저명 학술지 『IEEE TPAMI』 논문 게재...',
           description: "",
@@ -233,6 +228,16 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-02-09-%EC%98%81%EC%82%B0%EB%8C%80%EB%B6%81%EA%B7%B9%ED%95%AD%EB%A1%9C/";
+            },},{id: "news-",
+          title: '',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-02-20-%EC%A1%B8%EC%97%85/";
+            },},{id: "news-부산대-배혜림-교수-김승-씨-39-icicic-2011-39-논문상-수상",
+          title: '부산대 배혜림 교수·김승 씨, &amp;#39;ICICIC 2011&amp;#39; 논문상 수상',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/ICICIC2012/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
@@ -963,6 +968,16 @@ ninja.data = [{
           description: "AAAI 2026, SINGEX, Singapore",
           section: "Photo",handler: () => {
               window.location.href = "/photo/AAAI20264/";
+            },},{id: "photo-2026춘계졸업식1",
+          title: '2026춘계졸업식1',
+          description: "2026년 2월 졸업식, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%B6%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D1/";
+            },},{id: "photo-2026춘계졸업식1",
+          title: '2026춘계졸업식1',
+          description: "2026년 2월 졸업식, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%B6%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D2/";
             },},{id: "projects-",
           title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
