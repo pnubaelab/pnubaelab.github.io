@@ -713,11 +713,6 @@ ninja.data = [{
           description: "LOGMS 2023 부산",
           section: "Photo",handler: () => {
               window.location.href = "/photo/logmsinbusan20232/";
-            },},{id: "photo-심성현교수님결혼식",
-          title: '심성현교수님결혼식',
-          description: "심성현교수님(졸업생) 결혼식",
-          section: "Photo",handler: () => {
-              window.location.href = "/photo/%EC%8B%AC%EC%84%B1%ED%98%84%EA%B5%90%EC%88%98%EB%8B%98%EA%B2%B0%ED%98%BC%EC%8B%9D/";
             },},{id: "photo-2024홈커밍데이",
           title: '2024홈커밍데이',
           description: "2024.03 홈커밍데이",
