@@ -23,6 +23,8 @@
         0.766
       ]
     ],
+    "kw:Generative AI": [],
+    "kw:Large Language Model": [],
     "kw:Operational efficiency": [],
     "kw:Process mining": [
       [
@@ -100,7 +102,6 @@
         0.75
       ]
     ],
-    "kw:Large Language Model": [],
     "kw:Prompt Engineering": [],
     "kw:Severity Prediction": [],
     "kw:Genetic algorithm": [],
