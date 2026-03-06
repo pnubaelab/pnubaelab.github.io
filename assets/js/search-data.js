@@ -388,6 +388,11 @@ ninja.data = [{
           description: "PhD. Postdoctoral Researher at SCSC Research Center",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EA%B8%B0%EA%B5%B0/";
+            },},{id: "people-gibeom-park-박기범",
+          title: 'Gibeom Park(박기범)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EB%B0%95%EA%B8%B0%EB%B2%94/";
             },},{id: "people-daesan-park-박대산",
           title: 'Daesan Park(박대산)',
           description: "M.S",
@@ -538,6 +543,11 @@ ninja.data = [{
           description: "Undergraduate Student",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A0%95%EC%9E%AC%EC%98%81/";
+            },},{id: "people-jaehung-jung-정재형",
+          title: 'Jaehung Jung(정재형)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%A0%95%EC%9E%AC%ED%98%95/";
             },},{id: "people-hyokyeong-jung-정효경",
           title: 'Hyokyeong Jung(정효경)',
           description: "M.S. COUPANG",
