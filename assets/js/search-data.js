@@ -385,7 +385,7 @@ ninja.data = [{
               window.location.href = "/people/%EB%AC%B8%EC%B0%BD%ED%98%B8/";
             },},{id: "people-kikun-park-박기군",
           title: 'Kikun Park(박기군)',
-          description: "PhD. Postdoctoral Researher at SCSC Research Center",
+          description: "PhD. CyberLogitec, Digital Team",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EA%B8%B0%EA%B5%B0/";
             },},{id: "people-gibeom-park-박기범",
