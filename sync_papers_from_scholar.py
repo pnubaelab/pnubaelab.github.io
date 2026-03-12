@@ -9,14 +9,11 @@ Google Scholar에서 2024년 이후 논문을 가져와 papers.bib에 없는 논
     --dry-run: 실제로 파일을 수정하지 않고 추가될 논문만 출력
     --year YEAR: 기준 연도 (기본값: 2024)
     --detail: 상세 정보 가져오기 (느림, 더 정확한 정보)
-    --no-reformat: Copilot CLI로 재형식화하지 않음
 """
 
 import yaml
 import re
 import argparse
-import subprocess
-import shutil
 from pathlib import Path
 from datetime import datetime
 from typing import Optional
@@ -130,23 +127,10 @@ def create_bib_entry(pub: dict) -> str:
     
     # authors가 문자열인 경우 리스트로 변환
     if isinstance(authors, str):
-        if authors:  # 빈 문자열이 아닌 경우에만
-            authors = [a.strip() for a in authors.split(' and ')]
-        else:
-            authors = []
-    
-    # 저자가 없으면 경고 표시
-    if not authors:
-        print(f"  ⚠️  저자 정보 없음: {title[:50]}...")
+        authors = [a.strip() for a in authors.split(' and ')]
     
     venue = bib_fields.get('venue', '') or bib_fields.get('journal', '') or bib_fields.get('conference', '')
     abstract = bib_fields.get('abstract', '')
-    
-    # venue가 없으면 citation 정보에서 추출 시도
-    if not venue:
-        citation = bib_fields.get('citation', '')
-        if citation:
-            venue = citation
     
     # BibTeX 키 생성
     bib_key = generate_bib_key(authors, year, title)
@@ -205,7 +189,6 @@ def fetch_publications_from_scholar(scholar_id: str, min_year: int = 2024, quick
         scholar_id: Google Scholar 저자 ID
         min_year: 최소 연도
         quick_mode: True이면 기본 정보만 사용하여 빠르게 처리 (상세 정보 가져오지 않음)
-                   주의: quick_mode에서는 저자/venue 정보가 부실할 수 있음
     """
     publications = []
     
@@ -218,8 +201,6 @@ def fetch_publications_from_scholar(scholar_id: str, min_year: int = 2024, quick
         # 저자 정보 채우기 (publications 포함)
         print("논문 목록을 가져오는 중...")
         author = scholarly.fill(author, sections=['publications'])
-        
-        author_name = author.get('name', '')  # 저자 이름 저장 (fallback용)
         
         total_pubs = len(author.get('publications', []))
         print(f"총 {total_pubs}개의 논문 발견")
@@ -239,56 +220,23 @@ def fetch_publications_from_scholar(scholar_id: str, min_year: int = 2024, quick
         print(f"{min_year}년 이후 논문 후보: {len(candidate_pubs)}개")
         
         if quick_mode:
-            # Quick 모드에서도 각 논문의 상세 정보를 가져옴 (저자/venue 확보를 위해)
-            print("논문 상세 정보를 가져오는 중...")
-            for i, pub in enumerate(candidate_pubs):
-                try:
-                    title = pub.get('bib', {}).get('title', 'Unknown')[:50]
-                    print(f"  [{i+1}/{len(candidate_pubs)}] {title}...")
-                    
-                    # 상세 정보 가져오기 시도
-                    pub_filled = scholarly.fill(pub)
-                    
-                    # 저자 정보가 없으면 저자 이름으로 대체
-                    bib = pub_filled.get('bib', {})
-                    if not bib.get('author'):
-                        bib['author'] = author_name
-                        pub_filled['bib'] = bib
-                    
-                    publications.append(pub_filled)
-                    print(f"    -> 완료")
-                except Exception as e:
-                    print(f"    -> 오류 발생: {e}")
-                    # 오류 시에도 저자 이름 추가하여 저장
-                    bib = pub.get('bib', {})
-                    if not bib.get('author'):
-                        bib['author'] = author_name
-                        pub['bib'] = bib
-                    publications.append(pub)
+            # Quick 모드: 기본 정보만 사용
+            print("Quick 모드: 기본 정보만 사용합니다.")
+            for pub in candidate_pubs:
+                publications.append(pub)
         else:
-            # 상세 모드: 각 논문의 상세 정보 가져오기 (동일)
+            # 상세 모드: 각 논문의 상세 정보 가져오기
             print("상세 모드: 각 논문의 상세 정보를 가져옵니다...")
             for i, pub in enumerate(candidate_pubs):
                 try:
                     title = pub.get('bib', {}).get('title', 'Unknown')[:50]
                     print(f"  [{i+1}/{len(candidate_pubs)}] {title}...")
                     pub_filled = scholarly.fill(pub)
-                    
-                    # 저자 정보가 없으면 저자 이름으로 대체
-                    bib = pub_filled.get('bib', {})
-                    if not bib.get('author'):
-                        bib['author'] = author_name
-                        pub_filled['bib'] = bib
-                    
                     publications.append(pub_filled)
                     print(f"    -> 완료")
                 except Exception as e:
                     print(f"    -> 오류 발생 (기본 정보 사용): {e}")
-                    bib = pub.get('bib', {})
-                    if not bib.get('author'):
-                        bib['author'] = author_name
-                        pub['bib'] = bib
-                    publications.append(pub)
+                    publications.append(pub)  # 오류 시 기본 정보 사용
         
     except Exception as e:
         print(f"Google Scholar 접근 중 오류 발생: {e}")
@@ -325,245 +273,6 @@ def append_to_bib(bib_path: str, new_entries: list[str]):
             f.write("\n\n")
 
 
-def check_copilot_cli_available() -> bool:
-    """Copilot CLI가 설치되어 있는지 확인"""
-    return shutil.which('copilot') is not None
-
-
-def reformat_bib_entry_with_copilot(bib_entry: str) -> str:
-    """
-    Copilot CLI를 사용하여 단일 BibTeX 엔트리를 재형식화
-    - level, abbr, keywords 필드를 필수로 추가
-    - 기존 형식과 일치하도록 정리
-    
-    Args:
-        bib_entry: 재형식화할 BibTeX 엔트리 문자열
-        
-    Returns:
-        재형식화된 BibTeX 엔트리 문자열 (실패 시 원본 반환)
-    """
-    if not check_copilot_cli_available():
-        return bib_entry
-    
-    print("  🔄 Copilot CLI로 엔트리 재형식화 중...")
-
-    # Copilot CLI 프롬프트 생성
-    prompt = f"""다음 BibTeX 엔트리를 재형식화해줘. 반드시 BibTeX 형식의 결과만 출력해:
-
-{bib_entry}
-
-다음 규칙을 적용해:
-1. level 필드 추가 (venue/journal 기반 추론):
-   - IEEE Transactions, Nature, Science 계열 -> SCI
-   - IEEE Access, MDPI 저널 -> SCOPUS
-   - arXiv, SSRN -> Arxiv
-   - INFORMS, BPM, ICIS 등 국제학회 -> International Conference
-   - 국내 학회 및 기타 -> Domestic Conference
-
-2. abbr 필드 추가 (저널/학회 약어):
-   - IEEE Transactions on Pattern Analysis and Machine Intelligence -> TPAMI
-   - Transportation Research Part D -> TRD
-   - 등 일반적인 약어 사용
-
-3. keywords 필드:
-   - 'TODO'가 있거나 없으면 제목과 abstract에서 키워드 5-7개 추출
-   - 쉼표로 구분
-
-4. 들여쓰기는 2칸 스페이스
-5. level과 abbr은 title 앞에 위치
-
-재형식화된 BibTeX 엔트리만 출력해 (설명 없이):"""
-
-    try:
-        import tempfile
-        
-        # 임시 파일에 결과를 저장하도록 요청
-        cmd = [
-            'copilot', '-p', prompt,
-            '--json'
-        ]
-        
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=60
-        )
-        
-        if result.returncode == 0 and result.stdout:
-            output = result.stdout.strip()
-            
-            # JSON 형식에서 응답 추출 시도
-            try:
-                import json
-                response = json.loads(output)
-                if isinstance(response, dict) and 'message' in response:
-                    output = response['message']
-            except:
-                pass
-            
-            # BibTeX 엔트리 추출 (@ 로 시작하는 부분)
-            if '@' in output:
-                # @ 부터 마지막 } 까지 추출
-                start_idx = output.find('@')
-                # 중괄호 매칭으로 끝 찾기
-                brace_count = 0
-                end_idx = start_idx
-                for i, char in enumerate(output[start_idx:], start_idx):
-                    if char == '{':
-                        brace_count += 1
-                    elif char == '}':
-                        brace_count -= 1
-                        if brace_count == 0:
-                            end_idx = i + 1
-                            break
-                
-                if end_idx > start_idx:
-                    reformatted = output[start_idx:end_idx]
-                    print("    ✅ 재형식화 완료")
-                    return reformatted
-            
-            print("    ⚠️  유효한 BibTeX 형식을 찾지 못함")
-            return bib_entry
-        else:
-            print(f"    ⚠️  Copilot 응답 없음")
-            return bib_entry
-            
-    except subprocess.TimeoutExpired:
-        print("    ⚠️  Copilot CLI 타임아웃")
-        return bib_entry
-    except Exception as e:
-        print(f"    ⚠️  Copilot CLI 오류: {e}")
-        return bib_entry
-
-
-def reformat_entries_with_copilot(entries: list[str]) -> list[str]:
-    """
-    여러 BibTeX 엔트리를 Copilot CLI로 재형식화
-    
-    Args:
-        entries: BibTeX 엔트리 문자열 리스트
-        
-    Returns:
-        재형식화된 BibTeX 엔트리 리스트
-    """
-    if not check_copilot_cli_available():
-        print("⚠️  Copilot CLI가 설치되어 있지 않습니다.")
-        return entries
-    
-    print("\n🔄 Copilot CLI로 BibTeX 엔트리 재형식화 중...")
-    
-    reformatted_entries = []
-    for i, entry in enumerate(entries):
-        print(f"\n[{i+1}/{len(entries)}] 엔트리 처리 중...")
-        reformatted = reformat_bib_entry_with_copilot(entry)
-        reformatted_entries.append(reformatted)
-    
-    return reformatted_entries
-
-
-def infer_level_and_abbr(entry_text: str) -> tuple[str, str]:
-    """venue/journal/booktitle에서 level과 abbr 추론"""
-    entry_lower = entry_text.lower()
-    
-    # SCI 저널들
-    sci_journals = [
-        ('ieee transactions', 'SCI', 'IEEE Trans'),
-        ('transportation research part d', 'SCI', 'TRD'),
-        ('transportation research part e', 'SCI', 'TRE'),
-        ('transportation research part a', 'SCI', 'TRA'),
-        ('transportation research part b', 'SCI', 'TRB'),
-        ('transportation research part c', 'SCI', 'TRC'),
-        ('maritime transport research', 'SCI', 'MARTRA'),
-        ('expert systems with applications', 'SCI', 'ESWA'),
-        ('computers in industry', 'SCI', 'CII'),
-        ('ieee tpami', 'SCI', 'IEEE TPAMI'),
-        ('pattern analysis and machine intelligence', 'SCI', 'IEEE TPAMI'),
-        ('ocean engineering', 'SCI', 'OE'),
-        ('applied ocean research', 'SCI', 'AOR'),
-    ]
-    
-    # SCOPUS 저널들
-    scopus_journals = [
-        ('ieee access', 'SCOPUS', 'IEEE Access'),
-        ('sustainability', 'SCOPUS', 'Sustainability'),
-        ('sensors', 'SCOPUS', 'Sensors'),
-        ('applied sciences', 'SCOPUS', 'Appl. Sci.'),
-    ]
-    
-    # Arxiv/프리프린트
-    arxiv_sources = [
-        ('arxiv', 'Arxiv', 'arXiv'),
-        ('ssrn', 'Arxiv', 'SSRN'),
-    ]
-    
-    # 국제 학회
-    int_conferences = [
-        ('informs', 'International Conference', 'INFORMS'),
-        ('bpm 20', 'International Conference', 'BPM'),
-        ('icis', 'International Conference', 'ICIS'),
-        ('icicic', 'International Conference', 'ICICIC'),
-        ('ieem', 'International Conference', 'IEEM'),
-        ('apms', 'International Conference', 'APMS'),
-    ]
-    
-    # 순서대로 매칭
-    for keyword, level, abbr in sci_journals + scopus_journals + arxiv_sources + int_conferences:
-        if keyword in entry_lower:
-            return level, abbr
-    
-    # 기본값
-    if 'conference' in entry_lower or 'proceedings' in entry_lower or 'workshop' in entry_lower:
-        return 'International Conference', 'Conf'
-    elif 'journal' in entry_lower:
-        return 'Journal', 'Journal'
-    
-    return 'Unknown', 'Unknown'
-
-
-def add_required_fields_to_entry(entry: str) -> str:
-    """
-    단일 BibTeX 엔트리에 필수 필드(level, abbr, keywords) 추가
-    
-    Args:
-        entry: BibTeX 엔트리 문자열
-        
-    Returns:
-        필수 필드가 추가된 BibTeX 엔트리 문자열
-    """
-    lines = entry.split('\n')
-    new_lines = []
-    
-    # level, abbr 추론
-    level, abbr = infer_level_and_abbr(entry)
-    
-    entry_lower = entry.lower()
-    has_level = 'level' in entry_lower
-    has_abbr = 'abbr' in entry_lower
-    has_keywords = 'keywords' in entry_lower
-    
-    for i, line in enumerate(lines):
-        new_lines.append(line)
-        
-        # @ 라인 다음에 level, abbr 추가
-        if line.strip().startswith('@') and '{' in line:
-            if not has_level:
-                new_lines.append(f'  level = {{{level}}},')
-            if not has_abbr:
-                new_lines.append(f'  abbr = {{{abbr}}},')
-    
-    # keywords가 없으면 마지막 } 전에 추가
-    if not has_keywords:
-        result_lines = []
-        for i, line in enumerate(new_lines):
-            if line.strip() == '}' and i == len(new_lines) - 1:
-                result_lines.append('  keywords = {TODO: Add keywords},')
-            result_lines.append(line)
-        new_lines = result_lines
-    
-    return '\n'.join(new_lines)
-
-
 def main():
     parser = argparse.ArgumentParser(
         description='Google Scholar에서 논문을 가져와 papers.bib에 추가'
@@ -576,8 +285,8 @@ def main():
     parser.add_argument(
         '--year',
         type=int,
-        default=2026,
-        help='기준 연도 (기본값: 2026)'
+        default=2024,
+        help='기준 연도 (기본값: 2024)'
     )
     parser.add_argument(
         '--scholar-id',
@@ -593,11 +302,6 @@ def main():
         '--use-proxy',
         action='store_true',
         help='프록시 사용 (rate limiting 우회)'
-    )
-    parser.add_argument(
-        '--no-reformat',
-        action='store_true',
-        help='Copilot CLI로 재형식화하지 않음'
     )
     
     args = parser.parse_args()
@@ -661,24 +365,10 @@ def main():
             print(entry)
             print()
     else:
-        # Copilot CLI로 재형식화 (파일 추가 전에 수행)
-        if not args.no_reformat:
-            print("\n📝 BibTeX 엔트리 재형식화 시작...")
-            
-            if check_copilot_cli_available():
-                # Copilot CLI로 각 엔트리 재형식화
-                new_entries = reformat_entries_with_copilot(new_entries)
-            else:
-                print("\n💡 Copilot CLI가 설치되어 있지 않습니다.")
-                print("   수동으로 필수 필드를 추가합니다...")
-                # 수동으로 기본 필드 추가
-                new_entries = [add_required_fields_to_entry(entry) for entry in new_entries]
-        
         # 파일에 추가
         append_to_bib(bib_path, new_entries)
         print(f"\n{len(new_entries)}개의 논문이 {bib_path}에 추가되었습니다.")
-        
-        print("\n✅ 완료! 추가된 논문들을 검토하고 필요시 수정해주세요.")
+        print("추가된 논문들을 검토하고 필요시 수정해주세요.")
 
 
 if __name__ == '__main__':
