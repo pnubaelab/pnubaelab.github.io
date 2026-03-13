@@ -5,6 +5,7 @@
   "threshold": 0.72,
   "topk": 8,
   "similarities": {
+    "kw:Domain adaptation": [],
     "kw:Container dwell time prediction": [
       [
         "kw:Container volume prediction",
