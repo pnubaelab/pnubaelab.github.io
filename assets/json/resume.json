@@ -6,7 +6,7 @@
     "email": "hrbae@pusan.ac.kr",
     "phone": "+82-51-510-2733",
     "url": "https://baelab.pusan.ac.kr",
-    "summary": "Professor of Industrial Engineering and Dean of the Graduate School of Data Science at Pusan National University, leading the Big Data Analytics and Engineering Lab.",
+    "summary": "Professor of Industrial Engineering, leading the Big Data Analytics and Engineering Lab.",
     "location": {
       "address": "Pusan National University, Jangjeon‑dong, Geumjeong‑gu, Busan",
       "postalCode": "46241",
@@ -24,10 +24,24 @@
   },
   "work": [
     {
+      "name": "대통령직속 국가과학기술자문회의 공공해양환경전문위원회 / Public Marine Environment Expert Committee, Presidential Advisory Council of Science and Technology",
+      "position": "위원 / Committee Member",
+      "url": "https://www.pacst.go.kr/jsp/council/councilList.jsp?category_cd=4&group_id=152",
+      "startDate": "2025-01-01",
+      "endDate": "Now"
+    },
+    {
+      "name": "제1기 가덕도신공항건설공단 정보화위원회 / First Gadeokdo New Airport Construction Authority Informatization Committee",
+      "position": "위원 / Committee Member",
+      "url":"https://g-airport.or.kr/kor/index.do",
+      "startDate": "2025-01-01",
+      "endDate": "Now"
+    },
+    {
       "name": "Symposium on Computational Intelligence",
       "position": "International Program Committee Member",
       "url": "http://www.icicconference.org/sci2025/",
-      "startDate": "2025-09-23",
+      "startDate": "2025-05-01",
       "endDate": "Now"
     },
     {
@@ -56,7 +70,7 @@
       "position": "원장 / Dean",
       "url": "https://baelab.pusan.ac.kr/baelab/63122/subview.do",
       "startDate": "2024-03-01",
-      "endDate": "Now"
+      "endDate": "2026-02-28"
     },
     {
       "name": "부산대학교 산업공학과 / Pusan National University, Department of Industrial Engineering",
