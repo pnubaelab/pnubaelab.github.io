@@ -10,11 +10,11 @@ horizontal: false
 
 <div class="projects">
   {% assign projects = site.projects | where: "category", "projects" %}
-  {% assign sorted_projects = projects | sort: "start_date" | reverse %}
+  {% assign sorted_projects = projects | sort: "end_date" | reverse %}
 
   {% assign year = '' %}
   {% for project in sorted_projects %}
-    {% assign current_year = project.start_date | date: '%Y' %}
+    {% assign current_year = project.end_date | date: '%Y' %}
     {% if current_year == '' %}{% assign current_year = 'Unknown' %}{% endif %}
 
     {% if current_year != year %}
