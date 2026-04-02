@@ -1000,6 +1000,12 @@ ninja.data = [{
               window.location.href = "/photo/2026%EC%B6%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D3/";
             },},{id: "projects-",
           title: '',
+          description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
+          section: "Projects",},{id: "projects-",
+          title: '',
+          description: "프로세스 마이닝을 활용한 고객 사용 패턴 기반 개인화 스마트 운전 로직 개발, LG전자",
+          section: "Projects",},{id: "projects-",
+          title: '',
           description: "레이더 무기체계 주요 구성품의 CBM+ 솔루션 알고리즘 개발",
           section: "Projects",},{id: "projects-",
           title: '',
