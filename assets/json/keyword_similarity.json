@@ -97,14 +97,16 @@
     "kw:Anomaly detection": [],
     "kw:Ship fuel consumption": [],
     "kw:Maritime sustainability": [],
-    "kw:Maritime Accident": [
+    "kw:Maritime accidents": [
       [
         "kw:Maritime safety",
-        0.75
+        0.7273
       ]
     ],
-    "kw:Prompt Engineering": [],
-    "kw:Severity Prediction": [],
+    "kw:Risk mapping": [],
+    "kw:Accident severity": [],
+    "kw:XAI": [],
+    "kw:SHAP": [],
     "kw:Genetic algorithm": [],
     "kw:Port operations": [],
     "kw:EDI data": [
@@ -168,7 +170,6 @@
       ]
     ],
     "kw:Feature selection": [],
-    "kw:SHAP": [],
     "kw:Manufacturing": [
       [
         "kw:Smart manufacturing",
@@ -322,8 +323,8 @@
     ],
     "kw:Maritime safety": [
       [
-        "kw:Maritime Accident",
-        0.75
+        "kw:Maritime accidents",
+        0.7273
       ]
     ],
     "kw:Logistics": [
