@@ -798,11 +798,36 @@ ninja.data = [{
           description: "ZPMC, Shanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%A4%91%EA%B5%ADZPMC%EB%AF%B8%ED%8C%85/";
+            },},{id: "photo-2024상하이",
+          title: '2024상하이',
+          description: "ZPMC, Shanghai, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024%EC%83%81%ED%95%98%EC%9D%B4/";
+            },},{id: "photo-2024상하이",
+          title: '2024상하이',
+          description: "ZPMC, Shanghai, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024%EC%83%81%ED%95%98%EC%9D%B42/";
             },},{id: "photo-2024년중국관광",
           title: '2024년중국관광',
           description: "Workshop, Shanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%A4%91%EA%B5%AD%EA%B4%80%EA%B4%91/";
+            },},{id: "photo-2024상하이3",
+          title: '2024상하이3',
+          description: "ZPMC, Shanghai, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024%EC%83%81%ED%95%98%EC%9D%B43/";
+            },},{id: "photo-2025졸업식",
+          title: '2025졸업식',
+          description: "2025년 졸업식, PNU, PUSAN, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%9D%B4%EA%B0%80%EC%9B%90%EC%A1%B8%EC%97%85%EC%8B%9D1/";
+            },},{id: "photo-2025졸업식",
+          title: '2025졸업식',
+          description: "송별회, 정성육회, PUSAN, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%9D%B4%EA%B0%80%EC%9B%90%EC%A1%B8%EC%97%85%EC%8B%9D2/";
             },},{id: "photo-2025년배랩단합대회",
           title: '2025년배랩단합대회',
           description: "2025년 BAELAB 단합대회",
@@ -837,12 +862,22 @@ ninja.data = [{
           title: '2025춘계산업공학회학술대회',
           description: "2025년춘계산업공학회, Jeju, Korea",
           section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EC%B6%98%EA%B3%84_%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
+            },},{id: "photo-2025춘계산업공학회학술대회",
+          title: '2025춘계산업공학회학술대회',
+          description: "2025년춘계산업공학회, Jeju, Korea",
+          section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C2/";
             },},{id: "photo-2025춘계산업공학회학술대회",
           title: '2025춘계산업공학회학술대회',
           description: "2025년춘계산업공학회, Jeju, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C3/";
+            },},{id: "photo-2025춘계산업공학회",
+          title: '2025춘계산업공학회',
+          description: "춘계산업공학회, JEJU, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C1/";
             },},{id: "photo-2025은퇴식",
           title: '2025은퇴식',
           description: "낙양, Busan, Korea",
@@ -863,6 +898,11 @@ ninja.data = [{
           description: "ICPR28,Chía, Colombia",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%BD%9C%EB%A1%AC%EB%B9%84%EC%95%843/";
+            },},{id: "photo-2025춘계산업공학회1",
+          title: '2025춘계산업공학회1',
+          description: "2025 롯데 멸망의 시발점",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%A1%AF%EB%8D%B0%EB%A7%9D%ED%95%B4%EB%9D%BC/";
             },},{id: "photo-2025년-icicic",
           title: '2025년 ICICIC',
           description: "ICICIC2025,Kitakyushu,Japan",
@@ -908,6 +948,16 @@ ninja.data = [{
           description: "BPM, Seville, Spain",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%8A%A4%ED%8E%98%EC%9D%B8/";
+            },},{id: "photo-2025년9월회식",
+          title: '2025년9월회식',
+          description: "장전역, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%ED%9A%8C%EC%8B%9D/";
+            },},{id: "photo-2025년9월회식",
+          title: '2025년9월회식',
+          description: "장전역, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%ED%9A%8C%EC%8B%9D2/";
             },},{id: "photo-2025년연구실-단체축구-후-회식",
           title: '2025년연구실 단체축구 후 회식',
           description: "Soccer, 북구, Busan, Korea",
@@ -943,6 +993,11 @@ ninja.data = [{
           description: "SCI2025, Jinan, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025SCI2/";
+            },},{id: "photo-2025년9월회식",
+          title: '2025년9월회식',
+          description: "민재 ShowCase, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%AF%BC%EC%9E%ACShowCase/";
             },},{id: "photo-2025년-ieee-bigdata",
           title: '2025년 IEEE BIGDATA',
           description: "IEEE BIGDATA 2025, Macau SAR, China",
@@ -958,6 +1013,11 @@ ninja.data = [{
           description: "IEEE BIGDATA 2025, Macau SAR, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025IEEEBIGDATA3/";
+            },},{id: "photo-2025망년회",
+          title: '2025망년회',
+          description: "호우양꼬치, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%EB%85%84%EB%A7%9D%EB%85%84%ED%9A%8C/";
             },},{id: "photo-2025년-송년회",
           title: '2025년 송년회',
           description: "호우양꼬치, Busandaehak-ro , Busan, Korea",
