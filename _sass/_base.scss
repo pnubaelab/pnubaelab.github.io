@@ -39,10 +39,32 @@
     font-display: swap;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+@font-face {
+    font-family: 'A2z';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-4Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+  font-family: 'A2z';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'A2z';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-8ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
 
 // Typography
 
+body {
+  font-family: 'A2z', sans-serif;
+}
 
 
 p,
@@ -57,17 +79,19 @@ li,
 span,
 strong {
   color: var(--global-text-color);
-  font-family:  'Pretendard', sans-serif;
+  font-family: 'A2z', sans-serif;
 }
 
 strong {
   color: var(--global-theme-color);
-  font-family:  'PretendardBd',"Ma Shan Zheng", sans-serif;
+  font-family: 'A2z', sans-serif;
+  font-weight: 700;
 }
 
 h1 {
   color: var(--global-text-color);
-  font-family:  'KorailJang',"Ma Shan Zheng", sans-serif;
+  font-family: 'A2z', sans-serif;
+  font-weight: 800;
 }
 
 hr {
