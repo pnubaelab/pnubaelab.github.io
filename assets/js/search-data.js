@@ -828,6 +828,11 @@ ninja.data = [{
           description: "송별회, 정성육회, PUSAN, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%9D%B4%EA%B0%80%EC%9B%90%EC%A1%B8%EC%97%85%EC%8B%9D2/";
+            },},{id: "photo-해동용궁사",
+          title: '해동용궁사',
+          description: "Haedong Yonggung Temple(海東龍宮寺), Gijang-gun, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%AC%BC%EB%A5%98%ED%95%AD%EB%A7%8C%EC%84%B8%EB%AF%B8%EB%82%98%20copy/";
             },},{id: "photo-2025년배랩단합대회",
           title: '2025년배랩단합대회',
           description: "2025년 BAELAB 단합대회",
@@ -878,6 +883,11 @@ ninja.data = [{
           description: "춘계산업공학회, JEJU, KOREA",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EC%B6%98%EA%B3%84%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C1/";
+            },},{id: "photo-수출입-물류-항만-내륙-연계-기술-개발-사업-워크숍",
+          title: '수출입 물류 항만-내륙 연계 기술 개발 사업 워크숍',
+          description: "수출입 물류 항만-내륙 연계 기술 개발 사업 워크숍",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%AC%BC%EB%A5%98%ED%95%AD%EB%A7%8C%EC%84%B8%EB%AF%B8%EB%82%98/";
             },},{id: "photo-2025은퇴식",
           title: '2025은퇴식',
           description: "낙양, Busan, Korea",
@@ -903,6 +913,11 @@ ninja.data = [{
           description: "2025 롯데 멸망의 시발점",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EB%A1%AF%EB%8D%B0%EB%A7%9D%ED%95%B4%EB%9D%BC/";
+            },},{id: "photo-롯데-야구",
+          title: '롯데 야구',
+          description: "야구관람, Sajik-ro, Dongnae-gu, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%A1%AF%EB%8D%B0%EC%95%BC%EA%B5%AC%EA%B4%80%EB%9E%8C/";
             },},{id: "photo-2025년-icicic",
           title: '2025년 ICICIC',
           description: "ICICIC2025,Kitakyushu,Japan",
@@ -1043,6 +1058,21 @@ ninja.data = [{
           description: "AAAI 2026, SINGEX, Singapore",
           section: "Photo",handler: () => {
               window.location.href = "/photo/AAAI20264/";
+            },},{id: "photo-김예린-박사과정-결혼식",
+          title: '김예린 박사과정 결혼식',
+          description: "김예린, Wedding, Pohang",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%98%88%EB%A6%B0%EC%84%A0%EB%B0%B0%EA%B2%B0%ED%98%BC%EC%8B%9D1/";
+            },},{id: "photo-김예린-박사과정-결혼식",
+          title: '김예린 박사과정 결혼식',
+          description: "김예린, Wedding, Pohang",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%98%88%EB%A6%B0%EC%84%A0%EB%B0%B0%EA%B2%B0%ED%98%BC%EC%8B%9D2/";
+            },},{id: "photo-김예린-박사과정-결혼식",
+          title: '김예린 박사과정 결혼식',
+          description: "김예린, Wedding, Pohang",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%98%88%EB%A6%B0%EC%84%A0%EB%B0%B0%EA%B2%B0%ED%98%BC%EC%8B%9D3/";
             },},{id: "photo-2026춘계졸업식1",
           title: '2026춘계졸업식1',
           description: "2026년 2월 졸업식, BUSAN, KOREA",
