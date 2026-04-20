@@ -723,6 +723,16 @@ ninja.data = [{
           description: "LOGMS 2023 부산",
           section: "Photo",handler: () => {
               window.location.href = "/photo/logmsinbusan20232/";
+            },},{id: "photo-2023년-logms",
+          title: '2023년 LOGMS',
+          description: "LOGMS2023, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2023LOGMS26/";
+            },},{id: "photo-2023년-한국지능정보시스템학회",
+          title: '2023년 한국지능정보시스템학회',
+          description: "한국지능정보시스템학회, JNU ,JeJu, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2023%ED%95%9C%EA%B5%AD%EC%A7%80%EB%8A%A5%EC%A0%95%EB%B3%B4%EC%82%AC%EC%8A%A4%ED%85%9C%ED%95%99%ED%9A%8C/";
             },},{id: "photo-2024홈커밍데이",
           title: '2024홈커밍데이',
           description: "2024.03 홈커밍데이",
@@ -813,6 +823,11 @@ ninja.data = [{
           description: "Workshop, Shanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%A4%91%EA%B5%AD%EA%B4%80%EA%B4%91/";
+            },},{id: "photo-2024상하이4",
+          title: '2024상하이4',
+          description: "ZPMC, Shanghai, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024%EC%83%81%ED%95%98%EC%9D%B43%20copy/";
             },},{id: "photo-2024상하이3",
           title: '2024상하이3',
           description: "ZPMC, Shanghai, China",
@@ -908,6 +923,11 @@ ninja.data = [{
           description: "ICPR28,Chía, Colombia",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%BD%9C%EB%A1%AC%EB%B9%84%EC%95%843/";
+            },},{id: "photo-야구관람",
+          title: '야구관람',
+          description: "야구관람",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%A1%AF%EB%8D%B0%EB%A7%9D%ED%95%B4%EB%9D%BC%20copy/";
             },},{id: "photo-2025춘계산업공학회1",
           title: '2025춘계산업공학회1',
           description: "2025 롯데 멸망의 시발점",
