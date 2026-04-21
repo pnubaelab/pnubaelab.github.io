@@ -560,7 +560,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%A1%B0%EC%83%81%EB%AF%BC/";
             },},{id: "people-suhyeon-jo-조수현",
           title: 'Suhyeon Jo(조수현)',
-          description: "M.S.",
+          description: "M.S. Kongsberg Maritime Korea",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A1%B0%EC%88%98%ED%98%84/";
             },},{id: "people-hyungtae-jo-조형태",
