@@ -1113,6 +1113,11 @@ ninja.data = [{
           description: "교수님 생신",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026Birthday/";
+            },},{id: "photo-2024년연구실-풋살",
+          title: '2024년연구실 풋살',
+          description: "Soccer, 북구, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%97%B0%EA%B5%AC%EC%8B%A4%EC%B6%95%EA%B5%AC/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
