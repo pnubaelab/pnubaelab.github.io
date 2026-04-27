@@ -1118,6 +1118,16 @@ ninja.data = [{
           description: "Soccer, 북구, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%97%B0%EA%B5%AC%EC%8B%A4%EC%B6%95%EA%B5%AC/";
+            },},{id: "photo-민섭선배-생일",
+          title: '민섭선배 생일',
+          description: "Happy Birthday!!!",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%AF%BC%EC%84%AD%EC%84%A0%EB%B0%B0_%EC%83%9D%EC%9D%BC/";
+            },},{id: "photo-민섭선배-생일",
+          title: '민섭선배 생일',
+          description: "Happy Birthday!!!",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%AF%BC%EC%84%AD%EC%84%A0%EB%B0%B0_%EC%83%9D%EC%9D%BC2/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
