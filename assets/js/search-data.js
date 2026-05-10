@@ -1128,6 +1128,31 @@ ninja.data = [{
           description: "Happy Birthday!!!",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EB%AF%BC%EC%84%AD%EC%84%A0%EB%B0%B0_%EC%83%9D%EC%9D%BC2/";
+            },},{id: "photo-2026년배랩단합대회-1",
+          title: '2026년배랩단합대회_1',
+          description: "2026년 BAELAB 단합대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C%20copy%202/";
+            },},{id: "photo-2026년배랩단합대회-1",
+          title: '2026년배랩단합대회_1',
+          description: "2026년 BAELAB 단합대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C%20copy%203/";
+            },},{id: "photo-2026년배랩단합대회-1",
+          title: '2026년배랩단합대회_1',
+          description: "2026년 BAELAB 단합대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C%20copy%204/";
+            },},{id: "photo-2026년배랩단합대회-1",
+          title: '2026년배랩단합대회_1',
+          description: "2026년 BAELAB 단합대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C%20copy/";
+            },},{id: "photo-2026년배랩단합대회-1",
+          title: '2026년배랩단합대회_1',
+          description: "2026년 BAELAB 단합대회",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
