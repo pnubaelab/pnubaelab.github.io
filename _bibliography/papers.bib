@@ -1,3 +1,18 @@
+@misc{park2026loopusrecastingpretrainedllms,
+      level = {Arxiv},
+      abbr={arXiv},
+      title={LoopUS: Recasting Pretrained LLMs into Looped Latent Refinement Models}, 
+      author={Park, Taekhyun and Lee, Yongjae and Kim, Dohee and Bae, Hyerim},
+      year={2026},
+      keywords={Looped computation, Large language models, Post-training framework, Latent-refinement architecture, Selective gate, Random deep supervision, Confidence head},
+      doi={https://doi.org/10.48550/arXiv.2605.11011},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      arxiv={2605.11011},
+      html={https://thrillcrazyer.github.io/LoopUS}, 
+      abstract={Looped computation shows promise in improving the reasoning-oriented performance of LLMs by scaling test-time compute. However, existing approaches typically require either training recurrent models from scratch or applying disruptive retrofits, which involve substantial computational costs and may compromise pretrained capabilities. To address these limitations, we introduce \textbf{Looped Depth Up-Scaling} (LoopUS), a post-training framework that converts a standard pretrained LLM into a looped architecture. As a key technical contribution, LoopUS recasts the pretrained LLM into an encoder, a looped reasoning block, and a decoder. It operationalizes this latent-refinement architecture through four core components: (1) block decomposition, guided by staged representation dynamics; (2) an input-dependent selective gate to mitigate hidden-state drift; (3) random deep supervision for memory-efficient learning over long recursive horizons; and (4) a confidence head for adaptive early exiting. Collectively, these mechanisms transform a standard non-looped model into a looped form while stabilizing it against both computational bottlenecks and representation collapse. Through stable latent looping, LoopUS improves reasoning-oriented performance without extending the generated traces or requiring recurrent training from scratch.},
+}
+
 @misc{choo2026domainadaptivehealthindicatorlearning,
       level = {Arxiv},
       abbr={arXiv},

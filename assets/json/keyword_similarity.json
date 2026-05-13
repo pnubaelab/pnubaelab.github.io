@@ -5,6 +5,12 @@
   "threshold": 0.72,
   "topk": 8,
   "similarities": {
+    "kw:Large language models": [
+      [
+        "kw:Large Language Model",
+        0.9756
+      ]
+    ],
     "kw:Domain adaptation": [],
     "kw:Container dwell time prediction": [
       [
@@ -25,7 +31,12 @@
       ]
     ],
     "kw:Generative AI": [],
-    "kw:Large Language Model": [],
+    "kw:Large Language Model": [
+      [
+        "kw:Large language models",
+        0.9756
+      ]
+    ],
     "kw:Operational efficiency": [],
     "kw:Process mining": [
       [
