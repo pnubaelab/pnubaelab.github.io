@@ -41,8 +41,8 @@
 
 @font-face {
     font-family: 'A2z';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-4Regular.woff2') format('woff2');
-    font-weight: 400;
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2') format('woff2');
+    font-weight: 300;
     font-display: swap;
 }
 
@@ -80,6 +80,7 @@ span,
 strong {
   color: var(--global-text-color);
   font-family: 'A2z', sans-serif;
+  font-weight: 300;
 }
 
 strong {
