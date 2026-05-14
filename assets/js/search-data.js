@@ -395,7 +395,7 @@ ninja.data = [{
               window.location.href = "/people/%EB%B0%95%EA%B8%B0%EB%B2%94/";
             },},{id: "people-daesan-park-박대산",
           title: 'Daesan Park(박대산)',
-          description: "M.S",
+          description: "M.S. PhD course at Pennsylvania State University.",
           section: "People",handler: () => {
               window.location.href = "/people/%EB%B0%95%EB%8C%80%EC%82%B0/";
             },},{id: "people-myeongsoon-park-박명순",
@@ -505,7 +505,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%9D%B4%EC%83%81%EC%9E%AC/";
             },},{id: "people-yongjae-lee-이용재",
           title: 'Yongjae Lee(이용재)',
-          description: "M.S. Research Assistant",
+          description: "M.S. Dr. rer. nat. course at Hasso Plattner Institut.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EC%9A%A9%EC%9E%AC/";
             },},{id: "people-eunju-lee-이은주",
