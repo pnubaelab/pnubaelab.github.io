@@ -58,6 +58,12 @@ $ docker compose pull
 $ docker compose up
 ```
 
+For one-off local builds without depending on the host Ruby toolchain, you can also run:
+
+```bash
+$ ./bin/local-build
+```
+
 Note that when you run it for the first time, it will download a docker image of size 400MB or so. To see the template running, open your browser and go to `http://localhost:8080`. You should see a copy of the theme's demo website.
 
 Now, feel free to customize the theme however you like (don't forget to change the name!). Also, your changes should be automatically rendered in real-time (or maybe after a few seconds).
@@ -118,6 +124,8 @@ For example, when you open the repository with Visual Studio Code (VSCode), it p
 For a hands-on walkthrough of running al-folio locally without using Docker, check out [this cool blog post](https://george-gca.github.io/blog/2022/running-local-al-folio/) by one of the community members!
 
 Assuming you have [Ruby](https://www.ruby-lang.org/en/downloads/) and [Bundler](https://bundler.io/) installed on your system (_hint: for ease of managing ruby gems, consider using [rbenv](https://github.com/rbenv/rbenv)_), and also [Python](https://www.python.org/) and [pip](https://pypi.org/project/pip/) (_hint: for ease of managing python packages, consider using a virtual environment, like [venv](https://docs.python.org/pt-br/3/library/venv.html) or [conda](https://docs.conda.io/en/latest/)_).
+
+Use the repository-pinned Ruby version from `.ruby-version` when setting up your local interpreter. The GitHub Pages build workflow currently uses Ruby `3.3.5`, so older system Rubies can fail before Bundler even starts resolving gems.
 
 ```bash
 $ bundle install
