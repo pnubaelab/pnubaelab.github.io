@@ -18,16 +18,15 @@ layout: default
     <h1 class="post-title">{{ page.title }}</h1>
     <p class="post-meta">
       Created on {{ page.date | date: '%B %d, %Y' }}
-      {%- assign author_field = page.author | default: page.authors -%}
-      {%- if author_field -%}
-        about  
-        {%- assign authors = author_field | arrayify -%}
-        {%- for a in authors -%}
+      {% assign author_field = page.author | default: page.authors %}
+      {% if author_field %}
+        about
+        {% assign authors = author_field | arrayify %}
+        {% for a in authors %}
           {%- assign a_t = a | strip -%}
-          {%- if forloop.index > 1 -%}, {% endif -%}
-          {{- a_t -}}
-        {%- endfor -%}
-      {%- endif -%}
+          {% if forloop.index > 1 %}, {% endif %}{{ a_t }}
+        {% endfor %}
+      {% endif %}
       {% if page.last_updated %}, last updated on {{ page.last_updated | date: '%B %d, %Y' }}{% endif %}
       {% if page.meta %}• {{ page.meta }}{% endif %}
     </p>
