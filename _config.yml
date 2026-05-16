@@ -8,7 +8,6 @@ first_name: Hyerim
 middle_name:
 last_name: Bae
 contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
   BAE Lab at Pusan National University - Advanced research in electrical and electronic engineering, 
   focusing on cutting-edge technologies and innovative solutions for the future.
