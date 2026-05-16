@@ -238,6 +238,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-02-20-%EC%A1%B8%EC%97%85%EC%B6%95%ED%95%98/";
+            },},{id: "news-top-viewed-paper",
+          title: 'Top-Viewed Paper!!!!!',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-05-16-wiley_most_view/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
