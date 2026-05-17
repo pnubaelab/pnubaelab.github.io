@@ -1,9 +1,9 @@
 {
   "nodes": [
     {
-      "id": "Lee, Yongjae",
+      "id": "Park, Taekhyun",
       "group": 1,
-      "value": 10,
+      "value": 8,
       "type": "author"
     },
     {
@@ -13,27 +13,15 @@
       "type": "author"
     },
     {
+      "id": "Lee, Yongjae",
+      "group": 1,
+      "value": 10,
+      "type": "author"
+    },
+    {
       "id": "Bae, Hyerim",
       "group": 1,
       "value": 181,
-      "type": "author"
-    },
-    {
-      "id": "Park, Taekhyun",
-      "group": 1,
-      "value": 8,
-      "type": "author"
-    },
-    {
-      "id": "Lee, Gawon",
-      "group": 1,
-      "value": 7,
-      "type": "author"
-    },
-    {
-      "id": "Park, Hanbyeol",
-      "group": 1,
-      "value": 23,
       "type": "author"
     },
     {
@@ -49,6 +37,18 @@
       "type": "author"
     },
     {
+      "id": "Lee, Gawon",
+      "group": 1,
+      "value": 7,
+      "type": "author"
+    },
+    {
+      "id": "Park, Hanbyeol",
+      "group": 1,
+      "value": 23,
+      "type": "author"
+    },
+    {
       "id": "Kim, Takhyeong",
       "group": 1,
       "value": 2,
@@ -61,15 +61,15 @@
       "type": "author"
     },
     {
-      "id": "Park, Kikun",
-      "group": 1,
-      "value": 23,
-      "type": "author"
-    },
-    {
       "id": "Kwon, Jaeeun",
       "group": 1,
       "value": 6,
+      "type": "author"
+    },
+    {
+      "id": "Park, Kikun",
+      "group": 1,
+      "value": 23,
       "type": "author"
     },
     {
@@ -79,9 +79,9 @@
       "type": "author"
     },
     {
-      "id": "Park, Eunhee",
+      "id": "Kim, Dongho",
       "group": 1,
-      "value": 2,
+      "value": 1,
       "type": "author"
     },
     {
@@ -97,27 +97,15 @@
       "type": "author"
     },
     {
-      "id": "Kim, Dongho",
+      "id": "Park, Eunhee",
       "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
-      "id": "Kim, Taehyeon",
-      "group": 1,
-      "value": 1,
+      "value": 2,
       "type": "author"
     },
     {
       "id": "Jo, Sangmin",
       "group": 1,
       "value": 7,
-      "type": "author"
-    },
-    {
-      "id": "Yu, Jihyeon",
-      "group": 1,
-      "value": 1,
       "type": "author"
     },
     {
@@ -133,7 +121,13 @@
       "type": "author"
     },
     {
-      "id": "Lee, Jeahoon",
+      "id": "Kim, Taehyeon",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Yu, Jihyeon",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -146,6 +140,12 @@
     },
     {
       "id": "Kim, Younghwi",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Lee, Jeahoon",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -235,13 +235,13 @@
       "type": "author"
     },
     {
-      "id": "Koo, Yohan",
+      "id": "Noh, Taeeon",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Noh, Taeeon",
+      "id": "Koo, Yohan",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -289,6 +289,12 @@
       "type": "author"
     },
     {
+      "id": "Kim, Jae-Sung",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
       "id": "Kang, Eung-Jun",
       "group": 1,
       "value": 1,
@@ -301,6 +307,12 @@
       "type": "author"
     },
     {
+      "id": "Park, Yong-Min",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
       "id": "Park, Sa-Eun",
       "group": 1,
       "value": 1,
@@ -308,18 +320,6 @@
     },
     {
       "id": "Park, Min-Ji",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
-      "id": "Park, Yong-Min",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
-      "id": "Kim, Jae-Sung",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -391,27 +391,15 @@
       "type": "author"
     },
     {
-      "id": "Kim, Hyemee",
-      "group": 1,
-      "value": 7,
-      "type": "author"
-    },
-    {
       "id": "Adi, Taufik Nur",
       "group": 1,
       "value": 11,
       "type": "author"
     },
     {
-      "id": "Sutrisnowati, Riska Asriana",
+      "id": "Kim, Hyemee",
       "group": 1,
-      "value": 12,
-      "type": "author"
-    },
-    {
-      "id": "Won, Seokrae",
-      "group": 1,
-      "value": 2,
+      "value": 7,
       "type": "author"
     },
     {
@@ -421,15 +409,27 @@
       "type": "author"
     },
     {
-      "id": "Iskandar, Yelita Anggiane",
+      "id": "Won, Seokrae",
       "group": 1,
-      "value": 4,
+      "value": 2,
+      "type": "author"
+    },
+    {
+      "id": "Sutrisnowati, Riska Asriana",
+      "group": 1,
+      "value": 12,
       "type": "author"
     },
     {
       "id": "Wahid, Nur Ahmad",
       "group": 1,
       "value": 6,
+      "type": "author"
+    },
+    {
+      "id": "Iskandar, Yelita Anggiane",
+      "group": 1,
+      "value": 4,
       "type": "author"
     },
     {
@@ -457,15 +457,15 @@
       "type": "author"
     },
     {
-      "id": "Utama, Nur Ichsan",
-      "group": 1,
-      "value": 6,
-      "type": "author"
-    },
-    {
       "id": "Park, You-Jin",
       "group": 1,
       "value": 4,
+      "type": "author"
+    },
+    {
+      "id": "Utama, Nur Ichsan",
+      "group": 1,
+      "value": 6,
       "type": "author"
     },
     {
@@ -481,15 +481,15 @@
       "type": "author"
     },
     {
-      "id": "Pulshashi, Iq Reviessay",
-      "group": 1,
-      "value": 9,
-      "type": "author"
-    },
-    {
       "id": "Choi, Hyunsuk",
       "group": 1,
       "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Pulshashi, Iq Reviessay",
+      "group": 1,
+      "value": 9,
       "type": "author"
     },
     {
@@ -499,13 +499,13 @@
       "type": "author"
     },
     {
-      "id": "Jeong, Soo Hwan",
+      "id": "Seo, Tae Young",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Seo, Tae Young",
+      "id": "Jeong, Soo Hwan",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -529,6 +529,12 @@
       "type": "author"
     },
     {
+      "id": "Kim, Yong-Jeong",
+      "group": 1,
+      "value": 2,
+      "type": "author"
+    },
+    {
       "id": "Lee, Byungkwon",
       "group": 1,
       "value": 2,
@@ -541,9 +547,9 @@
       "type": "author"
     },
     {
-      "id": "Kim, Yong-Jeong",
+      "id": "Wu, Jei-Zheng",
       "group": 1,
-      "value": 2,
+      "value": 1,
       "type": "author"
     },
     {
@@ -553,19 +559,13 @@
       "type": "author"
     },
     {
-      "id": "Song, Minseok",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
       "id": "Sul, Sung-ook",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Wu, Jei-Zheng",
+      "id": "Song, Minseok",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -583,27 +583,27 @@
       "type": "author"
     },
     {
-      "id": "Kim, Jion",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
       "id": "Lee, Sanghyup",
       "group": 1,
       "value": 2,
       "type": "author"
     },
     {
-      "id": "Lim, Sungmook",
+      "id": "Kim, Jion",
       "group": 1,
-      "value": 5,
+      "value": 1,
       "type": "author"
     },
     {
       "id": "Lee, Loo Hay",
       "group": 1,
       "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Lim, Sungmook",
+      "group": 1,
+      "value": 5,
       "type": "author"
     },
     {
@@ -631,13 +631,13 @@
       "type": "author"
     },
     {
-      "id": "Lee, Ho-in",
+      "id": "Seo, Junhyuk",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Seo, Junhyuk",
+      "id": "Lee, Ho-in",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -661,13 +661,13 @@
       "type": "author"
     },
     {
-      "id": "Lee, Minseop",
+      "id": "Park, Yeon-kyung",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Park, Yeon-kyung",
+      "id": "Lee, Minseop",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -709,6 +709,12 @@
       "type": "author"
     },
     {
+      "id": "Lee, Yusin",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
       "id": "Yu, Taesun",
       "group": 1,
       "value": 1,
@@ -716,12 +722,6 @@
     },
     {
       "id": "Park, Hyun-gon",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
-      "id": "Lee, Yusin",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -745,13 +745,13 @@
       "type": "author"
     },
     {
-      "id": "Lee, Eun-joo",
+      "id": "Park, Chan-ho",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Park, Chan-ho",
+      "id": "Lee, Eun-joo",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -829,13 +829,13 @@
       "type": "author"
     },
     {
-      "id": "Seol, Hyeonju",
+      "id": "Park, Yongtae",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Park, Yongtae",
+      "id": "Seol, Hyeonju",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -853,13 +853,13 @@
       "type": "author"
     },
     {
-      "id": "Zhang, Liang-Jie",
+      "id": "Caverlee, James",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Caverlee, James",
+      "id": "Zhang, Liang-Jie",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -889,13 +889,13 @@
       "type": "author"
     },
     {
-      "id": "Reijers, Hajo A.",
+      "id": "Ha, Byung Hyuk",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
-      "id": "Ha, Byung Hyuk",
+      "id": "Reijers, Hajo A.",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -937,9 +937,9 @@
       "type": "author"
     },
     {
-      "id": "Mun, Suhyun",
+      "id": "Park, Kwangyeol",
       "group": 1,
-      "value": 2,
+      "value": 1,
       "type": "author"
     },
     {
@@ -949,19 +949,13 @@
       "type": "author"
     },
     {
-      "id": "Park, Kwangyeol",
+      "id": "Mun, Suhyun",
       "group": 1,
-      "value": 1,
+      "value": 2,
       "type": "author"
     },
     {
       "id": "Wirawan, Noppon Yaumil",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
-      "id": "Mo, Jinhee",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -973,19 +967,7 @@
       "type": "author"
     },
     {
-      "id": "Kim, Miyoung",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
-      "id": "Won, Hyunju",
-      "group": 1,
-      "value": 1,
-      "type": "author"
-    },
-    {
-      "id": "Ju, Jiyoung",
+      "id": "Mo, Jinhee",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -997,13 +979,31 @@
       "type": "author"
     },
     {
-      "id": "Wu, Jen-Zhai",
+      "id": "Kim, Miyoung",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Ju, Jiyoung",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Won, Hyunju",
       "group": 1,
       "value": 1,
       "type": "author"
     },
     {
       "id": "Sul, Seungmin",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Wu, Jen-Zhai",
       "group": 1,
       "value": 1,
       "type": "author"
@@ -1118,8 +1118,8 @@
       "type": "keyword"
     },
     {
-      "id": "kw:LLM",
-      "name": "LLM",
+      "id": "kw:Large Language Models",
+      "name": "Large Language Models",
       "group": 2,
       "value": 2,
       "type": "keyword"
@@ -5928,9 +5928,9 @@
       "type": "coauthor"
     },
     {
-      "source": "Lee, Yongjae",
+      "source": "Park, Taekhyun",
       "target": "kw:Large language models",
-      "value": 1,
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -5940,33 +5940,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Lee, Yongjae",
       "target": "kw:Large language models",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Taekhyun",
-      "target": "kw:Large language models",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Gawon",
-      "target": "kw:Domain adaptation",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Bae, Hyerim",
-      "target": "kw:Domain adaptation",
+      "target": "kw:Large language models",
       "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Domain adaptation",
-      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -5983,20 +5965,26 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "kw:Container dwell time prediction",
+      "target": "kw:Domain adaptation",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Gawon",
+      "target": "kw:Domain adaptation",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Domain adaptation",
+      "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Takhyeong",
       "target": "kw:Container dwell time prediction",
       "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Container dwell time prediction",
-      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6013,20 +6001,20 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "kw:Machine learning",
-      "value": 15,
+      "target": "kw:Container dwell time prediction",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Container dwell time prediction",
+      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Takhyeong",
       "target": "kw:Machine learning",
       "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Machine learning",
-      "value": 4,
       "type": "author_keyword"
     },
     {
@@ -6043,20 +6031,20 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "kw:Container terminal operations",
-      "value": 12,
+      "target": "kw:Machine learning",
+      "value": 15,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Machine learning",
+      "value": 4,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Takhyeong",
       "target": "kw:Container terminal operations",
       "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Container terminal operations",
-      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6072,49 +6060,43 @@
       "type": "author_keyword"
     },
     {
+      "source": "Bae, Hyerim",
+      "target": "kw:Container terminal operations",
+      "value": 12,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Container terminal operations",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Takhyeong",
       "target": "kw:Large language models",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Large language models",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Minseop",
       "target": "kw:Large language models",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
-      "target": "kw:Generative AI",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Hanbyeol",
-      "target": "kw:Generative AI",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Generative AI",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Minseop",
-      "target": "kw:Generative AI",
+      "target": "kw:Large language models",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kwon, Jaeeun",
+      "target": "kw:Generative AI",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Minseop",
       "target": "kw:Generative AI",
       "value": 1,
       "type": "author_keyword"
@@ -6127,12 +6109,42 @@
     },
     {
       "source": "Park, Kikun",
+      "target": "kw:Generative AI",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Generative AI",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Generative AI",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kwon, Jaeeun",
       "target": "kw:Large Language Model",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
+      "source": "Kim, Minseop",
+      "target": "kw:Large Language Model",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Taekhyun",
+      "target": "kw:Large Language Model",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Kikun",
       "target": "kw:Large Language Model",
       "value": 1,
       "type": "author_keyword"
@@ -6144,20 +6156,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
+      "source": "Park, Hanbyeol",
       "target": "kw:Large Language Model",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kwon, Jaeeun",
-      "target": "kw:Large Language Model",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Taekhyun",
-      "target": "kw:Large Language Model",
+      "source": "Bae, Hyerim",
+      "target": "kw:Operational efficiency",
       "value": 2,
       "type": "author_keyword"
     },
@@ -6168,19 +6174,25 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Operational efficiency",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Eunhee",
+      "source": "Kim, Dongho",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Choi, Jongho",
+      "target": "kw:Process mining",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Daesan",
+      "target": "kw:Process mining",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Eunhee",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
@@ -6192,12 +6204,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Daesan",
-      "target": "kw:Process mining",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Yongjae",
       "target": "kw:Process mining",
       "value": 5,
@@ -6205,18 +6211,24 @@
     },
     {
       "source": "Kim, Dongho",
-      "target": "kw:Process mining",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Eunhee",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Choi, Jongho",
+      "target": "kw:Time Series Forecasting",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Daesan",
+      "target": "kw:Time Series Forecasting",
+      "value": 4,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Eunhee",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
@@ -6228,12 +6240,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Daesan",
-      "target": "kw:Time Series Forecasting",
-      "value": 4,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Yongjae",
       "target": "kw:Time Series Forecasting",
       "value": 2,
@@ -6241,14 +6247,8 @@
     },
     {
       "source": "Kim, Dongho",
-      "target": "kw:Time Series Forecasting",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Eunhee",
       "target": "kw:Deep learning",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -6258,15 +6258,21 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Deep learning",
-      "value": 47,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Daesan",
       "target": "kw:Deep learning",
       "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Eunhee",
+      "target": "kw:Deep learning",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Deep learning",
+      "value": 47,
       "type": "author_keyword"
     },
     {
@@ -6276,15 +6282,21 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dongho",
-      "target": "kw:Deep learning",
-      "value": 1,
+      "source": "Kim, Minseop",
+      "target": "kw:Time Series Forecasting",
+      "value": 6,
       "type": "author_keyword"
     },
     {
       "source": "Lee, Gawon",
       "target": "kw:Time Series Forecasting",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Dohee",
+      "target": "kw:Time Series Forecasting",
+      "value": 15,
       "type": "author_keyword"
     },
     {
@@ -6295,20 +6307,20 @@
     },
     {
       "source": "Kim, Minseop",
-      "target": "kw:Time Series Forecasting",
-      "value": 6,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dohee",
-      "target": "kw:Time Series Forecasting",
-      "value": 15,
+      "target": "kw:Deep learning",
+      "value": 10,
       "type": "author_keyword"
     },
     {
       "source": "Lee, Gawon",
       "target": "kw:Deep learning",
       "value": 4,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Dohee",
+      "target": "kw:Deep learning",
+      "value": 19,
       "type": "author_keyword"
     },
     {
@@ -6319,14 +6331,14 @@
     },
     {
       "source": "Kim, Minseop",
-      "target": "kw:Deep learning",
-      "value": 10,
+      "target": "kw:Neural Network",
+      "value": 3,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
-      "target": "kw:Deep learning",
-      "value": 19,
+      "source": "Bae, Hyerim",
+      "target": "kw:Neural Network",
+      "value": 5,
       "type": "author_keyword"
     },
     {
@@ -6336,7 +6348,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Kim, Dohee",
       "target": "kw:Neural Network",
       "value": 5,
       "type": "author_keyword"
@@ -6349,18 +6361,6 @@
     },
     {
       "source": "Kim, Minseop",
-      "target": "kw:Neural Network",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dohee",
-      "target": "kw:Neural Network",
-      "value": 5,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Gawon",
       "target": "kw:Local variation modeling",
       "value": 2,
       "type": "author_keyword"
@@ -6372,13 +6372,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Local variation modeling",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Minseop",
+      "source": "Lee, Gawon",
       "target": "kw:Local variation modeling",
       "value": 2,
       "type": "author_keyword"
@@ -6390,45 +6384,45 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Taehyeon",
-      "target": "kw:LLM",
-      "value": 1,
+      "source": "Park, Hanbyeol",
+      "target": "kw:Local variation modeling",
+      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Jo, Sangmin",
-      "target": "kw:LLM",
+      "target": "kw:Large Language Models",
       "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Yu, Jihyeon",
-      "target": "kw:LLM",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:LLM",
-      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Park, Jeongho",
-      "target": "kw:LLM",
+      "target": "kw:Large Language Models",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Chung, Jihoon",
-      "target": "kw:LLM",
+      "target": "kw:Large Language Models",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunju",
-      "target": "kw:Reinforcement learning",
+      "source": "Kim, Taehyeon",
+      "target": "kw:Large Language Models",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Yu, Jihyeon",
+      "target": "kw:Large Language Models",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Large Language Models",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6445,7 +6439,7 @@
     },
     {
       "source": "Lee, Hyunju",
-      "target": "kw:Vessel trajectory prediction",
+      "target": "kw:Reinforcement learning",
       "value": 1,
       "type": "author_keyword"
     },
@@ -6463,7 +6457,7 @@
     },
     {
       "source": "Lee, Hyunju",
-      "target": "kw:Transfer learning",
+      "target": "kw:Vessel trajectory prediction",
       "value": 1,
       "type": "author_keyword"
     },
@@ -6481,7 +6475,7 @@
     },
     {
       "source": "Lee, Hyunju",
-      "target": "kw:AIS data",
+      "target": "kw:Transfer learning",
       "value": 1,
       "type": "author_keyword"
     },
@@ -6498,19 +6492,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Jeahoon",
-      "target": "kw:Ship Emissions",
+      "source": "Lee, Hyunju",
+      "target": "kw:AIS data",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Sim, Sunghyun",
-      "target": "kw:Ship Emissions",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "kw:Ship Emissions",
       "value": 2,
       "type": "author_keyword"
@@ -6523,8 +6511,14 @@
     },
     {
       "source": "Lee, Jeahoon",
-      "target": "kw:Time Series Forecasting",
+      "target": "kw:Ship Emissions",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Ship Emissions",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6541,7 +6535,7 @@
     },
     {
       "source": "Lee, Jeahoon",
-      "target": "kw:Transformer",
+      "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
     },
@@ -6552,21 +6546,21 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Transformer",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Younghwi",
       "target": "kw:Transformer",
       "value": 1,
       "type": "author_keyword"
     },
     {
+      "source": "Lee, Jeahoon",
+      "target": "kw:Transformer",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Bae, Hyerim",
-      "target": "kw:Predictive process monitoring",
-      "value": 4,
+      "target": "kw:Transformer",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6579,6 +6573,12 @@
       "source": "Kamal, Imam Mustafa",
       "target": "kw:Predictive process monitoring",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Predictive process monitoring",
+      "value": 4,
       "type": "author_keyword"
     },
     {
@@ -6624,7 +6624,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
+      "source": "Lee, Hyunha",
       "target": "kw:Generative AI",
       "value": 1,
       "type": "author_keyword"
@@ -6636,13 +6636,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunha",
+      "source": "Lee, Yongjae",
       "target": "kw:Generative AI",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
+      "source": "Lee, Hyunha",
       "target": "kw:Optimization",
       "value": 1,
       "type": "author_keyword"
@@ -6651,6 +6651,12 @@
       "source": "Kim, Dohee",
       "target": "kw:Optimization",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Yongjae",
+      "target": "kw:Optimization",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -6661,8 +6667,14 @@
     },
     {
       "source": "Lee, Hyunha",
-      "target": "kw:Optimization",
+      "target": "kw:AIS data",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Dohee",
+      "target": "kw:AIS data",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6673,14 +6685,14 @@
     },
     {
       "source": "Kim, Dohee",
-      "target": "kw:AIS data",
-      "value": 2,
+      "target": "kw:Queueing theory",
+      "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunha",
-      "target": "kw:AIS data",
-      "value": 1,
+      "source": "Park, Daesan",
+      "target": "kw:Queueing theory",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6691,32 +6703,20 @@
     },
     {
       "source": "Kim, Dohee",
-      "target": "kw:Queueing theory",
+      "target": "kw:Discrete Event Simulation",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Park, Daesan",
-      "target": "kw:Queueing theory",
-      "value": 2,
+      "target": "kw:Discrete Event Simulation",
+      "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Bae, Hyerim",
       "target": "kw:Discrete Event Simulation",
       "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dohee",
-      "target": "kw:Discrete Event Simulation",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Daesan",
-      "target": "kw:Discrete Event Simulation",
-      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -6750,9 +6750,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Gawon",
+      "source": "Sim, Sunghyun",
       "target": "kw:Explainable AI",
-      "value": 1,
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6762,13 +6762,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sim, Sunghyun",
-      "target": "kw:Explainable AI",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Jo, Suhyeon",
+      "source": "Lee, Gawon",
       "target": "kw:Explainable AI",
       "value": 1,
       "type": "author_keyword"
@@ -6777,6 +6771,12 @@
       "source": "Kim, Dohee",
       "target": "kw:Explainable AI",
       "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Jo, Suhyeon",
+      "target": "kw:Explainable AI",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -6792,6 +6792,12 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Anomaly detection",
+      "value": 3,
+      "type": "author_keyword"
+    },
+    {
       "source": "Choo, Jungho",
       "target": "kw:Anomaly detection",
       "value": 1,
@@ -6801,12 +6807,6 @@
       "source": "Kim, Minseop",
       "target": "kw:Anomaly detection",
       "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Anomaly detection",
-      "value": 3,
       "type": "author_keyword"
     },
     {
@@ -6834,13 +6834,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
+      "source": "Park, Hanbyeol",
       "target": "kw:AIS data",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
+      "source": "Kim, Minseop",
       "target": "kw:AIS data",
       "value": 1,
       "type": "author_keyword"
@@ -6882,7 +6882,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minhee",
+      "source": "Lee, Hyunha",
       "target": "kw:Transfer learning",
       "value": 1,
       "type": "author_keyword"
@@ -6894,7 +6894,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunha",
+      "source": "Kim, Minhee",
       "target": "kw:Transfer learning",
       "value": 1,
       "type": "author_keyword"
@@ -6902,6 +6902,18 @@
     {
       "source": "Kim, Dohee",
       "target": "kw:Transfer learning",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Hyunha",
+      "target": "kw:Ship fuel consumption",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Choo, Jungho",
+      "target": "kw:Ship fuel consumption",
       "value": 2,
       "type": "author_keyword"
     },
@@ -6918,20 +6930,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Choo, Jungho",
+      "source": "Kim, Dohee",
       "target": "kw:Ship fuel consumption",
       "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Lee, Hyunha",
-      "target": "kw:Ship fuel consumption",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dohee",
-      "target": "kw:Ship fuel consumption",
+      "target": "kw:Time Series Forecasting",
       "value": 2,
       "type": "author_keyword"
     },
@@ -6939,12 +6945,6 @@
       "source": "Kim, Minhee",
       "target": "kw:Time Series Forecasting",
       "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Hyunha",
-      "target": "kw:Time Series Forecasting",
-      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -6954,15 +6954,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Lee, Hyunha",
       "target": "kw:Maritime sustainability",
       "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Minhee",
-      "target": "kw:Maritime sustainability",
-      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -6972,15 +6966,27 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunha",
+      "source": "Bae, Hyerim",
       "target": "kw:Maritime sustainability",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Minhee",
+      "target": "kw:Maritime sustainability",
+      "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Dohee",
       "target": "kw:Maritime sustainability",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Hyunha",
+      "target": "kw:Domain adaptation",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -6990,12 +6996,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunha",
-      "target": "kw:Domain adaptation",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Dohee",
       "target": "kw:Domain adaptation",
       "value": 1,
@@ -7008,7 +7008,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Park, Taekhyun",
       "target": "kw:Maritime accidents",
       "value": 2,
       "type": "author_keyword"
@@ -7020,25 +7020,25 @@
       "type": "author_keyword"
     },
     {
+      "source": "Bae, Hyerim",
+      "target": "kw:Maritime accidents",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Dohee",
       "target": "kw:Maritime accidents",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Taekhyun",
-      "target": "kw:Maritime accidents",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Jo, Sangmin",
       "target": "kw:Risk mapping",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Park, Taekhyun",
       "target": "kw:Risk mapping",
       "value": 2,
       "type": "author_keyword"
@@ -7050,13 +7050,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Bae, Hyerim",
       "target": "kw:Risk mapping",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Taekhyun",
+      "source": "Kim, Dohee",
       "target": "kw:Risk mapping",
       "value": 2,
       "type": "author_keyword"
@@ -7068,7 +7068,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Park, Taekhyun",
       "target": "kw:Accident severity",
       "value": 2,
       "type": "author_keyword"
@@ -7080,13 +7080,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Bae, Hyerim",
       "target": "kw:Accident severity",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Taekhyun",
+      "source": "Kim, Dohee",
       "target": "kw:Accident severity",
       "value": 2,
       "type": "author_keyword"
@@ -7098,7 +7098,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Park, Taekhyun",
       "target": "kw:XAI",
       "value": 2,
       "type": "author_keyword"
@@ -7110,19 +7110,31 @@
       "type": "author_keyword"
     },
     {
+      "source": "Bae, Hyerim",
+      "target": "kw:XAI",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Dohee",
       "target": "kw:XAI",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Taekhyun",
-      "target": "kw:XAI",
+      "source": "Jo, Sangmin",
+      "target": "kw:SHAP",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Jo, Sangmin",
+      "source": "Park, Taekhyun",
+      "target": "kw:SHAP",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Hong, Seongmoon",
       "target": "kw:SHAP",
       "value": 2,
       "type": "author_keyword"
@@ -7134,21 +7146,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Hong, Seongmoon",
-      "target": "kw:SHAP",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Dohee",
       "target": "kw:SHAP",
       "value": 4,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Taekhyun",
-      "target": "kw:SHAP",
-      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7254,15 +7254,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
-      "target": "kw:Genetic algorithm",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Kihun",
       "target": "kw:Genetic algorithm",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Minseop",
+      "target": "kw:Genetic algorithm",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7284,13 +7284,25 @@
       "type": "author_keyword"
     },
     {
+      "source": "Noh, Taeeon",
+      "target": "kw:Port operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Daesan",
+      "target": "kw:Port operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Koo, Yohan",
       "target": "kw:Port operations",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Noh, Taeeon",
+      "source": "Kim, Dowon",
       "target": "kw:Port operations",
       "value": 1,
       "type": "author_keyword"
@@ -7302,31 +7314,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Daesan",
-      "target": "kw:Port operations",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dowon",
-      "target": "kw:Port operations",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Hyeonjik",
       "target": "kw:Queueing theory",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Koo, Yohan",
+      "source": "Noh, Taeeon",
       "target": "kw:Queueing theory",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Noh, Taeeon",
+      "source": "Koo, Yohan",
       "target": "kw:Queueing theory",
       "value": 1,
       "type": "author_keyword"
@@ -7344,13 +7344,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Koo, Yohan",
+      "source": "Noh, Taeeon",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Noh, Taeeon",
+      "source": "Koo, Yohan",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
@@ -7359,30 +7359,6 @@
       "source": "Kim, Dowon",
       "target": "kw:Time Series Forecasting",
       "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Kikun",
-      "target": "kw:EDI data",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Kyunghoon",
-      "target": "kw:EDI data",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:EDI data",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:EDI data",
-      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7398,8 +7374,38 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Kikun",
+      "target": "kw:EDI data",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:EDI data",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Kyunghoon",
+      "target": "kw:EDI data",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:EDI data",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Lee, Kyunghoon",
       "target": "kw:Container terminal operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Kihun",
+      "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
     },
@@ -7417,8 +7423,8 @@
     },
     {
       "source": "Kim, Kihun",
-      "target": "kw:Time Series Forecasting",
-      "value": 1,
+      "target": "kw:Deep learning",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7428,19 +7434,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Kihun",
-      "target": "kw:Deep learning",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Health Indicator",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sim, Sunghyun",
+      "target": "kw:Health Indicator",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Yunkyung",
       "target": "kw:Health Indicator",
       "value": 1,
       "type": "author_keyword"
@@ -7452,9 +7452,27 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Yunkyung",
+      "source": "Bae, Hyerim",
       "target": "kw:Health Indicator",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sim, Sunghyun",
+      "target": "kw:Remaining Useful Life Prediction",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Yunkyung",
+      "target": "kw:Remaining Useful Life Prediction",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Remaining Useful Life Prediction",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7465,19 +7483,19 @@
     },
     {
       "source": "Sim, Sunghyun",
-      "target": "kw:Remaining Useful Life Prediction",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Remaining Useful Life Prediction",
+      "target": "kw:Time series decomposition",
       "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Park, Yunkyung",
-      "target": "kw:Remaining Useful Life Prediction",
+      "target": "kw:Time series decomposition",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Time series decomposition",
       "value": 1,
       "type": "author_keyword"
     },
@@ -7488,33 +7506,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sim, Sunghyun",
-      "target": "kw:Time series decomposition",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Time series decomposition",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Yunkyung",
-      "target": "kw:Time series decomposition",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Yunkyung",
       "target": "kw:Deep learning",
       "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Predictive maintenance",
-      "value": 6,
       "type": "author_keyword"
     },
     {
@@ -7524,27 +7518,33 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Predictive maintenance",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Yunkyung",
       "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Donghwan",
-      "target": "kw:Anomaly detection",
-      "value": 1,
+      "source": "Park, Hanbyeol",
+      "target": "kw:Predictive maintenance",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Predictive maintenance",
+      "value": 6,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Dohee",
       "target": "kw:Anomaly detection",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Donghwan",
+      "target": "kw:Anomaly detection",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -7560,13 +7560,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Kim, Dohee",
+      "target": "kw:Semi-supervised learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Donghwan",
       "target": "kw:Semi-supervised learning",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Lee, Yongjae",
       "target": "kw:Semi-supervised learning",
       "value": 1,
       "type": "author_keyword"
@@ -7578,15 +7584,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
-      "target": "kw:Semi-supervised learning",
-      "value": 1,
+      "source": "Park, Taekhyun",
+      "target": "kw:Time Series Forecasting",
+      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Park, Taekhyun",
-      "target": "kw:Time Series Forecasting",
-      "value": 2,
+      "target": "kw:Neural Network",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -7602,12 +7608,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Taekhyun",
-      "target": "kw:Neural Network",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Eunju",
       "target": "kw:Time series decomposition",
       "value": 2,
@@ -7629,12 +7629,6 @@
       "source": "Lee, Eunju",
       "target": "kw:LSTM",
       "value": 3,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:LSTM",
-      "value": 8,
       "type": "author_keyword"
     },
     {
@@ -7650,13 +7644,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Eunju",
-      "target": "kw:Container volume prediction",
-      "value": 2,
+      "source": "Bae, Hyerim",
+      "target": "kw:LSTM",
+      "value": 8,
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Lee, Eunju",
       "target": "kw:Container volume prediction",
       "value": 2,
       "type": "author_keyword"
@@ -7671,6 +7665,12 @@
       "source": "Kamal, Imam Mustafa",
       "target": "kw:Container volume prediction",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Container volume prediction",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7770,15 +7770,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Representation learning",
-      "value": 6,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kamal, Imam Mustafa",
       "target": "kw:Representation learning",
       "value": 4,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Representation learning",
+      "value": 6,
       "type": "author_keyword"
     },
     {
@@ -7800,9 +7800,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Kim, Kihun",
       "target": "kw:Industry 4.0",
-      "value": 2,
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Jae-Sung",
+      "target": "kw:Industry 4.0",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -7812,15 +7818,21 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Kihun",
+      "source": "Lee, Sangjae",
       "target": "kw:Industry 4.0",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Sangjae",
+      "source": "Park, Yong-Min",
       "target": "kw:Industry 4.0",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Industry 4.0",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7836,21 +7848,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Yong-Min",
-      "target": "kw:Industry 4.0",
+      "source": "Kim, Kihun",
+      "target": "kw:Smart manufacturing",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Jae-Sung",
-      "target": "kw:Industry 4.0",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "kw:Smart manufacturing",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -7860,15 +7866,21 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Kihun",
+      "source": "Lee, Sangjae",
       "target": "kw:Smart manufacturing",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Sangjae",
+      "source": "Park, Yong-Min",
       "target": "kw:Smart manufacturing",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Smart manufacturing",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -7884,19 +7896,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Yong-Min",
-      "target": "kw:Smart manufacturing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Jae-Sung",
-      "target": "kw:Smart manufacturing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Seonhwan",
+      "target": "kw:Explainable AI",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Kikun",
       "target": "kw:Explainable AI",
       "value": 1,
       "type": "author_keyword"
@@ -7908,7 +7914,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
+      "source": "Lee, Hyunjae",
       "target": "kw:Explainable AI",
       "value": 1,
       "type": "author_keyword"
@@ -7920,25 +7926,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunjae",
-      "target": "kw:Explainable AI",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Seonhwan",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Son, Jongpyo",
+      "source": "Park, Kikun",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
+      "source": "Son, Jongpyo",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
@@ -7957,6 +7957,12 @@
     },
     {
       "source": "Son, Jongpyo",
+      "target": "kw:Container terminal operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Hyunjae",
       "target": "kw:Container terminal operations",
       "value": 1,
       "type": "author_keyword"
@@ -7968,25 +7974,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Hyunjae",
-      "target": "kw:Container terminal operations",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Seonhwan",
       "target": "kw:Feature selection",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Son, Jongpyo",
+      "source": "Park, Kikun",
       "target": "kw:Feature selection",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
+      "source": "Son, Jongpyo",
       "target": "kw:Feature selection",
       "value": 1,
       "type": "author_keyword"
@@ -7998,25 +7998,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
-      "target": "kw:Feature selection",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Hyunjae",
       "target": "kw:Feature selection",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Seonhwan",
-      "target": "kw:SHAP",
+      "source": "Lee, Yongjae",
+      "target": "kw:Feature selection",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Son, Jongpyo",
+      "source": "Kim, Seonhwan",
       "target": "kw:SHAP",
       "value": 1,
       "type": "author_keyword"
@@ -8028,7 +8022,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
+      "source": "Son, Jongpyo",
       "target": "kw:SHAP",
       "value": 1,
       "type": "author_keyword"
@@ -8040,6 +8034,18 @@
       "type": "author_keyword"
     },
     {
+      "source": "Lee, Yongjae",
+      "target": "kw:SHAP",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sim, Sunghyun",
+      "target": "kw:Vessel trajectory prediction",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Liu, Ling",
       "target": "kw:Vessel trajectory prediction",
       "value": 1,
@@ -8047,12 +8053,6 @@
     },
     {
       "source": "Lee, Gawon",
-      "target": "kw:Vessel trajectory prediction",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Sim, Sunghyun",
       "target": "kw:Vessel trajectory prediction",
       "value": 1,
       "type": "author_keyword"
@@ -8070,18 +8070,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
-      "target": "kw:Representation learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Representation learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Kihun",
       "target": "kw:Representation learning",
       "value": 1,
@@ -8094,7 +8082,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Kikun",
+      "target": "kw:Representation learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kang, Eungjun",
+      "target": "kw:Representation learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
       "target": "kw:Representation learning",
       "value": 1,
       "type": "author_keyword"
@@ -8112,13 +8112,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
+      "source": "Kim, Kihun",
       "target": "kw:Manufacturing",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
+      "source": "Kwon, Jaeeun",
+      "target": "kw:Manufacturing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Kikun",
       "target": "kw:Manufacturing",
       "value": 2,
       "type": "author_keyword"
@@ -8130,21 +8136,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Kihun",
-      "target": "kw:Manufacturing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kwon, Jaeeun",
-      "target": "kw:Manufacturing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kang, Eungjun",
       "target": "kw:Manufacturing",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Manufacturing",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -8178,7 +8178,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Kamal, Imam Mustafa",
+      "target": "kw:Transfer learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Ramadhan, Muhammad Hanif",
+      "target": "kw:Transfer learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Iman, Alif Nur",
       "target": "kw:Transfer learning",
       "value": 1,
       "type": "author_keyword"
@@ -8191,13 +8203,7 @@
     },
     {
       "source": "Kamal, Imam Mustafa",
-      "target": "kw:Transfer learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Iman, Alif Nur",
-      "target": "kw:Transfer learning",
+      "target": "kw:Remaining time prediction",
       "value": 1,
       "type": "author_keyword"
     },
@@ -8214,13 +8220,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
-      "target": "kw:Remaining time prediction",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
+      "source": "Iman, Alif Nur",
       "target": "kw:Remaining time prediction",
       "value": 1,
       "type": "author_keyword"
@@ -8232,8 +8232,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Iman, Alif Nur",
+      "source": "Lee, Yongjae",
       "target": "kw:Remaining time prediction",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kamal, Imam Mustafa",
+      "target": "kw:Transformer",
       "value": 1,
       "type": "author_keyword"
     },
@@ -8244,13 +8250,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
-      "target": "kw:Transformer",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
+      "source": "Iman, Alif Nur",
       "target": "kw:Transformer",
       "value": 1,
       "type": "author_keyword"
@@ -8262,7 +8262,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Iman, Alif Nur",
+      "source": "Lee, Yongjae",
       "target": "kw:Transformer",
       "value": 1,
       "type": "author_keyword"
@@ -8346,6 +8346,24 @@
       "type": "author_keyword"
     },
     {
+      "source": "Kim, Dohee",
+      "target": "kw:Inter-terminal truck routing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Ramadhan, Muhammad Hanif",
+      "target": "kw:Inter-terminal truck routing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kamal, Imam Mustafa",
+      "target": "kw:Inter-terminal truck routing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Bae, Hyerim",
       "target": "kw:Inter-terminal truck routing",
       "value": 3,
@@ -8353,30 +8371,6 @@
     },
     {
       "source": "Kim, Dohee",
-      "target": "kw:Inter-terminal truck routing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
-      "target": "kw:Inter-terminal truck routing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Ramadhan, Muhammad Hanif",
-      "target": "kw:Inter-terminal truck routing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dohee",
-      "target": "kw:Container terminal operations",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
       "target": "kw:Container terminal operations",
       "value": 2,
       "type": "author_keyword"
@@ -8389,8 +8383,8 @@
     },
     {
       "source": "Kamal, Imam Mustafa",
-      "target": "kw:Optimization",
-      "value": 1,
+      "target": "kw:Container terminal operations",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -8400,13 +8394,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Feature selection",
+      "source": "Kamal, Imam Mustafa",
+      "target": "kw:Optimization",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Choi, Keonwoo",
+      "target": "kw:Feature selection",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
       "target": "kw:Feature selection",
       "value": 1,
       "type": "author_keyword"
@@ -8478,21 +8478,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Cooperative learning",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kamal, Imam Mustafa",
       "target": "kw:Cooperative learning",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Ramadhan, Muhammad Hanif",
-      "target": "kw:Manufacturing",
-      "value": 1,
+      "source": "Bae, Hyerim",
+      "target": "kw:Cooperative learning",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -8508,8 +8502,20 @@
       "type": "author_keyword"
     },
     {
+      "source": "Ramadhan, Muhammad Hanif",
+      "target": "kw:Manufacturing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Iman, Alif Nur",
       "target": "kw:Manufacturing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Jaehun",
+      "target": "kw:Big data",
       "value": 1,
       "type": "author_keyword"
     },
@@ -8521,7 +8527,7 @@
     },
     {
       "source": "Park, Jaehun",
-      "target": "kw:Big data",
+      "target": "kw:Artificial intelligence",
       "value": 1,
       "type": "author_keyword"
     },
@@ -8529,12 +8535,6 @@
       "source": "Bae, Hyerim",
       "target": "kw:Artificial intelligence",
       "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Jaehun",
-      "target": "kw:Artificial intelligence",
-      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -8550,12 +8550,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Hyemee",
-      "target": "kw:Deep learning",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
       "source": "Adi, Taufik Nur",
       "target": "kw:Deep learning",
       "value": 4,
@@ -8568,9 +8562,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Autoencoder",
-      "value": 2,
+      "source": "Kim, Hyemee",
+      "target": "kw:Deep learning",
+      "value": 3,
       "type": "author_keyword"
     },
     {
@@ -8580,21 +8574,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sutrisnowati, Riska Asriana",
-      "target": "kw:CNN",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Won, Seokrae",
-      "target": "kw:CNN",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Bae, Hyerim",
-      "target": "kw:CNN",
-      "value": 3,
+      "target": "kw:Autoencoder",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -8607,6 +8589,36 @@
       "source": "Lee, Sanghwa",
       "target": "kw:CNN",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Won, Seokrae",
+      "target": "kw:CNN",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sutrisnowati, Riska Asriana",
+      "target": "kw:CNN",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:CNN",
+      "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Sanghwa",
+      "target": "kw:Process mining",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Won, Seokrae",
+      "target": "kw:Process mining",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -8616,36 +8628,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Won, Seokrae",
-      "target": "kw:Process mining",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Sanghwa",
-      "target": "kw:Process mining",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Sutrisnowati, Riska Asriana",
-      "target": "kw:Image encoding",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Won, Seokrae",
-      "target": "kw:Image encoding",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Image encoding",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sim, Sunghyun",
       "target": "kw:Image encoding",
       "value": 1,
@@ -8658,15 +8640,21 @@
       "type": "author_keyword"
     },
     {
-      "source": "Iskandar, Yelita Anggiane",
-      "target": "kw:Remaining time prediction",
+      "source": "Won, Seokrae",
+      "target": "kw:Image encoding",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Adi, Taufik Nur",
-      "target": "kw:Remaining time prediction",
-      "value": 2,
+      "source": "Sutrisnowati, Riska Asriana",
+      "target": "kw:Image encoding",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Image encoding",
+      "value": 3,
       "type": "author_keyword"
     },
     {
@@ -8676,14 +8664,20 @@
       "type": "author_keyword"
     },
     {
+      "source": "Iskandar, Yelita Anggiane",
+      "target": "kw:Remaining time prediction",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Choi, Yulim",
       "target": "kw:Remaining time prediction",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Iskandar, Yelita Anggiane",
-      "target": "kw:Deep learning",
+      "source": "Adi, Taufik Nur",
+      "target": "kw:Remaining time prediction",
       "value": 2,
       "type": "author_keyword"
     },
@@ -8694,27 +8688,27 @@
       "type": "author_keyword"
     },
     {
+      "source": "Iskandar, Yelita Anggiane",
+      "target": "kw:Deep learning",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Choi, Yulim",
       "target": "kw:Deep learning",
       "value": 4,
       "type": "author_keyword"
     },
     {
-      "source": "Iskandar, Yelita Anggiane",
-      "target": "kw:Process mining",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Adi, Taufik Nur",
-      "target": "kw:Process mining",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Wahid, Nur Ahmad",
       "target": "kw:Process mining",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Iskandar, Yelita Anggiane",
+      "target": "kw:Process mining",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -8724,14 +8718,8 @@
       "type": "author_keyword"
     },
     {
-      "source": "Iskandar, Yelita Anggiane",
-      "target": "kw:Predictive process monitoring",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Adi, Taufik Nur",
-      "target": "kw:Predictive process monitoring",
+      "target": "kw:Process mining",
       "value": 2,
       "type": "author_keyword"
     },
@@ -8742,7 +8730,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Iskandar, Yelita Anggiane",
+      "target": "kw:Predictive process monitoring",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Choi, Yulim",
+      "target": "kw:Predictive process monitoring",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Adi, Taufik Nur",
       "target": "kw:Predictive process monitoring",
       "value": 2,
       "type": "author_keyword"
@@ -8754,15 +8754,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Maritime logistics",
-      "value": 7,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Dohee",
       "target": "kw:Maritime logistics",
       "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Maritime logistics",
+      "value": 7,
       "type": "author_keyword"
     },
     {
@@ -8772,15 +8772,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Liu, Ling",
-      "target": "kw:Event log imputation",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Bae, Hyerim",
       "target": "kw:Event log imputation",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Liu, Ling",
+      "target": "kw:Event log imputation",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -8796,15 +8796,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Liu, Ling",
-      "target": "kw:Missing data",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Bae, Hyerim",
       "target": "kw:Missing data",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Liu, Ling",
+      "target": "kw:Missing data",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -8856,12 +8856,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Eunju",
-      "target": "kw:Remaining Useful Life Prediction",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kwun, Hyeunho",
       "target": "kw:Remaining Useful Life Prediction",
       "value": 1,
@@ -8874,14 +8868,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Lee, Eunju",
       "target": "kw:Remaining Useful Life Prediction",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Eunju",
-      "target": "kw:Induction furnace",
+      "source": "Kim, Dohee",
+      "target": "kw:Remaining Useful Life Prediction",
       "value": 2,
       "type": "author_keyword"
     },
@@ -8904,6 +8898,12 @@
       "type": "author_keyword"
     },
     {
+      "source": "Lee, Eunju",
+      "target": "kw:Induction furnace",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Dohee",
       "target": "kw:Induction furnace",
       "value": 2,
@@ -8922,12 +8922,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Eunju",
-      "target": "kw:Predictive maintenance",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kwun, Hyeunho",
       "target": "kw:Predictive maintenance",
       "value": 2,
@@ -8935,6 +8929,12 @@
     },
     {
       "source": "Choi, Yulim",
+      "target": "kw:Predictive maintenance",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Eunju",
       "target": "kw:Predictive maintenance",
       "value": 2,
       "type": "author_keyword"
@@ -8946,12 +8946,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Multivariate regression",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kamal, Imam Mustafa",
       "target": "kw:Multivariate regression",
       "value": 2,
@@ -8959,7 +8953,7 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "kw:Completion time prediction",
+      "target": "kw:Multivariate regression",
       "value": 2,
       "type": "author_keyword"
     },
@@ -8970,9 +8964,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Eunju",
-      "target": "kw:Container terminal operations",
-      "value": 1,
+      "source": "Bae, Hyerim",
+      "target": "kw:Completion time prediction",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -8983,12 +8977,18 @@
     },
     {
       "source": "Lee, Eunju",
+      "target": "kw:Container terminal operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Hong, Changwoo",
       "target": "kw:Machine learning",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Hong, Changwoo",
+      "source": "Lee, Eunju",
       "target": "kw:Machine learning",
       "value": 1,
       "type": "author_keyword"
@@ -9000,13 +9000,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Kamal, Imam Mustafa",
       "target": "kw:Social network analysis",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Kamal, Imam Mustafa",
+      "source": "Bae, Hyerim",
       "target": "kw:Social network analysis",
       "value": 2,
       "type": "author_keyword"
@@ -9018,6 +9018,12 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, You-Jin",
+      "target": "kw:Process mining",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Utama, Nur Ichsan",
       "target": "kw:Process mining",
       "value": 5,
@@ -9025,7 +9031,7 @@
     },
     {
       "source": "Park, You-Jin",
-      "target": "kw:Process mining",
+      "target": "kw:Manufacturing",
       "value": 1,
       "type": "author_keyword"
     },
@@ -9036,21 +9042,21 @@
       "type": "author_keyword"
     },
     {
-      "source": "Utama, Nur Ichsan",
-      "target": "kw:Manufacturing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kamal, Imam Mustafa",
       "target": "kw:Manufacturing",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Park, You-Jin",
+      "source": "Utama, Nur Ichsan",
       "target": "kw:Manufacturing",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sim, Sunghyun",
+      "target": "kw:Baltic Dry Index",
+      "value": 4,
       "type": "author_keyword"
     },
     {
@@ -9060,21 +9066,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sim, Sunghyun",
+      "source": "Kamal, Imam Mustafa",
       "target": "kw:Baltic Dry Index",
-      "value": 4,
+      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Bae, Hyerim",
       "target": "kw:Baltic Dry Index",
       "value": 4,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
-      "target": "kw:Baltic Dry Index",
-      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -9084,27 +9084,27 @@
       "type": "author_keyword"
     },
     {
-      "source": "Yun, Heesung",
-      "target": "kw:Maritime economics",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sim, Sunghyun",
       "target": "kw:Maritime economics",
       "value": 4,
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Yun, Heesung",
       "target": "kw:Maritime economics",
-      "value": 5,
+      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Kamal, Imam Mustafa",
       "target": "kw:Maritime economics",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Maritime economics",
+      "value": 5,
       "type": "author_keyword"
     },
     {
@@ -9168,15 +9168,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Pulshashi, Iq Reviessay",
-      "target": "kw:Outlier detection",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
       "source": "Choi, Hyunsuk",
       "target": "kw:Outlier detection",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Pulshashi, Iq Reviessay",
+      "target": "kw:Outlier detection",
+      "value": 3,
       "type": "author_keyword"
     },
     {
@@ -9198,15 +9198,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Pulshashi, Iq Reviessay",
-      "target": "kw:Streaming data",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Choi, Hyunsuk",
       "target": "kw:Streaming data",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Pulshashi, Iq Reviessay",
+      "target": "kw:Streaming data",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -9228,7 +9228,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Hyemee",
+      "source": "Sim, Sunghyun",
       "target": "kw:Multivariate regression",
       "value": 1,
       "type": "author_keyword"
@@ -9240,7 +9240,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sim, Sunghyun",
+      "source": "Kim, Hyemee",
       "target": "kw:Multivariate regression",
       "value": 1,
       "type": "author_keyword"
@@ -9288,13 +9288,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kamal, Imam Mustafa",
+      "source": "Lim, Taesoo",
       "target": "kw:CNN",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lim, Taesoo",
+      "source": "Kamal, Imam Mustafa",
       "target": "kw:CNN",
       "value": 1,
       "type": "author_keyword"
@@ -9306,9 +9306,33 @@
       "type": "author_keyword"
     },
     {
+      "source": "Seo, Tae Young",
+      "target": "kw:Cloud computing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Jeong, Soo Hwan",
+      "target": "kw:Cloud computing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Wahid, Nur Ahmad",
+      "target": "kw:Cloud computing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Sutrisnowati, Riska Asriana",
       "target": "kw:Cloud computing",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Seo, Chang Sung",
+      "target": "kw:Cloud computing",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -9318,38 +9342,32 @@
       "type": "author_keyword"
     },
     {
+      "source": "Choi, Yulim",
+      "target": "kw:Cloud computing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Adi, Taufik Nur",
       "target": "kw:Cloud computing",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Wahid, Nur Ahmad",
-      "target": "kw:Cloud computing",
+      "source": "Seo, Tae Young",
+      "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Jeong, Soo Hwan",
-      "target": "kw:Cloud computing",
+      "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Seo, Tae Young",
-      "target": "kw:Cloud computing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Seo, Chang Sung",
-      "target": "kw:Cloud computing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Choi, Yulim",
-      "target": "kw:Cloud computing",
+      "source": "Wahid, Nur Ahmad",
+      "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
     },
@@ -9360,32 +9378,32 @@
       "type": "author_keyword"
     },
     {
+      "source": "Seo, Chang Sung",
+      "target": "kw:Predictive maintenance",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Adi, Taufik Nur",
       "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Wahid, Nur Ahmad",
-      "target": "kw:Predictive maintenance",
+      "source": "Seo, Tae Young",
+      "target": "kw:Machine learning",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Jeong, Soo Hwan",
-      "target": "kw:Predictive maintenance",
+      "target": "kw:Machine learning",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Seo, Tae Young",
-      "target": "kw:Predictive maintenance",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Seo, Chang Sung",
-      "target": "kw:Predictive maintenance",
+      "source": "Wahid, Nur Ahmad",
+      "target": "kw:Machine learning",
       "value": 1,
       "type": "author_keyword"
     },
@@ -9393,30 +9411,6 @@
       "source": "Sutrisnowati, Riska Asriana",
       "target": "kw:Machine learning",
       "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Adi, Taufik Nur",
-      "target": "kw:Machine learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Wahid, Nur Ahmad",
-      "target": "kw:Machine learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Jeong, Soo Hwan",
-      "target": "kw:Machine learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Seo, Tae Young",
-      "target": "kw:Machine learning",
-      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -9432,6 +9426,24 @@
       "type": "author_keyword"
     },
     {
+      "source": "Adi, Taufik Nur",
+      "target": "kw:Machine learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sutrisnowati, Riska Asriana",
+      "target": "kw:Production scheduling",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Won, Sujin",
+      "target": "kw:Production scheduling",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Bae, Hyerim",
       "target": "kw:Production scheduling",
       "value": 3,
@@ -9439,18 +9451,6 @@
     },
     {
       "source": "Sutrisnowati, Riska Asriana",
-      "target": "kw:Production scheduling",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Won, Sujin",
-      "target": "kw:Production scheduling",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Sutrisnowati, Riska Asriana",
       "target": "kw:Optimization",
       "value": 1,
       "type": "author_keyword"
@@ -9458,11 +9458,23 @@
     {
       "source": "Won, Sujin",
       "target": "kw:Optimization",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Yong-Jeong",
+      "target": "kw:Data envelopment analysis",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Lee, Byungkwon",
+      "target": "kw:Data envelopment analysis",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sung, Si-Il",
       "target": "kw:Data envelopment analysis",
       "value": 1,
       "type": "author_keyword"
@@ -9480,19 +9492,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sung, Si-Il",
-      "target": "kw:Data envelopment analysis",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Yong-Jeong",
-      "target": "kw:Data envelopment analysis",
+      "target": "kw:Performance measurement",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Lee, Byungkwon",
+      "target": "kw:Performance measurement",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sung, Si-Il",
       "target": "kw:Performance measurement",
       "value": 1,
       "type": "author_keyword"
@@ -9510,19 +9522,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sung, Si-Il",
-      "target": "kw:Performance measurement",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Yong-Jeong",
-      "target": "kw:Performance measurement",
+      "target": "kw:Operations research",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Lee, Byungkwon",
+      "target": "kw:Operations research",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sung, Si-Il",
       "target": "kw:Operations research",
       "value": 1,
       "type": "author_keyword"
@@ -9540,33 +9552,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sung, Si-Il",
-      "target": "kw:Operations research",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Yong-Jeong",
-      "target": "kw:Operations research",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Choi, Yulim",
-      "target": "kw:Process conformance",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sim, Sunghyun",
       "target": "kw:Process conformance",
       "value": 3,
       "type": "author_keyword"
     },
     {
-      "source": "Liu, Ling",
+      "source": "Choi, Yulim",
       "target": "kw:Process conformance",
-      "value": 2,
+      "value": 3,
       "type": "author_keyword"
     },
     {
@@ -9576,9 +9570,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Choi, Yulim",
-      "target": "kw:Statistical verification",
-      "value": 3,
+      "source": "Liu, Ling",
+      "target": "kw:Process conformance",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -9588,9 +9582,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Liu, Ling",
+      "source": "Choi, Yulim",
       "target": "kw:Statistical verification",
-      "value": 2,
+      "value": 3,
       "type": "author_keyword"
     },
     {
@@ -9600,8 +9594,8 @@
       "type": "author_keyword"
     },
     {
-      "source": "Choi, Yulim",
-      "target": "kw:Event log",
+      "source": "Liu, Ling",
+      "target": "kw:Statistical verification",
       "value": 2,
       "type": "author_keyword"
     },
@@ -9612,15 +9606,27 @@
       "type": "author_keyword"
     },
     {
-      "source": "Liu, Ling",
+      "source": "Choi, Yulim",
       "target": "kw:Event log",
-      "value": 1,
+      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Bae, Hyerim",
       "target": "kw:Event log",
       "value": 4,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Liu, Ling",
+      "target": "kw:Event log",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Wu, Jei-Zheng",
+      "target": "kw:Process mining",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -9630,20 +9636,20 @@
       "type": "author_keyword"
     },
     {
-      "source": "Song, Minseok",
-      "target": "kw:Process mining",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sul, Sung-ook",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Wu, Jei-Zheng",
+      "source": "Song, Minseok",
       "target": "kw:Process mining",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Wu, Jei-Zheng",
+      "target": "kw:Business process management",
       "value": 1,
       "type": "author_keyword"
     },
@@ -9654,19 +9660,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Song, Minseok",
-      "target": "kw:Business process management",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sul, Sung-ook",
       "target": "kw:Business process management",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Wu, Jei-Zheng",
+      "source": "Song, Minseok",
       "target": "kw:Business process management",
       "value": 1,
       "type": "author_keyword"
@@ -9768,15 +9768,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Jion",
-      "target": "kw:Production scheduling",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Sanghyup",
       "target": "kw:Production scheduling",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Jion",
+      "target": "kw:Production scheduling",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -9786,15 +9786,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Jion",
-      "target": "kw:Optimization",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Sanghyup",
       "target": "kw:Optimization",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Jion",
+      "target": "kw:Optimization",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -9804,14 +9804,20 @@
       "type": "author_keyword"
     },
     {
+      "source": "Lee, Sanghyup",
+      "target": "kw:Operations research",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Jion",
       "target": "kw:Operations research",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Sanghyup",
-      "target": "kw:Operations research",
+      "source": "Lee, Loo Hay",
+      "target": "kw:Data envelopment analysis",
       "value": 1,
       "type": "author_keyword"
     },
@@ -9823,14 +9829,8 @@
     },
     {
       "source": "Lee, Loo Hay",
-      "target": "kw:Data envelopment analysis",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lim, Sungmook",
       "target": "kw:Benchmarking",
-      "value": 4,
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -9840,15 +9840,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Loo Hay",
+      "source": "Lim, Sungmook",
       "target": "kw:Benchmarking",
-      "value": 1,
+      "value": 4,
       "type": "author_keyword"
     },
     {
-      "source": "Lim, Sungmook",
+      "source": "Lee, Loo Hay",
       "target": "kw:Performance evaluation",
-      "value": 4,
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -9858,8 +9858,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Loo Hay",
+      "source": "Lim, Sungmook",
       "target": "kw:Performance evaluation",
+      "value": 4,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Loo Hay",
+      "target": "kw:Operations research",
       "value": 1,
       "type": "author_keyword"
     },
@@ -9870,12 +9876,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Loo Hay",
-      "target": "kw:Operations research",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Rhee, Seung-Hyun",
       "target": "kw:Business process efficiency",
       "value": 2,
@@ -9918,15 +9918,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Supply chain management",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sharma, Mithun J",
       "target": "kw:Supply chain management",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Supply chain management",
+      "value": 3,
       "type": "author_keyword"
     },
     {
@@ -9936,21 +9936,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Decision making",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sharma, Mithun J",
       "target": "kw:Decision making",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Ho-in",
-      "target": "kw:Operational efficiency",
-      "value": 1,
+      "source": "Bae, Hyerim",
+      "target": "kw:Decision making",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -9961,6 +9955,12 @@
     },
     {
       "source": "Seo, Junhyuk",
+      "target": "kw:Operational efficiency",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Ho-in",
       "target": "kw:Operational efficiency",
       "value": 1,
       "type": "author_keyword"
@@ -9996,21 +9996,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Condition-based maintenance",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Yeonkyung",
       "target": "kw:Condition-based maintenance",
       "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Choo, Jungho",
-      "target": "kw:Condition-based maintenance",
-      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -10020,8 +10008,14 @@
       "type": "author_keyword"
     },
     {
+      "source": "Choo, Jungho",
+      "target": "kw:Condition-based maintenance",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Bae, Hyerim",
-      "target": "kw:Weapon system",
+      "target": "kw:Condition-based maintenance",
       "value": 3,
       "type": "author_keyword"
     },
@@ -10032,13 +10026,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Weapon system",
+      "value": 3,
+      "type": "author_keyword"
+    },
+    {
       "source": "Choo, Jungho",
       "target": "kw:Weapon system",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
+      "source": "Bae, Hyerim",
       "target": "kw:Weapon system",
       "value": 3,
       "type": "author_keyword"
@@ -10068,25 +10068,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
-      "target": "kw:Maritime logistics",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Seonghan",
       "target": "kw:Maritime logistics",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
-      "target": "kw:Anomaly detection",
+      "source": "Kim, Minseop",
+      "target": "kw:Maritime logistics",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Minseop",
+      "source": "Park, Kikun",
       "target": "kw:Anomaly detection",
       "value": 1,
       "type": "author_keyword"
@@ -10098,7 +10092,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Lee, Minseop",
+      "target": "kw:Anomaly detection",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Park, Kikun",
+      "target": "kw:Image encoding",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Yeon-kyung",
       "target": "kw:Image encoding",
       "value": 1,
       "type": "author_keyword"
@@ -10117,18 +10123,12 @@
     },
     {
       "source": "Park, Yeon-kyung",
-      "target": "kw:Image encoding",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Minseop",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Yeon-kyung",
+      "source": "Lee, Minseop",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
@@ -10140,13 +10140,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Minseop",
+      "source": "Park, Yeon-kyung",
       "target": "kw:Condition-based maintenance",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Yeon-kyung",
+      "source": "Lee, Minseop",
       "target": "kw:Condition-based maintenance",
       "value": 1,
       "type": "author_keyword"
@@ -10158,49 +10158,49 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Minseop",
-      "target": "kw:Weapon system",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Yeon-kyung",
       "target": "kw:Weapon system",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Hong, Seongmoon",
-      "target": "kw:LLM",
+      "source": "Lee, Minseop",
+      "target": "kw:Weapon system",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kwon, Jaeeun",
+      "target": "kw:Large Language Models",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Minseop",
-      "target": "kw:LLM",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kwon, Jaeeun",
-      "target": "kw:LLM",
+      "target": "kw:Large Language Models",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Park, Taekhyun",
-      "target": "kw:LLM",
+      "target": "kw:Large Language Models",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Hong, Seongmoon",
-      "target": "kw:Time Series Forecasting",
+      "target": "kw:Large Language Models",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kwon, Jaeeun",
+      "target": "kw:Time Series Forecasting",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Hong, Seongmoon",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
@@ -10224,27 +10224,27 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
-      "target": "kw:Container terminal",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Container terminal",
-      "value": 5,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Minhee",
       "target": "kw:Container terminal",
       "value": 1,
       "type": "author_keyword"
     },
     {
+      "source": "Park, Kikun",
+      "target": "kw:Container terminal",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Kihun",
       "target": "kw:Container terminal",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Container terminal",
+      "value": 5,
       "type": "author_keyword"
     },
     {
@@ -10302,24 +10302,24 @@
       "type": "author_keyword"
     },
     {
+      "source": "Kim, Minseop",
+      "target": "kw:Port operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Nam, Jaehyeon",
+      "target": "kw:Port operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Park, Hanbyeol",
       "target": "kw:Port operations",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Nam, Jaehyeon",
-      "target": "kw:Port operations",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Minseop",
-      "target": "kw:Port operations",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Heo, Jaehyeon",
       "target": "kw:Machine learning",
       "value": 2,
@@ -10344,13 +10344,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
+      "source": "Kim, Dohee",
       "target": "kw:Text data",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Kim, Minseop",
       "target": "kw:Text data",
       "value": 2,
       "type": "author_keyword"
@@ -10368,13 +10368,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
+      "source": "Kim, Dohee",
       "target": "kw:NF-LF methodology",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Kim, Minseop",
       "target": "kw:NF-LF methodology",
       "value": 2,
       "type": "author_keyword"
@@ -10392,25 +10392,25 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
-      "target": "kw:Natural language processing",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Dohee",
       "target": "kw:Natural language processing",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Se-Gil",
+      "source": "Kim, Minseop",
+      "target": "kw:Natural language processing",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Heo, Jaehyeon",
       "target": "kw:Genetic algorithm",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Heo, Jaehyeon",
+      "source": "Park, Se-Gil",
       "target": "kw:Genetic algorithm",
       "value": 1,
       "type": "author_keyword"
@@ -10422,13 +10422,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Se-Gil",
+      "source": "Heo, Jaehyeon",
       "target": "kw:AIS Data",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Heo, Jaehyeon",
+      "source": "Kim, Minseop",
       "target": "kw:AIS Data",
       "value": 1,
       "type": "author_keyword"
@@ -10440,19 +10440,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "kw:AIS Data",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Bae, Hyerim",
       "target": "kw:AIS Data",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
+      "source": "Park, Se-Gil",
+      "target": "kw:AIS Data",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
       "target": "kw:AIS Data",
       "value": 1,
       "type": "author_keyword"
@@ -10476,13 +10476,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Jo, Suhyeon",
+      "source": "Kim, Dohee",
       "target": "kw:Maritime safety",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Jo, Suhyeon",
       "target": "kw:Maritime safety",
       "value": 1,
       "type": "author_keyword"
@@ -10494,13 +10494,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Lee, Hyunha",
+      "target": "kw:Maritime logistics",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Jo, Sangmin",
       "target": "kw:Maritime logistics",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Yongjae",
+      "source": "Kang, Seongpil",
       "target": "kw:Maritime logistics",
       "value": 1,
       "type": "author_keyword"
@@ -10512,49 +10518,25 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kang, Seongpil",
-      "target": "kw:Maritime logistics",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Hyunha",
-      "target": "kw:Maritime logistics",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Jo, Sangmin",
-      "target": "kw:Deep learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kang, Seongpil",
-      "target": "kw:Deep learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Jo, Sangmin",
-      "target": "kw:Logistics",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Logistics",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Daesan",
-      "target": "kw:Logistics",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Yongjae",
+      "target": "kw:Maritime logistics",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Jo, Sangmin",
+      "target": "kw:Deep learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kang, Seongpil",
+      "target": "kw:Deep learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Jo, Sangmin",
       "target": "kw:Logistics",
       "value": 1,
       "type": "author_keyword"
@@ -10566,7 +10548,25 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Daesan",
+      "target": "kw:Logistics",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Logistics",
+      "value": 3,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Dohee",
+      "target": "kw:Logistics",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Yongjae",
       "target": "kw:Logistics",
       "value": 1,
       "type": "author_keyword"
@@ -10584,19 +10584,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Yu, Taesun",
-      "target": "kw:Port operations",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Hyun-gon",
-      "target": "kw:Port operations",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Yusin",
+      "target": "kw:Port operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Yu, Taesun",
       "target": "kw:Port operations",
       "value": 1,
       "type": "author_keyword"
@@ -10608,6 +10602,30 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Hyun-gon",
+      "target": "kw:Port operations",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Kihun",
+      "target": "kw:LSTM",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kang, Seongpil",
+      "target": "kw:LSTM",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Han, Yeongjae",
+      "target": "kw:LSTM",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Hyemee",
       "target": "kw:LSTM",
       "value": 3,
@@ -10615,30 +10633,6 @@
     },
     {
       "source": "Kim, Kihun",
-      "target": "kw:LSTM",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kang, Seongpil",
-      "target": "kw:LSTM",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Han, Yeongjae",
-      "target": "kw:LSTM",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Hyemee",
-      "target": "kw:Anomaly detection",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Kihun",
       "target": "kw:Anomaly detection",
       "value": 1,
       "type": "author_keyword"
@@ -10657,7 +10651,7 @@
     },
     {
       "source": "Kim, Hyemee",
-      "target": "kw:Predictive maintenance",
+      "target": "kw:Anomaly detection",
       "value": 1,
       "type": "author_keyword"
     },
@@ -10675,6 +10669,12 @@
     },
     {
       "source": "Han, Yeongjae",
+      "target": "kw:Predictive maintenance",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Hyemee",
       "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
@@ -10722,9 +10722,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Choi, Jiwon",
       "target": "kw:COVID-19",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -10740,20 +10740,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Choi, Jiwon",
+      "source": "Kim, Dohee",
       "target": "kw:COVID-19",
-      "value": 1,
+      "value": 2,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Seulgi",
       "target": "kw:COVID-19",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Lee, Eun-joo",
-      "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
     },
@@ -10765,6 +10759,12 @@
     },
     {
       "source": "Kwun, Hyeunho",
+      "target": "kw:Time Series Forecasting",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Eun-joo",
       "target": "kw:Time Series Forecasting",
       "value": 1,
       "type": "author_keyword"
@@ -10776,12 +10776,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Eun-joo",
-      "target": "kw:COVID-19",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Chan-ho",
       "target": "kw:COVID-19",
       "value": 1,
@@ -10789,6 +10783,12 @@
     },
     {
       "source": "Kwun, Hyeunho",
+      "target": "kw:COVID-19",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Eun-joo",
       "target": "kw:COVID-19",
       "value": 1,
       "type": "author_keyword"
@@ -10836,13 +10836,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Adi, Taufik Nur",
       "target": "kw:Fuzzy inference",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Adi, Taufik Nur",
+      "source": "Bae, Hyerim",
       "target": "kw:Fuzzy inference",
       "value": 2,
       "type": "author_keyword"
@@ -10926,18 +10926,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:BPM",
-      "value": 5,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Won, Seokrae",
-      "target": "kw:BPM",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Sanghwa",
       "target": "kw:BPM",
       "value": 1,
@@ -10950,9 +10938,21 @@
       "type": "author_keyword"
     },
     {
+      "source": "Won, Seokrae",
+      "target": "kw:BPM",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Sutrisnowati, Riska A",
       "target": "kw:BPM",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:BPM",
+      "value": 5,
       "type": "author_keyword"
     },
     {
@@ -10968,18 +10968,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Hyemee",
-      "target": "kw:Freight rate prediction",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Freight rate prediction",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sim, Sunghyun",
       "target": "kw:Freight rate prediction",
       "value": 2,
@@ -10987,6 +10975,18 @@
     },
     {
       "source": "Yoon, Heeseong",
+      "target": "kw:Freight rate prediction",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Hyemee",
+      "target": "kw:Freight rate prediction",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
       "target": "kw:Freight rate prediction",
       "value": 2,
       "type": "author_keyword"
@@ -11016,19 +11016,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Mingyu",
+      "source": "Kwon, Jaeeun",
       "target": "kw:Weapon system",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Minseop",
-      "target": "kw:Weapon system",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kwon, Jaeeun",
       "target": "kw:Weapon system",
       "value": 1,
       "type": "author_keyword"
@@ -11041,18 +11035,18 @@
     },
     {
       "source": "Park, Mingyu",
+      "target": "kw:Weapon system",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kwon, Jaeeun",
       "target": "kw:Condition-based maintenance",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Minseop",
-      "target": "kw:Condition-based maintenance",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kwon, Jaeeun",
       "target": "kw:Condition-based maintenance",
       "value": 1,
       "type": "author_keyword"
@@ -11065,6 +11059,12 @@
     },
     {
       "source": "Park, Mingyu",
+      "target": "kw:Condition-based maintenance",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kwon, Jaeeun",
       "target": "kw:Neural Network",
       "value": 1,
       "type": "author_keyword"
@@ -11076,13 +11076,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kwon, Jaeeun",
+      "source": "Park, Mingyu",
       "target": "kw:Neural Network",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Ramadhan, Muhammad Hanif",
+      "source": "Lee, Sangjae",
       "target": "kw:GPS data",
       "value": 1,
       "type": "author_keyword"
@@ -11094,15 +11094,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Ramadhan, Muhammad Hanif",
       "target": "kw:GPS data",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Sangjae",
+      "source": "Bae, Hyerim",
       "target": "kw:GPS data",
-      "value": 1,
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -11112,13 +11112,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Ramadhan, Muhammad Hanif",
+      "source": "Lee, Sangjae",
       "target": "kw:Container terminal",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Sangjae",
+      "source": "Ramadhan, Muhammad Hanif",
       "target": "kw:Container terminal",
       "value": 1,
       "type": "author_keyword"
@@ -11172,13 +11172,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Mingyu",
-      "target": "kw:Clustering",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Jung, Hyokyeong",
+      "source": "Kwon, Jaeeun",
       "target": "kw:Clustering",
       "value": 1,
       "type": "author_keyword"
@@ -11190,25 +11184,31 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "kw:Clustering",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kwon, Jaeeun",
+      "source": "Jung, Hyokyeong",
       "target": "kw:Clustering",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Park, Mingyu",
-      "target": "kw:Machine learning",
+      "target": "kw:Clustering",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "kw:Clustering",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Jung, Hyokyeong",
+      "target": "kw:Machine learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Mingyu",
       "target": "kw:Machine learning",
       "value": 1,
       "type": "author_keyword"
@@ -11238,6 +11238,12 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Sekil",
+      "target": "kw:Natural language processing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Sim, Sunghyun",
       "target": "kw:Natural language processing",
       "value": 1,
@@ -11245,12 +11251,6 @@
     },
     {
       "source": "Yoon, Bori",
-      "target": "kw:Natural language processing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Sekil",
       "target": "kw:Natural language processing",
       "value": 1,
       "type": "author_keyword"
@@ -11268,12 +11268,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Wahid, Nur Ahmad",
-      "target": "kw:Time series",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Bae, Hyerim",
       "target": "kw:Time series",
       "value": 2,
@@ -11286,18 +11280,18 @@
       "type": "author_keyword"
     },
     {
+      "source": "Wahid, Nur Ahmad",
+      "target": "kw:Time series",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Sim, Sunghyun",
       "target": "kw:Induction furnace",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Lee, Eunju",
-      "target": "kw:Deep learning",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kwun, Hyeunho",
       "target": "kw:Deep learning",
       "value": 1,
@@ -11305,7 +11299,7 @@
     },
     {
       "source": "Lee, Eunju",
-      "target": "kw:Manufacturing",
+      "target": "kw:Deep learning",
       "value": 1,
       "type": "author_keyword"
     },
@@ -11317,6 +11311,12 @@
     },
     {
       "source": "Sim, Sunghyun",
+      "target": "kw:Manufacturing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lee, Eunju",
       "target": "kw:Manufacturing",
       "value": 1,
       "type": "author_keyword"
@@ -11328,13 +11328,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Myunggwan",
+      "source": "Kim, Minseop",
       "target": "kw:Remaining Useful Life Prediction",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Minseop",
+      "source": "Park, Myunggwan",
       "target": "kw:Remaining Useful Life Prediction",
       "value": 1,
       "type": "author_keyword"
@@ -11346,26 +11346,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Myunggwan",
-      "target": "kw:Predictive maintenance",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Kim, Minseop",
       "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Liu, Ling",
-      "target": "kw:Autoencoder",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Yoon, Bori",
-      "target": "kw:Autoencoder",
+      "source": "Park, Myunggwan",
+      "target": "kw:Predictive maintenance",
       "value": 1,
       "type": "author_keyword"
     },
@@ -11382,7 +11370,19 @@
       "type": "author_keyword"
     },
     {
+      "source": "Liu, Ling",
+      "target": "kw:Autoencoder",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Dohee",
+      "target": "kw:Autoencoder",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Yoon, Bori",
       "target": "kw:Autoencoder",
       "value": 1,
       "type": "author_keyword"
@@ -11412,13 +11412,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sutrisnowati, Riska Asriana",
+      "source": "Utama, Nur Ichsan",
       "target": "kw:Big data",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Utama, Nur Ichsan",
+      "source": "Sutrisnowati, Riska Asriana",
       "target": "kw:Big data",
       "value": 2,
       "type": "author_keyword"
@@ -11430,15 +11430,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Sutrisnowati, Riska Asriana",
-      "target": "kw:Process discovery",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Yahya, Bernardo Nugroho",
       "target": "kw:Process discovery",
       "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sutrisnowati, Riska Asriana",
+      "target": "kw:Process discovery",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -11448,20 +11448,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Utama, Nur Ichsan",
-      "target": "kw:Process discovery",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Pulshashi, Iq Reviessay",
       "target": "kw:Process discovery",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Sutrisnowati, Riska Asriana",
-      "target": "kw:Port logistics",
+      "source": "Utama, Nur Ichsan",
+      "target": "kw:Process discovery",
       "value": 1,
       "type": "author_keyword"
     },
@@ -11472,9 +11466,21 @@
       "type": "author_keyword"
     },
     {
+      "source": "Sutrisnowati, Riska Asriana",
+      "target": "kw:Port logistics",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Bae, Hyerim",
       "target": "kw:Port logistics",
       "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Pulshashi, Iq Reviessay",
+      "target": "kw:Port logistics",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -11484,8 +11490,8 @@
       "type": "author_keyword"
     },
     {
-      "source": "Pulshashi, Iq Reviessay",
-      "target": "kw:Port logistics",
+      "source": "Liu, Ling",
+      "target": "kw:Social network analysis",
       "value": 1,
       "type": "author_keyword"
     },
@@ -11497,7 +11503,7 @@
     },
     {
       "source": "Liu, Ling",
-      "target": "kw:Social network analysis",
+      "target": "kw:Business process",
       "value": 1,
       "type": "author_keyword"
     },
@@ -11508,7 +11514,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Liu, Ling",
+      "source": "Kamal, Imam Mustafa",
       "target": "kw:Business process",
       "value": 1,
       "type": "author_keyword"
@@ -11520,25 +11526,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kamal, Imam Mustafa",
-      "target": "kw:Business process",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Yahya, Bernardo Nugroho",
-      "target": "kw:Bayesian network",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sutrisnowati, Riska Asriana",
       "target": "kw:Bayesian network",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
+      "source": "Yahya, Bernardo Nugroho",
       "target": "kw:Bayesian network",
       "value": 2,
       "type": "author_keyword"
@@ -11550,13 +11544,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Yahya, Bernardo Nugroho",
+      "source": "Bae, Hyerim",
+      "target": "kw:Bayesian network",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sutrisnowati, Riska Asriana",
       "target": "kw:Event log",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Sutrisnowati, Riska Asriana",
+      "source": "Yahya, Bernardo Nugroho",
       "target": "kw:Event log",
       "value": 1,
       "type": "author_keyword"
@@ -11610,13 +11610,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
+      "source": "Kim, Dohee",
       "target": "kw:Artificial intelligence",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Park, Kikun",
       "target": "kw:Artificial intelligence",
       "value": 1,
       "type": "author_keyword"
@@ -11628,13 +11628,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kikun",
+      "source": "Kim, Dohee",
       "target": "kw:Port logistics",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Dohee",
+      "source": "Park, Kikun",
       "target": "kw:Port logistics",
       "value": 1,
       "type": "author_keyword"
@@ -11712,13 +11712,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Seol, Hyeonju",
+      "source": "Park, Yongtae",
       "target": "kw:Data envelopment analysis",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, Yongtae",
+      "source": "Seol, Hyeonju",
       "target": "kw:Data envelopment analysis",
       "value": 1,
       "type": "author_keyword"
@@ -11766,6 +11766,12 @@
       "type": "author_keyword"
     },
     {
+      "source": "Caverlee, James",
+      "target": "kw:Process mining",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Zhang, Liang-Jie",
       "target": "kw:Process mining",
       "value": 1,
@@ -11779,7 +11785,7 @@
     },
     {
       "source": "Caverlee, James",
-      "target": "kw:Process mining",
+      "target": "kw:Process discovery",
       "value": 1,
       "type": "author_keyword"
     },
@@ -11797,18 +11803,12 @@
     },
     {
       "source": "Caverlee, James",
-      "target": "kw:Process discovery",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Zhang, Liang-Jie",
       "target": "kw:Process integration",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Joonsoo",
+      "source": "Zhang, Liang-Jie",
       "target": "kw:Process integration",
       "value": 1,
       "type": "author_keyword"
@@ -11826,19 +11826,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Caverlee, James",
+      "source": "Bae, Joonsoo",
       "target": "kw:Process integration",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Zhang, Liang-Jie",
+      "source": "Caverlee, James",
       "target": "kw:Web services",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Joonsoo",
+      "source": "Zhang, Liang-Jie",
       "target": "kw:Web services",
       "value": 1,
       "type": "author_keyword"
@@ -11850,7 +11850,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Caverlee, James",
+      "source": "Bae, Joonsoo",
       "target": "kw:Web services",
       "value": 1,
       "type": "author_keyword"
@@ -11976,13 +11976,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Wibisono, Arif",
+      "source": "Park, You-Jin",
       "target": "kw:Resource allocation",
       "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Park, You-Jin",
+      "source": "Wibisono, Arif",
       "target": "kw:Resource allocation",
       "value": 2,
       "type": "author_keyword"
@@ -12006,12 +12006,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Lim, Sungmook",
-      "target": "kw:Decision making",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Jaehun",
       "target": "kw:Decision making",
       "value": 1,
@@ -12019,7 +12013,7 @@
     },
     {
       "source": "Lim, Sungmook",
-      "target": "kw:Optimization",
+      "target": "kw:Decision making",
       "value": 1,
       "type": "author_keyword"
     },
@@ -12027,6 +12021,12 @@
       "source": "Park, Jaehun",
       "target": "kw:Optimization",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Lim, Sungmook",
+      "target": "kw:Optimization",
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -12048,12 +12048,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:RFID",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Wang, Zhe",
       "target": "kw:RFID",
       "value": 1,
@@ -12069,6 +12063,12 @@
       "source": "Koo, Ho-Yun",
       "target": "kw:RFID",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:RFID",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -12126,14 +12126,20 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, You-Jin",
+      "target": "kw:Business process management",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Wibisono, Arif",
       "target": "kw:Business process management",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Park, You-Jin",
-      "target": "kw:Business process management",
+      "source": "Ha, Byung Hyuk",
+      "target": "kw:Business process",
       "value": 1,
       "type": "author_keyword"
     },
@@ -12151,14 +12157,8 @@
     },
     {
       "source": "Ha, Byung Hyuk",
-      "target": "kw:Business process",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "kw:Process modeling",
-      "value": 3,
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -12174,8 +12174,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Ha, Byung Hyuk",
+      "source": "Bae, Hyerim",
       "target": "kw:Process modeling",
+      "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Ha, Byung Hyuk",
+      "target": "kw:Queueing theory",
       "value": 1,
       "type": "author_keyword"
     },
@@ -12187,12 +12193,6 @@
     },
     {
       "source": "Bae, Joonsoo",
-      "target": "kw:Queueing theory",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Ha, Byung Hyuk",
       "target": "kw:Queueing theory",
       "value": 1,
       "type": "author_keyword"
@@ -12240,7 +12240,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Ramadhan, Muhammad Hanif",
+      "source": "Park, You-Jin",
       "target": "kw:Cloud computing",
       "value": 1,
       "type": "author_keyword"
@@ -12252,13 +12252,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, You-Jin",
-      "target": "kw:Cloud computing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dohee",
+      "source": "Ramadhan, Muhammad Hanif",
       "target": "kw:Cloud computing",
       "value": 1,
       "type": "author_keyword"
@@ -12270,7 +12264,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Ramadhan, Muhammad Hanif",
+      "source": "Kim, Dohee",
+      "target": "kw:Cloud computing",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, You-Jin",
       "target": "kw:Process modeling",
       "value": 1,
       "type": "author_keyword"
@@ -12282,19 +12282,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, You-Jin",
-      "target": "kw:Process modeling",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Dohee",
+      "source": "Ramadhan, Muhammad Hanif",
       "target": "kw:Process modeling",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Iman, Alif Nur",
+      "target": "kw:Process modeling",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Dohee",
       "target": "kw:Process modeling",
       "value": 1,
       "type": "author_keyword"
@@ -12318,15 +12318,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Process monitoring",
-      "value": 2,
-      "type": "author_keyword"
-    },
-    {
       "source": "Seo, Yoonho",
       "target": "kw:Process monitoring",
       "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Process monitoring",
+      "value": 2,
       "type": "author_keyword"
     },
     {
@@ -12336,13 +12336,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Choi, Yulim",
+      "source": "Sim, Sunghyun",
       "target": "kw:Big data",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Sim, Sunghyun",
+      "source": "Choi, Yulim",
       "target": "kw:Big data",
       "value": 1,
       "type": "author_keyword"
@@ -12360,6 +12360,12 @@
       "type": "author_keyword"
     },
     {
+      "source": "Park, Jaehun",
+      "target": "kw:Shipbuilding",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
       "source": "Lee, Dongyeon",
       "target": "kw:Shipbuilding",
       "value": 2,
@@ -12372,14 +12378,14 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Jaehun",
+      "source": "Pulshashi, Iq Reviessay",
       "target": "kw:Shipbuilding",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Pulshashi, Iq Reviessay",
-      "target": "kw:Shipbuilding",
+      "source": "Park, Jaehun",
+      "target": "kw:Clustering",
       "value": 1,
       "type": "author_keyword"
     },
@@ -12390,24 +12396,12 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Jaehun",
-      "target": "kw:Clustering",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Pulshashi, Iq Reviessay",
       "target": "kw:Clustering",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Ryu, Kwangyeol",
-      "target": "kw:Genetic algorithm",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Dinh, Tien Cuong",
       "target": "kw:Genetic algorithm",
       "value": 1,
@@ -12421,12 +12415,18 @@
     },
     {
       "source": "Ryu, Kwangyeol",
-      "target": "kw:Optimization",
+      "target": "kw:Genetic algorithm",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Dinh, Tien Cuong",
+      "target": "kw:Optimization",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Ryu, Kwangyeol",
       "target": "kw:Optimization",
       "value": 1,
       "type": "author_keyword"
@@ -12528,9 +12528,9 @@
       "type": "author_keyword"
     },
     {
-      "source": "Mun, Suhyun",
+      "source": "Park, Kwangyeol",
       "target": "kw:Outlier detection",
-      "value": 2,
+      "value": 1,
       "type": "author_keyword"
     },
     {
@@ -12540,13 +12540,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kwangyeol",
+      "source": "Mun, Suhyun",
       "target": "kw:Outlier detection",
-      "value": 1,
+      "value": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Mun, Suhyun",
+      "source": "Park, Kwangyeol",
       "target": "kw:Streaming data",
       "value": 1,
       "type": "author_keyword"
@@ -12558,7 +12558,7 @@
       "type": "author_keyword"
     },
     {
-      "source": "Park, Kwangyeol",
+      "source": "Mun, Suhyun",
       "target": "kw:Streaming data",
       "value": 1,
       "type": "author_keyword"
@@ -12576,12 +12576,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Mo, Jinhee",
-      "target": "kw:Process design",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Lee, Hoyeon",
       "target": "kw:Process design",
       "value": 1,
@@ -12589,7 +12583,7 @@
     },
     {
       "source": "Mo, Jinhee",
-      "target": "kw:Port logistics",
+      "target": "kw:Process design",
       "value": 1,
       "type": "author_keyword"
     },
@@ -12600,13 +12594,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Choi, Hyeongchul",
-      "target": "kw:GPS data",
+      "source": "Mo, Jinhee",
+      "target": "kw:Port logistics",
       "value": 1,
       "type": "author_keyword"
     },
     {
       "source": "Mun, Suhyun",
+      "target": "kw:GPS data",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Choi, Hyeongchul",
       "target": "kw:GPS data",
       "value": 1,
       "type": "author_keyword"
@@ -12618,13 +12618,13 @@
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Miyoung",
+      "source": "Song, Haesung",
       "target": "kw:Business process",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Won, Hyunju",
+      "source": "Kim, Miyoung",
       "target": "kw:Business process",
       "value": 1,
       "type": "author_keyword"
@@ -12636,19 +12636,19 @@
       "type": "author_keyword"
     },
     {
-      "source": "Song, Haesung",
+      "source": "Won, Hyunju",
       "target": "kw:Business process",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Kim, Miyoung",
+      "source": "Song, Haesung",
       "target": "kw:Workflow",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Won, Hyunju",
+      "source": "Kim, Miyoung",
       "target": "kw:Workflow",
       "value": 1,
       "type": "author_keyword"
@@ -12660,18 +12660,12 @@
       "type": "author_keyword"
     },
     {
-      "source": "Song, Haesung",
+      "source": "Won, Hyunju",
       "target": "kw:Workflow",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Wu, Jen-Zhai",
-      "target": "kw:Process discovery",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sul, Seungmin",
       "target": "kw:Process discovery",
       "value": 1,
@@ -12679,7 +12673,7 @@
     },
     {
       "source": "Wu, Jen-Zhai",
-      "target": "kw:Activity proximity",
+      "target": "kw:Process discovery",
       "value": 1,
       "type": "author_keyword"
     },
@@ -12691,12 +12685,18 @@
     },
     {
       "source": "Wu, Jen-Zhai",
+      "target": "kw:Activity proximity",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Sul, Seungmin",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
     },
     {
-      "source": "Sul, Seungmin",
+      "source": "Wu, Jen-Zhai",
       "target": "kw:Process mining",
       "value": 1,
       "type": "author_keyword"
@@ -12720,15 +12720,15 @@
       "type": "author_keyword"
     },
     {
-      "source": "Yu, Yongwon",
-      "target": "kw:Complex event processing",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
       "source": "Bae, Hyerim",
       "target": "kw:Complex event processing",
       "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Yu, Yongwon",
+      "target": "kw:Complex event processing",
+      "value": 1,
       "type": "author_keyword"
     },
     {
