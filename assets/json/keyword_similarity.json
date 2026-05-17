@@ -7,6 +7,10 @@
   "similarities": {
     "kw:Large language models": [
       [
+        "kw:Large Language Models",
+        1.0
+      ],
+      [
         "kw:Large Language Model",
         0.9756
       ]
@@ -35,6 +39,10 @@
       [
         "kw:Large language models",
         0.9756
+      ],
+      [
+        "kw:Large Language Models",
+        0.9756
       ]
     ],
     "kw:Operational efficiency": [],
@@ -61,7 +69,16 @@
     "kw:Deep learning": [],
     "kw:Neural Network": [],
     "kw:Local variation modeling": [],
-    "kw:LLM": [],
+    "kw:Large Language Models": [
+      [
+        "kw:Large language models",
+        1.0
+      ],
+      [
+        "kw:Large Language Model",
+        0.9756
+      ]
+    ],
     "kw:Reinforcement learning": [],
     "kw:Vessel trajectory prediction": [],
     "kw:Transfer learning": [
