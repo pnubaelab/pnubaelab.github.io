@@ -1158,6 +1158,11 @@ ninja.data = [{
           description: "2026년 BAELAB 단합대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C/";
+            },},{id: "photo-2026-스승의날",
+          title: '2026 스승의날',
+          description: "2026년 스승의 날",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%8A%A4%EC%8A%B9%EC%9D%98%EB%82%A0/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
