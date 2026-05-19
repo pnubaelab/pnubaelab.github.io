@@ -2,7 +2,16 @@
  * Styles for the base elements of the theme.
  ******************************************************************************/
 $global-font-stack: 'A2z', 'ZCOOL KuaiLe', sans-serif;
-$a2z-unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-214F, U+2190-21FF, U+2460-24FF, U+2500-257F, U+25A0-25FF, U+3000-303F, U+3130-318F, U+AC00-D7A3, U+FF00-FFEF, U+FFA0-FFDC;
+$zcool-chinese-unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
+
+@font-face {
+  font-family: 'ZCOOL KuaiLe';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/zcoolkuaile/v22/tssqApdaRQokwFjFJjvM6h2moYby.woff2') format('woff2');
+  font-display: swap;
+  unicode-range: $zcool-chinese-unicode-range;
+}
 
 @font-face {
     font-family: 'LineSeed';
@@ -47,7 +56,6 @@ $a2z-unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-2
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2') format('woff2');
     font-weight: 300;
     font-display: swap;
-    unicode-range: $a2z-unicode-range;
 }
 
 @font-face {
@@ -55,7 +63,6 @@ $a2z-unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-2
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.ttf') format('truetype');
   font-weight: 700;
   font-display: swap;
-  unicode-range: $a2z-unicode-range;
 }
 
 @font-face {
@@ -63,7 +70,6 @@ $a2z-unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-2
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-8ExtraBold.woff2') format('woff2');
   font-weight: 800;
   font-display: swap;
-  unicode-range: $a2z-unicode-range;
 }
 
 // Typography
