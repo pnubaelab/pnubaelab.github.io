@@ -51,7 +51,29 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-queuing-based-operational-indicators-for-explaining-and-predicting-port-operations",
+        },{id: "post-a-wiener-process-model-with-dynamic-covariate-for-degradation-modeling-and-remaining-useful-life-prediction",
+        
+          title: "A Wiener Process Model with Dynamic Covariate for Degradation Modeling and Remaining Useful...",
+        
+        description: "A Wiener Process Model with Dynamic Covariate for Degradation Modeling and Remaining Useful Life Prediction",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/WienerPM_RUL/";
+          
+        },
+      },{id: "post-big-data-driven-vessel-destination-prediction-for-smart-port-management",
+        
+          title: "Big-data-driven vessel destination prediction for smart port management",
+        
+        description: "Big-data-driven vessel destination prediction for smart port management",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/Minjaejeong_VDP/";
+          
+        },
+      },{id: "post-queuing-based-operational-indicators-for-explaining-and-predicting-port-operations",
         
           title: "Queuing-Based Operational Indicators For Explaining and Predicting Port Operations",
         
