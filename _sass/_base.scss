@@ -14,44 +14,6 @@ $zcool-chinese-unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF
 }
 
 @font-face {
-    font-family: 'LineSeed';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Rg.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'LineSeedbold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
-    font-weight: 700;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Pretendard';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-display: swap;
-}
-
-
-@font-face {
-    font-family: 'PretendardBd';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-display: swap;
-}
-
-
-
-@font-face {
-    font-family: 'KorailJang';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KORAILCondensed-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-display: swap;
-}
-
-@font-face {
     font-family: 'A2z';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2') format('woff2');
     font-weight: 300;
@@ -60,7 +22,14 @@ $zcool-chinese-unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF
 
 @font-face {
   font-family: 'A2z';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.ttf') format('truetype');
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'A2z';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2') format('woff2');
   font-weight: 700;
   font-display: swap;
 }

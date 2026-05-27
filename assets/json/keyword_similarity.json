@@ -5,6 +5,14 @@
   "threshold": 0.72,
   "topk": 8,
   "similarities": {
+    "kw:Machine learning": [
+      [
+        "kw:Transfer learning",
+        0.7273
+      ]
+    ],
+    "kw:Genetic algorithm": [],
+    "kw:Clustering": [],
     "kw:Large language models": [
       [
         "kw:Large Language Models",
@@ -20,12 +28,6 @@
       [
         "kw:Container volume prediction",
         0.8276
-      ]
-    ],
-    "kw:Machine learning": [
-      [
-        "kw:Transfer learning",
-        0.7273
       ]
     ],
     "kw:Container terminal operations": [
@@ -135,7 +137,6 @@
     "kw:Accident severity": [],
     "kw:XAI": [],
     "kw:SHAP": [],
-    "kw:Genetic algorithm": [],
     "kw:Port operations": [],
     "kw:EDI data": [
       [
@@ -379,7 +380,6 @@
         0.75
       ]
     ],
-    "kw:Clustering": [],
     "kw:Time series": [],
     "kw:Process discovery": [],
     "kw:Port logistics": [

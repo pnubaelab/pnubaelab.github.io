@@ -12,5 +12,9 @@ This is the PPT from the Weekly Lab Seminar at March 24, 2025.
 
 Presenter: Minseop Kim
 
+{% quote kim2026generativeaimachinelearning %}
+This idea is currently being developed in a paper titled "Generative AI and Machine Learning Collaboration for Container Dwell Time Prediction via Data Standardization", which is under submission.
+{% endquote %}
+
 <iframe src="/assets/pdf/CT forecasting with TimeLLM.pdf" width="100%" height="600px"></iframe>
 
