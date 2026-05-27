@@ -51,7 +51,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-a-wiener-process-model-with-dynamic-covariate-for-degradation-modeling-and-remaining-useful-life-prediction",
+        },{id: "post-a-graph-representation-learning-approach-for-imbalanced-ship-type-recognition-using-ais-trajectory-data",
+        
+          title: "A Graph Representation Learning Approach for Imbalanced Ship Type Recognition Using AIS Trajectory...",
+        
+        description: "Big-data-driven vessel destination prediction for smart port management",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/jaeyoung/";
+          
+        },
+      },{id: "post-a-wiener-process-model-with-dynamic-covariate-for-degradation-modeling-and-remaining-useful-life-prediction",
         
           title: "A Wiener Process Model with Dynamic Covariate for Degradation Modeling and Remaining Useful...",
         
