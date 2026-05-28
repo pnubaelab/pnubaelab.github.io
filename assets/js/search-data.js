@@ -543,7 +543,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%9D%B4%EC%83%81%EC%9E%AC/";
             },},{id: "people-yongjae-lee-이용재",
           title: 'Yongjae Lee(이용재)',
-          description: "M.S. Dr. rer. nat. course at Hasso Plattner Institut.",
+          description: "M.S. PhD course at Hasso Plattner Institut.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EC%9A%A9%EC%9E%AC/";
             },},{id: "people-eunju-lee-이은주",
