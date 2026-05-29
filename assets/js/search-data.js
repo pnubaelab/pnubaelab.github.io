@@ -1205,12 +1205,22 @@ ninja.data = [{
           title: '제주 AIPC 학회참석',
           description: "한국해양과학기술협의회,JEJU ICC, Korea",
           section: "Photo",handler: () => {
-              window.location.href = "/photo/%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%ED%95%AD%EB%A7%8C%ED%95%99%ED%9A%8C2/";
+              window.location.href = "/photo/%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%ED%95%AD%EB%A7%8C%ED%95%99%ED%9A%8C4/";
             },},{id: "photo-제주-aipc-학회참석",
           title: '제주 AIPC 학회참석',
           description: "한국해양과학기술협의회 五虎大將軍, JEJU ICC, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%ED%95%AD%EB%A7%8C%ED%95%99%ED%9A%8C3/";
+            },},{id: "photo-제주-aipc-학회참석",
+          title: '제주 AIPC 학회참석',
+          description: "한국해양과학기술협의회,JEJU ICC, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%ED%95%AD%EB%A7%8C%ED%95%99%ED%9A%8C5/";
+            },},{id: "photo-제주-aipc-학회참석",
+          title: '제주 AIPC 학회참석',
+          description: "한국해양과학기술협의회,JEJU ICC, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%ED%95%AD%EB%A7%8C%ED%95%99%ED%9A%8C6/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
