@@ -84,6 +84,17 @@ ninja.data = [{
             window.location.href = "/blog/2026/Minjaejeong_VDP/";
           
         },
+      },{id: "post-recursive-model",
+        
+          title: "Recursive Model",
+        
+        description: "Recursive Model",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/RM/";
+          
+        },
       },{id: "post-queuing-based-operational-indicators-for-explaining-and-predicting-port-operations",
         
           title: "Queuing-Based Operational Indicators For Explaining and Predicting Port Operations",
