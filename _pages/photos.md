@@ -86,12 +86,25 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 }
 
 .category-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   font-size: 2rem;
   font-weight: 600;
   margin: 30px 0 15px 0;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--global-divider-color);
   color: var(--global-text-color);
+}
+
+.category-title::before,
+.category-title::after {
+  content: "";
+  flex: 1 1 auto;
+  border-bottom: 2px solid currentColor;
+}
+
+.category-title--even::before,
+.category-title--odd::after {
+  display: none;
 }
 
 /* 반응형 컬럼 수 조정 */
@@ -150,7 +163,8 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
       {% endfor %}
       {% if has_year_projects %}
         <div class="category-section">
-          <h2 class="category-title">{{ year }}</h2>
+          {% assign year_mod = year | modulo: 2 %}
+          <h2 class="category-title {% if year_mod == 0 %}category-title--even{% else %}category-title--odd{% endif %}">{{ year }}</h2>
           <div class="photo-masonry">
             {% for project in sorted_projects %}
               {% assign project_year = project.date | date: "%Y" %}
