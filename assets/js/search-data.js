@@ -287,6 +287,16 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-05-16-wiley_most_view/";
+            },},{id: "news-热烈祝贺-ieee-case-with-somyeong-kim-taekhyun-park",
+          title: '热烈祝贺!!  🎉🎉🎉  IEEE CASE with Somyeong Kim, Taekhyun Park',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-05-27-CASE/";
+            },},{id: "news-congratulazioni-qrs-2026-with-jungho-choo",
+          title: 'Congratulazioni!!  🎉🎉🎉 QRS 2026 with Jungho Choo',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-06-01-QRS/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
