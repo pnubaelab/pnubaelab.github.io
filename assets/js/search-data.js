@@ -1242,6 +1242,11 @@ ninja.data = [{
           description: "한국해양과학기술협의회,JEJU ICC, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%ED%95%AD%EB%A7%8C%ED%95%99%ED%9A%8C6/";
+            },},{id: "photo-2026-춘계산업공학회",
+          title: '2026_춘계산업공학회',
+          description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
