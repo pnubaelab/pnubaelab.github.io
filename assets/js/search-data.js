@@ -1249,6 +1249,11 @@ ninja.data = [{
               window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C/";
             },},{id: "photo-2026-춘계산업공학회",
           title: '2026_춘계산업공학회',
+          description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C1/";
+            },},{id: "photo-2026-춘계산업공학회",
+          title: '2026_춘계산업공학회',
           description: "2026년 춘계산업공학회, 천마총, Gyeongju, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C2/";
@@ -1257,6 +1262,11 @@ ninja.data = [{
           description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C3/";
+            },},{id: "photo-2026-춘계산업공학회",
+          title: '2026_춘계산업공학회',
+          description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C4/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
