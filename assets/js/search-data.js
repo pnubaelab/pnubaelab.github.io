@@ -539,7 +539,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%9C%A0%ED%83%9C%EC%84%A0/";
             },},{id: "people-gawon-lee-이가원",
           title: 'Gawon Lee(이가원)',
-          description: "M.S.",
+          description: "M.S. KISTI",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EA%B0%80%EC%9B%90/";
             },},{id: "people-kyunghoon-lee-이경훈",
