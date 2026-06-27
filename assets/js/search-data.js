@@ -877,11 +877,6 @@ ninja.data = [{
           description: "ZPMC, Shanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2024%EC%83%81%ED%95%98%EC%9D%B42/";
-            },},{id: "photo-2024년중국관광",
-          title: '2024년중국관광',
-          description: "Workshop, Shanghai, China",
-          section: "Photo",handler: () => {
-              window.location.href = "/photo/%EC%A4%91%EA%B5%AD%EA%B4%80%EA%B4%91/";
             },},{id: "photo-2024상하이4",
           title: '2024상하이4',
           description: "ZPMC, Shanghai, China",
@@ -892,6 +887,11 @@ ninja.data = [{
           description: "ZPMC, Shanghai, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2024%EC%83%81%ED%95%98%EC%9D%B43/";
+            },},{id: "photo-2024년중국관광",
+          title: '2024년중국관광',
+          description: "Workshop, Shanghai, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%A4%91%EA%B5%AD%EA%B4%80%EA%B4%91/";
             },},{id: "photo-2025졸업식",
           title: '2025졸업식',
           description: "2025년 졸업식, PNU, PUSAN, Korea",
@@ -1191,11 +1191,6 @@ ninja.data = [{
           title: '2026년배랩단합대회_1',
           description: "2026년 BAELAB 단합대회",
           section: "Photo",handler: () => {
-              window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C%20copy%202/";
-            },},{id: "photo-2026년배랩단합대회-1",
-          title: '2026년배랩단합대회_1',
-          description: "2026년 BAELAB 단합대회",
-          section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84BAELAB%EB%8B%A8%ED%95%A9%EB%8C%80%ED%9A%8C%20copy%203/";
             },},{id: "photo-2026년배랩단합대회-1",
           title: '2026년배랩단합대회_1',
@@ -1261,12 +1256,17 @@ ninja.data = [{
           title: '2026_춘계산업공학회',
           description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
           section: "Photo",handler: () => {
-              window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C3/";
+              window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C4/";
             },},{id: "photo-2026-춘계산업공학회",
           title: '2026_춘계산업공학회',
           description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
           section: "Photo",handler: () => {
-              window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C4/";
+              window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C5/";
+            },},{id: "photo-2026-선도워크숍",
+          title: '2026_선도워크숍',
+          description: "2026년 선도워크숍, 썬 호텔, Jeju,  Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%84%A0%EB%8F%84%EC%9B%8C%ED%81%AC%EC%88%8D/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
