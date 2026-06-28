@@ -85,7 +85,7 @@
       </style>
       <div class="photo-img-wrap">
         {% if project.img %}
-        <img class="photo-img" src="{{ project.img | relative_url }}" alt="project thumbnail" data-zoomable>
+        <img class="photo-img" src="{{ project.img | relative_url }}" alt="project thumbnail" loading="lazy" decoding="async" data-zoomable>
         {% endif %}
         <div class="photo-desc-overlay">{{ project.description }}</div>
         <div class="polaroid-text">{{ project.date | date: '%b %d, %Y' }}</div>
