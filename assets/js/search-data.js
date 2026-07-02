@@ -51,7 +51,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-a-graph-representation-learning-approach-for-imbalanced-ship-type-recognition-using-ais-trajectory-data",
+        },{id: "post-recursive-model",
+        
+          title: "Recursive Model",
+        
+        description: "Introduction of JEPA",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/JEPA/";
+          
+        },
+      },{id: "post-a-graph-representation-learning-approach-for-imbalanced-ship-type-recognition-using-ais-trajectory-data",
         
           title: "A Graph Representation Learning Approach for Imbalanced Ship Type Recognition Using AIS Trajectory...",
         
