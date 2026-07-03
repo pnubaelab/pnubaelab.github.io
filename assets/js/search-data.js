@@ -51,9 +51,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-recursive-model",
+        },{id: "post-introduction-of-jepa",
         
-          title: "Recursive Model",
+          title: "Introduction of JEPA",
         
         description: "Introduction of JEPA",
         section: "Posts",
