@@ -16,6 +16,9 @@ coauthor_counter = defaultdict(int)
 keyword_counter = Counter()
 author_keyword_links = defaultdict(int)  # (author, keyword) -> count
 
+FIRST_AUTHOR_WEIGHT = 3
+OTHER_AUTHOR_WEIGHT = 1
+
 def normalize_keyword(kw):
     """Normalize keyword for consistent grouping"""
     kw = kw.strip()
@@ -32,25 +35,33 @@ def extract_keywords(entry):
     keywords = re.split(r'[,;]', raw_keywords)
     return [normalize_keyword(k) for k in keywords if normalize_keyword(k)]
 
+def get_author_weights(authors):
+    """Assign a higher weight to the first author and a base weight to others."""
+    weights = {}
+    for index, author in enumerate(authors):
+        weights[author] = FIRST_AUTHOR_WEIGHT if index == 0 else OTHER_AUTHOR_WEIGHT
+    return weights
+
 for entry in bib_database.entries:
     if 'author' in entry:
         authors = [a.strip() for a in entry['author'].replace('\n', ' ').split(' and ')]
+        author_weights = get_author_weights(authors)
 
         # Coauthor links: count per shared paper (unchanged)
         for a1, a2 in itertools.combinations(sorted(authors), 2):
             coauthor_counter[(a1, a2)] += 1
 
-        # Node value: count of papers per author (1 per paper per author)
-        for a in set(authors):
-            author_counter[a] += 1
+        # Node value: first author contributes more weight than other authors.
+        for author, weight in author_weights.items():
+            author_counter[author] += weight
         
         # Extract and count keywords
         keywords = extract_keywords(entry)
         for kw in keywords:
             keyword_counter[kw] += 1
             # Link authors to keywords
-            for a in set(authors):
-                author_keyword_links[(a, kw)] += 1
+            for author, weight in author_weights.items():
+                author_keyword_links[(author, kw)] += weight
 
 # Filter keywords: only include those that appear in at least 2 papers
 MIN_KEYWORD_COUNT = 2
