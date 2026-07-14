@@ -1,6 +1,24 @@
 {
   "nodes": [
     {
+      "id": "Kamal, Imam Mustafa",
+      "group": 1,
+      "value": 49,
+      "type": "author"
+    },
+    {
+      "id": "Bae, Hyerim",
+      "group": 1,
+      "value": 197,
+      "type": "author"
+    },
+    {
+      "id": "Subakti, Misbakhul Munir Irfan",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
       "id": "Park, Hanbyeol",
       "group": 1,
       "value": 37,
@@ -16,12 +34,6 @@
       "id": "Lee, Gawon",
       "group": 1,
       "value": 16,
-      "type": "author"
-    },
-    {
-      "id": "Bae, Hyerim",
-      "group": 1,
-      "value": 196,
       "type": "author"
     },
     {
@@ -154,12 +166,6 @@
       "id": "Iman, Alif Nur",
       "group": 1,
       "value": 11,
-      "type": "author"
-    },
-    {
-      "id": "Kamal, Imam Mustafa",
-      "group": 1,
-      "value": 46,
       "type": "author"
     },
     {
@@ -1027,6 +1033,13 @@
       "type": "author"
     },
     {
+      "id": "kw:Representation learning",
+      "name": "Representation learning",
+      "group": 2,
+      "value": 7,
+      "type": "keyword"
+    },
+    {
       "id": "kw:Machine learning",
       "name": "Machine learning",
       "group": 2,
@@ -1346,13 +1359,6 @@
       "name": "Business process management",
       "group": 2,
       "value": 9,
-      "type": "keyword"
-    },
-    {
-      "id": "kw:Representation learning",
-      "name": "Representation learning",
-      "group": 2,
-      "value": 6,
       "type": "keyword"
     },
     {
@@ -1891,6 +1897,24 @@
   "links": [
     {
       "source": "Bae, Hyerim",
+      "target": "Kamal, Imam Mustafa",
+      "value": 21,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Subakti, Misbakhul Munir Irfan",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kamal, Imam Mustafa",
+      "target": "Subakti, Misbakhul Munir Irfan",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
       "target": "Choo, Jungho",
       "value": 7,
       "type": "coauthor"
@@ -2337,12 +2361,6 @@
       "source": "Bae, Hyerim",
       "target": "Iman, Alif Nur",
       "value": 5,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Kamal, Imam Mustafa",
-      "value": 20,
       "type": "coauthor"
     },
     {
@@ -5928,6 +5946,24 @@
       "type": "coauthor"
     },
     {
+      "source": "Kamal, Imam Mustafa",
+      "target": "kw:Representation learning",
+      "value": 15,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Representation learning",
+      "value": 7,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Subakti, Misbakhul Munir Irfan",
+      "target": "kw:Representation learning",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Park, Kikun",
       "target": "kw:Machine learning",
       "value": 19,
@@ -7773,18 +7809,6 @@
       "source": "Liu, Ling",
       "target": "kw:Deep learning",
       "value": 5,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kamal, Imam Mustafa",
-      "target": "kw:Representation learning",
-      "value": 12,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "kw:Representation learning",
-      "value": 6,
       "type": "author_keyword"
     },
     {
