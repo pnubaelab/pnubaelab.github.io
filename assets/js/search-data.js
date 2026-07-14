@@ -842,7 +842,7 @@ ninja.data = [{
           title: '2024년 LOGMS',
           description: "LOGMS 2024, Hamburg, Germany",
           section: "Photo",handler: () => {
-              window.location.href = "/photo/2024LOGMS5md/";
+              window.location.href = "/photo/2024LOGMS5/";
             },},{id: "photo-2024년-logms",
           title: '2024년 LOGMS',
           description: "LOGMS 2024, Hamburg, Germany",
@@ -1278,6 +1278,26 @@ ninja.data = [{
           description: "2026년 선도워크숍, 썬 호텔, Jeju,  Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EC%84%A0%EB%8F%84%EC%9B%8C%ED%81%AC%EC%88%8D/";
+            },},{id: "photo-2026년-logms",
+          title: '2026년 LOGMS',
+          description: "LOGMS 2026, Barcelona, Spain, July 7–10, 2026",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026LOGMS/";
+            },},{id: "photo-2026년-logms",
+          title: '2026년 LOGMS',
+          description: "LOGMS 2026, Barcelona, Spain, July 7–10, 2026",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026LOGMS2/";
+            },},{id: "photo-2026년-logms",
+          title: '2026년 LOGMS',
+          description: "LOGMS 2026, Barcelona, Spain, July 7–10, 2026",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026LOGMS3/";
+            },},{id: "photo-2026년-logms",
+          title: '2026년 LOGMS',
+          description: "LOGMS 2026, Barcelona, Spain, July 7–10, 2026",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026LOGMS4/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
