@@ -410,7 +410,7 @@ ninja.data = [{
               window.location.href = "/people/%EA%B9%80%EB%AF%BC%EC%84%AD/";
             },},{id: "people-minhee-kim-김민희",
           title: 'Minhee Kim(김민희)',
-          description: "M.S",
+          description: "PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EB%AF%BC%ED%9D%AC/";
             },},{id: "people-seonghan-kim-김성한",
@@ -610,7 +610,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%A0%95%EB%AF%BC%EC%9E%AC/";
             },},{id: "people-jaeyoung-jeong-정재영",
           title: 'Jaeyoung Jeong(정재영)',
-          description: "Undergraduate Student",
+          description: "M.S program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%A0%95%EC%9E%AC%EC%98%81/";
             },},{id: "people-jaehung-jung-정재형",
