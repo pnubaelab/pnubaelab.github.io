@@ -1233,6 +1233,11 @@ ninja.data = [{
           description: "한국해양과학기술협의회,JEJU ICC, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%ED%95%9C%EA%B5%AD%ED%95%B4%EC%96%91%ED%95%AD%EB%A7%8C%ED%95%99%ED%9A%8C4/";
+            },},{id: "photo-스크린야구",
+          title: '스크린야구',
+          description: "스크린야구, JEJU, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%8A%A4%EC%95%BC_%EC%A0%9C%EC%A3%BC/";
             },},{id: "photo-제주-aipc-학회참석",
           title: '제주 AIPC 학회참석',
           description: "한국해양과학기술협의회 五虎大將軍, JEJU ICC, Korea",
@@ -1273,11 +1278,31 @@ ninja.data = [{
           description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C5/";
+            },},{id: "photo-스크린야구",
+          title: '스크린야구',
+          description: "스크린야구,BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%8A%A4%EC%95%BC/";
+            },},{id: "photo-졸업-발표",
+          title: '졸업 발표',
+          description: "경훈 졸업발표 ,BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EA%B2%BD%ED%9B%88%EC%A1%B8%EC%97%85/";
             },},{id: "photo-2026-선도워크숍",
           title: '2026_선도워크숍',
           description: "2026년 선도워크숍, 썬 호텔, Jeju,  Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EC%84%A0%EB%8F%84%EC%9B%8C%ED%81%AC%EC%88%8D/";
+            },},{id: "photo-준서송별회",
+          title: '준서송별회',
+          description: "Goodbye! 준서",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%A4%80%EC%84%9C_%EC%86%A1%EB%B3%84%ED%9A%8C/";
+            },},{id: "photo-용재대산송별회",
+          title: '용재대산송별회',
+          description: "Goodbye! Yongjae and Daesan",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%9A%A9%EC%9E%AC%EB%8C%80%EC%82%B0_%EC%86%A1%EB%B3%84%ED%9A%8C/";
             },},{id: "photo-2026년-logms",
           title: '2026년 LOGMS',
           description: "LOGMS 2026, Barcelona, Spain, July 7–10, 2026",
