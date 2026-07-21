@@ -1237,6 +1237,11 @@ ninja.data = [{
           title: '스크린야구',
           description: "스크린야구, JEJU, KOREA",
           section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%8A%A4%EC%95%BC/";
+            },},{id: "photo-스크린야구",
+          title: '스크린야구',
+          description: "스크린야구, JEJU, KOREA",
+          section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EC%8A%A4%EC%95%BC_%EC%A0%9C%EC%A3%BC/";
             },},{id: "photo-제주-aipc-학회참석",
           title: '제주 AIPC 학회참석',
@@ -1278,11 +1283,6 @@ ninja.data = [{
           description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C5/";
-            },},{id: "photo-스크린야구",
-          title: '스크린야구',
-          description: "스크린야구,BUSAN, KOREA",
-          section: "Photo",handler: () => {
-              window.location.href = "/photo/2026%EC%8A%A4%EC%95%BC/";
             },},{id: "photo-졸업-발표",
           title: '졸업 발표',
           description: "경훈 졸업발표 ,BUSAN, KOREA",
