@@ -415,7 +415,7 @@ ninja.data = [{
               window.location.href = "/people/%EA%B9%80%EB%AF%BC%ED%9D%AC/";
             },},{id: "people-seonghan-kim-김성한",
           title: 'Seonghan Kim(김성한)',
-          description: "M.S Program",
+          description: "M.S. LG Electronics",
           section: "People",handler: () => {
               window.location.href = "/people/%EA%B9%80%EC%84%B1%ED%95%9C/";
             },},{id: "people-somyeong-kim-김소명",
@@ -555,7 +555,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%9D%B4%EA%B0%80%EC%9B%90/";
             },},{id: "people-kyunghoon-lee-이경훈",
           title: 'Kyunghoon Lee(이경훈)',
-          description: "M.S Program",
+          description: "M.S. LG Electronics",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9D%B4%EA%B2%BD%ED%9B%88/";
             },},{id: "people-imam-mustafa-kamal",
@@ -1323,6 +1323,16 @@ ninja.data = [{
           description: "LOGMS 2026, Barcelona, Spain, July 7–10, 2026",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026LOGMS4/";
+            },},{id: "photo-롯데-야구",
+          title: '롯데 야구',
+          description: "SSG vs Lotte, Sajik-ro, Dongnae-gu, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%95%BC%EA%B5%AC%EA%B4%80%EB%9E%8C/";
+            },},{id: "photo-경훈성한케잌",
+          title: '경훈성한케잌',
+          description: "Goodbye! 경훈 &amp; 성한",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EA%B2%BD%ED%9B%88%EC%84%B1%ED%95%9C_%EC%BC%80%EC%9E%8C/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
