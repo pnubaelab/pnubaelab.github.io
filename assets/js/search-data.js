@@ -993,6 +993,16 @@ ninja.data = [{
           description: "ICPR28,Chía, Colombia",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2025%EB%85%84%EC%BD%9C%EB%A1%AC%EB%B9%84%EC%95%843/";
+            },},{id: "photo-한일교류회",
+          title: '한일교류회',
+          description: "한일기술교류회, BUSAN, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%ED%95%9C%EC%9D%BC%EA%B5%90%EB%A5%98%ED%9A%8C/";
+            },},{id: "photo-한일교류회",
+          title: '한일교류회',
+          description: "한일기술교류회, BUSAN, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2025%ED%95%9C%EC%9D%BC%EA%B5%90%EB%A5%98%ED%9A%8C2/";
             },},{id: "photo-야구관람",
           title: '야구관람',
           description: "야구관람",
@@ -1163,6 +1173,16 @@ ninja.data = [{
           description: "김예린, Wedding, Pohang",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%98%88%EB%A6%B0%EC%84%A0%EB%B0%B0%EA%B2%B0%ED%98%BC%EC%8B%9D3/";
+            },},{id: "photo-배랩이사",
+          title: '배랩이사',
+          description: "배랩이사, BUSAN, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%B0%B0%EB%9E%A9%EC%9D%B4%EC%82%AC/";
+            },},{id: "photo-배랩이사",
+          title: '배랩이사',
+          description: "배랩이사, BUSAN, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EB%B0%B0%EB%9E%A9%EC%9D%B4%EC%82%AC2/";
             },},{id: "photo-2026춘계졸업식1",
           title: '2026춘계졸업식1',
           description: "2026년 2월 졸업식, BUSAN, KOREA",
@@ -1283,6 +1303,11 @@ ninja.data = [{
           description: "2026년 춘계산업공학회, 경주화백컨벤션센터, Gyeongju, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%83%81%EB%B0%98%EA%B8%B0%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C5/";
+            },},{id: "photo-한일교류회",
+          title: '한일교류회',
+          description: "Worldcup 관람, BUSAN, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%9B%94%EB%93%9C%EC%BB%B5/";
             },},{id: "photo-졸업-발표",
           title: '졸업 발표',
           description: "경훈 졸업발표 ,BUSAN, KOREA",
