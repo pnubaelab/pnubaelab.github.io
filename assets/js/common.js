@@ -17,6 +17,43 @@ $(document).ready(function () {
   });
   $("a").removeClass("waves-effect waves-light");
 
+  // Make Jekyll Scholar quote blocks navigate to the cited publication entry.
+  $("blockquote:has(cite a.citation[href^='#'])").each(function () {
+    const quoteBlock = $(this);
+    const citationLink = quoteBlock.find("cite a.citation[href^='#']").first();
+    const citationTarget = citationLink.attr("href");
+
+    if (!citationTarget) {
+      return;
+    }
+
+    const targetId = citationTarget.slice(1);
+    const localTarget = targetId ? document.getElementById(targetId) : null;
+    const targetHref = localTarget ? citationTarget : `/publications/${citationTarget}`;
+
+    quoteBlock
+      .addClass("publication-quote-link")
+      .attr("role", "link")
+      .attr("tabindex", "0")
+      .attr("data-publication-href", targetHref)
+      .on("click", function (event) {
+        if ($(event.target).closest("a").length) {
+          return;
+        }
+        window.location.href = targetHref;
+      })
+      .on("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          window.location.href = targetHref;
+        }
+      });
+
+    if (!localTarget) {
+      citationLink.attr("href", targetHref);
+    }
+  });
+
   // bootstrap-toc
   if ($("#toc-sidebar").length) {
     // remove related publications years from the TOC
