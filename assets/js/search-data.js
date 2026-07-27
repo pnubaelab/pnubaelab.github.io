@@ -51,7 +51,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-introduction-of-jepa",
+        },{id: "post-通義千問-qwen-의-全球-人工智能-覇權-戰略-및-技術-生態系-分析",
+        
+          title: "通義千問(Qwen)의 全球 人工智能 覇權 戰略 및 技術 生態系 分析",
+        
+        description: "Qwen의 전구 인공지능 패권 전략 및 기술 생태계 분석",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/Qwen/";
+          
+        },
+      },{id: "post-introduction-of-jepa",
         
           title: "Introduction of JEPA",
         
