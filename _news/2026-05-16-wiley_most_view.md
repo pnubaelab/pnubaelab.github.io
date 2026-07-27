@@ -7,8 +7,6 @@ title: Top-Viewed Paper!!!!!
 giscus_comments: true
 author: [Dohee Kim, Eunju Lee, Imam Mustafa Kamal, Hyerim Bae]
 ---
-
-
 {% quote kim2025long %}
 Our paper, published in the Journal of Forecasting, was ranked among the top-viewed papers published in the journal in 2024!
 {% endquote %}

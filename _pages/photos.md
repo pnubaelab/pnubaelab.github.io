@@ -37,10 +37,24 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 .photo-masonry .grid-item {
   width: 100% !important;
   margin-bottom: 0 !important;
+  opacity: 0;
+  transform: translateY(14px) scale(0.96);
+  will-change: opacity, transform;
 }
 
 .photo-masonry.is-masonry .grid-item {
   grid-row-end: span var(--masonry-row-span, 1);
+}
+
+.photo-masonry .grid-item.is-photo-loaded {
+  animation: photo-pop-in 0.48s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
+  animation-delay: var(--photo-pop-delay, 0ms);
+}
+
+.photo-masonry .grid-item.is-photo-error {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
 }
 
 .photo-masonry .grid-item.grid-item--wide {
@@ -67,6 +81,31 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
   height: auto;
   border-radius: 4px;
   display: block;
+}
+
+@keyframes photo-pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.025);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-masonry .grid-item,
+  .photo-masonry .grid-item.is-photo-loaded {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+  }
 }
 
 .photo-masonry .card-body {
@@ -226,10 +265,51 @@ Roland Barthes
     document.addEventListener('DOMContentLoaded', function () {
       layoutAllMasonry();
 
-      document.querySelectorAll('.photo-masonry .photo-img').forEach(function (img) {
-        if (img.complete) return;
-        img.addEventListener('load', layoutAllMasonry, { once: true });
-        img.addEventListener('error', layoutAllMasonry, { once: true });
+      document.querySelectorAll('.photo-masonry .grid-item').forEach(function (item) {
+        if (!item.querySelector('.photo-img')) {
+          item.classList.add('is-photo-error');
+        }
+      });
+
+      document.querySelectorAll('.photo-masonry .photo-img').forEach(function (img, index) {
+        var item = img.closest('.grid-item');
+        var revealDelay = Math.min((index % 12) * 35, 385);
+
+        if (item) {
+          item.style.setProperty('--photo-pop-delay', revealDelay + 'ms');
+        }
+
+        function revealLoadedPhoto() {
+          if (item) {
+            item.classList.add('is-photo-loaded');
+            item.addEventListener(
+              'animationend',
+              function () {
+                item.style.willChange = 'auto';
+              },
+              { once: true }
+            );
+          }
+          layoutAllMasonry();
+        }
+
+        function revealErroredPhoto() {
+          if (item) item.classList.add('is-photo-error');
+          layoutAllMasonry();
+        }
+
+        if (img.complete && img.naturalWidth > 0) {
+          revealLoadedPhoto();
+          return;
+        }
+
+        if (img.complete) {
+          revealErroredPhoto();
+          return;
+        }
+
+        img.addEventListener('load', revealLoadedPhoto, { once: true });
+        img.addEventListener('error', revealErroredPhoto, { once: true });
       });
     });
 
