@@ -125,6 +125,18 @@ blockquote {
     margin-bottom: 0;
   }
 
+  &.publication-quote-link {
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+
+    &:hover,
+    &:focus {
+      background-color: var(--global-code-bg-color);
+      border-left-color: var(--global-hover-color);
+      outline: none;
+    }
+  }
+
   /* Tips, warnings, and dangers blockquotes */
   &.block-tip {
     border-color: var(--global-tip-block);
