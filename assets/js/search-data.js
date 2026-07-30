@@ -1364,6 +1364,11 @@ ninja.data = [{
           description: "SSG vs Lotte, Sajik-ro, Dongnae-gu, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EC%95%BC%EA%B5%AC%EA%B4%80%EB%9E%8C/";
+            },},{id: "photo-롯데-야구",
+          title: '롯데 야구',
+          description: "SSG vs Lotte, Sajik-ro, Dongnae-gu, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EC%95%BC%EA%B5%AC%EA%B4%80%EB%9E%8C2/";
             },},{id: "photo-경훈성한케잌",
           title: '경훈성한케잌',
           description: "Goodbye! 경훈 &amp; 성한",
