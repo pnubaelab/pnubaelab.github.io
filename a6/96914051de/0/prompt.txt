@@ -1,0 +1,1 @@
+bib 파일에서 배혜림 교수님의 citation 에 포함되지 않은 논문이 있다면 bib 파일을 삽입하고 형식에 맞춰서 너가 비어 있는 부분을 작성해줘. 이후, utils/generate_scholar_citation.py 를 실행시키고 git push 를 수행해줘

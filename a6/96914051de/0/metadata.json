@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "a696914051de",
+  "session_id": "cb0253e3-1182-4470-b0f3-eb6eb61874be",
+  "strategy": "manual-commit",
+  "created_at": "2026-08-02T04:27:26.84743664Z",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "_bibliography/papers.bib"
+  ],
+  "agent": "Copilot CLI",
+  "turn_id": "e6dc37d447dd",
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 27055,
+    "api_call_count": 23
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-08-02T04:27:26.528747297Z",
+    "agent_lines": 13,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 13,
+    "agent_percentage": 100
+  }
+}

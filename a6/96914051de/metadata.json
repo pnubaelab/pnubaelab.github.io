@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "a696914051de",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "_bibliography/papers.bib"
+  ],
+  "sessions": [
+    {
+      "metadata": "/a6/96914051de/0/metadata.json",
+      "transcript": "/a6/96914051de/0/full.jsonl",
+      "content_hash": "/a6/96914051de/0/content_hash.txt",
+      "prompt": "/a6/96914051de/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 27055,
+    "api_call_count": 23
+  }
+}
