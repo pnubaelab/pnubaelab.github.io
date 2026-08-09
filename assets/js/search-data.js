@@ -51,9 +51,9 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-通義千問-qwen-의-全球-人工智能-覇權-戰略-및-技術-生態系-分析",
+        },{id: "post-通义千问-qwen-의-全球-人工智能-霸权-战略-및-技术-生态系-分析",
         
-          title: "通義千問(Qwen)의 全球 人工智能 覇權 戰略 및 技術 生態系 分析",
+          title: "通义千问(Qwen)의 全球 人工智能 霸权 战略 및 技术 生态系 分析",
         
         description: "Qwen의 전구 인공지능 패권 전략 및 기술 생태계 분석",
         section: "Posts",
