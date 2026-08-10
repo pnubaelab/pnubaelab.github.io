@@ -1,15 +1,33 @@
 {
   "nodes": [
     {
-      "id": "Kamal, Imam Mustafa",
+      "id": "Kim, Minseop",
       "group": 1,
-      "value": 49,
+      "value": 35,
+      "type": "author"
+    },
+    {
+      "id": "Park, Taekhyun",
+      "group": 1,
+      "value": 13,
+      "type": "author"
+    },
+    {
+      "id": "Park, Kikun",
+      "group": 1,
+      "value": 39,
       "type": "author"
     },
     {
       "id": "Bae, Hyerim",
       "group": 1,
-      "value": 197,
+      "value": 198,
+      "type": "author"
+    },
+    {
+      "id": "Kamal, Imam Mustafa",
+      "group": 1,
+      "value": 49,
       "type": "author"
     },
     {
@@ -37,18 +55,6 @@
       "type": "author"
     },
     {
-      "id": "Park, Kikun",
-      "group": 1,
-      "value": 38,
-      "type": "author"
-    },
-    {
-      "id": "Park, Taekhyun",
-      "group": 1,
-      "value": 12,
-      "type": "author"
-    },
-    {
       "id": "Lee, Yongjae",
       "group": 1,
       "value": 18,
@@ -64,12 +70,6 @@
       "id": "Park, Yunkyung",
       "group": 1,
       "value": 2,
-      "type": "author"
-    },
-    {
-      "id": "Kim, Minseop",
-      "group": 1,
-      "value": 32,
       "type": "author"
     },
     {
@@ -1897,6 +1897,42 @@
   "links": [
     {
       "source": "Bae, Hyerim",
+      "target": "Kim, Minseop",
+      "value": 21,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Park, Kikun",
+      "value": 25,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Park, Taekhyun",
+      "value": 9,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kim, Minseop",
+      "target": "Park, Kikun",
+      "value": 8,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kim, Minseop",
+      "target": "Park, Taekhyun",
+      "value": 4,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Kikun",
+      "target": "Park, Taekhyun",
+      "value": 2,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
       "target": "Kamal, Imam Mustafa",
       "value": 21,
       "type": "coauthor"
@@ -1951,12 +1987,6 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "Park, Kikun",
-      "value": 24,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "Kim, Dohee",
       "value": 48,
       "type": "coauthor"
@@ -1965,12 +1995,6 @@
       "source": "Bae, Hyerim",
       "target": "Lee, Yongjae",
       "value": 10,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Park, Taekhyun",
-      "value": 8,
       "type": "coauthor"
     },
     {
@@ -2017,12 +2041,6 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "Kim, Minseop",
-      "value": 20,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "Kim, Takhyeong",
       "value": 2,
       "type": "coauthor"
@@ -2037,12 +2055,6 @@
       "source": "Kim, Minseop",
       "target": "Park, Hanbyeol",
       "value": 13,
-      "type": "coauthor"
-    },
-    {
-      "source": "Kim, Minseop",
-      "target": "Park, Taekhyun",
-      "value": 3,
       "type": "coauthor"
     },
     {
@@ -2076,12 +2088,6 @@
       "type": "coauthor"
     },
     {
-      "source": "Kim, Minseop",
-      "target": "Park, Kikun",
-      "value": 7,
-      "type": "coauthor"
-    },
-    {
       "source": "Kwon, Jaeeun",
       "target": "Park, Hanbyeol",
       "value": 4,
@@ -2103,12 +2109,6 @@
       "source": "Park, Hanbyeol",
       "target": "Park, Kikun",
       "value": 8,
-      "type": "coauthor"
-    },
-    {
-      "source": "Park, Kikun",
-      "target": "Park, Taekhyun",
-      "value": 1,
       "type": "coauthor"
     },
     {
