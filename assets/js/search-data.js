@@ -1374,6 +1374,11 @@ ninja.data = [{
           description: "Goodbye! 경훈 &amp; 성한",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EA%B2%BD%ED%9B%88%EC%84%B1%ED%95%9C_%EC%BC%80%EC%9E%8C/";
+            },},{id: "photo-경훈-성한-bye-bye",
+          title: '경훈 성한 Bye Bye',
+          description: "Goodbye! 경훈&amp;성한",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026byebye/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
