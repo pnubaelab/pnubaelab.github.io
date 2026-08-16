@@ -319,6 +319,16 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-06-01-QRS/";
+            },},{id: "news-paper-accepted-to-journal-of-forecasting",
+          title: 'Paper Accepted to Journal of Forecasting!!!',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-07-06-JF/";
+            },},{id: "news-paper-accepted-to-transportation-research-part-e",
+          title: 'Paper Accepted to Transportation Research Part E!!!',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-08-12-TRE/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
