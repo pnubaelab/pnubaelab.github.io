@@ -1389,6 +1389,21 @@ ninja.data = [{
           description: "Goodbye! 경훈&amp;성한",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026byebye/";
+            },},{id: "photo-2026년-ieee-case",
+          title: '2026년 IEEE CASE',
+          description: "IEEE CASE 2026, Shenyang, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026IEEECASE1/";
+            },},{id: "photo-2026년-ieee-case",
+          title: '2026년 IEEE CASE',
+          description: "IEEE CASE 2026, Shenyang, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026IEEECASE2/";
+            },},{id: "photo-2026년-ieee-case",
+          title: '2026년 IEEE CASE',
+          description: "IEEE CASE 2026, Shenyang, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026IEEECASE3/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
