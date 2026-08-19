@@ -64,16 +64,40 @@ latest_posts:
 
 .hero-title {
   font-family: 'KorailJang', sans-serif;
-  font-size: clamp(3.25rem, 12vw, 11rem); /* slightly wider visual footprint */
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.02em; /* widen title spacing */
-  line-height: 0.85;
   margin: 0 0 12px 0; /* tighter spacing below title */
   position: relative;
   z-index: 2;
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 0;
+}
+
+.hero-title__svg {
+  display: block;
+  width: min(100%, 1200px);
+  height: auto;
+  max-height: 350px;
+  margin: 0 auto;
+  overflow: visible;
+  transform: translateX(-0%);
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.8));
+}
+
+.hero-title__text {
+  font-family: 'KorailJang', sans-serif;
+  font-size: 241.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.hero-title__stroke {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-title__fill {
+  fill: #fff;
 }
 
 .hero-colon {
@@ -95,7 +119,7 @@ latest_posts:
 }
 
 .section-container {
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -278,9 +302,129 @@ latest_posts:
 </style>
 
 <div class="hero-section">
-  <h1 class="hero-title">BAE LAB</h1>
+  <h1 class="hero-title" aria-label="BAE LAB">
+    <svg class="hero-title__svg" viewBox="0 -220 850 280" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <defs>
+        <clipPath id="bae-title-wipe" clipPathUnits="userSpaceOnUse">
+          <rect class="hero-title__wipe" x="-100" y="-260" width="1400" height="340"></rect>
+        </clipPath>
+      </defs>
+      <text class="hero-title__text hero-title__stroke" x="0" y="0" xml:space="preserve">
+        <tspan>B</tspan><tspan>A</tspan><tspan>E</tspan><tspan> </tspan><tspan>L</tspan><tspan>A</tspan><tspan>B</tspan>
+      </text>
+      <text class="hero-title__text hero-title__fill" x="0" y="0" xml:space="preserve" clip-path="url(#bae-title-wipe)">
+        <tspan>B</tspan><tspan>A</tspan><tspan>E</tspan><tspan> </tspan><tspan>L</tspan><tspan>A</tspan><tspan>B</tspan>
+      </text>
+    </svg>
+  </h1>
   <p class="hero-subtitle">BIGDATA ANALYTICS ENGINEERING LAB · PNU</p>
 </div>
+
+<script>
+(() => {
+  const svg = document.querySelector('.hero-title__svg');
+  if (!svg || svg.dataset.animated === 'true') return;
+  svg.dataset.animated = 'true';
+
+  const strokeText = svg.querySelector('.hero-title__stroke');
+  const strokes = Array.from(strokeText.querySelectorAll('tspan'));
+  const wipe = svg.querySelector('.hero-title__wipe');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const dash = 1470;
+  let runId = 0;
+
+  const wait = (milliseconds) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+
+  if (!reducedMotion.matches) {
+    strokes.forEach((letter) => {
+      letter.style.strokeDasharray = dash;
+      letter.style.strokeDashoffset = dash;
+    });
+    wipe.style.transform = 'scaleX(0)';
+  }
+
+  const measure = () => {
+    const box = strokeText.getBBox();
+    const pad = 20;
+    const bounds = {
+      x: box.x - pad,
+      y: box.y - pad,
+      width: box.width + pad * 2,
+      height: box.height + pad * 2
+    };
+
+    svg.setAttribute('viewBox', `${bounds.x} ${bounds.y} ${bounds.width} ${bounds.height}`);
+    wipe.setAttribute('x', bounds.x);
+    wipe.setAttribute('y', bounds.y);
+    wipe.setAttribute('width', bounds.width);
+    wipe.setAttribute('height', bounds.height);
+    wipe.style.transformBox = 'fill-box';
+    wipe.style.transformOrigin = 'left center';
+  };
+
+  const showFinalState = () => {
+    svg.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
+    strokes.forEach((letter) => {
+      letter.style.strokeDasharray = dash;
+      letter.style.strokeDashoffset = 0;
+    });
+    wipe.style.transform = 'scaleX(1)';
+  };
+
+  const play = async (currentRun) => {
+    const drawDuration = 2600;
+    const stagger = 90;
+
+    if (currentRun === runId && !reducedMotion.matches) {
+      svg.getAnimations({ subtree: true }).forEach((animation) => animation.cancel());
+      strokes.forEach((letter) => {
+        letter.style.strokeDasharray = dash;
+        letter.style.strokeDashoffset = dash;
+        letter.animate(
+          [{ strokeDashoffset: dash }, { strokeDashoffset: 0 }],
+          {
+            duration: drawDuration,
+            delay: strokes.indexOf(letter) * stagger,
+            easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            fill: 'forwards'
+          }
+        );
+      });
+
+      wipe.style.transform = 'scaleX(0)';
+      await wait(drawDuration + (strokes.length - 1) * stagger + 200);
+      if (currentRun === runId && !reducedMotion.matches) {
+        wipe.animate(
+          [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }],
+          {
+            duration: 1200,
+            easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
+            fill: 'forwards'
+          }
+        );
+        await wait(2500);
+      }
+    }
+
+    if (reducedMotion.matches) showFinalState();
+  };
+
+  const start = () => {
+    measure();
+    if (reducedMotion.matches) showFinalState();
+    else play(runId);
+  };
+
+  reducedMotion.addEventListener?.('change', () => {
+    runId += 1;
+    if (reducedMotion.matches) showFinalState();
+    else play(runId);
+  });
+
+  if (document.fonts?.ready) document.fonts.ready.then(start);
+  else start();
+})();
+</script>
 <!-- Partner/affiliation logos -->
 <div class="logo-strip">
   <div class="logo-item">
