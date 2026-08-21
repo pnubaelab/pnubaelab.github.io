@@ -329,6 +329,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-08-12-TRE/";
+            },},{id: "news-졸업을-축하합니다",
+          title: '🎉🎉🎉졸업을 축하합니다!!!!!🎉🎉🎉',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-08-21-%EC%A1%B8%EC%97%85%EC%B6%95%ED%95%98/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
@@ -671,7 +676,7 @@ ninja.data = [{
               window.location.href = "/people/%EC%B5%9C%EC%9C%A0%EB%A6%BC/";
             },},{id: "people-jungho-choo-추정호",
           title: 'Jungho Choo(추정호)',
-          description: "M.S Program",
+          description: "M.S.",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%B6%94%EC%A0%95%ED%98%B8/";
             },},{id: "people-muhammad-hanif-ramadhan-하니프",
@@ -1404,6 +1409,21 @@ ninja.data = [{
           description: "IEEE CASE 2026, Shenyang, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026IEEECASE3/";
+            },},{id: "photo-2026하계졸업식1",
+          title: '2026하계졸업식1',
+          description: "2026년 8월 졸업식, 빈센트&amp; 줄스, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%ED%95%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D1/";
+            },},{id: "photo-2026하계졸업식2",
+          title: '2026하계졸업식2',
+          description: "2026년 8월 졸업식, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%ED%95%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D2/";
+            },},{id: "photo-2026하계졸업식3",
+          title: '2026하계졸업식3',
+          description: "2026년 8월 졸업식, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%ED%95%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D3/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
@@ -1422,6 +1442,9 @@ ninja.data = [{
           section: "Projects",},{id: "projects-",
           title: '',
           description: "동적 해양사고 시나리오 도출 및 실시간 사고위험 통합지표 기반 조기경보 시스템 개발",
+          section: "Projects",},{id: "projects-",
+          title: '',
+          description: "트레드링스",
           section: "Projects",},{id: "projects-",
           title: '',
           description: "감귤 가격 및 출하량 예측 모델 개발",
