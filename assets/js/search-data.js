@@ -1409,6 +1409,16 @@ ninja.data = [{
           description: "IEEE CASE 2026, Shenyang, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026IEEECASE3/";
+            },},{id: "photo-2026년-ieee-case",
+          title: '2026년 IEEE CASE',
+          description: "Shenyang Imperial Palace Museum, Shenyang, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026IEEECASE4/";
+            },},{id: "photo-2026년-ieee-case",
+          title: '2026년 IEEE CASE',
+          description: "Shenyang Imperial Palace Museum, Shenyang, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026IEEECASE5/";
             },},{id: "photo-2026하계졸업식1",
           title: '2026하계졸업식1',
           description: "2026년 8월 졸업식, 빈센트&amp; 줄스, BUSAN, KOREA",
