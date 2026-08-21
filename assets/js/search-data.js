@@ -1434,6 +1434,11 @@ ninja.data = [{
           description: "2026년 8월 졸업식, BUSAN, KOREA",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%ED%95%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D3/";
+            },},{id: "photo-2026하계졸업식0",
+          title: '2026하계졸업식0',
+          description: "하반기졸업식 대표, BUSAN, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%ED%95%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D4/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
