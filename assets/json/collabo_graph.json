@@ -1,27 +1,63 @@
 {
   "nodes": [
     {
-      "id": "Kim, Minseop",
+      "id": "Park, Hanbyeol",
       "group": 1,
-      "value": 35,
+      "value": 46,
       "type": "author"
     },
     {
-      "id": "Park, Taekhyun",
+      "id": "Sim, Sunghyun",
       "group": 1,
-      "value": 13,
+      "value": 51,
       "type": "author"
     },
     {
       "id": "Park, Kikun",
       "group": 1,
-      "value": 39,
+      "value": 40,
+      "type": "author"
+    },
+    {
+      "id": "Lee, Yongjae",
+      "group": 1,
+      "value": 19,
+      "type": "author"
+    },
+    {
+      "id": "Park, Eunhee",
+      "group": 1,
+      "value": 5,
       "type": "author"
     },
     {
       "id": "Bae, Hyerim",
       "group": 1,
-      "value": 198,
+      "value": 202,
+      "type": "author"
+    },
+    {
+      "id": "Heo, Jaehyeon",
+      "group": 1,
+      "value": 15,
+      "type": "author"
+    },
+    {
+      "id": "Park, Taekhyun",
+      "group": 1,
+      "value": 14,
+      "type": "author"
+    },
+    {
+      "id": "Kim, Minseong",
+      "group": 1,
+      "value": 1,
+      "type": "author"
+    },
+    {
+      "id": "Kim, Minseop",
+      "group": 1,
+      "value": 35,
       "type": "author"
     },
     {
@@ -37,12 +73,6 @@
       "type": "author"
     },
     {
-      "id": "Park, Hanbyeol",
-      "group": 1,
-      "value": 37,
-      "type": "author"
-    },
-    {
       "id": "Choo, Jungho",
       "group": 1,
       "value": 15,
@@ -51,13 +81,13 @@
     {
       "id": "Lee, Gawon",
       "group": 1,
-      "value": 16,
+      "value": 19,
       "type": "author"
     },
     {
-      "id": "Lee, Yongjae",
+      "id": "Kim, Misung",
       "group": 1,
-      "value": 18,
+      "value": 1,
       "type": "author"
     },
     {
@@ -88,12 +118,6 @@
       "id": "Lee, Hyunju",
       "group": 1,
       "value": 6,
-      "type": "author"
-    },
-    {
-      "id": "Park, Eunhee",
-      "group": 1,
-      "value": 4,
       "type": "author"
     },
     {
@@ -157,12 +181,6 @@
       "type": "author"
     },
     {
-      "id": "Sim, Sunghyun",
-      "group": 1,
-      "value": 50,
-      "type": "author"
-    },
-    {
       "id": "Iman, Alif Nur",
       "group": 1,
       "value": 11,
@@ -184,12 +202,6 @@
       "id": "Park, Sekil",
       "group": 1,
       "value": 4,
-      "type": "author"
-    },
-    {
-      "id": "Heo, Jaehyeon",
-      "group": 1,
-      "value": 13,
       "type": "author"
     },
     {
@@ -1033,6 +1045,13 @@
       "type": "author"
     },
     {
+      "id": "kw:Port logistics",
+      "name": "Port logistics",
+      "group": 2,
+      "value": 4,
+      "type": "keyword"
+    },
+    {
       "id": "kw:Representation learning",
       "name": "Representation learning",
       "group": 2,
@@ -1761,13 +1780,6 @@
       "type": "keyword"
     },
     {
-      "id": "kw:Port logistics",
-      "name": "Port logistics",
-      "group": 2,
-      "value": 3,
-      "type": "keyword"
-    },
-    {
       "id": "kw:Business process",
       "name": "Business process",
       "group": 2,
@@ -1897,20 +1909,152 @@
   "links": [
     {
       "source": "Bae, Hyerim",
-      "target": "Kim, Minseop",
-      "value": 21,
+      "target": "Lee, Yongjae",
+      "value": 11,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Park, Eunhee",
+      "value": 3,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Park, Hanbyeol",
+      "value": 28,
       "type": "coauthor"
     },
     {
       "source": "Bae, Hyerim",
       "target": "Park, Kikun",
-      "value": 25,
+      "value": 26,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Sim, Sunghyun",
+      "value": 29,
+      "type": "coauthor"
+    },
+    {
+      "source": "Lee, Yongjae",
+      "target": "Park, Eunhee",
+      "value": 2,
+      "type": "coauthor"
+    },
+    {
+      "source": "Lee, Yongjae",
+      "target": "Park, Hanbyeol",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Lee, Yongjae",
+      "target": "Park, Kikun",
+      "value": 2,
+      "type": "coauthor"
+    },
+    {
+      "source": "Lee, Yongjae",
+      "target": "Sim, Sunghyun",
+      "value": 2,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Eunhee",
+      "target": "Park, Hanbyeol",
+      "value": 2,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Eunhee",
+      "target": "Park, Kikun",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Eunhee",
+      "target": "Sim, Sunghyun",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "Park, Kikun",
+      "value": 9,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "Sim, Sunghyun",
+      "value": 4,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Kikun",
+      "target": "Sim, Sunghyun",
+      "value": 3,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Heo, Jaehyeon",
+      "value": 9,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Kim, Minseong",
+      "value": 1,
       "type": "coauthor"
     },
     {
       "source": "Bae, Hyerim",
       "target": "Park, Taekhyun",
-      "value": 9,
+      "value": 10,
+      "type": "coauthor"
+    },
+    {
+      "source": "Heo, Jaehyeon",
+      "target": "Kim, Minseong",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Heo, Jaehyeon",
+      "target": "Park, Hanbyeol",
+      "value": 4,
+      "type": "coauthor"
+    },
+    {
+      "source": "Heo, Jaehyeon",
+      "target": "Park, Taekhyun",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kim, Minseong",
+      "target": "Park, Hanbyeol",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kim, Minseong",
+      "target": "Park, Taekhyun",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Hanbyeol",
+      "target": "Park, Taekhyun",
+      "value": 3,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Kim, Minseop",
+      "value": 21,
       "type": "coauthor"
     },
     {
@@ -1958,13 +2102,7 @@
     {
       "source": "Bae, Hyerim",
       "target": "Lee, Gawon",
-      "value": 8,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Park, Hanbyeol",
-      "value": 25,
+      "value": 9,
       "type": "coauthor"
     },
     {
@@ -1987,14 +2125,32 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "Kim, Dohee",
-      "value": 48,
+      "target": "Kim, Misung",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Heo, Jaehyeon",
+      "target": "Kim, Misung",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Heo, Jaehyeon",
+      "target": "Lee, Gawon",
+      "value": 2,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kim, Misung",
+      "target": "Lee, Gawon",
+      "value": 1,
       "type": "coauthor"
     },
     {
       "source": "Bae, Hyerim",
-      "target": "Lee, Yongjae",
-      "value": 10,
+      "target": "Kim, Dohee",
+      "value": 48,
       "type": "coauthor"
     },
     {
@@ -2070,12 +2226,6 @@
       "type": "coauthor"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "Park, Taekhyun",
-      "value": 2,
-      "type": "coauthor"
-    },
-    {
       "source": "Bae, Hyerim",
       "target": "Kwon, Jaeeun",
       "value": 6,
@@ -2106,12 +2256,6 @@
       "type": "coauthor"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "Park, Kikun",
-      "value": 8,
-      "type": "coauthor"
-    },
-    {
       "source": "Bae, Hyerim",
       "target": "Lee, Hyunju",
       "value": 2,
@@ -2133,12 +2277,6 @@
       "source": "Bae, Hyerim",
       "target": "Park, Daesan",
       "value": 6,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Park, Eunhee",
-      "value": 2,
       "type": "coauthor"
     },
     {
@@ -2187,12 +2325,6 @@
       "source": "Lee, Yongjae",
       "target": "Park, Daesan",
       "value": 3,
-      "type": "coauthor"
-    },
-    {
-      "source": "Lee, Yongjae",
-      "target": "Park, Eunhee",
-      "value": 1,
       "type": "coauthor"
     },
     {
@@ -2334,12 +2466,6 @@
       "type": "coauthor"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "Sim, Sunghyun",
-      "value": 28,
-      "type": "coauthor"
-    },
-    {
       "source": "Kim, Younghwi",
       "target": "Lee, Jeahoon",
       "value": 1,
@@ -2407,12 +2533,6 @@
     },
     {
       "source": "Bae, Hyerim",
-      "target": "Heo, Jaehyeon",
-      "value": 7,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
       "target": "Jo, Suhyeon",
       "value": 3,
       "type": "coauthor"
@@ -2433,12 +2553,6 @@
       "source": "Heo, Jaehyeon",
       "target": "Kim, Dohee",
       "value": 3,
-      "type": "coauthor"
-    },
-    {
-      "source": "Heo, Jaehyeon",
-      "target": "Lee, Gawon",
-      "value": 1,
       "type": "coauthor"
     },
     {
@@ -2517,12 +2631,6 @@
       "source": "Heo, Jaehyeon",
       "target": "Kim, Minseop",
       "value": 6,
-      "type": "coauthor"
-    },
-    {
-      "source": "Heo, Jaehyeon",
-      "target": "Park, Hanbyeol",
-      "value": 3,
       "type": "coauthor"
     },
     {
@@ -2670,12 +2778,6 @@
       "type": "coauthor"
     },
     {
-      "source": "Lee, Yongjae",
-      "target": "Sim, Sunghyun",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
       "source": "Park, Taekhyun",
       "target": "Sim, Sunghyun",
       "value": 1,
@@ -2814,12 +2916,6 @@
       "type": "coauthor"
     },
     {
-      "source": "Park, Hanbyeol",
-      "target": "Sim, Sunghyun",
-      "value": 3,
-      "type": "coauthor"
-    },
-    {
       "source": "Park, Yunkyung",
       "target": "Sim, Sunghyun",
       "value": 1,
@@ -2865,12 +2961,6 @@
       "source": "Kim, Dohee",
       "target": "Lee, Eunju",
       "value": 5,
-      "type": "coauthor"
-    },
-    {
-      "source": "Park, Kikun",
-      "target": "Sim, Sunghyun",
-      "value": 2,
       "type": "coauthor"
     },
     {
@@ -3140,12 +3230,6 @@
     {
       "source": "Lee, Hyunjae",
       "target": "Son, Jongpyo",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Lee, Yongjae",
-      "target": "Park, Kikun",
       "value": 1,
       "type": "coauthor"
     },
@@ -4508,12 +4592,6 @@
     {
       "source": "Kim, Minseop",
       "target": "Park, Eunhee",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Park, Eunhee",
-      "target": "Park, Hanbyeol",
       "value": 1,
       "type": "coauthor"
     },
@@ -5944,6 +6022,30 @@
       "target": "Yahya, Bernardo Nugroho",
       "value": 1,
       "type": "coauthor"
+    },
+    {
+      "source": "Kim, Minseop",
+      "target": "kw:Port logistics",
+      "value": 3,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Taekhyun",
+      "target": "kw:Port logistics",
+      "value": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Kikun",
+      "target": "kw:Port logistics",
+      "value": 2,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Port logistics",
+      "value": 4,
+      "type": "author_keyword"
     },
     {
       "source": "Kamal, Imam Mustafa",
@@ -11496,12 +11598,6 @@
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Port logistics",
-      "value": 3,
-      "type": "author_keyword"
-    },
-    {
       "source": "Sutrisnowati, Riska Asriana",
       "target": "kw:Port logistics",
       "value": 1,
@@ -11659,12 +11755,6 @@
     },
     {
       "source": "Kim, Dohee",
-      "target": "kw:Port logistics",
-      "value": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Kikun",
       "target": "kw:Port logistics",
       "value": 1,
       "type": "author_keyword"

@@ -5,6 +5,16 @@
   "threshold": 0.72,
   "topk": 8,
   "similarities": {
+    "kw:Port logistics": [
+      [
+        "kw:Port operations",
+        0.8377
+      ],
+      [
+        "kw:Maritime logistics",
+        0.8285
+      ]
+    ],
     "kw:Representation learning": [],
     "kw:Machine learning": [],
     "kw:Genetic algorithm": [],
@@ -415,7 +425,7 @@
     "kw:Process improvement": [
       [
         "kw:Process efficiency",
-        0.8231
+        0.823
       ],
       [
         "kw:Process optimization",
@@ -531,16 +541,6 @@
         0.7337
       ]
     ],
-    "kw:Port logistics": [
-      [
-        "kw:Port operations",
-        0.8377
-      ],
-      [
-        "kw:Maritime logistics",
-        0.8285
-      ]
-    ],
     "kw:Business process": [
       [
         "kw:Business process model",
@@ -567,7 +567,7 @@
       ],
       [
         "kw:Process improvement",
-        0.8231
+        0.823
       ],
       [
         "kw:Operational efficiency",
