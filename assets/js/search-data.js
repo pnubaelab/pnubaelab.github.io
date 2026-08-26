@@ -554,6 +554,11 @@ ninja.data = [{
           description: "Integrated PhD program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%84%9C%EC%A4%80%ED%98%81/";
+            },},{id: "people-geonyeong-shin-신건영",
+          title: 'Geonyeong Shin(신건영)',
+          description: "Integrated PhD program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%8B%A0%EA%B1%B4%EC%98%81/";
             },},{id: "people-sunghyun-sim-심성현",
           title: 'Sunghyun Sim(심성현)',
           description: "PhD. Professor at Changwon National Univ, School of Artificial Intelligence Convergence Engineering",
@@ -574,6 +579,11 @@ ninja.data = [{
           description: "Professor",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9C%A0%ED%83%9C%EC%84%A0/";
+            },},{id: "people-soyoung-yun-윤소영",
+          title: 'Soyoung Yun(윤소영)',
+          description: "M.S Program",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%9C%A4%EC%86%8C%EC%98%81/";
             },},{id: "people-gawon-lee-이가원",
           title: 'Gawon Lee(이가원)',
           description: "M.S. KISTI",
@@ -704,6 +714,11 @@ ninja.data = [{
           description: "M.S",
           section: "People",handler: () => {
               window.location.href = "/people/%ED%99%8D%EC%84%B1%EB%AC%B8/";
+            },},{id: "people-hyeonseok-hwang-황현석",
+          title: 'Hyeonseok Hwang(황현석)',
+          description: "Undergraduate Student",
+          section: "People",handler: () => {
+              window.location.href = "/people/%ED%99%A9%ED%98%84%EC%84%9D/";
             },},{id: "photo-2022-연구실-단체사진2",
           title: '2022 연구실 단체사진2',
           description: "2022 연구실 단체사진",
