@@ -28,19 +28,19 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyyaml scholarly requests beautifulsoup4 bibtexparser numpy
+          pip install pyyaml scholarly requests beautifulsoup4 bibtexparser numpy sentence-transformers
       
       - name: Generate publication count
-        run: python generate_pub_count.py
+        run: python utils/generate_pub_count.py
       
       - name: Generate collaboration graph
-        run: python generate_collabo_graph.py
+        run: python utils/generate_collabo_graph.py
       
       - name: Generate keyword similarity
-        run: python generate_keyword_similarity.py
+        run: python utils/generate_keyword_similarity.py
       
       - name: Fetch Google Scholar citations
-        run: python generate_scholar_citations.py
+        run: python utils/generate_scholar_citations.py
         env:
           SCHOLARLY_USE_PROXY: 'false'
       
