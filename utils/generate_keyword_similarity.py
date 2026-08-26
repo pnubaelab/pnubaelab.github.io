@@ -1,4 +1,5 @@
 import argparse
+import hashlib
 import json
 import math
 from pathlib import Path
@@ -9,13 +10,17 @@ def _load_keywords_from_collabo_graph(path: Path) -> List[Tuple[str, str]]:
     data = json.loads(path.read_text(encoding="utf-8"))
     keywords: List[Tuple[str, str]] = []
     for node in data.get("nodes", []):
-        if node.get("type") != "keyword":
-            continue
-        kw_id = node.get("id")
-        if not kw_id:
-            continue
-        name = node.get("name") or str(kw_id).removeprefix("kw:")
-        keywords.append((kw_id, name))
+        if node.get("type") == "keyword":
+            kw_id = node.get("id")
+            if not kw_id:
+                continue
+            name = node.get("name") or str(kw_id).removeprefix("kw:")
+            keywords.append((kw_id, name))
+        elif node.get("type") == "author":
+            # Rare topics are hidden as graph nodes but still participate in
+            # clustering, so their semantic neighbors must be generated too.
+            for name in (node.get("topic_profile") or {}):
+                keywords.append((f"kw:{name}", name))
 
     # De-duplicate while preserving order
     seen = set()
@@ -133,6 +138,15 @@ def main() -> int:
         help="Max similar keywords to keep per keyword",
     )
     parser.add_argument(
+        "--alpha",
+        type=float,
+        default=0.3,
+        help=(
+            "Semantic-channel weight consumed by collabo.liquid "
+            "(clamped there for safety)"
+        ),
+    )
+    parser.add_argument(
         "--fallback",
         action="store_true",
         help="Use pure-python lexical similarity (no embeddings).",
@@ -160,19 +174,25 @@ def main() -> int:
             sim_matrix = _cosine_sim_matrix_sentence_transformers(texts, args.model)
             used_backend = "sentence-transformers"
         except RuntimeError as e:
-            print(str(e))
-            print("Falling back to lexical similarity. (Pass --fallback to silence this.)")
-            sim_matrix = _cosine_sim_matrix_fallback(texts)
-            used_backend = "lexical-fallback"
+            raise SystemExit(
+                f"{e}\nRefusing to overwrite semantic similarities with a lexical fallback. "
+                "Pass --fallback explicitly if that downgrade is intended."
+            ) from e
 
     sim_map = build_similarity_map(keyword_ids, sim_matrix, args.threshold, args.topk)
+    vocabulary_hash = hashlib.sha256(
+        "\n".join(sorted((name for _, name in keywords), key=str.casefold)).encode("utf-8")
+    ).hexdigest()[:16]
 
     payload = {
-        "version": 1,
+        "version": 2,
         "backend": used_backend,
         "model": None if used_backend != "sentence-transformers" else args.model,
         "threshold": args.threshold,
         "topk": args.topk,
+        "alpha": args.alpha,
+        "vocabulary_size": len(keyword_ids),
+        "vocabulary_hash": vocabulary_hash,
         "similarities": sim_map,
     }
 
