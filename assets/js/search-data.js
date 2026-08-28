@@ -334,6 +334,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-08-21-%EC%A1%B8%EC%97%85%EC%B6%95%ED%95%98/";
+            },},{id: "news-부산대-scsc-연구센터-산학협력-우수-사례-경진대회-교육부장관상-우수상-수상",
+          title: '부산대 SCSC 연구센터, 산학협력 우수 사례 경진대회 ‘교육부장관상 우수상’ 수상',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%EC%82%B0%ED%95%99%ED%98%91%EB%A0%A5%EC%9A%B0%EC%88%98%EC%82%AC%EB%A1%80%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
