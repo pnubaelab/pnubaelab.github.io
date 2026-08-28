@@ -338,7 +338,12 @@ ninja.data = [{
           title: '부산대 SCSC 연구센터, 산학협력 우수 사례 경진대회 ‘교육부장관상 우수상’ 수상',
           description: "",
           section: "News",handler: () => {
-              window.location.href = "/news/%EC%82%B0%ED%95%99%ED%98%91%EB%A0%A5%EC%9A%B0%EC%88%98%EC%82%AC%EB%A1%80%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C/";
+              window.location.href = "/news/2026-08-24%EC%82%B0%ED%95%99%ED%98%91%EB%A0%A5%EC%9A%B0%EC%88%98%EC%82%AC%EB%A1%80%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C/";
+            },},{id: "news-best-paper-runner-up-award",
+          title: '🎉🎉🎉BEST PAPER RUNNER-UP AWARD!!!!!🎉🎉🎉',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-08-25BESTPAPER/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
@@ -1459,6 +1464,21 @@ ninja.data = [{
           description: "하반기졸업식 대표, BUSAN, KOREA",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%ED%95%98%EA%B3%84%EC%A1%B8%EC%97%85%EC%8B%9D4/";
+            },},{id: "photo-2026aspai",
+          title: '2026ASPAI',
+          description: "ASPAI2026, POHANG, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026ASPAI/";
+            },},{id: "photo-2026aspai",
+          title: '2026ASPAI',
+          description: "ASPAI2026, POHANG, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026ASPAI1/";
+            },},{id: "photo-2026aspai",
+          title: '2026ASPAI',
+          description: "ASPAI2026, POHANG, KOREA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026ASPAI2/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
