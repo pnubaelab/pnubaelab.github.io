@@ -6,569 +6,210 @@
     "other_author_weight": 1,
     "minimum_keyword_papers": 2,
     "topic_vocabulary_size": 560,
-    "topic_vocabulary_hash": "f41b3b695d356abb"
+    "topic_vocabulary_hash": "81450674ac43cddd"
   },
   "nodes": [
     {
-      "id": "Park, Hanbyeol",
+      "id": "Jo, Sangmin",
       "group": 1,
-      "value": 46,
+      "value": 11,
       "type": "author",
-      "paper_count": 28,
-      "first_author_count": 9,
-      "first_author_share": 0.321,
-      "collaborative_paper_count": 28,
-      "coauthor_count": 32,
-      "topic_count": 108,
-      "topic_diversity": 0.953,
+      "paper_count": 7,
+      "first_author_count": 2,
+      "first_author_share": 0.286,
+      "collaborative_paper_count": 7,
+      "coauthor_count": 18,
+      "topic_count": 29,
+      "topic_diversity": 0.985,
       "topic_profile": {
-        "data-driven decision-making": 1,
-        "individual-level long time series forecasting": 1,
-        "similarity matching": 1,
-        "unsupervised learning": 1,
-        "Workforce demand forecasting": 1,
-        "Construction workforce planning": 1,
-        "Variable forecast horizon": 1,
-        "Aggregate demand constraint": 1,
-        "Similarity-based forecasting": 1,
-        "Degradation process modeling": 1,
-        "Remaining useful life prediction": 3,
-        "Health indicator forecasting": 1,
-        "Local-global feature mixer": 1,
-        "Trend-guided rollout-consistent loss": 1,
-        "Modeling": 1,
-        "Timing": 1,
-        "Frequency": 1,
-        "Spectrogram": 1,
-        "Degradation": 1,
-        "Construction": 1,
-        "Testing": 1,
-        "Image sensors": 1,
-        "Machinery": 1,
-        "Convolutional neural networks": 1,
-        "health indicator": 4,
-        "multidomain supervised time–frequency feature fusion autoencoder": 1,
-        "rotating machinery": 1,
-        "Degradation model selection": 1,
-        "Stochastic processes": 1,
-        "Remaining useful life estimation": 1,
-        "Retrieval-augmented generation": 1,
-        "Uncertainty-aware decision making": 1,
-        "Large language models": 2,
-        "Health indicator learning": 1,
-        "Domain adaptation": 1,
-        "Degradation stage synchronization": 1,
-        "Large-kernel autoencoder": 1,
-        "Cross-attention": 1,
-        "Industrial condition monitoring": 1,
-        "Container dwell time prediction": 2,
-        "Generative artificial intelligence": 1,
-        "Machine learning": 4,
-        "Data standardization": 1,
-        "Container terminal operations": 2,
-        "Container Throughput": 1,
-        "Generative AI": 1,
-        "Large Language Model": 1,
-        "Port logistics": 1,
-        "Smart Port": 1,
-        "Time Series Analysis": 1,
-        "Time Series Forecasting": 6,
-        "Deep learning": 12,
-        "Convolutional Neural Network": 1,
-        "Auto Convolution": 1,
-        "Neural Network": 3,
-        "Local variation modeling": 2,
-        "Automated Guided Vehicles": 1,
-        "Anomaly detection": 3,
-        "Trajectory features": 1,
-        "AIS data": 2,
-        "Standard route extraction": 1,
-        "Channel independent convolution": 1,
-        "Multivariate forecasting": 1,
-        "Container throughput forecasting": 1,
-        "EDI data": 2,
-        "Decomposition pairwise mixer": 1,
-        "Time series decomposition": 1,
-        "Predictive maintenance": 2,
-        "Temporal Dependencies": 1,
-        "Contrastive learning": 1,
-        "Rubber physical properties": 1,
-        "Dynamic margin": 1,
-        "Representation learning": 1,
-        "Manufacturing": 2,
-        "Ensemble method": 1,
-        "Feature selection": 1,
-        "Image similarity": 1,
-        "Data-driven simulation": 1,
-        "Synthetic rubber production": 1,
-        "Recipe optimization": 1,
-        "Automatic Identification System (AIS)": 1,
-        "Port and Anchorage Classification and Generalization": 1,
-        "Semi-supervised learning": 1,
-        "Degradation function": 1,
-        "Change point detection": 1,
-        "Condition-based maintenance": 3,
-        "Weapon system": 3,
-        "Satellite image": 1,
-        "Fine dust prediction": 1,
-        "High-resolution spatial analysis": 1,
-        "Environmental monitoring": 1,
-        "Image encoding": 1,
-        "Random forest": 1,
-        "Port operations": 1,
-        "Genetic algorithm": 1,
-        "Neural architecture search": 1,
-        "Maritime data": 1,
-        "Condition diagnosis": 1,
-        "Reliability engineering": 1,
-        "Rubber property prediction": 1,
-        "Clustering": 1,
-        "Material science": 1,
-        "Framework development": 1,
-        "Training mechanism": 1,
-        "Time series classification": 1,
-        "CRU-LSTM": 1,
-        "Autoencoder": 1,
-        "Feature representation": 1
-      },
-      "top_keywords": [
-        {
-          "name": "Deep learning",
-          "count": 12
-        },
-        {
-          "name": "health indicator",
-          "count": 4
-        },
-        {
-          "name": "Time Series Forecasting",
-          "count": 6
-        },
-        {
-          "name": "Condition-based maintenance",
-          "count": 3
-        },
-        {
-          "name": "Remaining useful life prediction",
-          "count": 3
-        }
-      ],
-      "active_from": 2022,
-      "active_to": 2026
-    },
-    {
-      "id": "Sim, Sunghyun",
-      "group": 1,
-      "value": 51,
-      "type": "author",
-      "paper_count": 29,
-      "first_author_count": 11,
-      "first_author_share": 0.379,
-      "collaborative_paper_count": 29,
-      "coauthor_count": 36,
-      "topic_count": 98,
-      "topic_diversity": 0.943,
-      "topic_profile": {
-        "data-driven decision-making": 1,
-        "individual-level long time series forecasting": 1,
-        "similarity matching": 1,
-        "unsupervised learning": 1,
-        "Arctic Ship Traffic Data": 1,
-        "Arctic Environment": 1,
-        "Ship Emissions": 2,
-        "Time Series Forecasting": 6,
-        "Transformer": 1,
-        "Trans-Arctic Shipping Route": 1,
-        "Regional maritime collision risk assessment": 1,
-        "Relative traffic representation": 1,
-        "Risk influence distribution map": 1,
-        "Centroid radial distribution": 1,
-        "Deep learning": 12,
-        "Explainable AI": 2,
-        "Reinforcement learning": 3,
-        "Process mining": 8,
-        "Large Language Model": 1,
-        "Reasoning": 1,
-        "GRPO": 1,
-        "health indicator": 2,
-        "Remaining useful life prediction": 2,
-        "Time series decomposition": 2,
-        "Predictive maintenance": 3,
-        "Temporal Dependencies": 1,
-        "Correlation recurrent unit": 1,
-        "Neural Network": 2,
-        "Autocorrelation": 1,
-        "Vessel ETA prediction": 1,
-        "AIS data": 3,
-        "Markov Chain": 1,
-        "Bayesian sampling": 1,
-        "Port operations": 1,
-        "Vessel trajectory prediction": 1,
-        "Bezier interpolation": 1,
-        "Manifold learning": 1,
-        "Maritime navigation": 1,
-        "Feature selection": 1,
-        "SHAP": 1,
-        "Order statistics": 1,
-        "Machine learning": 1,
-        "Port air pollution": 1,
-        "LSTM": 3,
-        "Environmental prediction": 1,
-        "Event log conversion": 1,
-        "CNN": 1,
-        "Event density embedding": 1,
-        "Image encoding": 1,
-        "Event log imputation": 2,
-        "Bagging": 1,
-        "RNN": 1,
-        "Missing data": 2,
-        "Baltic Dry Index": 4,
-        "Deep ensemble learning": 1,
-        "Maritime economics": 4,
-        "Multivariate regression": 1,
-        "Deep Neural Network": 1,
-        "Petri Nets": 1,
-        "Simulation": 1,
-        "Operational analytics": 1,
-        "Process data": 1,
-        "Business process modeling": 1,
-        "Process conformance": 3,
-        "Statistical verification": 3,
-        "Model abstraction": 1,
-        "Event log": 2,
-        "Density-based ship domain": 1,
-        "Safety performance indicator": 1,
-        "Maritime safety": 2,
-        "Freight rate prediction": 2,
-        "CoRepNet": 1,
-        "Variable correlation": 1,
-        "Feature interaction": 1,
-        "Representation learning": 1,
-        "Tribunal ruling analysis": 1,
-        "SentenceBERT": 1,
-        "Natural language processing": 1,
-        "Text analysis": 1,
-        "Likelihood-based imputation": 1,
-        "Event chain": 1,
-        "Induction furnace": 1,
-        "Manufacturing": 1,
-        "Training mechanism": 1,
-        "Time series classification": 1,
-        "CRU-LSTM": 1,
-        "Autoencoder": 1,
-        "Feature representation": 1,
-        "Multi-perspective process model": 1,
-        "Process discovery": 1,
-        "Smart Port": 1,
-        "Metaverse": 1,
-        "Artificial intelligence": 1,
-        "Port logistics": 1,
-        "Digital twin": 1,
-        "Log equality test": 1,
-        "Big data": 1,
-        "Model fitness": 1
-      },
-      "top_keywords": [
-        {
-          "name": "Deep learning",
-          "count": 12
-        },
-        {
-          "name": "Process mining",
-          "count": 8
-        },
-        {
-          "name": "Baltic Dry Index",
-          "count": 4
-        },
-        {
-          "name": "Maritime economics",
-          "count": 4
-        },
-        {
-          "name": "Time Series Forecasting",
-          "count": 6
-        }
-      ],
-      "active_from": 2016,
-      "active_to": 2026
-    },
-    {
-      "id": "Park, Kikun",
-      "group": 1,
-      "value": 40,
-      "type": "author",
-      "paper_count": 26,
-      "first_author_count": 7,
-      "first_author_share": 0.269,
-      "collaborative_paper_count": 26,
-      "coauthor_count": 36,
-      "topic_count": 100,
-      "topic_diversity": 0.959,
-      "topic_profile": {
-        "data-driven decision-making": 1,
-        "individual-level long time series forecasting": 1,
-        "similarity matching": 1,
-        "unsupervised learning": 1,
-        "HS code prediction": 1,
-        "Small language model": 1,
-        "Trie-constrained token prediction": 1,
-        "Hierarchy-aware semantic alignment": 1,
-        "Port logistics": 3,
-        "Quay crane assignment and scheduling problem": 1,
-        "Machine learning": 9,
-        "Initial population generation": 1,
-        "Genetic algorithm": 4,
-        "Clustering": 1,
-        "Traveling salesman problem": 1,
-        "Container Throughput": 1,
-        "Generative AI": 1,
-        "Large Language Model": 1,
-        "Smart Port": 2,
-        "Time Series Analysis": 1,
-        "Reinforcement learning": 2,
-        "Vessel trajectory prediction": 1,
-        "Transfer learning": 1,
-        "AIS data": 3,
-        "Maritime navigation optimization": 1,
-        "Container terminal operations": 6,
-        "Yard truck deployment": 1,
-        "Multi-objective optimization": 1,
-        "Container throughput forecasting": 1,
-        "EDI data": 2,
-        "Decomposition pairwise mixer": 1,
-        "Time Series Forecasting": 2,
-        "Deep learning": 5,
-        "Vessel ETA prediction": 1,
-        "Markov Chain": 1,
-        "Bayesian sampling": 1,
-        "Port operations": 2,
-        "Quay crane scheduling": 2,
-        "Surrogate model": 1,
-        "Optimization": 2,
-        "Container dwell time": 1,
-        "Explainable AI": 1,
-        "Process mining": 1,
-        "Feature selection": 1,
-        "SHAP": 1,
-        "Contrastive learning": 1,
-        "Rubber physical properties": 1,
-        "Dynamic margin": 1,
-        "Representation learning": 1,
-        "Manufacturing": 2,
-        "Simulation learning": 1,
-        "Makespan prediction": 1,
-        "Scheduling problem": 1,
-        "Computational efficiency": 1,
-        "Discrete Event Simulation": 1,
-        "Operation time prediction": 1,
-        "Data-driven simulation": 1,
-        "Synthetic rubber production": 1,
-        "Recipe optimization": 1,
-        "Quay crane": 1,
-        "Handling time prediction": 1,
-        "External factors": 1,
-        "Automatic Identification System (AIS)": 1,
-        "Port and Anchorage Classification and Generalization": 1,
-        "Semi-supervised learning": 1,
-        "Anomaly detection": 1,
-        "Image encoding": 1,
-        "Condition-based maintenance": 1,
-        "Weapon system": 1,
-        "TSP": 1,
-        "Container terminal": 2,
-        "Work planning": 1,
-        "Voice recognition": 1,
-        "Deepfake detection": 1,
-        "Speech classification": 1,
-        "Audio analysis": 1,
-        "Container dwell time prediction": 1,
-        "Random forest": 1,
-        "Neural architecture search": 1,
-        "Maritime data": 1,
-        "Demand prediction": 1,
-        "Designated driver service": 1,
-        "Regional forecasting": 1,
-        "Global pandemic": 1,
-        "Emergency relief fund": 1,
-        "Budget allocation": 1,
-        "Policy analysis": 1,
-        "COVID-19": 1,
-        "GPS data": 1,
-        "Internal truck": 1,
-        "Route prediction": 1,
-        "Logistics optimization": 1,
-        "Port punctuality": 1,
-        "ETA prediction": 1,
-        "RTA prediction": 1,
-        "Vessel arrival": 1,
-        "Maritime logistics": 1,
-        "Metaverse": 1,
-        "Artificial intelligence": 1,
-        "Digital twin": 1
-      },
-      "top_keywords": [
-        {
-          "name": "Machine learning",
-          "count": 9
-        },
-        {
-          "name": "Container terminal operations",
-          "count": 6
-        },
-        {
-          "name": "Genetic algorithm",
-          "count": 4
-        },
-        {
-          "name": "Deep learning",
-          "count": 5
-        },
-        {
-          "name": "Port logistics",
-          "count": 3
-        }
-      ],
-      "active_from": 2020,
-      "active_to": 2026
-    },
-    {
-      "id": "Lee, Yongjae",
-      "group": 1,
-      "value": 19,
-      "type": "author",
-      "paper_count": 11,
-      "first_author_count": 4,
-      "first_author_share": 0.364,
-      "collaborative_paper_count": 11,
-      "coauthor_count": 22,
-      "topic_count": 48,
-      "topic_diversity": 0.965,
-      "topic_profile": {
-        "data-driven decision-making": 1,
-        "individual-level long time series forecasting": 1,
-        "similarity matching": 1,
-        "unsupervised learning": 1,
-        "Looped computation": 1,
-        "Large language models": 1,
-        "Post-training framework": 1,
-        "Latent-refinement architecture": 1,
-        "Selective gate": 1,
-        "Random deep supervision": 1,
-        "Confidence head": 1,
-        "Procurement lead time prediction": 1,
-        "Process mining": 5,
-        "Time Series Forecasting": 2,
-        "Deep learning": 5,
-        "Shipbuilding industry": 1,
-        "Generative AI": 1,
-        "Optimization": 1,
-        "AIS data": 1,
-        "Reinforcement learning": 1,
-        "Large Language Model": 1,
-        "Reasoning": 1,
-        "GRPO": 1,
-        "Anomaly detection": 1,
-        "GNN": 1,
-        "Multi-task learning": 1,
-        "Semi-supervised learning": 1,
-        "Sequence mixer": 1,
-        "Dense layer": 1,
-        "MatrixMixer": 1,
-        "Neural Network": 1,
-        "Container dwell time": 1,
-        "Explainable AI": 1,
-        "Container terminal operations": 1,
-        "Feature selection": 1,
-        "SHAP": 1,
-        "Predictive process monitoring": 1,
-        "Transfer learning": 1,
-        "Remaining time prediction": 1,
-        "Transformer": 1,
+        "Industry Clustering": 1,
+        "Peer Group Selection": 1,
+        "Text-based Analysis": 1,
+        "10-K annual reports": 1,
+        "BERT": 1,
+        "Large Language Models": 1,
+        "Maritime accidents": 2,
+        "Risk mapping": 2,
+        "Accident severity": 2,
+        "XAI": 2,
+        "SHAP": 2,
+        "Ship fuel consumption": 1,
+        "Time Series Forecasting": 1,
+        "Missing data imputation": 1,
+        "CII regulations": 1,
+        "Maritime sustainability": 1,
         "Spatiotemporal data": 1,
         "Ship fuel consumption prediction": 1,
-        "Maritime logistics": 1,
+        "Maritime logistics": 2,
+        "Deep learning": 1,
         "LCL cargo loading": 1,
         "Container loading algorithm": 1,
         "Space optimization": 1,
         "Logistics": 1,
-        "3D bin packing": 1
+        "3D bin packing": 1,
+        "Port punctuality": 1,
+        "ETA prediction": 1,
+        "RTA prediction": 1,
+        "Vessel arrival": 1
       },
       "top_keywords": [
         {
-          "name": "Process mining",
-          "count": 5
-        },
-        {
-          "name": "Deep learning",
-          "count": 5
-        },
-        {
-          "name": "Time Series Forecasting",
+          "name": "Accident severity",
           "count": 2
         },
         {
-          "name": "Confidence head",
-          "count": 1
+          "name": "Maritime accidents",
+          "count": 2
         },
         {
-          "name": "GNN",
-          "count": 1
+          "name": "Risk mapping",
+          "count": 2
+        },
+        {
+          "name": "XAI",
+          "count": 2
+        },
+        {
+          "name": "SHAP",
+          "count": 2
         }
       ],
       "active_from": 2023,
       "active_to": 2026
     },
     {
-      "id": "Park, Eunhee",
+      "id": "Kim, Taehyeon",
       "group": 1,
-      "value": 5,
+      "value": 1,
       "type": "author",
-      "paper_count": 3,
-      "first_author_count": 1,
-      "first_author_share": 0.333,
-      "collaborative_paper_count": 3,
-      "coauthor_count": 9,
-      "topic_count": 13,
-      "topic_diversity": 0.99,
+      "paper_count": 1,
+      "first_author_count": 0,
+      "first_author_share": 0.0,
+      "collaborative_paper_count": 1,
+      "coauthor_count": 5,
+      "topic_count": 6,
+      "topic_diversity": 1.0,
       "topic_profile": {
-        "data-driven decision-making": 1,
-        "individual-level long time series forecasting": 1,
-        "similarity matching": 1,
-        "unsupervised learning": 1,
-        "Procurement lead time prediction": 1,
-        "Process mining": 1,
-        "Time Series Forecasting": 1,
-        "Deep learning": 2,
-        "Shipbuilding industry": 1,
-        "Satellite image": 1,
-        "Fine dust prediction": 1,
-        "High-resolution spatial analysis": 1,
-        "Environmental monitoring": 1
+        "Industry Clustering": 1,
+        "Peer Group Selection": 1,
+        "Text-based Analysis": 1,
+        "10-K annual reports": 1,
+        "BERT": 1,
+        "Large Language Models": 1
       },
       "top_keywords": [
         {
-          "name": "Environmental monitoring",
+          "name": "10-K annual reports",
           "count": 1
         },
         {
-          "name": "Fine dust prediction",
+          "name": "BERT",
           "count": 1
         },
         {
-          "name": "High-resolution spatial analysis",
+          "name": "Industry Clustering",
           "count": 1
         },
         {
-          "name": "Satellite image",
+          "name": "Peer Group Selection",
           "count": 1
         },
         {
-          "name": "Deep learning",
-          "count": 2
+          "name": "Text-based Analysis",
+          "count": 1
         }
       ],
-      "active_from": 2025,
+      "active_from": 2026,
+      "active_to": 2026
+    },
+    {
+      "id": "Park, Jeongho",
+      "group": 1,
+      "value": 1,
+      "type": "author",
+      "paper_count": 1,
+      "first_author_count": 0,
+      "first_author_share": 0.0,
+      "collaborative_paper_count": 1,
+      "coauthor_count": 5,
+      "topic_count": 6,
+      "topic_diversity": 1.0,
+      "topic_profile": {
+        "Industry Clustering": 1,
+        "Peer Group Selection": 1,
+        "Text-based Analysis": 1,
+        "10-K annual reports": 1,
+        "BERT": 1,
+        "Large Language Models": 1
+      },
+      "top_keywords": [
+        {
+          "name": "10-K annual reports",
+          "count": 1
+        },
+        {
+          "name": "BERT",
+          "count": 1
+        },
+        {
+          "name": "Industry Clustering",
+          "count": 1
+        },
+        {
+          "name": "Peer Group Selection",
+          "count": 1
+        },
+        {
+          "name": "Text-based Analysis",
+          "count": 1
+        }
+      ],
+      "active_from": 2026,
+      "active_to": 2026
+    },
+    {
+      "id": "Yu, Jihyeon",
+      "group": 1,
+      "value": 1,
+      "type": "author",
+      "paper_count": 1,
+      "first_author_count": 0,
+      "first_author_share": 0.0,
+      "collaborative_paper_count": 1,
+      "coauthor_count": 5,
+      "topic_count": 6,
+      "topic_diversity": 1.0,
+      "topic_profile": {
+        "Industry Clustering": 1,
+        "Peer Group Selection": 1,
+        "Text-based Analysis": 1,
+        "10-K annual reports": 1,
+        "BERT": 1,
+        "Large Language Models": 1
+      },
+      "top_keywords": [
+        {
+          "name": "10-K annual reports",
+          "count": 1
+        },
+        {
+          "name": "BERT",
+          "count": 1
+        },
+        {
+          "name": "Industry Clustering",
+          "count": 1
+        },
+        {
+          "name": "Peer Group Selection",
+          "count": 1
+        },
+        {
+          "name": "Text-based Analysis",
+          "count": 1
+        }
+      ],
+      "active_from": 2026,
       "active_to": 2026
     },
     {
@@ -584,6 +225,12 @@
       "topic_count": 560,
       "topic_diversity": 0.927,
       "topic_profile": {
+        "Industry Clustering": 1,
+        "Peer Group Selection": 1,
+        "Text-based Analysis": 1,
+        "10-K annual reports": 1,
+        "BERT": 1,
+        "Large Language Models": 5,
         "data-driven decision-making": 1,
         "individual-level long time series forecasting": 1,
         "similarity matching": 1,
@@ -632,7 +279,6 @@
         "Remaining useful life estimation": 1,
         "Retrieval-augmented generation": 1,
         "Uncertainty-aware decision making": 1,
-        "Large language models": 5,
         "Looped computation": 1,
         "Post-training framework": 1,
         "Latent-refinement architecture": 1,
@@ -669,11 +315,6 @@
         "Auto Convolution": 1,
         "Neural Network": 6,
         "Local variation modeling": 2,
-        "Industry Clustering": 1,
-        "Peer Group Selection": 1,
-        "Text-based Analysis": 1,
-        "10-K annual reports": 1,
-        "BERT": 1,
         "Reinforcement learning": 6,
         "Vessel trajectory prediction": 2,
         "Transfer learning": 3,
@@ -1171,6 +812,613 @@
       "active_to": 2026
     },
     {
+      "id": "Chung, Jihoon",
+      "group": 1,
+      "value": 1,
+      "type": "author",
+      "paper_count": 1,
+      "first_author_count": 0,
+      "first_author_share": 0.0,
+      "collaborative_paper_count": 1,
+      "coauthor_count": 5,
+      "topic_count": 6,
+      "topic_diversity": 1.0,
+      "topic_profile": {
+        "Industry Clustering": 1,
+        "Peer Group Selection": 1,
+        "Text-based Analysis": 1,
+        "10-K annual reports": 1,
+        "BERT": 1,
+        "Large Language Models": 1
+      },
+      "top_keywords": [
+        {
+          "name": "10-K annual reports",
+          "count": 1
+        },
+        {
+          "name": "BERT",
+          "count": 1
+        },
+        {
+          "name": "Industry Clustering",
+          "count": 1
+        },
+        {
+          "name": "Peer Group Selection",
+          "count": 1
+        },
+        {
+          "name": "Text-based Analysis",
+          "count": 1
+        }
+      ],
+      "active_from": 2026,
+      "active_to": 2026
+    },
+    {
+      "id": "Park, Hanbyeol",
+      "group": 1,
+      "value": 46,
+      "type": "author",
+      "paper_count": 28,
+      "first_author_count": 9,
+      "first_author_share": 0.321,
+      "collaborative_paper_count": 28,
+      "coauthor_count": 32,
+      "topic_count": 108,
+      "topic_diversity": 0.953,
+      "topic_profile": {
+        "data-driven decision-making": 1,
+        "individual-level long time series forecasting": 1,
+        "similarity matching": 1,
+        "unsupervised learning": 1,
+        "Workforce demand forecasting": 1,
+        "Construction workforce planning": 1,
+        "Variable forecast horizon": 1,
+        "Aggregate demand constraint": 1,
+        "Similarity-based forecasting": 1,
+        "Degradation process modeling": 1,
+        "Remaining useful life prediction": 3,
+        "Health indicator forecasting": 1,
+        "Local-global feature mixer": 1,
+        "Trend-guided rollout-consistent loss": 1,
+        "Modeling": 1,
+        "Timing": 1,
+        "Frequency": 1,
+        "Spectrogram": 1,
+        "Degradation": 1,
+        "Construction": 1,
+        "Testing": 1,
+        "Image sensors": 1,
+        "Machinery": 1,
+        "Convolutional neural networks": 1,
+        "health indicator": 4,
+        "multidomain supervised time–frequency feature fusion autoencoder": 1,
+        "rotating machinery": 1,
+        "Degradation model selection": 1,
+        "Stochastic processes": 1,
+        "Remaining useful life estimation": 1,
+        "Retrieval-augmented generation": 1,
+        "Uncertainty-aware decision making": 1,
+        "Large Language Models": 2,
+        "Health indicator learning": 1,
+        "Domain adaptation": 1,
+        "Degradation stage synchronization": 1,
+        "Large-kernel autoencoder": 1,
+        "Cross-attention": 1,
+        "Industrial condition monitoring": 1,
+        "Container dwell time prediction": 2,
+        "Generative artificial intelligence": 1,
+        "Machine learning": 4,
+        "Data standardization": 1,
+        "Container terminal operations": 2,
+        "Container Throughput": 1,
+        "Generative AI": 1,
+        "Large Language Model": 1,
+        "Port logistics": 1,
+        "Smart Port": 1,
+        "Time Series Analysis": 1,
+        "Time Series Forecasting": 6,
+        "Deep learning": 12,
+        "Convolutional Neural Network": 1,
+        "Auto Convolution": 1,
+        "Neural Network": 3,
+        "Local variation modeling": 2,
+        "Automated Guided Vehicles": 1,
+        "Anomaly detection": 3,
+        "Trajectory features": 1,
+        "AIS data": 2,
+        "Standard route extraction": 1,
+        "Channel independent convolution": 1,
+        "Multivariate forecasting": 1,
+        "Container throughput forecasting": 1,
+        "EDI data": 2,
+        "Decomposition pairwise mixer": 1,
+        "Time series decomposition": 1,
+        "Predictive maintenance": 2,
+        "Temporal Dependencies": 1,
+        "Contrastive learning": 1,
+        "Rubber physical properties": 1,
+        "Dynamic margin": 1,
+        "Representation learning": 1,
+        "Manufacturing": 2,
+        "Ensemble method": 1,
+        "Feature selection": 1,
+        "Image similarity": 1,
+        "Data-driven simulation": 1,
+        "Synthetic rubber production": 1,
+        "Recipe optimization": 1,
+        "Automatic Identification System (AIS)": 1,
+        "Port and Anchorage Classification and Generalization": 1,
+        "Semi-supervised learning": 1,
+        "Degradation function": 1,
+        "Change point detection": 1,
+        "Condition-based maintenance": 3,
+        "Weapon system": 3,
+        "Satellite image": 1,
+        "Fine dust prediction": 1,
+        "High-resolution spatial analysis": 1,
+        "Environmental monitoring": 1,
+        "Image encoding": 1,
+        "Random forest": 1,
+        "Port operations": 1,
+        "Genetic algorithm": 1,
+        "Neural architecture search": 1,
+        "Maritime data": 1,
+        "Condition diagnosis": 1,
+        "Reliability engineering": 1,
+        "Rubber property prediction": 1,
+        "Clustering": 1,
+        "Material science": 1,
+        "Framework development": 1,
+        "Training mechanism": 1,
+        "Time series classification": 1,
+        "CRU-LSTM": 1,
+        "Autoencoder": 1,
+        "Feature representation": 1
+      },
+      "top_keywords": [
+        {
+          "name": "Deep learning",
+          "count": 12
+        },
+        {
+          "name": "health indicator",
+          "count": 4
+        },
+        {
+          "name": "Time Series Forecasting",
+          "count": 6
+        },
+        {
+          "name": "Condition-based maintenance",
+          "count": 3
+        },
+        {
+          "name": "Remaining useful life prediction",
+          "count": 3
+        }
+      ],
+      "active_from": 2022,
+      "active_to": 2026
+    },
+    {
+      "id": "Sim, Sunghyun",
+      "group": 1,
+      "value": 51,
+      "type": "author",
+      "paper_count": 29,
+      "first_author_count": 11,
+      "first_author_share": 0.379,
+      "collaborative_paper_count": 29,
+      "coauthor_count": 36,
+      "topic_count": 98,
+      "topic_diversity": 0.943,
+      "topic_profile": {
+        "data-driven decision-making": 1,
+        "individual-level long time series forecasting": 1,
+        "similarity matching": 1,
+        "unsupervised learning": 1,
+        "Arctic Ship Traffic Data": 1,
+        "Arctic Environment": 1,
+        "Ship Emissions": 2,
+        "Time Series Forecasting": 6,
+        "Transformer": 1,
+        "Trans-Arctic Shipping Route": 1,
+        "Regional maritime collision risk assessment": 1,
+        "Relative traffic representation": 1,
+        "Risk influence distribution map": 1,
+        "Centroid radial distribution": 1,
+        "Deep learning": 12,
+        "Explainable AI": 2,
+        "Reinforcement learning": 3,
+        "Process mining": 8,
+        "Large Language Model": 1,
+        "Reasoning": 1,
+        "GRPO": 1,
+        "health indicator": 2,
+        "Remaining useful life prediction": 2,
+        "Time series decomposition": 2,
+        "Predictive maintenance": 3,
+        "Temporal Dependencies": 1,
+        "Correlation recurrent unit": 1,
+        "Neural Network": 2,
+        "Autocorrelation": 1,
+        "Vessel ETA prediction": 1,
+        "AIS data": 3,
+        "Markov Chain": 1,
+        "Bayesian sampling": 1,
+        "Port operations": 1,
+        "Vessel trajectory prediction": 1,
+        "Bezier interpolation": 1,
+        "Manifold learning": 1,
+        "Maritime navigation": 1,
+        "Feature selection": 1,
+        "SHAP": 1,
+        "Order statistics": 1,
+        "Machine learning": 1,
+        "Port air pollution": 1,
+        "LSTM": 3,
+        "Environmental prediction": 1,
+        "Event log conversion": 1,
+        "CNN": 1,
+        "Event density embedding": 1,
+        "Image encoding": 1,
+        "Event log imputation": 2,
+        "Bagging": 1,
+        "RNN": 1,
+        "Missing data": 2,
+        "Baltic Dry Index": 4,
+        "Deep ensemble learning": 1,
+        "Maritime economics": 4,
+        "Multivariate regression": 1,
+        "Deep Neural Network": 1,
+        "Petri Nets": 1,
+        "Simulation": 1,
+        "Operational analytics": 1,
+        "Process data": 1,
+        "Business process modeling": 1,
+        "Process conformance": 3,
+        "Statistical verification": 3,
+        "Model abstraction": 1,
+        "Event log": 2,
+        "Density-based ship domain": 1,
+        "Safety performance indicator": 1,
+        "Maritime safety": 2,
+        "Freight rate prediction": 2,
+        "CoRepNet": 1,
+        "Variable correlation": 1,
+        "Feature interaction": 1,
+        "Representation learning": 1,
+        "Tribunal ruling analysis": 1,
+        "SentenceBERT": 1,
+        "Natural language processing": 1,
+        "Text analysis": 1,
+        "Likelihood-based imputation": 1,
+        "Event chain": 1,
+        "Induction furnace": 1,
+        "Manufacturing": 1,
+        "Training mechanism": 1,
+        "Time series classification": 1,
+        "CRU-LSTM": 1,
+        "Autoencoder": 1,
+        "Feature representation": 1,
+        "Multi-perspective process model": 1,
+        "Process discovery": 1,
+        "Smart Port": 1,
+        "Metaverse": 1,
+        "Artificial intelligence": 1,
+        "Port logistics": 1,
+        "Digital twin": 1,
+        "Log equality test": 1,
+        "Big data": 1,
+        "Model fitness": 1
+      },
+      "top_keywords": [
+        {
+          "name": "Deep learning",
+          "count": 12
+        },
+        {
+          "name": "Process mining",
+          "count": 8
+        },
+        {
+          "name": "Baltic Dry Index",
+          "count": 4
+        },
+        {
+          "name": "Maritime economics",
+          "count": 4
+        },
+        {
+          "name": "Time Series Forecasting",
+          "count": 6
+        }
+      ],
+      "active_from": 2016,
+      "active_to": 2026
+    },
+    {
+      "id": "Park, Kikun",
+      "group": 1,
+      "value": 40,
+      "type": "author",
+      "paper_count": 26,
+      "first_author_count": 7,
+      "first_author_share": 0.269,
+      "collaborative_paper_count": 26,
+      "coauthor_count": 36,
+      "topic_count": 100,
+      "topic_diversity": 0.959,
+      "topic_profile": {
+        "data-driven decision-making": 1,
+        "individual-level long time series forecasting": 1,
+        "similarity matching": 1,
+        "unsupervised learning": 1,
+        "HS code prediction": 1,
+        "Small language model": 1,
+        "Trie-constrained token prediction": 1,
+        "Hierarchy-aware semantic alignment": 1,
+        "Port logistics": 3,
+        "Quay crane assignment and scheduling problem": 1,
+        "Machine learning": 9,
+        "Initial population generation": 1,
+        "Genetic algorithm": 4,
+        "Clustering": 1,
+        "Traveling salesman problem": 1,
+        "Container Throughput": 1,
+        "Generative AI": 1,
+        "Large Language Model": 1,
+        "Smart Port": 2,
+        "Time Series Analysis": 1,
+        "Reinforcement learning": 2,
+        "Vessel trajectory prediction": 1,
+        "Transfer learning": 1,
+        "AIS data": 3,
+        "Maritime navigation optimization": 1,
+        "Container terminal operations": 6,
+        "Yard truck deployment": 1,
+        "Multi-objective optimization": 1,
+        "Container throughput forecasting": 1,
+        "EDI data": 2,
+        "Decomposition pairwise mixer": 1,
+        "Time Series Forecasting": 2,
+        "Deep learning": 5,
+        "Vessel ETA prediction": 1,
+        "Markov Chain": 1,
+        "Bayesian sampling": 1,
+        "Port operations": 2,
+        "Quay crane scheduling": 2,
+        "Surrogate model": 1,
+        "Optimization": 2,
+        "Container dwell time": 1,
+        "Explainable AI": 1,
+        "Process mining": 1,
+        "Feature selection": 1,
+        "SHAP": 1,
+        "Contrastive learning": 1,
+        "Rubber physical properties": 1,
+        "Dynamic margin": 1,
+        "Representation learning": 1,
+        "Manufacturing": 2,
+        "Simulation learning": 1,
+        "Makespan prediction": 1,
+        "Scheduling problem": 1,
+        "Computational efficiency": 1,
+        "Discrete Event Simulation": 1,
+        "Operation time prediction": 1,
+        "Data-driven simulation": 1,
+        "Synthetic rubber production": 1,
+        "Recipe optimization": 1,
+        "Quay crane": 1,
+        "Handling time prediction": 1,
+        "External factors": 1,
+        "Automatic Identification System (AIS)": 1,
+        "Port and Anchorage Classification and Generalization": 1,
+        "Semi-supervised learning": 1,
+        "Anomaly detection": 1,
+        "Image encoding": 1,
+        "Condition-based maintenance": 1,
+        "Weapon system": 1,
+        "TSP": 1,
+        "Container terminal": 2,
+        "Work planning": 1,
+        "Voice recognition": 1,
+        "Deepfake detection": 1,
+        "Speech classification": 1,
+        "Audio analysis": 1,
+        "Container dwell time prediction": 1,
+        "Random forest": 1,
+        "Neural architecture search": 1,
+        "Maritime data": 1,
+        "Demand prediction": 1,
+        "Designated driver service": 1,
+        "Regional forecasting": 1,
+        "Global pandemic": 1,
+        "Emergency relief fund": 1,
+        "Budget allocation": 1,
+        "Policy analysis": 1,
+        "COVID-19": 1,
+        "GPS data": 1,
+        "Internal truck": 1,
+        "Route prediction": 1,
+        "Logistics optimization": 1,
+        "Port punctuality": 1,
+        "ETA prediction": 1,
+        "RTA prediction": 1,
+        "Vessel arrival": 1,
+        "Maritime logistics": 1,
+        "Metaverse": 1,
+        "Artificial intelligence": 1,
+        "Digital twin": 1
+      },
+      "top_keywords": [
+        {
+          "name": "Machine learning",
+          "count": 9
+        },
+        {
+          "name": "Container terminal operations",
+          "count": 6
+        },
+        {
+          "name": "Genetic algorithm",
+          "count": 4
+        },
+        {
+          "name": "Deep learning",
+          "count": 5
+        },
+        {
+          "name": "Port logistics",
+          "count": 3
+        }
+      ],
+      "active_from": 2020,
+      "active_to": 2026
+    },
+    {
+      "id": "Lee, Yongjae",
+      "group": 1,
+      "value": 19,
+      "type": "author",
+      "paper_count": 11,
+      "first_author_count": 4,
+      "first_author_share": 0.364,
+      "collaborative_paper_count": 11,
+      "coauthor_count": 22,
+      "topic_count": 48,
+      "topic_diversity": 0.965,
+      "topic_profile": {
+        "data-driven decision-making": 1,
+        "individual-level long time series forecasting": 1,
+        "similarity matching": 1,
+        "unsupervised learning": 1,
+        "Looped computation": 1,
+        "Large Language Models": 1,
+        "Post-training framework": 1,
+        "Latent-refinement architecture": 1,
+        "Selective gate": 1,
+        "Random deep supervision": 1,
+        "Confidence head": 1,
+        "Procurement lead time prediction": 1,
+        "Process mining": 5,
+        "Time Series Forecasting": 2,
+        "Deep learning": 5,
+        "Shipbuilding industry": 1,
+        "Generative AI": 1,
+        "Optimization": 1,
+        "AIS data": 1,
+        "Reinforcement learning": 1,
+        "Large Language Model": 1,
+        "Reasoning": 1,
+        "GRPO": 1,
+        "Anomaly detection": 1,
+        "GNN": 1,
+        "Multi-task learning": 1,
+        "Semi-supervised learning": 1,
+        "Sequence mixer": 1,
+        "Dense layer": 1,
+        "MatrixMixer": 1,
+        "Neural Network": 1,
+        "Container dwell time": 1,
+        "Explainable AI": 1,
+        "Container terminal operations": 1,
+        "Feature selection": 1,
+        "SHAP": 1,
+        "Predictive process monitoring": 1,
+        "Transfer learning": 1,
+        "Remaining time prediction": 1,
+        "Transformer": 1,
+        "Spatiotemporal data": 1,
+        "Ship fuel consumption prediction": 1,
+        "Maritime logistics": 1,
+        "LCL cargo loading": 1,
+        "Container loading algorithm": 1,
+        "Space optimization": 1,
+        "Logistics": 1,
+        "3D bin packing": 1
+      },
+      "top_keywords": [
+        {
+          "name": "Process mining",
+          "count": 5
+        },
+        {
+          "name": "Deep learning",
+          "count": 5
+        },
+        {
+          "name": "Time Series Forecasting",
+          "count": 2
+        },
+        {
+          "name": "Confidence head",
+          "count": 1
+        },
+        {
+          "name": "GNN",
+          "count": 1
+        }
+      ],
+      "active_from": 2023,
+      "active_to": 2026
+    },
+    {
+      "id": "Park, Eunhee",
+      "group": 1,
+      "value": 5,
+      "type": "author",
+      "paper_count": 3,
+      "first_author_count": 1,
+      "first_author_share": 0.333,
+      "collaborative_paper_count": 3,
+      "coauthor_count": 9,
+      "topic_count": 13,
+      "topic_diversity": 0.99,
+      "topic_profile": {
+        "data-driven decision-making": 1,
+        "individual-level long time series forecasting": 1,
+        "similarity matching": 1,
+        "unsupervised learning": 1,
+        "Procurement lead time prediction": 1,
+        "Process mining": 1,
+        "Time Series Forecasting": 1,
+        "Deep learning": 2,
+        "Shipbuilding industry": 1,
+        "Satellite image": 1,
+        "Fine dust prediction": 1,
+        "High-resolution spatial analysis": 1,
+        "Environmental monitoring": 1
+      },
+      "top_keywords": [
+        {
+          "name": "Environmental monitoring",
+          "count": 1
+        },
+        {
+          "name": "Fine dust prediction",
+          "count": 1
+        },
+        {
+          "name": "High-resolution spatial analysis",
+          "count": 1
+        },
+        {
+          "name": "Satellite image",
+          "count": 1
+        },
+        {
+          "name": "Deep learning",
+          "count": 2
+        }
+      ],
+      "active_from": 2025,
+      "active_to": 2026
+    },
+    {
       "id": "Heo, Jaehyeon",
       "group": 1,
       "value": 15,
@@ -1265,7 +1513,7 @@
         "Hierarchy-aware semantic alignment": 1,
         "Port logistics": 2,
         "Looped computation": 1,
-        "Large language models": 3,
+        "Large Language Models": 3,
         "Post-training framework": 1,
         "Latent-refinement architecture": 1,
         "Selective gate": 1,
@@ -1300,7 +1548,7 @@
       },
       "top_keywords": [
         {
-          "name": "Large language models",
+          "name": "Large Language Models",
           "count": 3
         },
         {
@@ -1390,7 +1638,7 @@
         "Machine learning": 5,
         "Data standardization": 1,
         "Container terminal operations": 4,
-        "Large language models": 2,
+        "Large Language Models": 2,
         "Container Throughput": 1,
         "Generative AI": 1,
         "Large Language Model": 1,
@@ -1828,7 +2076,7 @@
       "topic_diversity": 0.935,
       "topic_profile": {
         "Looped computation": 1,
-        "Large language models": 1,
+        "Large Language Models": 1,
         "Post-training framework": 1,
         "Latent-refinement architecture": 1,
         "Selective gate": 1,
@@ -2078,7 +2326,7 @@
         "Machine learning": 1,
         "Data standardization": 1,
         "Container terminal operations": 1,
-        "Large language models": 1,
+        "Large Language Models": 1,
         "AGV": 1,
         "Automated Guided Vehicle": 1,
         "Dynamic charging optimization": 1,
@@ -2135,7 +2383,7 @@
         "Representation learning": 1,
         "Deep learning": 2,
         "Manufacturing": 1,
-        "Large language models": 1,
+        "Large Language Models": 1,
         "Container throughput prediction": 1,
         "Time Series Forecasting": 1,
         "Demand prediction": 1,
@@ -2379,254 +2627,6 @@
       ],
       "active_from": 2026,
       "active_to": 2026
-    },
-    {
-      "id": "Jo, Sangmin",
-      "group": 1,
-      "value": 11,
-      "type": "author",
-      "paper_count": 7,
-      "first_author_count": 2,
-      "first_author_share": 0.286,
-      "collaborative_paper_count": 7,
-      "coauthor_count": 18,
-      "topic_count": 29,
-      "topic_diversity": 0.985,
-      "topic_profile": {
-        "Industry Clustering": 1,
-        "Peer Group Selection": 1,
-        "Text-based Analysis": 1,
-        "10-K annual reports": 1,
-        "BERT": 1,
-        "Large language models": 1,
-        "Maritime accidents": 2,
-        "Risk mapping": 2,
-        "Accident severity": 2,
-        "XAI": 2,
-        "SHAP": 2,
-        "Ship fuel consumption": 1,
-        "Time Series Forecasting": 1,
-        "Missing data imputation": 1,
-        "CII regulations": 1,
-        "Maritime sustainability": 1,
-        "Spatiotemporal data": 1,
-        "Ship fuel consumption prediction": 1,
-        "Maritime logistics": 2,
-        "Deep learning": 1,
-        "LCL cargo loading": 1,
-        "Container loading algorithm": 1,
-        "Space optimization": 1,
-        "Logistics": 1,
-        "3D bin packing": 1,
-        "Port punctuality": 1,
-        "ETA prediction": 1,
-        "RTA prediction": 1,
-        "Vessel arrival": 1
-      },
-      "top_keywords": [
-        {
-          "name": "Accident severity",
-          "count": 2
-        },
-        {
-          "name": "Maritime accidents",
-          "count": 2
-        },
-        {
-          "name": "Risk mapping",
-          "count": 2
-        },
-        {
-          "name": "XAI",
-          "count": 2
-        },
-        {
-          "name": "SHAP",
-          "count": 2
-        }
-      ],
-      "active_from": 2023,
-      "active_to": 2026
-    },
-    {
-      "id": "Kim, Taehyeon",
-      "group": 1,
-      "value": 1,
-      "type": "author",
-      "paper_count": 1,
-      "first_author_count": 0,
-      "first_author_share": 0.0,
-      "collaborative_paper_count": 1,
-      "coauthor_count": 5,
-      "topic_count": 6,
-      "topic_diversity": 1.0,
-      "topic_profile": {
-        "Industry Clustering": 1,
-        "Peer Group Selection": 1,
-        "Text-based Analysis": 1,
-        "10-K annual reports": 1,
-        "BERT": 1,
-        "Large language models": 1
-      },
-      "top_keywords": [
-        {
-          "name": "10-K annual reports",
-          "count": 1
-        },
-        {
-          "name": "BERT",
-          "count": 1
-        },
-        {
-          "name": "Industry Clustering",
-          "count": 1
-        },
-        {
-          "name": "Peer Group Selection",
-          "count": 1
-        },
-        {
-          "name": "Text-based Analysis",
-          "count": 1
-        }
-      ],
-      "active_from": 2025,
-      "active_to": 2025
-    },
-    {
-      "id": "Park, Jeongho",
-      "group": 1,
-      "value": 1,
-      "type": "author",
-      "paper_count": 1,
-      "first_author_count": 0,
-      "first_author_share": 0.0,
-      "collaborative_paper_count": 1,
-      "coauthor_count": 5,
-      "topic_count": 6,
-      "topic_diversity": 1.0,
-      "topic_profile": {
-        "Industry Clustering": 1,
-        "Peer Group Selection": 1,
-        "Text-based Analysis": 1,
-        "10-K annual reports": 1,
-        "BERT": 1,
-        "Large language models": 1
-      },
-      "top_keywords": [
-        {
-          "name": "10-K annual reports",
-          "count": 1
-        },
-        {
-          "name": "BERT",
-          "count": 1
-        },
-        {
-          "name": "Industry Clustering",
-          "count": 1
-        },
-        {
-          "name": "Peer Group Selection",
-          "count": 1
-        },
-        {
-          "name": "Text-based Analysis",
-          "count": 1
-        }
-      ],
-      "active_from": 2025,
-      "active_to": 2025
-    },
-    {
-      "id": "Yu, Jihyeon",
-      "group": 1,
-      "value": 1,
-      "type": "author",
-      "paper_count": 1,
-      "first_author_count": 0,
-      "first_author_share": 0.0,
-      "collaborative_paper_count": 1,
-      "coauthor_count": 5,
-      "topic_count": 6,
-      "topic_diversity": 1.0,
-      "topic_profile": {
-        "Industry Clustering": 1,
-        "Peer Group Selection": 1,
-        "Text-based Analysis": 1,
-        "10-K annual reports": 1,
-        "BERT": 1,
-        "Large language models": 1
-      },
-      "top_keywords": [
-        {
-          "name": "10-K annual reports",
-          "count": 1
-        },
-        {
-          "name": "BERT",
-          "count": 1
-        },
-        {
-          "name": "Industry Clustering",
-          "count": 1
-        },
-        {
-          "name": "Peer Group Selection",
-          "count": 1
-        },
-        {
-          "name": "Text-based Analysis",
-          "count": 1
-        }
-      ],
-      "active_from": 2025,
-      "active_to": 2025
-    },
-    {
-      "id": "Chung, Jihoon",
-      "group": 1,
-      "value": 1,
-      "type": "author",
-      "paper_count": 1,
-      "first_author_count": 0,
-      "first_author_share": 0.0,
-      "collaborative_paper_count": 1,
-      "coauthor_count": 5,
-      "topic_count": 6,
-      "topic_diversity": 1.0,
-      "topic_profile": {
-        "Industry Clustering": 1,
-        "Peer Group Selection": 1,
-        "Text-based Analysis": 1,
-        "10-K annual reports": 1,
-        "BERT": 1,
-        "Large language models": 1
-      },
-      "top_keywords": [
-        {
-          "name": "10-K annual reports",
-          "count": 1
-        },
-        {
-          "name": "BERT",
-          "count": 1
-        },
-        {
-          "name": "Industry Clustering",
-          "count": 1
-        },
-        {
-          "name": "Peer Group Selection",
-          "count": 1
-        },
-        {
-          "name": "Text-based Analysis",
-          "count": 1
-        }
-      ],
-      "active_from": 2025,
-      "active_to": 2025
     },
     {
       "id": "Kim, Younghwi",
@@ -3171,7 +3171,7 @@
         "Accident severity": 2,
         "XAI": 2,
         "SHAP": 2,
-        "Large language models": 1,
+        "Large Language Models": 1,
         "Container throughput prediction": 1,
         "Time Series Forecasting": 1,
         "Deep learning": 1
@@ -9526,6 +9526,15 @@
       "active_to": 2007
     },
     {
+      "id": "kw:Large Language Models",
+      "name": "Large Language Models",
+      "group": 2,
+      "value": 5,
+      "paper_count": 5,
+      "author_count": 14,
+      "type": "keyword"
+    },
+    {
       "id": "kw:Port logistics",
       "name": "Port logistics",
       "group": 2,
@@ -9586,15 +9595,6 @@
       "value": 3,
       "paper_count": 3,
       "author_count": 9,
-      "type": "keyword"
-    },
-    {
-      "id": "kw:Large language models",
-      "name": "Large language models",
-      "group": 2,
-      "value": 5,
-      "paper_count": 5,
-      "author_count": 14,
       "type": "keyword"
     },
     {
@@ -10627,6 +10627,96 @@
   "links": [
     {
       "source": "Bae, Hyerim",
+      "target": "Chung, Jihoon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Jo, Sangmin",
+      "value": 7,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Kim, Taehyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Park, Jeongho",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "Yu, Jihyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Chung, Jihoon",
+      "target": "Jo, Sangmin",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Chung, Jihoon",
+      "target": "Kim, Taehyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Chung, Jihoon",
+      "target": "Park, Jeongho",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Chung, Jihoon",
+      "target": "Yu, Jihyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Jo, Sangmin",
+      "target": "Kim, Taehyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Jo, Sangmin",
+      "target": "Park, Jeongho",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Jo, Sangmin",
+      "target": "Yu, Jihyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kim, Taehyeon",
+      "target": "Park, Jeongho",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Kim, Taehyeon",
+      "target": "Yu, Jihyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Park, Jeongho",
+      "target": "Yu, Jihyeon",
+      "value": 1,
+      "type": "coauthor"
+    },
+    {
+      "source": "Bae, Hyerim",
       "target": "Lee, Yongjae",
       "value": 11,
       "type": "coauthor"
@@ -11073,96 +11163,6 @@
       "source": "Kim, Minseop",
       "target": "Lee, Gawon",
       "value": 2,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Chung, Jihoon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Jo, Sangmin",
-      "value": 7,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Kim, Taehyeon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Park, Jeongho",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Bae, Hyerim",
-      "target": "Yu, Jihyeon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Chung, Jihoon",
-      "target": "Jo, Sangmin",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Chung, Jihoon",
-      "target": "Kim, Taehyeon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Chung, Jihoon",
-      "target": "Park, Jeongho",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Chung, Jihoon",
-      "target": "Yu, Jihyeon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Jo, Sangmin",
-      "target": "Kim, Taehyeon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Jo, Sangmin",
-      "target": "Park, Jeongho",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Jo, Sangmin",
-      "target": "Yu, Jihyeon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Kim, Taehyeon",
-      "target": "Park, Jeongho",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Kim, Taehyeon",
-      "target": "Yu, Jihyeon",
-      "value": 1,
-      "type": "coauthor"
-    },
-    {
-      "source": "Park, Jeongho",
-      "target": "Yu, Jihyeon",
-      "value": 1,
       "type": "coauthor"
     },
     {
@@ -14688,6 +14688,48 @@
       "type": "coauthor"
     },
     {
+      "source": "Jo, Sangmin",
+      "target": "kw:Large Language Models",
+      "value": 3,
+      "paper_count": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Kim, Taehyeon",
+      "target": "kw:Large Language Models",
+      "value": 1,
+      "paper_count": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Park, Jeongho",
+      "target": "kw:Large Language Models",
+      "value": 1,
+      "paper_count": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Yu, Jihyeon",
+      "target": "kw:Large Language Models",
+      "value": 1,
+      "paper_count": 1,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Bae, Hyerim",
+      "target": "kw:Large Language Models",
+      "value": 5,
+      "paper_count": 5,
+      "type": "author_keyword"
+    },
+    {
+      "source": "Chung, Jihoon",
+      "target": "kw:Large Language Models",
+      "value": 1,
+      "paper_count": 1,
+      "type": "author_keyword"
+    },
+    {
       "source": "Kim, Minseop",
       "target": "kw:Port logistics",
       "value": 6,
@@ -14822,35 +14864,28 @@
     },
     {
       "source": "Park, Hanbyeol",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 4,
       "paper_count": 2,
       "type": "author_keyword"
     },
     {
-      "source": "Bae, Hyerim",
-      "target": "kw:Large language models",
-      "value": 5,
-      "paper_count": 5,
-      "type": "author_keyword"
-    },
-    {
       "source": "Park, Taekhyun",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 5,
       "paper_count": 3,
       "type": "author_keyword"
     },
     {
       "source": "Lee, Yongjae",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 1,
       "paper_count": 1,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Dohee",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 1,
       "paper_count": 1,
       "type": "author_keyword"
@@ -14990,14 +15025,14 @@
     },
     {
       "source": "Kim, Minseop",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 6,
       "paper_count": 2,
       "type": "author_keyword"
     },
     {
       "source": "Kim, Takhyeong",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 1,
       "paper_count": 1,
       "type": "author_keyword"
@@ -15406,41 +15441,6 @@
       "target": "kw:Local variation modeling",
       "value": 2,
       "paper_count": 2,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Jo, Sangmin",
-      "target": "kw:Large language models",
-      "value": 3,
-      "paper_count": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Kim, Taehyeon",
-      "target": "kw:Large language models",
-      "value": 1,
-      "paper_count": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Park, Jeongho",
-      "target": "kw:Large language models",
-      "value": 1,
-      "paper_count": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Yu, Jihyeon",
-      "target": "kw:Large language models",
-      "value": 1,
-      "paper_count": 1,
-      "type": "author_keyword"
-    },
-    {
-      "source": "Chung, Jihoon",
-      "target": "kw:Large language models",
-      "value": 1,
-      "paper_count": 1,
       "type": "author_keyword"
     },
     {
@@ -19757,14 +19757,14 @@
     },
     {
       "source": "Kwon, Jaeeun",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 1,
       "paper_count": 1,
       "type": "author_keyword"
     },
     {
       "source": "Hong, Seongmoon",
-      "target": "kw:Large language models",
+      "target": "kw:Large Language Models",
       "value": 1,
       "paper_count": 1,
       "type": "author_keyword"
