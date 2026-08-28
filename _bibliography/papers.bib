@@ -1,3 +1,19 @@
+@misc{Jo2026IndustryDiscriminativeSentenceReconstruction,
+  level ={SCI},
+  abbr={Applied Sciences},
+  title = {Industry-Discriminative Sentence Reconstruction for Inter-Firm Similarity Analysis Using 10-K Reports},
+  author = {Jo, Sangmin and Kim, Taehyeon and Park, Jeongho and Yu, Jihyeon and Bae, Hyerim and Chung, Jihoon},
+  year = {2026},
+  journal = {Applied Sciences},
+  volume = {16},
+  number = {17},
+  pages = {8398},
+  abstract = {Peer firm identification provides a basis for financial decision-making. Text-based approaches increasingly utilize 10-K annual reports for peer selection because they describe firms’ business activities and strategic positioning. However, most existing methods construct firm representations using full-document embeddings that uniformly utilize the entire textual content. This study proposes a sentence-level industry-discriminative reconstruction framework for peer selection using 10-K reports. The framework trains a sentence-level classification model to predict each firm’s GICS Sector label and uses the predicted probabilities to prioritize sentences reflecting its industry identity and business characteristics. The classifier was trained using 2021 Item 1. Business sections from 4150 non-S&P 500 firms. Reconstruction ratios were validated using 2021 reports from 466 S&P 500 firms and their corresponding 2022 GICS, stock-return, and financial data. The determined ratios were then applied to the same firms’ 2022 reports, with final performance evaluated using 2023 outcomes. Based on the selected sentences, 10-K business descriptions were reconstructed before generating document embeddings for peer selection. Experiments across five embedding models and three peer group settings demonstrate that the proposed framework generally achieves higher GICS alignment, stock-return correlation, and financial homogeneity than full-text, length-matched random-deletion, alternative sentence-selection baselines and benchmark methods.},
+  html = {https://www.mdpi.com/2076-3417/16/17/8398},
+  doi = {https://doi.org/10.3390/app16178398},
+  keywords={Industry Clustering, Peer Group Selection, Text-based Analysis, 10-K annual reports, BERT, Large Language Models},
+}
+
 @article{park2026hybridtemporalautoencoder,
 level = {SCI},
 abbr={J. Forecasting},
@@ -257,19 +273,6 @@ abstract = {Real-world visual datasets often follow long-tailed distributions, w
       primaryClass={cs.LG},
       pdf={https://arxiv.org/abs/2601.20611}, 
       keywords={Time Series Forecasting, Deep learning, Convolutional Neural Network, Auto Convolution, Neural Network, Local variation modeling},
-}
-
-
-@misc{Jo2025BERTDenoising,
-  level ={Arxiv},
-  abbr={SSRN},
-  title = {A BERT-based Denoising Framework for Inter-Company Similarity Analysis Using 10-K Reports},
-  author = {Jo, Sangmin and Kim, Taehyeon and Park, Jeongho and Yu, Jihyeon and Bae, Hyerim and Chung, Jihoon},
-  year = {2025},
-  journal = {SSRN},
-  abstract = {The identification of similar profiled companies is essential in financial practices, including portfolio design, asset pricing, and risk attribution. Recently, studies have been increasingly turning to text-based methods that analyze the actual business descriptions of companies for similarity analysis. These studies aim to uncover industry structures through the semantic content embedded in the businesses themselves for similarity analysis. However, prior studies directly embedded the given texts for analysis, which might include content unrelated to similarity analysis, such as financial disclosures, regulatory notices, or public relations messages. These unrelated contents could degrade the performance of the analysis. To overcome this limitation, this paper proposes a method that fine-tunes the Bidirectional Encoder Representations from Transformers (BERT) model to extract sentences with low business relevance. Based on this extraction, the method reconstructs the text accordingly. Specifically, 10-K annual reports are utilized to demonstrate the effectiveness of the proposed method in peer group selection and industry clustering tasks. The performances are evaluated based on stock correlation coefficients compared to benchmark methods, along with statistical significance testing. In addition, the proposed method shows effectiveness across various text embedding techniques, indicating its generalizability in the broader context of text analysis. Finally, the proposed method interprets the similarity results using retrieval-augmented generation. This helps provide users with the underlying causes and structures that give rise to intercompany …},
-  html = {https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5798353},
-  keywords={Industry Clustering, Peer Group Selection, Text-based Analysis, 10-K annual reports, BERT, Large Language Models},
 }
 
 @article{LEE2025100142,
