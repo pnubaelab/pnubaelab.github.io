@@ -222,7 +222,6 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
   {% endif %}
 </div>
 
-
 <div class="parisienne-regular" style="text-align: center; color: #666;">
 La photographie est l’art d’arrêter le temps. <br>
 Roland Barthes
@@ -234,9 +233,106 @@ Roland Barthes
     var widePlacementPassCount = 3;
     var scheduledGrids = [];
     var layoutFrame = null;
+    var pendingLayoutRects = new WeakMap();
+    var activeLayoutAnimations = new WeakMap();
+    var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var layoutAnimationDuration = 520;
 
     function getLoadedItems(grid) {
       return Array.prototype.slice.call(grid.querySelectorAll('.grid-item.is-photo-loaded, .grid-item.is-photo-error'));
+    }
+
+    function captureLayoutPositions(grid) {
+      if (pendingLayoutRects.has(grid) || reducedMotionQuery.matches) return;
+
+      var positions = getLoadedItems(grid).map(function (item) {
+        var rect = item.getBoundingClientRect();
+
+        return {
+          item: item,
+          left: rect.left + window.scrollX,
+          top: rect.top + window.scrollY,
+        };
+      });
+
+      if (positions.length === 0) return;
+
+      // Keep the current visual position before replacing an in-progress move
+      // with the next layout transition.
+      positions.forEach(function (position) {
+        var activeAnimation = activeLayoutAnimations.get(position.item);
+
+        if (activeAnimation) {
+          activeAnimation.cancel();
+          activeLayoutAnimations.delete(position.item);
+        }
+      });
+
+      pendingLayoutRects.set(grid, positions);
+    }
+
+    function animateLayoutPositions(grid) {
+      var positions = pendingLayoutRects.get(grid);
+      pendingLayoutRects.delete(grid);
+
+      if (!positions || reducedMotionQuery.matches) return;
+
+      positions.forEach(function (position) {
+        var item = position.item;
+
+        if (!item.isConnected || !grid.contains(item) || typeof item.animate !== 'function') return;
+
+        var rect = item.getBoundingClientRect();
+        var deltaX = position.left - (rect.left + window.scrollX);
+        var deltaY = position.top - (rect.top + window.scrollY);
+
+        if (Math.abs(deltaX) < 0.5 && Math.abs(deltaY) < 0.5) return;
+
+        var animation = item.animate(
+          [
+            { translate: deltaX + 'px ' + deltaY + 'px' },
+            { translate: '0px 0px' },
+          ],
+          {
+            duration: layoutAnimationDuration,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+          }
+        );
+
+        activeLayoutAnimations.set(item, animation);
+
+        function clearFinishedAnimation() {
+          if (activeLayoutAnimations.get(item) === animation) {
+            activeLayoutAnimations.delete(item);
+          }
+        }
+
+        animation.addEventListener('finish', clearFinishedAnimation, { once: true });
+        animation.addEventListener('cancel', clearFinishedAnimation, { once: true });
+      });
+    }
+
+    function stopLayoutAnimations() {
+      document.querySelectorAll('.photo-masonry .grid-item').forEach(function (item) {
+        var activeAnimation = activeLayoutAnimations.get(item);
+
+        if (activeAnimation) {
+          activeAnimation.cancel();
+          activeLayoutAnimations.delete(item);
+        }
+      });
+
+      pendingLayoutRects = new WeakMap();
+    }
+
+    function handleReducedMotionChange(event) {
+      if (event.matches) stopLayoutAnimations();
+    }
+
+    if (typeof reducedMotionQuery.addEventListener === 'function') {
+      reducedMotionQuery.addEventListener('change', handleReducedMotionChange);
+    } else {
+      reducedMotionQuery.addListener(handleReducedMotionChange);
     }
 
     function measureLoadedBottom(items) {
@@ -403,7 +499,10 @@ Roland Barthes
         scheduledGrids = [];
         layoutFrame = null;
 
-        grids.forEach(applyMasonry);
+        grids.forEach(function (grid) {
+          applyMasonry(grid);
+          animateLayoutPositions(grid);
+        });
       });
     }
 
@@ -476,6 +575,7 @@ Roland Barthes
         function finishPlacement(stateClass) {
           if (isPlaced) return;
 
+          captureLayoutPositions(grid);
           isPlaced = true;
 
           if (img) {
