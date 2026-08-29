@@ -6,8 +6,267 @@
   "topk": 8,
   "alpha": 0.3,
   "vocabulary_size": 560,
-  "vocabulary_hash": "f41b3b695d356abb",
+  "vocabulary_hash": "81450674ac43cddd",
   "similarities": {
+    "kw:Industry Clustering": [
+      [
+        "kw:Clustering",
+        0.7214
+      ]
+    ],
+    "kw:Peer Group Selection": [],
+    "kw:Text-based Analysis": [
+      [
+        "kw:Text analysis",
+        0.9315
+      ],
+      [
+        "kw:Text data",
+        0.7534
+      ]
+    ],
+    "kw:10-K annual reports": [],
+    "kw:BERT": [],
+    "kw:Large Language Models": [
+      [
+        "kw:Large Language Model",
+        0.9879
+      ],
+      [
+        "kw:Small language model",
+        0.8004
+      ]
+    ],
+    "kw:Maritime accidents": [
+      [
+        "kw:Maritime Accident",
+        0.9685
+      ],
+      [
+        "kw:Maritime collision",
+        0.8389
+      ],
+      [
+        "kw:Maritime safety",
+        0.8341
+      ],
+      [
+        "kw:Regional maritime collision risk assessment",
+        0.7465
+      ],
+      [
+        "kw:Maritime data",
+        0.7287
+      ]
+    ],
+    "kw:Risk mapping": [
+      [
+        "kw:Risk influence distribution map",
+        0.7667
+      ]
+    ],
+    "kw:Accident severity": [],
+    "kw:XAI": [],
+    "kw:SHAP": [],
+    "kw:Ship fuel consumption": [
+      [
+        "kw:Ship fuel consumption prediction",
+        0.9174
+      ],
+      [
+        "kw:Ship Emissions",
+        0.7764
+      ]
+    ],
+    "kw:Time Series Forecasting": [
+      [
+        "kw:individual-level long time series forecasting",
+        0.8437
+      ],
+      [
+        "kw:Remaining time prediction",
+        0.8177
+      ],
+      [
+        "kw:Time Series Analysis",
+        0.795
+      ],
+      [
+        "kw:Time series",
+        0.7891
+      ],
+      [
+        "kw:Handling time prediction",
+        0.7883
+      ],
+      [
+        "kw:Time series classification",
+        0.768
+      ]
+    ],
+    "kw:Missing data imputation": [
+      [
+        "kw:Missing data",
+        0.7489
+      ]
+    ],
+    "kw:CII regulations": [],
+    "kw:Maritime sustainability": [
+      [
+        "kw:Maritime economics",
+        0.8179
+      ],
+      [
+        "kw:Maritime safety",
+        0.8109
+      ],
+      [
+        "kw:Maritime logistics",
+        0.7382
+      ],
+      [
+        "kw:Maritime data",
+        0.733
+      ],
+      [
+        "kw:Maritime transport",
+        0.7204
+      ]
+    ],
+    "kw:Spatiotemporal data": [],
+    "kw:Ship fuel consumption prediction": [
+      [
+        "kw:Ship fuel consumption",
+        0.9174
+      ],
+      [
+        "kw:Maritime economics forecasting",
+        0.7404
+      ],
+      [
+        "kw:Ship Emissions",
+        0.7372
+      ]
+    ],
+    "kw:Maritime logistics": [
+      [
+        "kw:Maritime transport",
+        0.8812
+      ],
+      [
+        "kw:Maritime economics",
+        0.8329
+      ],
+      [
+        "kw:Port logistics",
+        0.8285
+      ],
+      [
+        "kw:Maritime freight index",
+        0.8177
+      ],
+      [
+        "kw:Maritime navigation",
+        0.7857
+      ],
+      [
+        "kw:Maritime data",
+        0.7721
+      ],
+      [
+        "kw:Logistics",
+        0.7598
+      ],
+      [
+        "kw:Maritime safety",
+        0.7426
+      ]
+    ],
+    "kw:Deep learning": [
+      [
+        "kw:Deep ensemble learning",
+        0.8147
+      ],
+      [
+        "kw:Deep Neural Network",
+        0.7444
+      ],
+      [
+        "kw:Deep reinforcement learning",
+        0.7248
+      ]
+    ],
+    "kw:LCL cargo loading": [],
+    "kw:Container loading algorithm": [
+      [
+        "kw:Container-based",
+        0.7797
+      ],
+      [
+        "kw:Container Throughput",
+        0.7349
+      ]
+    ],
+    "kw:Space optimization": [
+      [
+        "kw:Optimization",
+        0.7424
+      ]
+    ],
+    "kw:Logistics": [
+      [
+        "kw:Logistics processes",
+        0.898
+      ],
+      [
+        "kw:Maritime logistics",
+        0.7598
+      ]
+    ],
+    "kw:3D bin packing": [],
+    "kw:Port punctuality": [],
+    "kw:ETA prediction": [
+      [
+        "kw:RTA prediction",
+        0.7804
+      ],
+      [
+        "kw:Vessel ETA prediction",
+        0.7648
+      ]
+    ],
+    "kw:RTA prediction": [
+      [
+        "kw:ETA prediction",
+        0.7804
+      ]
+    ],
+    "kw:Vessel arrival": [
+      [
+        "kw:Vessel arrival time",
+        0.8677
+      ],
+      [
+        "kw:Vessel arrival time prediction",
+        0.8035
+      ],
+      [
+        "kw:Maritime transport",
+        0.7695
+      ],
+      [
+        "kw:Vessel clearance",
+        0.7581
+      ],
+      [
+        "kw:Maritime navigation",
+        0.757
+      ],
+      [
+        "kw:Maritime logistics",
+        0.7243
+      ]
+    ],
     "kw:data-driven decision-making": [
       [
         "kw:Data-driven decision making",
@@ -51,6 +310,41 @@
     "kw:Variable forecast horizon": [],
     "kw:Aggregate demand constraint": [],
     "kw:Similarity-based forecasting": [],
+    "kw:HS code prediction": [],
+    "kw:Small language model": [
+      [
+        "kw:Large Language Models",
+        0.8004
+      ],
+      [
+        "kw:Large Language Model",
+        0.7895
+      ]
+    ],
+    "kw:Trie-constrained token prediction": [],
+    "kw:Hierarchy-aware semantic alignment": [],
+    "kw:Port logistics": [
+      [
+        "kw:Port operations",
+        0.8377
+      ],
+      [
+        "kw:Maritime logistics",
+        0.8285
+      ],
+      [
+        "kw:Port congestion",
+        0.7808
+      ],
+      [
+        "kw:Port efficiency",
+        0.768
+      ],
+      [
+        "kw:Maritime transport",
+        0.7353
+      ]
+    ],
     "kw:Degradation process modeling": [
       [
         "kw:Degradation model selection",
@@ -83,6 +377,16 @@
     ],
     "kw:Local-global feature mixer": [],
     "kw:Trend-guided rollout-consistent loss": [],
+    "kw:Latent oversampling": [],
+    "kw:Imbalanced learning": [
+      [
+        "kw:Adversarial learning",
+        0.7212
+      ]
+    ],
+    "kw:Long-tailed classification": [],
+    "kw:Head-tailed distribution": [],
+    "kw:Representation learning": [],
     "kw:Modeling": [
       [
         "kw:Mathematical modeling",
@@ -184,6 +488,31 @@
         0.7403
       ]
     ],
+    "kw:Quay crane assignment and scheduling problem": [
+      [
+        "kw:Quay crane scheduling",
+        0.9526
+      ],
+      [
+        "kw:Quay crane",
+        0.7466
+      ]
+    ],
+    "kw:Machine learning": [],
+    "kw:Initial population generation": [],
+    "kw:Genetic algorithm": [
+      [
+        "kw:Gene expression prediction",
+        0.7329
+      ]
+    ],
+    "kw:Clustering": [
+      [
+        "kw:Industry Clustering",
+        0.7214
+      ]
+    ],
+    "kw:Traveling salesman problem": [],
     "kw:Degradation model selection": [
       [
         "kw:Degradation process modeling",
@@ -207,16 +536,12 @@
     ],
     "kw:Retrieval-augmented generation": [],
     "kw:Uncertainty-aware decision making": [],
-    "kw:Large language models": [
-      [
-        "kw:Large Language Model",
-        0.9902
-      ],
-      [
-        "kw:Small language model",
-        0.7922
-      ]
-    ],
+    "kw:Looped computation": [],
+    "kw:Post-training framework": [],
+    "kw:Latent-refinement architecture": [],
+    "kw:Selective gate": [],
+    "kw:Random deep supervision": [],
+    "kw:Confidence head": [],
     "kw:Health indicator learning": [
       [
         "kw:health indicator",
@@ -256,7 +581,6 @@
         0.8579
       ]
     ],
-    "kw:Machine learning": [],
     "kw:Data standardization": [],
     "kw:Container terminal operations": [
       [
@@ -294,34 +618,12 @@
     ],
     "kw:Large Language Model": [
       [
-        "kw:Large language models",
-        0.9902
+        "kw:Large Language Models",
+        0.9879
       ],
       [
         "kw:Small language model",
         0.7895
-      ]
-    ],
-    "kw:Port logistics": [
-      [
-        "kw:Port operations",
-        0.8377
-      ],
-      [
-        "kw:Maritime logistics",
-        0.8285
-      ],
-      [
-        "kw:Port congestion",
-        0.7808
-      ],
-      [
-        "kw:Port efficiency",
-        0.768
-      ],
-      [
-        "kw:Maritime transport",
-        0.7353
       ]
     ],
     "kw:Smart Port": [
@@ -356,44 +658,63 @@
         0.7675
       ]
     ],
-    "kw:Time Series Forecasting": [
+    "kw:IMO DCS": [],
+    "kw:EU MRV": [],
+    "kw:Operational efficiency": [
       [
-        "kw:individual-level long time series forecasting",
-        0.8437
+        "kw:Process efficiency",
+        0.8065
+      ],
+      [
+        "kw:Computational efficiency",
+        0.7758
+      ],
+      [
+        "kw:Operations management",
+        0.7231
+      ]
+    ],
+    "kw:Large-scale data analysis": [
+      [
+        "kw:Big data",
+        0.8022
+      ]
+    ],
+    "kw:Statistical validation": [
+      [
+        "kw:Statistical verification",
+        0.9217
+      ]
+    ],
+    "kw:Carbon Intensity Indicator": [],
+    "kw:Procurement lead time prediction": [
+      [
+        "kw:Handling time prediction",
+        0.7649
       ],
       [
         "kw:Remaining time prediction",
-        0.8177
-      ],
-      [
-        "kw:Time Series Analysis",
-        0.795
-      ],
-      [
-        "kw:Time series",
-        0.7891
-      ],
-      [
-        "kw:Handling time prediction",
-        0.7883
-      ],
-      [
-        "kw:Time series classification",
-        0.768
+        0.7454
       ]
     ],
-    "kw:Deep learning": [
+    "kw:Process mining": [
       [
-        "kw:Deep ensemble learning",
-        0.8147
+        "kw:Process discovery",
+        0.8062
       ],
       [
-        "kw:Deep Neural Network",
-        0.7444
+        "kw:Process data",
+        0.7488
       ],
       [
-        "kw:Deep reinforcement learning",
-        0.7248
+        "kw:Process selection",
+        0.7307
+      ]
+    ],
+    "kw:Shipbuilding industry": [
+      [
+        "kw:Shipbuilding",
+        0.9502
       ]
     ],
     "kw:Convolutional Neural Network": [
@@ -439,6 +760,188 @@
       ]
     ],
     "kw:Local variation modeling": [],
+    "kw:Reinforcement learning": [
+      [
+        "kw:Deep reinforcement learning",
+        0.9246
+      ],
+      [
+        "kw:Adversarial learning",
+        0.738
+      ]
+    ],
+    "kw:Vessel trajectory prediction": [
+      [
+        "kw:Vessel ETA prediction",
+        0.8109
+      ],
+      [
+        "kw:Vessel arrival time prediction",
+        0.8017
+      ],
+      [
+        "kw:Maritime economics forecasting",
+        0.7321
+      ]
+    ],
+    "kw:Transfer learning": [],
+    "kw:AIS data": [
+      [
+        "kw:EDI data",
+        0.7761
+      ],
+      [
+        "kw:Automatic Identification System (AIS)",
+        0.7705
+      ]
+    ],
+    "kw:Maritime navigation optimization": [
+      [
+        "kw:Maritime navigation",
+        0.8982
+      ],
+      [
+        "kw:Maritime transport",
+        0.7454
+      ],
+      [
+        "kw:Maritime logistics",
+        0.7221
+      ]
+    ],
+    "kw:Arctic Ship Traffic Data": [
+      [
+        "kw:Maritime data",
+        0.7598
+      ],
+      [
+        "kw:Trans-Arctic Shipping Route",
+        0.7572
+      ]
+    ],
+    "kw:Arctic Environment": [],
+    "kw:Ship Emissions": [
+      [
+        "kw:Ship fuel consumption",
+        0.7764
+      ],
+      [
+        "kw:Ship fuel consumption prediction",
+        0.7372
+      ]
+    ],
+    "kw:Transformer": [],
+    "kw:Trans-Arctic Shipping Route": [
+      [
+        "kw:Arctic Ship Traffic Data",
+        0.7572
+      ]
+    ],
+    "kw:Predictive process monitoring": [
+      [
+        "kw:Process monitoring",
+        0.8505
+      ],
+      [
+        "kw:Process modeling",
+        0.7406
+      ],
+      [
+        "kw:Process data",
+        0.7311
+      ]
+    ],
+    "kw:Outcome-Oriented Prediction": [
+      [
+        "kw:Prediction model",
+        0.842
+      ],
+      [
+        "kw:Two-stage prediction",
+        0.774
+      ],
+      [
+        "kw:Performance prediction",
+        0.7622
+      ]
+    ],
+    "kw:Continual learning": [],
+    "kw:Concept drift": [],
+    "kw:Optimization": [
+      [
+        "kw:Model optimization",
+        0.8399
+      ],
+      [
+        "kw:Process optimization",
+        0.7977
+      ],
+      [
+        "kw:Space optimization",
+        0.7424
+      ],
+      [
+        "kw:Logistics optimization",
+        0.7326
+      ]
+    ],
+    "kw:Queueing theory": [
+      [
+        "kw:Queue dynamics prediction",
+        0.7335
+      ]
+    ],
+    "kw:Discrete Event Simulation": [
+      [
+        "kw:Simulation",
+        0.7751
+      ]
+    ],
+    "kw:Data fusion": [],
+    "kw:Healthcare operations": [],
+    "kw:Queue dynamics prediction": [
+      [
+        "kw:Queueing theory",
+        0.7335
+      ]
+    ],
+    "kw:Regional maritime collision risk assessment": [
+      [
+        "kw:Maritime collision",
+        0.7979
+      ],
+      [
+        "kw:Maritime accidents",
+        0.7465
+      ],
+      [
+        "kw:Maritime safety",
+        0.7273
+      ]
+    ],
+    "kw:Relative traffic representation": [
+      [
+        "kw:Traffic density",
+        0.7706
+      ]
+    ],
+    "kw:Risk influence distribution map": [
+      [
+        "kw:Risk mapping",
+        0.7667
+      ]
+    ],
+    "kw:Centroid radial distribution": [],
+    "kw:Explainable AI": [
+      [
+        "kw:Generative AI",
+        0.8491
+      ],
+      [
+        "kw:Artificial intelligence",
+        0.765
+      ]
+    ],
     "kw:Automated Guided Vehicles": [
       [
         "kw:Automated Guided Vehicle",
@@ -457,20 +960,97 @@
         0.8069
       ]
     ],
-    "kw:AIS data": [
-      [
-        "kw:EDI data",
-        0.7761
-      ],
-      [
-        "kw:Automatic Identification System (AIS)",
-        0.7705
-      ]
-    ],
     "kw:Standard route extraction": [
       [
         "kw:Route choice",
         0.7247
+      ]
+    ],
+    "kw:Dark vessel detection": [],
+    "kw:Multimodal fusion": [],
+    "kw:Radar tracking": [],
+    "kw:Maritime surveillance": [
+      [
+        "kw:Maritime safety",
+        0.7877
+      ],
+      [
+        "kw:Maritime data",
+        0.7579
+      ],
+      [
+        "kw:Maritime navigation",
+        0.7299
+      ]
+    ],
+    "kw:Reasoning": [],
+    "kw:GRPO": [],
+    "kw:Yard truck deployment": [],
+    "kw:Multi-objective optimization": [],
+    "kw:Maritime transport": [
+      [
+        "kw:Maritime logistics",
+        0.8812
+      ],
+      [
+        "kw:Maritime navigation",
+        0.8572
+      ],
+      [
+        "kw:Maritime freight index",
+        0.8141
+      ],
+      [
+        "kw:Maritime economics",
+        0.8101
+      ],
+      [
+        "kw:Maritime data",
+        0.7989
+      ],
+      [
+        "kw:Vessel arrival",
+        0.7695
+      ],
+      [
+        "kw:Maritime safety",
+        0.7617
+      ],
+      [
+        "kw:Maritime navigation optimization",
+        0.7454
+      ]
+    ],
+    "kw:Vessel turnaround time": [
+      [
+        "kw:Vessel arrival time",
+        0.7568
+      ],
+      [
+        "kw:Vessel arrival time prediction",
+        0.7358
+      ]
+    ],
+    "kw:Port operations": [
+      [
+        "kw:Port efficiency",
+        0.8397
+      ],
+      [
+        "kw:Port logistics",
+        0.8377
+      ],
+      [
+        "kw:Port congestion",
+        0.7536
+      ],
+      [
+        "kw:Bulk port",
+        0.74
+      ],
+      [
+        "kw:Smart Port",
+        0.7283
       ]
     ],
     "kw:Channel independent convolution": [],
@@ -518,345 +1098,64 @@
       ]
     ],
     "kw:Temporal Dependencies": [],
-    "kw:Contrastive learning": [
-      [
-        "kw:Adversarial learning",
-        0.8446
-      ]
-    ],
-    "kw:Rubber physical properties": [
-      [
-        "kw:Synthetic rubber production",
-        0.7921
-      ],
-      [
-        "kw:Rubber property prediction",
-        0.7599
-      ],
-      [
-        "kw:Rubber-belt industry",
-        0.7296
-      ]
-    ],
-    "kw:Dynamic margin": [],
-    "kw:Representation learning": [],
-    "kw:Manufacturing": [
-      [
-        "kw:Smart manufacturing",
-        0.7776
-      ]
-    ],
-    "kw:Ensemble method": [],
-    "kw:Feature selection": [
-      [
-        "kw:Feature representation",
-        0.7396
-      ],
-      [
-        "kw:Feature engineering",
-        0.7388
-      ]
-    ],
-    "kw:Image similarity": [],
-    "kw:Data-driven simulation": [
-      [
-        "kw:Simulation framework",
-        0.8031
-      ],
-      [
-        "kw:Simulation",
-        0.7582
-      ],
-      [
-        "kw:Process simulation",
-        0.7354
-      ],
-      [
-        "kw:Data simplification",
-        0.7297
-      ]
-    ],
-    "kw:Synthetic rubber production": [
-      [
-        "kw:Rubber physical properties",
-        0.7921
-      ],
-      [
-        "kw:Rubber-belt industry",
-        0.7573
-      ]
-    ],
-    "kw:Recipe optimization": [],
-    "kw:Automatic Identification System (AIS)": [
-      [
-        "kw:AIS data",
-        0.7705
-      ]
-    ],
-    "kw:Port and Anchorage Classification and Generalization": [],
+    "kw:GNN": [],
+    "kw:Multi-task learning": [],
     "kw:Semi-supervised learning": [
       [
         "kw:unsupervised learning",
         0.7474
       ]
     ],
-    "kw:Degradation function": [
+    "kw:Sequence mixer": [
       [
-        "kw:Degradation",
-        0.8954
-      ],
-      [
-        "kw:Degradation process modeling",
-        0.7987
-      ],
-      [
-        "kw:Degradation model selection",
-        0.7543
+        "kw:Mixing process",
+        0.7708
       ]
     ],
-    "kw:Change point detection": [],
-    "kw:Condition-based maintenance": [
-      [
-        "kw:Predictive maintenance",
-        0.7894
-      ]
-    ],
-    "kw:Weapon system": [],
-    "kw:Satellite image": [],
-    "kw:Fine dust prediction": [],
-    "kw:High-resolution spatial analysis": [],
-    "kw:Environmental monitoring": [],
-    "kw:Image encoding": [],
-    "kw:Random forest": [],
-    "kw:Port operations": [
-      [
-        "kw:Port efficiency",
-        0.8397
-      ],
-      [
-        "kw:Port logistics",
-        0.8377
-      ],
-      [
-        "kw:Port congestion",
-        0.7536
-      ],
-      [
-        "kw:Bulk port",
-        0.74
-      ],
-      [
-        "kw:Smart Port",
-        0.7283
-      ]
-    ],
-    "kw:Genetic algorithm": [
-      [
-        "kw:Gene expression prediction",
-        0.7329
-      ]
-    ],
-    "kw:Neural architecture search": [
-      [
-        "kw:Neural Network",
-        0.7769
-      ]
-    ],
-    "kw:Maritime data": [
-      [
-        "kw:Maritime navigation",
-        0.8168
-      ],
-      [
-        "kw:Maritime transport",
-        0.7989
-      ],
+    "kw:Dense layer": [],
+    "kw:MatrixMixer": [],
+    "kw:Maritime economics forecasting": [
       [
         "kw:Maritime economics",
-        0.796
+        0.8554
       ],
-      [
-        "kw:Maritime safety",
-        0.7822
-      ],
-      [
-        "kw:Maritime logistics",
-        0.7721
-      ],
-      [
-        "kw:Maritime freight index",
-        0.7598
-      ],
-      [
-        "kw:Arctic Ship Traffic Data",
-        0.7598
-      ],
-      [
-        "kw:Maritime surveillance",
-        0.7579
-      ]
-    ],
-    "kw:Condition diagnosis": [],
-    "kw:Reliability engineering": [
-      [
-        "kw:Quality efficiency",
-        0.7261
-      ]
-    ],
-    "kw:Rubber property prediction": [
-      [
-        "kw:Rubber physical properties",
-        0.7599
-      ]
-    ],
-    "kw:Clustering": [
-      [
-        "kw:Industry Clustering",
-        0.7214
-      ]
-    ],
-    "kw:Material science": [],
-    "kw:Framework development": [
-      [
-        "kw:Framework",
-        0.9156
-      ]
-    ],
-    "kw:Training mechanism": [],
-    "kw:Time series classification": [
-      [
-        "kw:Time Series Analysis",
-        0.8641
-      ],
-      [
-        "kw:Time series",
-        0.8345
-      ],
-      [
-        "kw:Time series decomposition",
-        0.7942
-      ],
-      [
-        "kw:Time Series Forecasting",
-        0.768
-      ]
-    ],
-    "kw:CRU-LSTM": [],
-    "kw:Autoencoder": [
-      [
-        "kw:Auto Convolution",
-        0.7756
-      ],
-      [
-        "kw:Autocorrelation",
-        0.7467
-      ]
-    ],
-    "kw:Feature representation": [
-      [
-        "kw:Feature engineering",
-        0.8254
-      ],
-      [
-        "kw:Feature interaction",
-        0.7873
-      ],
-      [
-        "kw:Feature selection",
-        0.7396
-      ]
-    ],
-    "kw:Arctic Ship Traffic Data": [
       [
         "kw:Maritime data",
-        0.7598
-      ],
-      [
-        "kw:Trans-Arctic Shipping Route",
-        0.7572
-      ]
-    ],
-    "kw:Arctic Environment": [],
-    "kw:Ship Emissions": [
-      [
-        "kw:Ship fuel consumption",
-        0.7764
-      ],
-      [
-        "kw:Ship fuel consumption prediction",
-        0.7372
-      ]
-    ],
-    "kw:Transformer": [],
-    "kw:Trans-Arctic Shipping Route": [
-      [
-        "kw:Arctic Ship Traffic Data",
-        0.7572
-      ]
-    ],
-    "kw:Regional maritime collision risk assessment": [
-      [
-        "kw:Maritime collision",
-        0.7979
-      ],
-      [
-        "kw:Maritime accidents",
-        0.7465
-      ],
-      [
-        "kw:Maritime safety",
-        0.7273
-      ]
-    ],
-    "kw:Relative traffic representation": [
-      [
-        "kw:Traffic density",
-        0.7706
-      ]
-    ],
-    "kw:Risk influence distribution map": [
-      [
-        "kw:Risk mapping",
-        0.7667
-      ]
-    ],
-    "kw:Centroid radial distribution": [],
-    "kw:Explainable AI": [
-      [
-        "kw:Generative AI",
-        0.8491
-      ],
-      [
-        "kw:Artificial intelligence",
-        0.765
-      ]
-    ],
-    "kw:Reinforcement learning": [
-      [
-        "kw:Deep reinforcement learning",
-        0.9246
-      ],
-      [
-        "kw:Adversarial learning",
-        0.738
-      ]
-    ],
-    "kw:Process mining": [
-      [
-        "kw:Process discovery",
-        0.8062
-      ],
-      [
-        "kw:Process data",
         0.7488
       ],
       [
-        "kw:Process selection",
-        0.7307
+        "kw:Ship fuel consumption prediction",
+        0.7404
+      ],
+      [
+        "kw:Vessel trajectory prediction",
+        0.7321
+      ],
+      [
+        "kw:Vessel ETA prediction",
+        0.7218
       ]
     ],
-    "kw:Reasoning": [],
-    "kw:GRPO": [],
+    "kw:Attention mechanism": [],
+    "kw:LSTM": [],
+    "kw:Container volume prediction": [
+      [
+        "kw:Container volume forecasting",
+        0.9369
+      ],
+      [
+        "kw:Container dwell time prediction",
+        0.7432
+      ],
+      [
+        "kw:Container freight rate prediction",
+        0.7277
+      ],
+      [
+        "kw:Container throughput prediction",
+        0.7239
+      ]
+    ],
     "kw:Correlation recurrent unit": [
       [
         "kw:Variable correlation",
@@ -897,1188 +1196,6 @@
     ],
     "kw:Markov Chain": [],
     "kw:Bayesian sampling": [],
-    "kw:Vessel trajectory prediction": [
-      [
-        "kw:Vessel ETA prediction",
-        0.8109
-      ],
-      [
-        "kw:Vessel arrival time prediction",
-        0.8017
-      ],
-      [
-        "kw:Maritime economics forecasting",
-        0.7321
-      ]
-    ],
-    "kw:Bezier interpolation": [],
-    "kw:Manifold learning": [],
-    "kw:Maritime navigation": [
-      [
-        "kw:Maritime navigation optimization",
-        0.8982
-      ],
-      [
-        "kw:Maritime transport",
-        0.8572
-      ],
-      [
-        "kw:Maritime data",
-        0.8168
-      ],
-      [
-        "kw:Maritime logistics",
-        0.7857
-      ],
-      [
-        "kw:Vessel arrival",
-        0.757
-      ],
-      [
-        "kw:Maritime safety",
-        0.7446
-      ],
-      [
-        "kw:Maritime economics",
-        0.7429
-      ],
-      [
-        "kw:Maritime surveillance",
-        0.7299
-      ]
-    ],
-    "kw:SHAP": [],
-    "kw:Order statistics": [],
-    "kw:Port air pollution": [],
-    "kw:LSTM": [],
-    "kw:Environmental prediction": [],
-    "kw:Event log conversion": [
-      [
-        "kw:Event log",
-        0.8766
-      ],
-      [
-        "kw:Event log analysis",
-        0.8733
-      ],
-      [
-        "kw:Event log imputation",
-        0.8456
-      ]
-    ],
-    "kw:CNN": [],
-    "kw:Event density embedding": [],
-    "kw:Event log imputation": [
-      [
-        "kw:Event log",
-        0.8494
-      ],
-      [
-        "kw:Event log conversion",
-        0.8456
-      ],
-      [
-        "kw:Event log analysis",
-        0.8425
-      ]
-    ],
-    "kw:Bagging": [],
-    "kw:RNN": [
-      [
-        "kw:Nearmiss",
-        0.7525
-      ]
-    ],
-    "kw:Missing data": [
-      [
-        "kw:Missing data imputation",
-        0.7489
-      ]
-    ],
-    "kw:Baltic Dry Index": [],
-    "kw:Deep ensemble learning": [
-      [
-        "kw:Deep learning",
-        0.8147
-      ]
-    ],
-    "kw:Maritime economics": [
-      [
-        "kw:Maritime economics forecasting",
-        0.8554
-      ],
-      [
-        "kw:Maritime logistics",
-        0.8329
-      ],
-      [
-        "kw:Maritime sustainability",
-        0.8179
-      ],
-      [
-        "kw:Maritime transport",
-        0.8101
-      ],
-      [
-        "kw:Maritime freight index",
-        0.8056
-      ],
-      [
-        "kw:Maritime data",
-        0.796
-      ],
-      [
-        "kw:Maritime safety",
-        0.7856
-      ],
-      [
-        "kw:Maritime navigation",
-        0.7429
-      ]
-    ],
-    "kw:Multivariate regression": [
-      [
-        "kw:Multivariate forecasting",
-        0.7386
-      ]
-    ],
-    "kw:Deep Neural Network": [
-      [
-        "kw:Neural Network",
-        0.8973
-      ],
-      [
-        "kw:Convolutional Neural Network",
-        0.8023
-      ],
-      [
-        "kw:Convolutional neural networks",
-        0.775
-      ],
-      [
-        "kw:Deep learning",
-        0.7444
-      ]
-    ],
-    "kw:Petri Nets": [
-      [
-        "kw:Colored Petri Nets",
-        0.8463
-      ]
-    ],
-    "kw:Simulation": [
-      [
-        "kw:Simulation framework",
-        0.912
-      ],
-      [
-        "kw:Simulation learning",
-        0.8411
-      ],
-      [
-        "kw:Process simulation",
-        0.8201
-      ],
-      [
-        "kw:Co-simulation",
-        0.8119
-      ],
-      [
-        "kw:Discrete Event Simulation",
-        0.7751
-      ],
-      [
-        "kw:Modeling",
-        0.7688
-      ],
-      [
-        "kw:Data-driven simulation",
-        0.7582
-      ],
-      [
-        "kw:Mathematical modeling",
-        0.751
-      ]
-    ],
-    "kw:Operational analytics": [
-      [
-        "kw:Operation analysis",
-        0.7512
-      ],
-      [
-        "kw:Operations research",
-        0.7456
-      ],
-      [
-        "kw:Manufacturing data analytics",
-        0.7213
-      ]
-    ],
-    "kw:Process data": [
-      [
-        "kw:Process management",
-        0.8371
-      ],
-      [
-        "kw:Process instance",
-        0.8368
-      ],
-      [
-        "kw:Process monitoring",
-        0.8331
-      ],
-      [
-        "kw:Process modeling",
-        0.8235
-      ],
-      [
-        "kw:Process generation",
-        0.7966
-      ],
-      [
-        "kw:Process design",
-        0.7943
-      ],
-      [
-        "kw:Process discovery",
-        0.7818
-      ],
-      [
-        "kw:Process integration",
-        0.7731
-      ]
-    ],
-    "kw:Business process modeling": [
-      [
-        "kw:Business process model",
-        0.9683
-      ],
-      [
-        "kw:Business process management",
-        0.8601
-      ],
-      [
-        "kw:Business process",
-        0.8535
-      ],
-      [
-        "kw:Business process analytics",
-        0.8455
-      ],
-      [
-        "kw:Business process execution",
-        0.8334
-      ],
-      [
-        "kw:Process modeling",
-        0.8122
-      ],
-      [
-        "kw:Business process integration",
-        0.7704
-      ],
-      [
-        "kw:Business process efficiency",
-        0.7366
-      ]
-    ],
-    "kw:Process conformance": [
-      [
-        "kw:Process similarity",
-        0.7724
-      ],
-      [
-        "kw:Process consistency",
-        0.7499
-      ]
-    ],
-    "kw:Statistical verification": [
-      [
-        "kw:Statistical validation",
-        0.9217
-      ]
-    ],
-    "kw:Model abstraction": [
-      [
-        "kw:Modeling",
-        0.7879
-      ],
-      [
-        "kw:Mathematical modeling",
-        0.7631
-      ],
-      [
-        "kw:Model management",
-        0.7587
-      ],
-      [
-        "kw:Simulation framework",
-        0.7277
-      ]
-    ],
-    "kw:Event log": [
-      [
-        "kw:Event log analysis",
-        0.903
-      ],
-      [
-        "kw:Event log conversion",
-        0.8766
-      ],
-      [
-        "kw:Event log imputation",
-        0.8494
-      ]
-    ],
-    "kw:Density-based ship domain": [],
-    "kw:Safety performance indicator": [
-      [
-        "kw:Performance measurement",
-        0.7383
-      ],
-      [
-        "kw:Performance evaluation",
-        0.7373
-      ],
-      [
-        "kw:Performance analysis",
-        0.7304
-      ]
-    ],
-    "kw:Maritime safety": [
-      [
-        "kw:Maritime accidents",
-        0.8341
-      ],
-      [
-        "kw:Maritime Accident",
-        0.8215
-      ],
-      [
-        "kw:Maritime sustainability",
-        0.8109
-      ],
-      [
-        "kw:Maritime surveillance",
-        0.7877
-      ],
-      [
-        "kw:Maritime economics",
-        0.7856
-      ],
-      [
-        "kw:Maritime data",
-        0.7822
-      ],
-      [
-        "kw:Vessel clearance",
-        0.7669
-      ],
-      [
-        "kw:Maritime transport",
-        0.7617
-      ]
-    ],
-    "kw:Freight rate prediction": [
-      [
-        "kw:Container freight rate prediction",
-        0.8973
-      ]
-    ],
-    "kw:CoRepNet": [],
-    "kw:Variable correlation": [
-      [
-        "kw:Correlation recurrent unit",
-        0.7882
-      ]
-    ],
-    "kw:Feature interaction": [
-      [
-        "kw:Feature representation",
-        0.7873
-      ],
-      [
-        "kw:Feature engineering",
-        0.7739
-      ]
-    ],
-    "kw:Tribunal ruling analysis": [],
-    "kw:SentenceBERT": [],
-    "kw:Natural language processing": [],
-    "kw:Text analysis": [
-      [
-        "kw:Text-based Analysis",
-        0.9315
-      ],
-      [
-        "kw:Text data",
-        0.8428
-      ],
-      [
-        "kw:Text mining",
-        0.7826
-      ]
-    ],
-    "kw:Likelihood-based imputation": [],
-    "kw:Event chain": [
-      [
-        "kw:Event-driven systems",
-        0.8018
-      ],
-      [
-        "kw:Event analysis",
-        0.7837
-      ],
-      [
-        "kw:Event-condition-action",
-        0.7497
-      ]
-    ],
-    "kw:Induction furnace": [],
-    "kw:Multi-perspective process model": [
-      [
-        "kw:Process modeling",
-        0.8398
-      ],
-      [
-        "kw:Process simulation",
-        0.7298
-      ]
-    ],
-    "kw:Process discovery": [
-      [
-        "kw:Process mining",
-        0.8062
-      ],
-      [
-        "kw:Process selection",
-        0.7946
-      ],
-      [
-        "kw:Process innovation",
-        0.7855
-      ],
-      [
-        "kw:Process data",
-        0.7818
-      ],
-      [
-        "kw:Process design",
-        0.764
-      ],
-      [
-        "kw:Process generation",
-        0.7568
-      ],
-      [
-        "kw:Process monitoring",
-        0.751
-      ],
-      [
-        "kw:Process-oriented development",
-        0.7447
-      ]
-    ],
-    "kw:Metaverse": [],
-    "kw:Artificial intelligence": [
-      [
-        "kw:Generative artificial intelligence",
-        0.9089
-      ],
-      [
-        "kw:Generative AI",
-        0.7912
-      ],
-      [
-        "kw:Explainable AI",
-        0.765
-      ]
-    ],
-    "kw:Digital twin": [],
-    "kw:Log equality test": [],
-    "kw:Big data": [
-      [
-        "kw:Large-scale data analysis",
-        0.8022
-      ]
-    ],
-    "kw:Model fitness": [],
-    "kw:HS code prediction": [],
-    "kw:Small language model": [
-      [
-        "kw:Large language models",
-        0.7922
-      ],
-      [
-        "kw:Large Language Model",
-        0.7895
-      ]
-    ],
-    "kw:Trie-constrained token prediction": [],
-    "kw:Hierarchy-aware semantic alignment": [],
-    "kw:Quay crane assignment and scheduling problem": [
-      [
-        "kw:Quay crane scheduling",
-        0.9526
-      ],
-      [
-        "kw:Quay crane",
-        0.7466
-      ]
-    ],
-    "kw:Initial population generation": [],
-    "kw:Traveling salesman problem": [],
-    "kw:Transfer learning": [],
-    "kw:Maritime navigation optimization": [
-      [
-        "kw:Maritime navigation",
-        0.8982
-      ],
-      [
-        "kw:Maritime transport",
-        0.7454
-      ],
-      [
-        "kw:Maritime logistics",
-        0.7221
-      ]
-    ],
-    "kw:Yard truck deployment": [],
-    "kw:Multi-objective optimization": [],
-    "kw:Quay crane scheduling": [
-      [
-        "kw:Quay crane assignment and scheduling problem",
-        0.9526
-      ],
-      [
-        "kw:Quay crane",
-        0.8202
-      ]
-    ],
-    "kw:Surrogate model": [],
-    "kw:Optimization": [
-      [
-        "kw:Model optimization",
-        0.8399
-      ],
-      [
-        "kw:Process optimization",
-        0.7977
-      ],
-      [
-        "kw:Space optimization",
-        0.7424
-      ],
-      [
-        "kw:Logistics optimization",
-        0.7326
-      ]
-    ],
-    "kw:Container dwell time": [
-      [
-        "kw:Container dwell time prediction",
-        0.8504
-      ]
-    ],
-    "kw:Simulation learning": [
-      [
-        "kw:Simulation",
-        0.8411
-      ],
-      [
-        "kw:Simulation framework",
-        0.7953
-      ],
-      [
-        "kw:Process simulation",
-        0.7231
-      ]
-    ],
-    "kw:Makespan prediction": [],
-    "kw:Scheduling problem": [
-      [
-        "kw:Scheduling",
-        0.9187
-      ],
-      [
-        "kw:Timing",
-        0.7647
-      ],
-      [
-        "kw:Production scheduling",
-        0.7317
-      ],
-      [
-        "kw:Setup time",
-        0.7255
-      ]
-    ],
-    "kw:Computational efficiency": [
-      [
-        "kw:Operational efficiency",
-        0.7758
-      ],
-      [
-        "kw:Process efficiency",
-        0.7308
-      ]
-    ],
-    "kw:Discrete Event Simulation": [
-      [
-        "kw:Simulation",
-        0.7751
-      ]
-    ],
-    "kw:Operation time prediction": [
-      [
-        "kw:Handling time prediction",
-        0.846
-      ],
-      [
-        "kw:Remaining time prediction",
-        0.7796
-      ]
-    ],
-    "kw:Quay crane": [
-      [
-        "kw:Quay crane scheduling",
-        0.8202
-      ],
-      [
-        "kw:Quay crane assignment and scheduling problem",
-        0.7466
-      ]
-    ],
-    "kw:Handling time prediction": [
-      [
-        "kw:Remaining time prediction",
-        0.8794
-      ],
-      [
-        "kw:Operation time prediction",
-        0.846
-      ],
-      [
-        "kw:Time Series Forecasting",
-        0.7883
-      ],
-      [
-        "kw:Procurement lead time prediction",
-        0.7649
-      ]
-    ],
-    "kw:External factors": [],
-    "kw:TSP": [],
-    "kw:Container terminal": [
-      [
-        "kw:Container terminal operations",
-        0.9331
-      ]
-    ],
-    "kw:Work planning": [
-      [
-        "kw:Construction workforce planning",
-        0.8449
-      ]
-    ],
-    "kw:Voice recognition": [
-      [
-        "kw:Speech classification",
-        0.7685
-      ]
-    ],
-    "kw:Deepfake detection": [],
-    "kw:Speech classification": [
-      [
-        "kw:Voice recognition",
-        0.7685
-      ]
-    ],
-    "kw:Audio analysis": [],
-    "kw:Demand prediction": [
-      [
-        "kw:Workforce demand forecasting",
-        0.7471
-      ]
-    ],
-    "kw:Designated driver service": [],
-    "kw:Regional forecasting": [],
-    "kw:Global pandemic": [],
-    "kw:Emergency relief fund": [],
-    "kw:Budget allocation": [
-      [
-        "kw:Resource allocation",
-        0.7974
-      ]
-    ],
-    "kw:Policy analysis": [],
-    "kw:COVID-19": [],
-    "kw:GPS data": [
-      [
-        "kw:GPS trajectories",
-        0.8469
-      ]
-    ],
-    "kw:Internal truck": [],
-    "kw:Route prediction": [
-      [
-        "kw:Route choice",
-        0.7441
-      ]
-    ],
-    "kw:Logistics optimization": [
-      [
-        "kw:Cargo handling optimization",
-        0.8451
-      ],
-      [
-        "kw:Logistics processes",
-        0.7466
-      ],
-      [
-        "kw:Optimization",
-        0.7326
-      ]
-    ],
-    "kw:Port punctuality": [],
-    "kw:ETA prediction": [
-      [
-        "kw:RTA prediction",
-        0.7804
-      ],
-      [
-        "kw:Vessel ETA prediction",
-        0.7648
-      ]
-    ],
-    "kw:RTA prediction": [
-      [
-        "kw:ETA prediction",
-        0.7804
-      ]
-    ],
-    "kw:Vessel arrival": [
-      [
-        "kw:Vessel arrival time",
-        0.8677
-      ],
-      [
-        "kw:Vessel arrival time prediction",
-        0.8035
-      ],
-      [
-        "kw:Maritime transport",
-        0.7695
-      ],
-      [
-        "kw:Vessel clearance",
-        0.7581
-      ],
-      [
-        "kw:Maritime navigation",
-        0.757
-      ],
-      [
-        "kw:Maritime logistics",
-        0.7243
-      ]
-    ],
-    "kw:Maritime logistics": [
-      [
-        "kw:Maritime transport",
-        0.8812
-      ],
-      [
-        "kw:Maritime economics",
-        0.8329
-      ],
-      [
-        "kw:Port logistics",
-        0.8285
-      ],
-      [
-        "kw:Maritime freight index",
-        0.8177
-      ],
-      [
-        "kw:Maritime navigation",
-        0.7857
-      ],
-      [
-        "kw:Maritime data",
-        0.7721
-      ],
-      [
-        "kw:Logistics",
-        0.7598
-      ],
-      [
-        "kw:Maritime safety",
-        0.7426
-      ]
-    ],
-    "kw:Looped computation": [],
-    "kw:Post-training framework": [],
-    "kw:Latent-refinement architecture": [],
-    "kw:Selective gate": [],
-    "kw:Random deep supervision": [],
-    "kw:Confidence head": [],
-    "kw:Procurement lead time prediction": [
-      [
-        "kw:Handling time prediction",
-        0.7649
-      ],
-      [
-        "kw:Remaining time prediction",
-        0.7454
-      ]
-    ],
-    "kw:Shipbuilding industry": [
-      [
-        "kw:Shipbuilding",
-        0.9502
-      ]
-    ],
-    "kw:GNN": [],
-    "kw:Multi-task learning": [],
-    "kw:Sequence mixer": [
-      [
-        "kw:Mixing process",
-        0.7708
-      ]
-    ],
-    "kw:Dense layer": [],
-    "kw:MatrixMixer": [],
-    "kw:Predictive process monitoring": [
-      [
-        "kw:Process monitoring",
-        0.8505
-      ],
-      [
-        "kw:Process modeling",
-        0.7406
-      ],
-      [
-        "kw:Process data",
-        0.7311
-      ]
-    ],
-    "kw:Remaining time prediction": [
-      [
-        "kw:Handling time prediction",
-        0.8794
-      ],
-      [
-        "kw:Time Series Forecasting",
-        0.8177
-      ],
-      [
-        "kw:Operation time prediction",
-        0.7796
-      ],
-      [
-        "kw:Procurement lead time prediction",
-        0.7454
-      ],
-      [
-        "kw:Completion time prediction",
-        0.7445
-      ]
-    ],
-    "kw:Spatiotemporal data": [],
-    "kw:Ship fuel consumption prediction": [
-      [
-        "kw:Ship fuel consumption",
-        0.9174
-      ],
-      [
-        "kw:Maritime economics forecasting",
-        0.7404
-      ],
-      [
-        "kw:Ship Emissions",
-        0.7372
-      ]
-    ],
-    "kw:LCL cargo loading": [],
-    "kw:Container loading algorithm": [
-      [
-        "kw:Container-based",
-        0.7797
-      ],
-      [
-        "kw:Container Throughput",
-        0.7349
-      ]
-    ],
-    "kw:Space optimization": [
-      [
-        "kw:Optimization",
-        0.7424
-      ]
-    ],
-    "kw:Logistics": [
-      [
-        "kw:Logistics processes",
-        0.898
-      ],
-      [
-        "kw:Maritime logistics",
-        0.7598
-      ]
-    ],
-    "kw:3D bin packing": [],
-    "kw:Latent oversampling": [],
-    "kw:Imbalanced learning": [
-      [
-        "kw:Adversarial learning",
-        0.7212
-      ]
-    ],
-    "kw:Long-tailed classification": [],
-    "kw:Head-tailed distribution": [],
-    "kw:IMO DCS": [],
-    "kw:EU MRV": [],
-    "kw:Operational efficiency": [
-      [
-        "kw:Process efficiency",
-        0.8065
-      ],
-      [
-        "kw:Computational efficiency",
-        0.7758
-      ],
-      [
-        "kw:Operations management",
-        0.7231
-      ]
-    ],
-    "kw:Large-scale data analysis": [
-      [
-        "kw:Big data",
-        0.8022
-      ]
-    ],
-    "kw:Statistical validation": [
-      [
-        "kw:Statistical verification",
-        0.9217
-      ]
-    ],
-    "kw:Carbon Intensity Indicator": [],
-    "kw:Industry Clustering": [
-      [
-        "kw:Clustering",
-        0.7214
-      ]
-    ],
-    "kw:Peer Group Selection": [],
-    "kw:Text-based Analysis": [
-      [
-        "kw:Text analysis",
-        0.9315
-      ],
-      [
-        "kw:Text data",
-        0.7534
-      ]
-    ],
-    "kw:10-K annual reports": [],
-    "kw:BERT": [],
-    "kw:Outcome-Oriented Prediction": [
-      [
-        "kw:Prediction model",
-        0.842
-      ],
-      [
-        "kw:Two-stage prediction",
-        0.774
-      ],
-      [
-        "kw:Performance prediction",
-        0.7622
-      ]
-    ],
-    "kw:Continual learning": [],
-    "kw:Concept drift": [],
-    "kw:Queueing theory": [
-      [
-        "kw:Queue dynamics prediction",
-        0.7335
-      ]
-    ],
-    "kw:Data fusion": [],
-    "kw:Healthcare operations": [],
-    "kw:Queue dynamics prediction": [
-      [
-        "kw:Queueing theory",
-        0.7335
-      ]
-    ],
-    "kw:Dark vessel detection": [],
-    "kw:Multimodal fusion": [],
-    "kw:Radar tracking": [],
-    "kw:Maritime surveillance": [
-      [
-        "kw:Maritime safety",
-        0.7877
-      ],
-      [
-        "kw:Maritime data",
-        0.7579
-      ],
-      [
-        "kw:Maritime navigation",
-        0.7299
-      ]
-    ],
-    "kw:Ship fuel consumption": [
-      [
-        "kw:Ship fuel consumption prediction",
-        0.9174
-      ],
-      [
-        "kw:Ship Emissions",
-        0.7764
-      ]
-    ],
-    "kw:Maritime sustainability": [
-      [
-        "kw:Maritime economics",
-        0.8179
-      ],
-      [
-        "kw:Maritime safety",
-        0.8109
-      ],
-      [
-        "kw:Maritime logistics",
-        0.7382
-      ],
-      [
-        "kw:Maritime data",
-        0.733
-      ],
-      [
-        "kw:Maritime transport",
-        0.7204
-      ]
-    ],
-    "kw:Maritime accidents": [
-      [
-        "kw:Maritime Accident",
-        0.9685
-      ],
-      [
-        "kw:Maritime collision",
-        0.8389
-      ],
-      [
-        "kw:Maritime safety",
-        0.8341
-      ],
-      [
-        "kw:Regional maritime collision risk assessment",
-        0.7465
-      ],
-      [
-        "kw:Maritime data",
-        0.7287
-      ]
-    ],
-    "kw:Risk mapping": [
-      [
-        "kw:Risk influence distribution map",
-        0.7667
-      ]
-    ],
-    "kw:Accident severity": [],
-    "kw:XAI": [],
-    "kw:Maritime transport": [
-      [
-        "kw:Maritime logistics",
-        0.8812
-      ],
-      [
-        "kw:Maritime navigation",
-        0.8572
-      ],
-      [
-        "kw:Maritime freight index",
-        0.8141
-      ],
-      [
-        "kw:Maritime economics",
-        0.8101
-      ],
-      [
-        "kw:Maritime data",
-        0.7989
-      ],
-      [
-        "kw:Vessel arrival",
-        0.7695
-      ],
-      [
-        "kw:Maritime safety",
-        0.7617
-      ],
-      [
-        "kw:Maritime navigation optimization",
-        0.7454
-      ]
-    ],
-    "kw:Vessel turnaround time": [
-      [
-        "kw:Vessel arrival time",
-        0.7568
-      ],
-      [
-        "kw:Vessel arrival time prediction",
-        0.7358
-      ]
-    ],
-    "kw:Maritime economics forecasting": [
-      [
-        "kw:Maritime economics",
-        0.8554
-      ],
-      [
-        "kw:Maritime data",
-        0.7488
-      ],
-      [
-        "kw:Ship fuel consumption prediction",
-        0.7404
-      ],
-      [
-        "kw:Vessel trajectory prediction",
-        0.7321
-      ],
-      [
-        "kw:Vessel ETA prediction",
-        0.7218
-      ]
-    ],
-    "kw:Attention mechanism": [],
-    "kw:Container volume prediction": [
-      [
-        "kw:Container volume forecasting",
-        0.9369
-      ],
-      [
-        "kw:Container dwell time prediction",
-        0.7432
-      ],
-      [
-        "kw:Container freight rate prediction",
-        0.7277
-      ],
-      [
-        "kw:Container throughput prediction",
-        0.7239
-      ]
-    ],
     "kw:Workflow management": [
       [
         "kw:Workflow",
@@ -2202,6 +1319,17 @@
         0.8993
       ]
     ],
+    "kw:Quay crane scheduling": [
+      [
+        "kw:Quay crane assignment and scheduling problem",
+        0.9526
+      ],
+      [
+        "kw:Quay crane",
+        0.8202
+      ]
+    ],
+    "kw:Surrogate model": [],
     "kw:Manufacturing data analytics": [
       [
         "kw:Operational analytics",
@@ -2222,6 +1350,160 @@
         0.9905
       ]
     ],
+    "kw:Container dwell time": [
+      [
+        "kw:Container dwell time prediction",
+        0.8504
+      ]
+    ],
+    "kw:Feature selection": [
+      [
+        "kw:Feature representation",
+        0.7396
+      ],
+      [
+        "kw:Feature engineering",
+        0.7388
+      ]
+    ],
+    "kw:Bezier interpolation": [],
+    "kw:Manifold learning": [],
+    "kw:Maritime navigation": [
+      [
+        "kw:Maritime navigation optimization",
+        0.8982
+      ],
+      [
+        "kw:Maritime transport",
+        0.8572
+      ],
+      [
+        "kw:Maritime data",
+        0.8168
+      ],
+      [
+        "kw:Maritime logistics",
+        0.7857
+      ],
+      [
+        "kw:Vessel arrival",
+        0.757
+      ],
+      [
+        "kw:Maritime safety",
+        0.7446
+      ],
+      [
+        "kw:Maritime economics",
+        0.7429
+      ],
+      [
+        "kw:Maritime surveillance",
+        0.7299
+      ]
+    ],
+    "kw:Contrastive learning": [
+      [
+        "kw:Adversarial learning",
+        0.8446
+      ]
+    ],
+    "kw:Rubber physical properties": [
+      [
+        "kw:Synthetic rubber production",
+        0.7921
+      ],
+      [
+        "kw:Rubber property prediction",
+        0.7599
+      ],
+      [
+        "kw:Rubber-belt industry",
+        0.7296
+      ]
+    ],
+    "kw:Dynamic margin": [],
+    "kw:Manufacturing": [
+      [
+        "kw:Smart manufacturing",
+        0.7776
+      ]
+    ],
+    "kw:Simulation learning": [
+      [
+        "kw:Simulation",
+        0.8411
+      ],
+      [
+        "kw:Simulation framework",
+        0.7953
+      ],
+      [
+        "kw:Process simulation",
+        0.7231
+      ]
+    ],
+    "kw:Makespan prediction": [],
+    "kw:Scheduling problem": [
+      [
+        "kw:Scheduling",
+        0.9187
+      ],
+      [
+        "kw:Timing",
+        0.7647
+      ],
+      [
+        "kw:Production scheduling",
+        0.7317
+      ],
+      [
+        "kw:Setup time",
+        0.7255
+      ]
+    ],
+    "kw:Computational efficiency": [
+      [
+        "kw:Operational efficiency",
+        0.7758
+      ],
+      [
+        "kw:Process efficiency",
+        0.7308
+      ]
+    ],
+    "kw:Remaining time prediction": [
+      [
+        "kw:Handling time prediction",
+        0.8794
+      ],
+      [
+        "kw:Time Series Forecasting",
+        0.8177
+      ],
+      [
+        "kw:Operation time prediction",
+        0.7796
+      ],
+      [
+        "kw:Procurement lead time prediction",
+        0.7454
+      ],
+      [
+        "kw:Completion time prediction",
+        0.7445
+      ]
+    ],
+    "kw:Operation time prediction": [
+      [
+        "kw:Handling time prediction",
+        0.846
+      ],
+      [
+        "kw:Remaining time prediction",
+        0.7796
+      ]
+    ],
     "kw:Binary classification": [],
     "kw:Latent distance learning": [
       [
@@ -2235,9 +1517,43 @@
         0.8235
       ]
     ],
+    "kw:Order statistics": [],
     "kw:Inter-terminal truck routing": [],
     "kw:Simulated annealing": [],
     "kw:Delay minimization": [],
+    "kw:Ensemble method": [],
+    "kw:Image similarity": [],
+    "kw:Data-driven simulation": [
+      [
+        "kw:Simulation framework",
+        0.8031
+      ],
+      [
+        "kw:Simulation",
+        0.7582
+      ],
+      [
+        "kw:Process simulation",
+        0.7354
+      ],
+      [
+        "kw:Data simplification",
+        0.7297
+      ]
+    ],
+    "kw:Synthetic rubber production": [
+      [
+        "kw:Rubber physical properties",
+        0.7921
+      ],
+      [
+        "kw:Rubber-belt industry",
+        0.7573
+      ]
+    ],
+    "kw:Recipe optimization": [],
+    "kw:Port air pollution": [],
+    "kw:Environmental prediction": [],
     "kw:Cooperative learning": [],
     "kw:Auto-classifier": [],
     "kw:Discriminant capacity": [],
@@ -2271,6 +1587,26 @@
       [
         "kw:Sequence mixer",
         0.7708
+      ]
+    ],
+    "kw:Big data": [
+      [
+        "kw:Large-scale data analysis",
+        0.8022
+      ]
+    ],
+    "kw:Artificial intelligence": [
+      [
+        "kw:Generative artificial intelligence",
+        0.9089
+      ],
+      [
+        "kw:Generative AI",
+        0.7912
+      ],
+      [
+        "kw:Explainable AI",
+        0.765
       ]
     ],
     "kw:Process innovation": [
@@ -2312,7 +1648,62 @@
     "kw:Lightweight model": [],
     "kw:Model compression": [],
     "kw:Dimensionality reduction": [],
+    "kw:Autoencoder": [
+      [
+        "kw:Auto Convolution",
+        0.7756
+      ],
+      [
+        "kw:Autocorrelation",
+        0.7467
+      ]
+    ],
     "kw:Super-encoder": [],
+    "kw:Event log conversion": [
+      [
+        "kw:Event log",
+        0.8766
+      ],
+      [
+        "kw:Event log analysis",
+        0.8733
+      ],
+      [
+        "kw:Event log imputation",
+        0.8456
+      ]
+    ],
+    "kw:CNN": [],
+    "kw:Event density embedding": [],
+    "kw:Image encoding": [],
+    "kw:Event log imputation": [
+      [
+        "kw:Event log",
+        0.8494
+      ],
+      [
+        "kw:Event log conversion",
+        0.8456
+      ],
+      [
+        "kw:Event log analysis",
+        0.8425
+      ]
+    ],
+    "kw:Bagging": [],
+    "kw:RNN": [
+      [
+        "kw:Nearmiss",
+        0.7525
+      ]
+    ],
+    "kw:Missing data": [
+      [
+        "kw:Missing data imputation",
+        0.7489
+      ]
+    ],
+    "kw:Induction furnace": [],
     "kw:Sequential encoder": [],
     "kw:Adversarial learning": [
       [
@@ -2336,12 +1727,47 @@
         0.7212
       ]
     ],
+    "kw:Multivariate regression": [
+      [
+        "kw:Multivariate forecasting",
+        0.7386
+      ]
+    ],
     "kw:Completion time prediction": [
       [
         "kw:Remaining time prediction",
         0.7445
       ]
     ],
+    "kw:Quay crane": [
+      [
+        "kw:Quay crane scheduling",
+        0.8202
+      ],
+      [
+        "kw:Quay crane assignment and scheduling problem",
+        0.7466
+      ]
+    ],
+    "kw:Handling time prediction": [
+      [
+        "kw:Remaining time prediction",
+        0.8794
+      ],
+      [
+        "kw:Operation time prediction",
+        0.846
+      ],
+      [
+        "kw:Time Series Forecasting",
+        0.7883
+      ],
+      [
+        "kw:Procurement lead time prediction",
+        0.7649
+      ]
+    ],
+    "kw:External factors": [],
     "kw:Epidemic networks": [],
     "kw:Trajectory linkage": [],
     "kw:Spreader centrality": [],
@@ -2390,6 +1816,47 @@
     "kw:Inter-terminal transportation": [],
     "kw:Empty truck reduction": [],
     "kw:Q-learning": [],
+    "kw:Baltic Dry Index": [],
+    "kw:Deep ensemble learning": [
+      [
+        "kw:Deep learning",
+        0.8147
+      ]
+    ],
+    "kw:Maritime economics": [
+      [
+        "kw:Maritime economics forecasting",
+        0.8554
+      ],
+      [
+        "kw:Maritime logistics",
+        0.8329
+      ],
+      [
+        "kw:Maritime sustainability",
+        0.8179
+      ],
+      [
+        "kw:Maritime transport",
+        0.8101
+      ],
+      [
+        "kw:Maritime freight index",
+        0.8056
+      ],
+      [
+        "kw:Maritime data",
+        0.796
+      ],
+      [
+        "kw:Maritime safety",
+        0.7856
+      ],
+      [
+        "kw:Maritime navigation",
+        0.7429
+      ]
+    ],
     "kw:Data pixelization": [],
     "kw:Entity embedding": [],
     "kw:Trajectory simplification": [],
@@ -2397,6 +1864,24 @@
     "kw:Streaming data": [],
     "kw:Harsh environments": [],
     "kw:Geo-information": [],
+    "kw:Deep Neural Network": [
+      [
+        "kw:Neural Network",
+        0.8973
+      ],
+      [
+        "kw:Convolutional Neural Network",
+        0.8023
+      ],
+      [
+        "kw:Convolutional neural networks",
+        0.775
+      ],
+      [
+        "kw:Deep learning",
+        0.7444
+      ]
+    ],
     "kw:Gear classification": [],
     "kw:Defect detection": [
       [
@@ -2413,6 +1898,128 @@
       ]
     ],
     "kw:IoT": [],
+    "kw:Petri Nets": [
+      [
+        "kw:Colored Petri Nets",
+        0.8463
+      ]
+    ],
+    "kw:Simulation": [
+      [
+        "kw:Simulation framework",
+        0.912
+      ],
+      [
+        "kw:Simulation learning",
+        0.8411
+      ],
+      [
+        "kw:Process simulation",
+        0.8201
+      ],
+      [
+        "kw:Co-simulation",
+        0.8119
+      ],
+      [
+        "kw:Discrete Event Simulation",
+        0.7751
+      ],
+      [
+        "kw:Modeling",
+        0.7688
+      ],
+      [
+        "kw:Data-driven simulation",
+        0.7582
+      ],
+      [
+        "kw:Mathematical modeling",
+        0.751
+      ]
+    ],
+    "kw:Operational analytics": [
+      [
+        "kw:Operation analysis",
+        0.7512
+      ],
+      [
+        "kw:Operations research",
+        0.7456
+      ],
+      [
+        "kw:Manufacturing data analytics",
+        0.7213
+      ]
+    ],
+    "kw:Process data": [
+      [
+        "kw:Process management",
+        0.8371
+      ],
+      [
+        "kw:Process instance",
+        0.8368
+      ],
+      [
+        "kw:Process monitoring",
+        0.8331
+      ],
+      [
+        "kw:Process modeling",
+        0.8235
+      ],
+      [
+        "kw:Process generation",
+        0.7966
+      ],
+      [
+        "kw:Process design",
+        0.7943
+      ],
+      [
+        "kw:Process discovery",
+        0.7818
+      ],
+      [
+        "kw:Process integration",
+        0.7731
+      ]
+    ],
+    "kw:Business process modeling": [
+      [
+        "kw:Business process model",
+        0.9683
+      ],
+      [
+        "kw:Business process management",
+        0.8601
+      ],
+      [
+        "kw:Business process",
+        0.8535
+      ],
+      [
+        "kw:Business process analytics",
+        0.8455
+      ],
+      [
+        "kw:Business process execution",
+        0.8334
+      ],
+      [
+        "kw:Process modeling",
+        0.8122
+      ],
+      [
+        "kw:Business process integration",
+        0.7704
+      ],
+      [
+        "kw:Business process efficiency",
+        0.7366
+      ]
+    ],
     "kw:Production scheduling": [
       [
         "kw:Scheduling",
@@ -2475,6 +2082,54 @@
       [
         "kw:Operational analytics",
         0.7456
+      ]
+    ],
+    "kw:Process conformance": [
+      [
+        "kw:Process similarity",
+        0.7724
+      ],
+      [
+        "kw:Process consistency",
+        0.7499
+      ]
+    ],
+    "kw:Statistical verification": [
+      [
+        "kw:Statistical validation",
+        0.9217
+      ]
+    ],
+    "kw:Model abstraction": [
+      [
+        "kw:Modeling",
+        0.7879
+      ],
+      [
+        "kw:Mathematical modeling",
+        0.7631
+      ],
+      [
+        "kw:Model management",
+        0.7587
+      ],
+      [
+        "kw:Simulation framework",
+        0.7277
+      ]
+    ],
+    "kw:Event log": [
+      [
+        "kw:Event log analysis",
+        0.903
+      ],
+      [
+        "kw:Event log conversion",
+        0.8766
+      ],
+      [
+        "kw:Event log imputation",
+        0.8494
       ]
     ],
     "kw:Domain-driven discovery": [
@@ -2711,6 +2366,13 @@
       ]
     ],
     "kw:Decision making": [],
+    "kw:Automatic Identification System (AIS)": [
+      [
+        "kw:AIS data",
+        0.7705
+      ]
+    ],
+    "kw:Port and Anchorage Classification and Generalization": [],
     "kw:AGV": [],
     "kw:Automated Guided Vehicle": [
       [
@@ -2759,13 +2421,28 @@
         0.7706
       ]
     ],
-    "kw:Missing data imputation": [
+    "kw:Degradation function": [
       [
-        "kw:Missing data",
-        0.7489
+        "kw:Degradation",
+        0.8954
+      ],
+      [
+        "kw:Degradation process modeling",
+        0.7987
+      ],
+      [
+        "kw:Degradation model selection",
+        0.7543
       ]
     ],
-    "kw:CII regulations": [],
+    "kw:Change point detection": [],
+    "kw:Condition-based maintenance": [
+      [
+        "kw:Predictive maintenance",
+        0.7894
+      ]
+    ],
+    "kw:Weapon system": [],
     "kw:Vessel arrival time prediction": [
       [
         "kw:Vessel arrival time",
@@ -2812,6 +2489,10 @@
         0.774
       ]
     ],
+    "kw:Satellite image": [],
+    "kw:Fine dust prediction": [],
+    "kw:High-resolution spatial analysis": [],
+    "kw:Environmental monitoring": [],
     "kw:Container throughput prediction": [
       [
         "kw:Container throughput forecasting",
@@ -2830,6 +2511,34 @@
         0.7239
       ]
     ],
+    "kw:TSP": [],
+    "kw:Container terminal": [
+      [
+        "kw:Container terminal operations",
+        0.9331
+      ]
+    ],
+    "kw:Work planning": [
+      [
+        "kw:Construction workforce planning",
+        0.8449
+      ]
+    ],
+    "kw:Voice recognition": [
+      [
+        "kw:Speech classification",
+        0.7685
+      ]
+    ],
+    "kw:Deepfake detection": [],
+    "kw:Speech classification": [
+      [
+        "kw:Voice recognition",
+        0.7685
+      ]
+    ],
+    "kw:Audio analysis": [],
+    "kw:Random forest": [],
     "kw:SCFI prediction": [
       [
         "kw:SCFI",
@@ -2869,6 +2578,47 @@
         0.7598
       ]
     ],
+    "kw:Natural language processing": [],
+    "kw:Neural architecture search": [
+      [
+        "kw:Neural Network",
+        0.7769
+      ]
+    ],
+    "kw:Maritime data": [
+      [
+        "kw:Maritime navigation",
+        0.8168
+      ],
+      [
+        "kw:Maritime transport",
+        0.7989
+      ],
+      [
+        "kw:Maritime economics",
+        0.796
+      ],
+      [
+        "kw:Maritime safety",
+        0.7822
+      ],
+      [
+        "kw:Maritime logistics",
+        0.7721
+      ],
+      [
+        "kw:Maritime freight index",
+        0.7598
+      ],
+      [
+        "kw:Arctic Ship Traffic Data",
+        0.7598
+      ],
+      [
+        "kw:Maritime surveillance",
+        0.7579
+      ]
+    ],
     "kw:Maritime Accident": [
       [
         "kw:Maritime accidents",
@@ -2890,6 +2640,48 @@
     "kw:Grid-based analysis": [],
     "kw:Severity index": [],
     "kw:KeyBERT": [],
+    "kw:Maritime safety": [
+      [
+        "kw:Maritime accidents",
+        0.8341
+      ],
+      [
+        "kw:Maritime Accident",
+        0.8215
+      ],
+      [
+        "kw:Maritime sustainability",
+        0.8109
+      ],
+      [
+        "kw:Maritime surveillance",
+        0.7877
+      ],
+      [
+        "kw:Maritime economics",
+        0.7856
+      ],
+      [
+        "kw:Maritime data",
+        0.7822
+      ],
+      [
+        "kw:Vessel clearance",
+        0.7669
+      ],
+      [
+        "kw:Maritime transport",
+        0.7617
+      ]
+    ],
+    "kw:Demand prediction": [
+      [
+        "kw:Workforce demand forecasting",
+        0.7471
+      ]
+    ],
+    "kw:Designated driver service": [],
+    "kw:Regional forecasting": [],
     "kw:Container freight rate prediction": [
       [
         "kw:Freight rate prediction",
@@ -2944,8 +2736,33 @@
         0.8468
       ]
     ],
+    "kw:Density-based ship domain": [],
+    "kw:Safety performance indicator": [
+      [
+        "kw:Performance measurement",
+        0.7383
+      ],
+      [
+        "kw:Performance evaluation",
+        0.7373
+      ],
+      [
+        "kw:Performance analysis",
+        0.7304
+      ]
+    ],
     "kw:GPR image": [],
     "kw:Image classification": [],
+    "kw:Global pandemic": [],
+    "kw:Emergency relief fund": [],
+    "kw:Budget allocation": [
+      [
+        "kw:Resource allocation",
+        0.7974
+      ]
+    ],
+    "kw:Policy analysis": [],
+    "kw:COVID-19": [],
     "kw:Infectious disease policy": [],
     "kw:Busan": [],
     "kw:Public health": [],
@@ -3016,7 +2833,77 @@
         0.8419
       ]
     ],
+    "kw:Freight rate prediction": [
+      [
+        "kw:Container freight rate prediction",
+        0.8973
+      ]
+    ],
+    "kw:Condition diagnosis": [],
+    "kw:Reliability engineering": [
+      [
+        "kw:Quality efficiency",
+        0.7261
+      ]
+    ],
+    "kw:GPS data": [
+      [
+        "kw:GPS trajectories",
+        0.8469
+      ]
+    ],
+    "kw:Internal truck": [],
+    "kw:Route prediction": [
+      [
+        "kw:Route choice",
+        0.7441
+      ]
+    ],
+    "kw:Logistics optimization": [
+      [
+        "kw:Cargo handling optimization",
+        0.8451
+      ],
+      [
+        "kw:Logistics processes",
+        0.7466
+      ],
+      [
+        "kw:Optimization",
+        0.7326
+      ]
+    ],
     "kw:External shock": [],
+    "kw:Rubber property prediction": [
+      [
+        "kw:Rubber physical properties",
+        0.7599
+      ]
+    ],
+    "kw:Material science": [],
+    "kw:Framework development": [
+      [
+        "kw:Framework",
+        0.9156
+      ]
+    ],
+    "kw:CoRepNet": [],
+    "kw:Variable correlation": [
+      [
+        "kw:Correlation recurrent unit",
+        0.7882
+      ]
+    ],
+    "kw:Feature interaction": [
+      [
+        "kw:Feature representation",
+        0.7873
+      ],
+      [
+        "kw:Feature engineering",
+        0.7739
+      ]
+    ],
     "kw:Metric learning": [
       [
         "kw:Ordinal metric learning",
@@ -3028,6 +2915,22 @@
       [
         "kw:Web services",
         0.7362
+      ]
+    ],
+    "kw:Tribunal ruling analysis": [],
+    "kw:SentenceBERT": [],
+    "kw:Text analysis": [
+      [
+        "kw:Text-based Analysis",
+        0.9315
+      ],
+      [
+        "kw:Text data",
+        0.8428
+      ],
+      [
+        "kw:Text mining",
+        0.7826
       ]
     ],
     "kw:Container volume forecasting": [
@@ -3052,6 +2955,21 @@
       [
         "kw:Framework",
         0.7633
+      ]
+    ],
+    "kw:Likelihood-based imputation": [],
+    "kw:Event chain": [
+      [
+        "kw:Event-driven systems",
+        0.8018
+      ],
+      [
+        "kw:Event analysis",
+        0.7837
+      ],
+      [
+        "kw:Event-condition-action",
+        0.7497
       ]
     ],
     "kw:Gene expression prediction": [
@@ -3087,6 +3005,40 @@
       [
         "kw:Cycle time analysis",
         0.7373
+      ]
+    ],
+    "kw:Training mechanism": [],
+    "kw:Time series classification": [
+      [
+        "kw:Time Series Analysis",
+        0.8641
+      ],
+      [
+        "kw:Time series",
+        0.8345
+      ],
+      [
+        "kw:Time series decomposition",
+        0.7942
+      ],
+      [
+        "kw:Time Series Forecasting",
+        0.768
+      ]
+    ],
+    "kw:CRU-LSTM": [],
+    "kw:Feature representation": [
+      [
+        "kw:Feature engineering",
+        0.8254
+      ],
+      [
+        "kw:Feature interaction",
+        0.7873
+      ],
+      [
+        "kw:Feature selection",
+        0.7396
       ]
     ],
     "kw:Framework": [
@@ -3133,6 +3085,40 @@
         0.7678
       ]
     ],
+    "kw:Process discovery": [
+      [
+        "kw:Process mining",
+        0.8062
+      ],
+      [
+        "kw:Process selection",
+        0.7946
+      ],
+      [
+        "kw:Process innovation",
+        0.7855
+      ],
+      [
+        "kw:Process data",
+        0.7818
+      ],
+      [
+        "kw:Process design",
+        0.764
+      ],
+      [
+        "kw:Process generation",
+        0.7568
+      ],
+      [
+        "kw:Process monitoring",
+        0.751
+      ],
+      [
+        "kw:Process-oriented development",
+        0.7447
+      ]
+    ],
     "kw:Tri-dimensional": [],
     "kw:Duplicated tasks": [],
     "kw:PageRank": [],
@@ -3170,6 +3156,18 @@
     "kw:Network structure": [],
     "kw:Bayesian network": [],
     "kw:Mutual information": [],
+    "kw:Multi-perspective process model": [
+      [
+        "kw:Process modeling",
+        0.8398
+      ],
+      [
+        "kw:Process simulation",
+        0.7298
+      ]
+    ],
+    "kw:Metaverse": [],
+    "kw:Digital twin": [],
     "kw:Dispatching rule": [],
     "kw:Process efficiency": [
       [
@@ -3889,6 +3887,7 @@
         0.7421
       ]
     ],
+    "kw:Log equality test": [],
     "kw:Shipbuilding": [
       [
         "kw:Shipbuilding industry",
@@ -4077,6 +4076,7 @@
         0.7363
       ]
     ],
+    "kw:Model fitness": [],
     "kw:Trajectory analysis": [
       [
         "kw:Trajectory features",
