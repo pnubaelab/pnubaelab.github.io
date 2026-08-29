@@ -22,24 +22,27 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 }
 
 .photo-masonry {
+  --photo-column-count: 3;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-flow: dense;
-  column-gap: 8px;
-  row-gap: 5px;
+  gap: 4px;
   margin: 20px 0;
+  position: relative;
 }
 
 .photo-masonry.is-masonry {
-  grid-auto-rows: 8px;
+  grid-auto-rows: 2px;
 }
 
 .photo-masonry .grid-item {
+  order: 1;
   width: 100% !important;
   margin-bottom: 0 !important;
   opacity: 0;
   transform: translateY(14px) scale(0.96);
   will-change: opacity, transform;
+  pointer-events: none;
 }
 
 .photo-masonry.is-masonry .grid-item {
@@ -47,14 +50,17 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 }
 
 .photo-masonry .grid-item.is-photo-loaded {
+  order: 0;
   animation: photo-pop-in 0.48s cubic-bezier(0.18, 0.89, 0.32, 1.28) both;
-  animation-delay: var(--photo-pop-delay, 0ms);
+  pointer-events: auto;
 }
 
 .photo-masonry .grid-item.is-photo-error {
+  order: 0;
   opacity: 1;
   transform: none;
   will-change: auto;
+  pointer-events: auto;
 }
 
 .photo-masonry .grid-item.grid-item--wide {
@@ -99,8 +105,8 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .photo-masonry .grid-item,
-  .photo-masonry .grid-item.is-photo-loaded {
+  .photo-masonry .grid-item.is-photo-loaded,
+  .photo-masonry .grid-item.is-photo-error {
     animation: none;
     opacity: 1;
     transform: none;
@@ -147,19 +153,10 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 }
 
 /* 반응형 컬럼 수 조정 */
-@media (max-width: 1200px) {
-  .photo-masonry {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 6px;
-    row-gap: 4px;
-  }
-}
-
 @media (max-width: 768px) {
   .photo-masonry {
+    --photo-column-count: 2;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 5px;
-    row-gap: 3px;
   }
   .photo-masonry .grid-item.grid-item--wide {
     grid-column: span 2;
@@ -171,8 +168,9 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 
 @media (max-width: 480px) {
   .photo-masonry {
+    --photo-column-count: 1;
     grid-template-columns: 1fr;
-    row-gap: 3px;
+    gap: 3px;
   }
   .photo-masonry .grid-item.grid-item--wide {
     grid-column: span 1;
@@ -232,19 +230,180 @@ Roland Barthes
 
 <script>
   (function () {
+    var randomWideItemRatio = 0.05;
+    var widePlacementPassCount = 3;
+    var scheduledGrids = [];
+    var layoutFrame = null;
+
+    function getLoadedItems(grid) {
+      return Array.prototype.slice.call(grid.querySelectorAll('.grid-item.is-photo-loaded, .grid-item.is-photo-error'));
+    }
+
+    function measureLoadedBottom(items) {
+      return items.reduce(function (bottom, item) {
+        return Math.max(bottom, item.offsetTop + item.offsetHeight);
+      }, 0);
+    }
+
+    function getRenderedColumnStart(grid, item, columnCount, columnGap) {
+      var columnWidth = (grid.clientWidth - columnGap * (columnCount - 1)) / columnCount;
+      var columnStep = columnWidth + columnGap;
+      return Math.max(1, Math.min(columnCount - 1, Math.round(item.offsetLeft / columnStep) + 1));
+    }
+
+    function measureWideTopGap(grid, wideItem, loadedItems, columnCount, columnGap, rowGap, columnStart) {
+      var columnWidth = (grid.clientWidth - columnGap * (columnCount - 1)) / columnCount;
+      var wideTop = wideItem.offsetTop;
+      var totalGap = 0;
+
+      for (var offset = 0; offset < 2; offset += 1) {
+        var columnIndex = columnStart - 1 + offset;
+        var columnCenter = columnIndex * (columnWidth + columnGap) + columnWidth / 2;
+        var supportBottom = 0;
+
+        loadedItems.forEach(function (item) {
+          if (item === wideItem) return;
+
+          var itemBottom = item.offsetTop + item.offsetHeight;
+          var coversColumn = item.offsetLeft <= columnCenter && item.offsetLeft + item.offsetWidth >= columnCenter;
+
+          if (coversColumn && itemBottom <= wideTop) {
+            supportBottom = Math.max(supportBottom, itemBottom);
+          }
+        });
+
+        totalGap += Math.max(0, wideTop - supportBottom - rowGap);
+      }
+
+      return totalGap;
+    }
+
+    function measureTotalWideTopGap(grid, wideItems, loadedItems, columnCount, columnGap, rowGap) {
+      return wideItems.reduce(function (totalGap, wideItem) {
+        var columnStart = getRenderedColumnStart(grid, wideItem, columnCount, columnGap);
+        return totalGap + measureWideTopGap(grid, wideItem, loadedItems, columnCount, columnGap, rowGap, columnStart);
+      }, 0);
+    }
+
+    function optimizeWidePlacements(grid, computedStyle) {
+      var columnCount = parseInt(computedStyle.getPropertyValue('--photo-column-count'), 10);
+      var columnGap = parseFloat(computedStyle.getPropertyValue('column-gap')) || 0;
+      var rowGap = parseFloat(computedStyle.getPropertyValue('row-gap')) || 0;
+      var wideItems = Array.prototype.slice.call(grid.querySelectorAll('.grid-item.grid-item--wide'));
+
+      wideItems.forEach(function (item) {
+        if (!item.classList.contains('is-photo-loaded') && !item.classList.contains('is-photo-error')) {
+          item.style.removeProperty('grid-column');
+        }
+      });
+
+      if (!columnCount || columnCount < 3 || grid.clientWidth <= 0) {
+        wideItems.forEach(function (item) {
+          item.style.removeProperty('grid-column');
+        });
+        return;
+      }
+
+      var loadedItems = getLoadedItems(grid);
+      var loadedWideItems = wideItems.filter(function (item) {
+        return item.classList.contains('is-photo-loaded') || item.classList.contains('is-photo-error');
+      });
+
+      // Re-evaluate both adjacent column pairs. A few light coordinate-descent
+      // passes let neighboring wide cards settle without changing DOM order.
+      for (var pass = 0; pass < widePlacementPassCount; pass += 1) {
+        loadedWideItems.forEach(function (wideItem) {
+          var bestPlacement = null;
+          var candidateStarts = [null];
+
+          for (var start = 1; start < columnCount; start += 1) {
+            candidateStarts.push(start);
+          }
+
+          candidateStarts.forEach(function (columnStart) {
+            if (columnStart === null) {
+              wideItem.style.removeProperty('grid-column');
+            } else {
+              wideItem.style.gridColumn = columnStart + ' / span 2';
+            }
+
+            var layoutBottom = measureLoadedBottom(loadedItems);
+            var topGap = measureTotalWideTopGap(grid, loadedWideItems, loadedItems, columnCount, columnGap, rowGap);
+            var layoutScore = layoutBottom + topGap;
+
+            if (
+              !bestPlacement ||
+              layoutScore < bestPlacement.layoutScore - 0.5 ||
+              (Math.abs(layoutScore - bestPlacement.layoutScore) <= 0.5 && layoutBottom < bestPlacement.layoutBottom - 0.5) ||
+              (Math.abs(layoutScore - bestPlacement.layoutScore) <= 0.5 &&
+                Math.abs(layoutBottom - bestPlacement.layoutBottom) <= 0.5 &&
+                topGap < bestPlacement.topGap)
+            ) {
+              bestPlacement = {
+                columnStart: columnStart,
+                layoutBottom: layoutBottom,
+                topGap: topGap,
+                layoutScore: layoutScore,
+              };
+            }
+          });
+
+          if (bestPlacement) {
+            if (bestPlacement.columnStart === null) {
+              wideItem.style.removeProperty('grid-column');
+            } else {
+              wideItem.style.gridColumn = bestPlacement.columnStart + ' / span 2';
+            }
+          }
+        });
+      }
+    }
+
     function applyMasonry(grid) {
       var computedStyle = window.getComputedStyle(grid);
+      var columnCount = parseInt(computedStyle.getPropertyValue('--photo-column-count'), 10);
       var rowHeight = parseFloat(computedStyle.getPropertyValue('grid-auto-rows'));
       var rowGap = parseFloat(computedStyle.getPropertyValue('row-gap'));
 
       if (!rowHeight || rowHeight <= 0) return;
 
-      var items = grid.querySelectorAll('.grid-item');
-      items.forEach(function (item) {
+      if (columnCount < 3) {
+        grid.querySelectorAll('.grid-item.grid-item--wide').forEach(function (item) {
+          item.style.removeProperty('grid-column');
+        });
+      }
+
+      var measurements = Array.prototype.slice.call(grid.querySelectorAll('.grid-item')).map(function (item) {
         var content = item.querySelector('.card') || item;
-        var contentHeight = content.getBoundingClientRect().height;
+        var contentHeight = content.offsetHeight;
         var rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
-        item.style.setProperty('--masonry-row-span', rowSpan);
+
+        return {
+          item: item,
+          rowSpan: rowSpan,
+        };
+      });
+
+      measurements.forEach(function (measurement) {
+        measurement.item.style.setProperty('--masonry-row-span', measurement.rowSpan);
+      });
+
+      optimizeWidePlacements(grid, computedStyle);
+    }
+
+    function scheduleMasonry(grid) {
+      if (scheduledGrids.indexOf(grid) === -1) {
+        scheduledGrids.push(grid);
+      }
+
+      if (layoutFrame !== null) return;
+
+      layoutFrame = window.requestAnimationFrame(function () {
+        var grids = scheduledGrids.slice();
+        scheduledGrids = [];
+        layoutFrame = null;
+
+        grids.forEach(applyMasonry);
       });
     }
 
@@ -258,30 +417,78 @@ Roland Barthes
 
     var resizeTimer;
     function onResize() {
+      if (window.matchMedia('(max-width: 768px)').matches) {
+        document.querySelectorAll('.photo-masonry .grid-item.grid-item--wide').forEach(function (item) {
+          item.style.removeProperty('grid-column');
+        });
+      }
+
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(layoutAllMasonry, 120);
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
-      layoutAllMasonry();
+    function assignRandomWideItems() {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.photo-masonry .grid-item'));
 
-      document.querySelectorAll('.photo-masonry .grid-item').forEach(function (item) {
-        if (!item.querySelector('.photo-img')) {
-          item.classList.add('is-photo-error');
-        }
+      items.forEach(function (item) {
+        item.classList.remove('grid-item--wide');
       });
 
-      document.querySelectorAll('.photo-masonry .photo-img').forEach(function (img, index) {
-        var item = img.closest('.grid-item');
-        var revealDelay = Math.min((index % 12) * 35, 385);
+      var candidates = items.filter(function (item) {
+        return item.querySelector('.photo-img');
+      });
 
-        if (item) {
-          item.style.setProperty('--photo-pop-delay', revealDelay + 'ms');
-        }
+      if (candidates.length === 0) return;
 
-        function revealLoadedPhoto() {
-          if (item) {
-            item.classList.add('is-photo-loaded');
+      var fixedWideItems = candidates.filter(function (item) {
+        return item.dataset.fixedWide === 'true';
+      });
+      var randomCandidates = candidates.filter(function (item) {
+        return item.dataset.fixedWide !== 'true';
+      });
+      var randomWideItemCount = Math.min(randomCandidates.length, Math.round(candidates.length * randomWideItemRatio));
+
+      fixedWideItems.forEach(function (item) {
+        item.classList.add('grid-item--wide');
+      });
+
+      for (var index = randomCandidates.length - 1; index > 0; index -= 1) {
+        var randomIndex = Math.floor(Math.random() * (index + 1));
+        var currentItem = randomCandidates[index];
+        randomCandidates[index] = randomCandidates[randomIndex];
+        randomCandidates[randomIndex] = currentItem;
+      }
+
+      randomCandidates.slice(0, randomWideItemCount).forEach(function (item) {
+        item.classList.add('grid-item--wide');
+      });
+    }
+
+    function initializePhotoGrid(grid) {
+      grid.classList.add('is-masonry');
+
+      grid.querySelectorAll('.grid-item').forEach(function (item) {
+        var img = item.querySelector('.photo-img');
+        var isPlaced = false;
+
+        item.setAttribute('aria-hidden', 'true');
+
+        function finishPlacement(stateClass) {
+          if (isPlaced) return;
+
+          isPlaced = true;
+
+          if (img) {
+            img.removeEventListener('load', revealLoadedPhoto);
+            img.removeEventListener('error', revealErroredPhoto);
+          }
+
+          // Moving the completed card to the end makes the DOM order among
+          // completed cards match the actual image completion order.
+          grid.appendChild(item);
+          item.removeAttribute('aria-hidden');
+
+          if (stateClass === 'is-photo-loaded') {
             item.addEventListener(
               'animationend',
               function () {
@@ -290,29 +497,44 @@ Roland Barthes
               { once: true }
             );
           }
-          layoutAllMasonry();
+
+          item.classList.add(stateClass);
+          scheduleMasonry(grid);
+        }
+
+        function revealLoadedPhoto() {
+          finishPlacement('is-photo-loaded');
         }
 
         function revealErroredPhoto() {
-          if (item) item.classList.add('is-photo-error');
-          layoutAllMasonry();
+          finishPlacement('is-photo-error');
         }
 
-        if (img.complete && img.naturalWidth > 0) {
-          revealLoadedPhoto();
-          return;
-        }
-
-        if (img.complete) {
+        if (!img) {
           revealErroredPhoto();
           return;
         }
 
         img.addEventListener('load', revealLoadedPhoto, { once: true });
         img.addEventListener('error', revealErroredPhoto, { once: true });
+
+        if (img.complete && img.naturalWidth > 0) {
+          revealLoadedPhoto();
+        } else if (img.complete) {
+          revealErroredPhoto();
+        }
       });
+
+      applyMasonry(grid);
+    }
+
+    assignRandomWideItems();
+
+    document.querySelectorAll('.photo-masonry').forEach(function (grid) {
+      initializePhotoGrid(grid);
     });
 
     window.addEventListener('resize', onResize);
+    window.addEventListener('load', layoutAllMasonry);
   })();
 </script>

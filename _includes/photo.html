@@ -1,4 +1,4 @@
-<div class="grid-item{% if project.size == 'large' or project.size == 'wide' or project.wide == true %} grid-item--wide{% endif %}">
+<div class="grid-item"{% if project.size == 'large' %} data-fixed-wide="true"{% endif %}>
     <div class="card hoverable">
       <style>
       @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
