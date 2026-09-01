@@ -134,7 +134,7 @@
     font-size: 0.7rem;
     border: 1px solid rgba(255,255,255,0.15);
     box-sizing: border-box;
-    width: min(250px, 100%);
+    width: min(120px, 100%);
     max-width: 100%;
   }
   .cluster-legend-title {
@@ -226,7 +226,7 @@
       left: 15px;
     }
     .cluster-legend {
-      width: min(210px, 100%);
+      width: min(120px, 100%);
     }
     .collabo-back-button {
       top: 15px;
@@ -1162,8 +1162,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           topicWeights: new Float64Array(topicNames.length),
           topicMembers: new Uint16Array(topicNames.length),
           members: [],
-          topics: [],
-          label: ''
+          topics: []
         })
       );
       rawVectors.forEach((vector, authorIndex) => {
@@ -1189,7 +1188,6 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           .filter(item => item.score > 0)
           .sort((a, b) => b.score - a.score);
         profile.topics = rankedTopics.slice(0, 4).map(item => item.topic);
-        profile.label = profile.topics.slice(0, 2).join(' · ');
       });
       return profiles;
     };
@@ -1212,7 +1210,6 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
 
     originalProfiles.forEach((profile, oldClusterId) => {
       remappedProfiles.set(remap.get(oldClusterId), {
-        label: profile.label || 'Mixed research themes',
         topics: profile.topics,
         size: profile.size
       });
@@ -1611,9 +1608,9 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     );
     const clusterProfiles = authorClusters.meta?.profiles || new Map();
     const getClusterLabel = clusterId => {
-      if (clusterId === -1) return 'Lab research hub';
-      if (clusterId === undefined) return 'Limited topic evidence';
-      return clusterProfiles.get(clusterId)?.label || `Topic community ${clusterId + 1}`;
+      if (clusterId === -1) return 'Collaboration hub';
+      if (!Number.isInteger(clusterId) || clusterId < 0) return 'Unclassified';
+      return `Cluster ${clusterId + 1}`;
     };
     
     // Largest node gets special cluster ID (-1 means no cluster)
@@ -1679,8 +1676,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         ctx.fillStyle = fadeColor(color, isActive ? 0.62 : 0.12);
         ctx.fill();
 
-        const rawLabel = getClusterLabel(clusterId).split(' · ')[0];
-        const label = rawLabel.length > 28 ? `${rawLabel.slice(0, 26)}…` : rawLabel;
+        const label = getClusterLabel(clusterId);
         const fontSize = Math.max(8.5 / scale, 3.2);
         ctx.font = `500 ${fontSize}px Oswald, sans-serif`;
         ctx.textAlign = 'center';
@@ -2066,7 +2062,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       const sortedClusters = [...clusterCounts.entries()].sort((a, b) => a[0] - b[0]);
       
       let html = '<div class="cluster-legend">';
-      html += '<div class="cluster-legend-title">Topic constellations</div>';
+      html += '<div class="cluster-legend-title">Clusters</div>';
       
       sortedClusters.forEach(([clusterId, count]) => {
         const color = clusterPalette[clusterId % clusterPalette.length];
@@ -2076,10 +2072,10 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
 
       const unclassifiedCount = authorClusters.meta?.unclassifiedIds?.length || 0;
       if (unclassifiedCount) {
-        html += `<div class="cluster-item"><span class="cluster-dot" style="background:${unclassifiedColor}"></span><span class="cluster-name">Limited topic evidence</span><span class="cluster-count">${unclassifiedCount}</span></div>`;
+        html += `<div class="cluster-item"><span class="cluster-dot" style="background:${unclassifiedColor}"></span><span class="cluster-name">${getClusterLabel(undefined)}</span><span class="cluster-count">${unclassifiedCount}</span></div>`;
       }
       html += '<div class="cluster-item"><span class="cluster-dot keyword"></span><span class="cluster-name">Keyword</span></div>';
-      html += '<div class="cluster-legend-note">Position + hue = K-means topic · star size = papers · orbit = lead-author share</div>';
+      html += '<div class="cluster-legend-note">Position + hue = cluster · star size = papers · orbit = lead-author share</div>';
       html += '</div>';
       legendContainer.innerHTML = html;
     }
