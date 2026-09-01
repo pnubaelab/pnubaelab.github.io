@@ -5,8 +5,6 @@
     font-family: 'Oswald', sans-serif;
     letter-spacing: 0.02em;
   }
-  .cluster-legend,
-  .cluster-legend *,
   .collabo-legend,
   .collabo-legend *,
   .collabo-node-tooltip,
@@ -116,73 +114,6 @@
     font-size: 12px;
     text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6);
   }
-  #cluster-legend-container {
-    position: absolute;
-    top: 19px;
-    right: 83px;
-    left: 19px;
-    z-index: 1000;
-    pointer-events: none;
-  }
-  .cluster-legend {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    padding: 0.5rem 0.65rem;
-    background: rgba(2, 6, 17, 0.92);
-    border-radius: 6px;
-    font-size: 0.7rem;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-sizing: border-box;
-    width: min(120px, 100%);
-    max-width: 100%;
-  }
-  .cluster-legend-title {
-    color: #ffffff !important;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.15rem;
-    text-align: left;
-  }
-  .cluster-item {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    color: #ffffff !important;
-    font-size: 0.65rem;
-    min-width: 0;
-  }
-  .cluster-name {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .cluster-count {
-    margin-left: auto;
-    color: rgba(255, 255, 255, 0.5) !important;
-    font-size: 0.58rem;
-  }
-  .cluster-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .cluster-dot.keyword {
-    border: 1px solid #555;
-    border-radius: 2px;
-    background: #f1f0ec;
-    transform: rotate(45deg);
-  }
-  .cluster-legend-note {
-    margin-top: 0.15rem;
-    padding-top: 0.35rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.09);
-    color: rgba(255, 255, 255, 0.46) !important;
-    font-size: 0.55rem;
-    line-height: 1.35;
-  }
   .collabo-back-button {
     position: absolute;
     top: 19px;
@@ -220,14 +151,6 @@
     #coauthor-graph {
       border-radius: 14px;
     }
-    #cluster-legend-container {
-      top: 15px;
-      right: 68px;
-      left: 15px;
-    }
-    .cluster-legend {
-      width: min(120px, 100%);
-    }
     .collabo-back-button {
       top: 15px;
       right: 15px;
@@ -241,7 +164,6 @@
     <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
       <div id="coauthor-graph-loader" style="position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
     </div>
-    <div id="cluster-legend-container"></div>
     <button id="collabo-back-button" class="collabo-back-button" type="button" aria-label="Clear focused collaboration nodes">Back</button>
   </div>
   <div style="margin-top: .25rem;">
@@ -262,6 +184,9 @@ const COLLABO_PHOTOS = {
 {% endfor %}
 };
 const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
+const COLLABO_FEATURED_AUTHOR_ID = 'Bae, Hyerim';
+const COLLABO_FEATURED_AUTHOR_COLOR = 'rgb(255, 255, 255)';
+const COLLABO_FEATURED_AUTHOR_RGB = [255, 255, 255];
 
 (() => {
   const container = document.getElementById('coauthor-graph');
@@ -671,25 +596,70 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     });
   }
 
-  // Seeded random number generator for reproducibility
-  function seededRandom(seed) {
-    let s = seed >>> 0;
-    return function() {
-      s = (Math.imul(s, 1664525) + 1013904223) >>> 0;
-      return s / 4294967296;
-    };
-  }
-
-  // Adaptive spherical k-means over complete author topic profiles.
-  // The visible graph still filters rare keyword nodes, but clustering retains them.
-  function kMeansClustering(authorNodes, keywordNodes, links, preferredK = 10, excludeIds = new Set(), keywordSimData = null) {
+  // Project complete author topic profiles onto three continuous PCA color axes.
+  // Rare topics hidden from the graph remain part of the color representation.
+  function createPcaAuthorColors(authorNodes, keywordNodes, links, keywordSimData = null) {
     const similarityPayload = keywordSimData && (keywordSimData.similarities || keywordSimData);
     const configuredSimilarityAlpha = Number(keywordSimData?.alpha);
     const similarityAlpha = Number.isFinite(configuredSimilarityAlpha)
       ? Math.max(0, Math.min(0.75, configuredSimilarityAlpha))
       : 0.3;
+    const configuredNeighborAlpha = Number(keywordSimData?.neighbor_alpha);
+    const neighborSimilarityAlpha = Number.isFinite(configuredNeighborAlpha)
+      ? Math.max(0, Math.min(0.5, configuredNeighborAlpha))
+      : Math.min(0.3, similarityAlpha);
+    const decodeLatentTopicSpace = payload => {
+      if (
+        payload?.encoding !== 'int8-base64'
+        || !Array.isArray(payload.ids)
+        || !Array.isArray(payload.scales)
+        || typeof payload.data !== 'string'
+      ) {
+        return null;
+      }
+      const dimensions = Math.max(0, Math.floor(Number(payload.dimensions) || 0));
+      const uniqueIds = new Set(payload.ids);
+      const validScales = payload.scales.every(scale => (
+        Number.isFinite(Number(scale)) && Number(scale) > 0
+      ));
+      if (
+        !dimensions
+        || dimensions > 1024
+        || payload.scales.length !== dimensions
+        || uniqueIds.size !== payload.ids.length
+        || payload.ids.some(id => typeof id !== 'string')
+        || !validScales
+      ) {
+        return null;
+      }
 
-    const featureNames = new Set(keywordNodes.map(node => node.name || node.id.replace(/^kw:/, '')));
+      let binary;
+      try {
+        binary = atob(payload.data);
+      } catch (error) {
+        console.warn('Collaboration PCA ignored invalid latent topic data.', error);
+        return null;
+      }
+      if (binary.length !== payload.ids.length * dimensions) return null;
+
+      const vectorsById = new Map();
+      payload.ids.forEach((id, rowIndex) => {
+        const vector = new Float64Array(dimensions);
+        for (let axis = 0; axis < dimensions; axis++) {
+          const byte = binary.charCodeAt(rowIndex * dimensions + axis);
+          const signedValue = byte > 127 ? byte - 256 : byte;
+          const scale = Number(payload.scales[axis]);
+          vector[axis] = signedValue * scale;
+        }
+        vectorsById.set(id, vector);
+      });
+      return { dimensions, vectorsById };
+    };
+    const latentTopicSpace = decodeLatentTopicSpace(keywordSimData?.topic_vectors);
+
+    const featureNames = new Set(
+      keywordNodes.map(node => node.name || node.id.replace(/^kw:/, ''))
+    );
     authorNodes.forEach(author => {
       Object.keys(author.topic_profile || {}).forEach(topic => featureNames.add(topic));
     });
@@ -697,28 +667,29 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const topicNames = [...featureNames].sort((a, b) => {
       const aKey = a.toLowerCase();
       const bKey = b.toLowerCase();
-      return aKey < bKey ? -1 : aKey > bKey ? 1 : 0;
+      if (aKey !== bKey) return aKey < bKey ? -1 : 1;
+      return a < b ? -1 : a > b ? 1 : 0;
     });
     const topicIds = topicNames.map(topic => 'kw:' + topic);
     const topicIndex = new Map(topicIds.map((id, index) => [id, index]));
     const authorFeatures = new Map();
     const authorsWithFullProfiles = new Set();
+    const orderedAuthors = [...authorNodes].sort(
+      (a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0
+    );
 
-    [...authorNodes]
-      .sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)
-      .forEach(author => {
-        if (excludeIds.has(author.id)) return;
-        const vector = new Array(topicNames.length).fill(0);
-        const profile = author.topic_profile;
-        if (profile && typeof profile === 'object' && !Array.isArray(profile)) {
-          authorsWithFullProfiles.add(author.id);
-          Object.entries(profile).forEach(([topic, rawWeight]) => {
-            const index = topicIndex.get('kw:' + topic);
-            if (index !== undefined) vector[index] = Math.max(0, Number(rawWeight) || 0);
-          });
-        }
-        authorFeatures.set(author.id, vector);
-      });
+    orderedAuthors.forEach(author => {
+      const vector = new Array(topicNames.length).fill(0);
+      const profile = author.topic_profile;
+      if (profile && typeof profile === 'object' && !Array.isArray(profile)) {
+        authorsWithFullProfiles.add(author.id);
+        Object.entries(profile).forEach(([topic, rawWeight]) => {
+          const index = topicIndex.get('kw:' + topic);
+          if (index !== undefined) vector[index] = Math.max(0, Number(rawWeight) || 0);
+        });
+      }
+      authorFeatures.set(author.id, vector);
+    });
 
     // Compatibility path for older JSON that only has author-keyword links.
     links.forEach(link => {
@@ -742,29 +713,11 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       }
     });
 
-    // Avoid making a topic claim from zero or one keyword signal.
-    const eligibleAuthorIds = [...authorFeatures.keys()].filter(authorId => {
-      const evidenceCount = authorFeatures.get(authorId).reduce(
-        (count, value) => count + (value > 0 ? 1 : 0),
-        0
-      );
-      return evidenceCount >= 2;
-    });
-    const rawVectors = eligibleAuthorIds.map(authorId => authorFeatures.get(authorId));
-    const result = new Map();
+    // Every author participates, including zero-topic rows.
+    const authorIds = [...authorFeatures.keys()];
+    const rawVectors = authorIds.map(authorId => authorFeatures.get(authorId));
 
-    if (!rawVectors.length || !topicNames.length) {
-      result.meta = {
-        selectedK: 0,
-        silhouette: 0,
-        profiles: new Map(),
-        unclassifiedIds: [...authorFeatures.keys()]
-      };
-      return result;
-    }
-
-    // Sublinear TF prevents prolific authors from dominating. Author-level IDF
-    // promotes topics that distinguish researchers instead of generic lab terms.
+    // Sublinear TF and author-level IDF preserve the existing topic weighting.
     const idfWeights = new Array(topicNames.length).fill(1);
     for (let featureIndex = 0; featureIndex < topicNames.length; featureIndex++) {
       let documentFrequency = 0;
@@ -782,11 +735,39 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         value > 0 ? Math.log1p(value) * idfWeights[featureIndex] : 0
       )
     );
+    // Within each semantic centroid, down-weight low-support phrases relative
+    // to repeatedly observed topics. Visible topics have exact paper counts;
+    // hidden topics use the maximum per-author count as a conservative estimate.
+    const visibleTopicPaperFrequencies = new Map(keywordNodes.map(node => [
+      node.id,
+      Math.max(0, Number(node.paper_count ?? node.value) || 0)
+    ]));
+    const topicPaperFrequencies = new Array(topicNames.length).fill(0);
+    topicIds.forEach((topicId, featureIndex) => {
+      const visiblePaperFrequency = visibleTopicPaperFrequencies.get(topicId);
+      if (visiblePaperFrequency > 0) {
+        topicPaperFrequencies[featureIndex] = visiblePaperFrequency;
+        return;
+      }
+      rawVectors.forEach(rawVector => {
+        topicPaperFrequencies[featureIndex] = Math.max(
+          topicPaperFrequencies[featureIndex],
+          rawVector[featureIndex]
+        );
+      });
+    });
+    const semanticSourceVectors = rawVectors.map(rawVector =>
+      rawVector.map((value, featureIndex) => {
+        if (value <= 0) return 0;
+        const paperFrequency = topicPaperFrequencies[featureIndex];
+        const reliability = Math.sqrt(paperFrequency / (paperFrequency + 2));
+        return Math.log1p(value) * reliability;
+      })
+    );
     let vectors = directVectors;
 
-    // Build a symmetric, row-normalized semantic graph. Direct and propagated
-    // features occupy separate channels, preventing high-degree terms from
-    // accumulating extra mass or erasing exact keyword evidence.
+    // Prefer dense latent topic coordinates; otherwise build the legacy
+    // symmetric, row-normalized neighbor channel as a compatibility fallback.
     const visibleTopicIds = keywordNodes.map(node => node.id);
     const similarityFloor = keywordSimData && Number.isFinite(Number(keywordSimData.threshold))
       ? Number(keywordSimData.threshold)
@@ -795,11 +776,49 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       ? topicIds.filter(id => Array.isArray(similarityPayload[id])).length / topicIds.length
       : 0;
     const visibleSimilarityCoverage = similarityPayload && visibleTopicIds.length
-      ? visibleTopicIds.filter(id => Array.isArray(similarityPayload[id])).length / visibleTopicIds.length
+      ? visibleTopicIds.filter(id => Array.isArray(similarityPayload[id])).length
+        / visibleTopicIds.length
       : 0;
     let semanticNeighborCoverage = 0;
     let visibleSemanticNeighborCoverage = 0;
-    if (similarityPayload && similarityAlpha > 0 && visibleSimilarityCoverage >= 0.8) {
+    let semanticApplied = false;
+    let semanticMode = 'direct';
+    const latentTopicCoverage = latentTopicSpace && topicIds.length
+      ? topicIds.filter(id => latentTopicSpace.vectorsById.has(id)).length / topicIds.length
+      : 0;
+    const normalizeChannel = channel => {
+      const magnitude = Math.sqrt(
+        channel.reduce((sum, value) => sum + value * value, 0)
+      );
+      if (!Number.isFinite(magnitude) || magnitude <= 1e-12) {
+        return new Array(channel.length).fill(0);
+      }
+      return Array.from(channel, value => value / magnitude);
+    };
+
+    if (latentTopicSpace && similarityAlpha > 0 && latentTopicCoverage >= 0.8) {
+      const directScale = Math.sqrt(1 - similarityAlpha);
+      const semanticScale = Math.sqrt(similarityAlpha);
+      vectors = directVectors.map((directVector, authorIndex) => {
+        const semanticVector = new Float64Array(latentTopicSpace.dimensions);
+        semanticSourceVectors[authorIndex].forEach((value, featureIndex) => {
+          if (!value) return;
+          const topicVector = latentTopicSpace.vectorsById.get(topicIds[featureIndex]);
+          if (!topicVector) return;
+          for (let axis = 0; axis < latentTopicSpace.dimensions; axis++) {
+            semanticVector[axis] += value * topicVector[axis];
+          }
+        });
+        return normalizeChannel(directVector).map(value => value * directScale)
+          .concat(normalizeChannel(semanticVector).map(value => value * semanticScale));
+      });
+      semanticApplied = true;
+      semanticMode = 'latent-topic-pca';
+    } else if (
+      similarityPayload
+      && neighborSimilarityAlpha > 0
+      && visibleSimilarityCoverage >= 0.8
+    ) {
       const semanticRows = Array.from({ length: topicNames.length }, () => new Map());
       Object.entries(similarityPayload).forEach(([sourceId, neighbors]) => {
         const sourceIndex = topicIndex.get(sourceId);
@@ -808,7 +827,13 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           if (!pair || pair.length < 2) return;
           const targetIndex = topicIndex.get(pair[0]);
           const similarity = Number(pair[1]);
-          if (targetIndex === undefined || !Number.isFinite(similarity) || similarity <= 0) return;
+          if (
+            targetIndex === undefined
+            || !Number.isFinite(similarity)
+            || similarity <= 0
+          ) {
+            return;
+          }
           const weight = Math.max(
             0,
             Math.min(1, (similarity - similarityFloor) / Math.max(1e-6, 1 - similarityFloor))
@@ -833,18 +858,9 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       }).length / Math.max(1, visibleTopicIds.length);
 
       if (semanticNeighborCoverage > 0) {
-        const directScale = Math.sqrt(1 - similarityAlpha);
-        const semanticScale = Math.sqrt(similarityAlpha);
-        const normalizeChannel = channel => {
-          const magnitude = Math.sqrt(
-            channel.reduce((sum, value) => sum + value * value, 0)
-          ) || 1;
-          return channel.map(value => value / magnitude);
-        };
+        const directScale = Math.sqrt(1 - neighborSimilarityAlpha);
+        const semanticScale = Math.sqrt(neighborSimilarityAlpha);
         vectors = directVectors.map(directVector => {
-          // Anchor the semantic view with the exact profile. Authors whose rare
-          // topics are missing from a legacy similarity payload therefore retain
-          // comparable geometry instead of receiving an empty second channel.
           const semanticVector = directVector.slice();
           directVector.forEach((value, sourceIndex) => {
             if (!value || !semanticRows[sourceIndex].size) return;
@@ -857,563 +873,342 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           return normalizeChannel(directVector).map(value => value * directScale)
             .concat(normalizeChannel(semanticVector).map(value => value * semanticScale));
         });
+        semanticApplied = true;
+        semanticMode = 'neighbor-diffusion';
       }
     }
 
     const normalize = vector => {
-      const magnitude = Math.sqrt(vector.reduce((sum, value) => sum + value * value, 0)) || 1;
+      const magnitude = Math.sqrt(
+        vector.reduce((sum, value) => sum + value * value, 0)
+      ) || 1;
       return vector.map(value => value / magnitude);
     };
-    for (let i = 0; i < vectors.length; i++) vectors[i] = normalize(vectors[i]);
+    vectors = vectors.map(normalize);
 
-    const dot = (a, b) => {
-      let value = 0;
-      for (let i = 0; i < a.length; i++) value += a[i] * b[i];
-      return value;
-    };
-    const cosineDistance = (a, b) => 1 - Math.max(-1, Math.min(1, dot(a, b)));
+    // Center every feature before extracting the three principal axes.
+    const semanticDimension = semanticMode === 'latent-topic-pca'
+      ? latentTopicSpace.dimensions
+      : semanticApplied ? topicNames.length : 0;
+    const vectorDimension = vectors[0]?.length
+      ?? topicNames.length + semanticDimension;
+    const featureMeans = new Float64Array(vectorDimension);
+    vectors.forEach(vector => {
+      for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+        featureMeans[featureIndex] += vector[featureIndex];
+      }
+    });
+    if (vectors.length) {
+      for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+        featureMeans[featureIndex] /= vectors.length;
+      }
+    }
 
-    // Cache pairwise author similarities once; adaptive k scoring then stays cheap.
-    const pairwiseSimilarity = Array.from(
-      { length: vectors.length },
-      () => new Float32Array(vectors.length)
+    const centeredRows = vectors.map(vector => {
+      const centered = new Float64Array(vectorDimension);
+      for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+        centered[featureIndex] = vector[featureIndex] - featureMeans[featureIndex];
+      }
+      return centered;
+    });
+
+    // Work in author space (X X^T). This is the deterministic dual form of the
+    // NIPALS power step and avoids constructing a much larger feature covariance.
+    const sampleCount = centeredRows.length;
+    const gram = Array.from(
+      { length: sampleCount },
+      () => new Float64Array(sampleCount)
     );
-    for (let i = 0; i < vectors.length; i++) {
-      pairwiseSimilarity[i][i] = 1;
-      for (let j = i + 1; j < vectors.length; j++) {
-        const similarity = dot(vectors[i], vectors[j]);
-        pairwiseSimilarity[i][j] = similarity;
-        pairwiseSimilarity[j][i] = similarity;
+    let totalCenteredSumSquares = 0;
+    for (let rowIndex = 0; rowIndex < sampleCount; rowIndex++) {
+      for (let otherIndex = 0; otherIndex <= rowIndex; otherIndex++) {
+        let value = 0;
+        for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+          value += centeredRows[rowIndex][featureIndex]
+            * centeredRows[otherIndex][featureIndex];
+        }
+        gram[rowIndex][otherIndex] = value;
+        gram[otherIndex][rowIndex] = value;
       }
+      totalCenteredSumSquares += gram[rowIndex][rowIndex];
     }
 
-    const initializeCentroids = (clusterCount, seed) => {
-      const random = seededRandom(seed);
-      const centroids = [];
-      const used = new Set();
-      const firstIndex = Math.floor(random() * vectors.length);
-      centroids.push(vectors[firstIndex].slice());
-      used.add(firstIndex);
+    const rawScores = Array.from({ length: sampleCount }, () => [0, 0, 0]);
+    const explainedVariance = [0, 0, 0];
+    const componentVectors = [];
+    const varianceDenominator = Math.max(1, sampleCount - 1);
+    const varianceFloor = Math.max(
+      Number.EPSILON,
+      totalCenteredSumSquares * 1e-12
+    );
+    const componentLimit = Math.min(
+      3,
+      vectorDimension,
+      Math.max(0, sampleCount - 1)
+    );
 
-      while (centroids.length < clusterCount) {
-        const distances = vectors.map((vector, vectorIndex) => {
-          if (used.has(vectorIndex)) return 0;
-          let nearest = Infinity;
-          centroids.forEach(centroid => {
-            nearest = Math.min(nearest, cosineDistance(vector, centroid));
-          });
-          // On the unit sphere, cosine distance is already proportional to
-          // squared Euclidean distance; squaring again over-selects outliers.
-          return nearest;
-        });
-        const total = distances.reduce((sum, distance) => sum + distance, 0);
-        let nextIndex = -1;
-        if (total > 0) {
-          let threshold = random() * total;
-          for (let i = 0; i < distances.length; i++) {
-            threshold -= distances[i];
-            if (threshold <= 0 && !used.has(i)) {
-              nextIndex = i;
-              break;
-            }
-          }
+    const removePreviousComponents = vector => {
+      componentVectors.forEach(previous => {
+        let projection = 0;
+        for (let index = 0; index < sampleCount; index++) {
+          projection += vector[index] * previous[index];
         }
-        if (nextIndex < 0) nextIndex = vectors.findIndex((_, index) => !used.has(index));
-        if (nextIndex < 0) break;
-        centroids.push(vectors[nextIndex].slice());
-        used.add(nextIndex);
-      }
-      return centroids;
+        for (let index = 0; index < sampleCount; index++) {
+          vector[index] -= projection * previous[index];
+        }
+      });
     };
 
-    const runSphericalKMeans = (clusterCount, seed) => {
-      let centroids = initializeCentroids(clusterCount, seed);
-      clusterCount = centroids.length;
-      const assignments = new Int16Array(vectors.length);
-      assignments.fill(-1);
-
-      for (let iteration = 0; iteration < 45; iteration++) {
-        let changed = false;
-        for (let authorIndex = 0; authorIndex < vectors.length; authorIndex++) {
-          // Preserve the existing assignment on an exact tie. This keeps
-          // duplicate vectors in recovered clusters instead of collapsing them
-          // back into cluster zero on every iteration.
-          let bestCluster = assignments[authorIndex] >= 0 ? assignments[authorIndex] : 0;
-          let bestSimilarity = dot(vectors[authorIndex], centroids[bestCluster]);
-          for (let clusterIndex = 0; clusterIndex < clusterCount; clusterIndex++) {
-            const similarity = dot(vectors[authorIndex], centroids[clusterIndex]);
-            if (similarity > bestSimilarity + 1e-12) {
-              bestSimilarity = similarity;
-              bestCluster = clusterIndex;
-            }
-          }
-          if (assignments[authorIndex] !== bestCluster) changed = true;
-          assignments[authorIndex] = bestCluster;
-        }
-
-        const sums = Array.from(
-          { length: clusterCount },
-          () => new Array(vectors[0].length).fill(0)
-        );
-        const sizes = new Array(clusterCount).fill(0);
-        for (let authorIndex = 0; authorIndex < vectors.length; authorIndex++) {
-          const clusterIndex = assignments[authorIndex];
-          sizes[clusterIndex]++;
-          for (let featureIndex = 0; featureIndex < vectors[authorIndex].length; featureIndex++) {
-            sums[clusterIndex][featureIndex] += vectors[authorIndex][featureIndex];
-          }
-        }
-
-        // Recover empty clusters by moving a real point from a non-singleton
-        // cluster. Updating assignments and sums keeps the returned model valid.
-        for (let emptyCluster = 0; emptyCluster < clusterCount; emptyCluster++) {
-          if (sizes[emptyCluster] > 0) continue;
-          let farthestIndex = 0;
-          let farthestDistance = -1;
-          vectors.forEach((vector, vectorIndex) => {
-            const sourceCluster = assignments[vectorIndex];
-            if (sizes[sourceCluster] <= 1) return;
-            const assignedCentroid = centroids[sourceCluster];
-            const distance = cosineDistance(vector, assignedCentroid);
-            if (distance > farthestDistance) {
-              farthestDistance = distance;
-              farthestIndex = vectorIndex;
-            }
-          });
-          if (farthestDistance < 0) continue;
-          const sourceCluster = assignments[farthestIndex];
-          assignments[farthestIndex] = emptyCluster;
-          sizes[sourceCluster]--;
-          sizes[emptyCluster]++;
-          for (let featureIndex = 0; featureIndex < vectors[farthestIndex].length; featureIndex++) {
-            const value = vectors[farthestIndex][featureIndex];
-            sums[sourceCluster][featureIndex] -= value;
-            sums[emptyCluster][featureIndex] += value;
-          }
-          changed = true;
-        }
-
-        centroids = sums.map(sum => normalize(sum));
-
-        if (!changed) break;
+    const normalizeInPlace = vector => {
+      let normSquared = 0;
+      for (let index = 0; index < vector.length; index++) {
+        normSquared += vector[index] * vector[index];
       }
-
-      const sizes = new Array(clusterCount).fill(0);
-      let objective = 0;
-      for (let authorIndex = 0; authorIndex < vectors.length; authorIndex++) {
-        const clusterIndex = assignments[authorIndex];
-        sizes[clusterIndex]++;
-        objective += cosineDistance(vectors[authorIndex], centroids[clusterIndex]);
+      if (normSquared <= varianceFloor || !Number.isFinite(normSquared)) return false;
+      const inverseNorm = 1 / Math.sqrt(normSquared);
+      for (let index = 0; index < vector.length; index++) {
+        vector[index] *= inverseNorm;
       }
-      return {
-        assignments: Array.from(assignments),
-        centroids,
-        sizes,
-        objective: objective / vectors.length
-      };
+      return true;
     };
 
-    const silhouetteDetails = model => {
-      const pointScores = new Array(vectors.length).fill(0);
-      if (model.centroids.length <= 1) return { mean: 0, pointScores };
-      for (let authorIndex = 0; authorIndex < vectors.length; authorIndex++) {
-        const ownCluster = model.assignments[authorIndex];
-        const distanceSums = new Float64Array(model.centroids.length);
-        const counts = new Uint16Array(model.centroids.length);
-        for (let otherIndex = 0; otherIndex < vectors.length; otherIndex++) {
-          if (authorIndex === otherIndex) continue;
-          const clusterIndex = model.assignments[otherIndex];
-          distanceSums[clusterIndex] += 1 - pairwiseSimilarity[authorIndex][otherIndex];
-          counts[clusterIndex]++;
+    for (let componentIndex = 0; componentIndex < componentLimit; componentIndex++) {
+      // Use the highest-energy residual feature as a stable, data-derived seed.
+      let eigenvector = null;
+      let seedEnergy = 0;
+      const candidate = new Float64Array(sampleCount);
+      for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+        for (let authorIndex = 0; authorIndex < sampleCount; authorIndex++) {
+          candidate[authorIndex] = centeredRows[authorIndex][featureIndex];
         }
-        if (!counts[ownCluster]) continue;
-        const within = distanceSums[ownCluster] / counts[ownCluster];
-        let nearestOther = Infinity;
-        for (let clusterIndex = 0; clusterIndex < model.centroids.length; clusterIndex++) {
-          if (clusterIndex === ownCluster || !counts[clusterIndex]) continue;
-          nearestOther = Math.min(
-            nearestOther,
-            distanceSums[clusterIndex] / counts[clusterIndex]
-          );
+        removePreviousComponents(candidate);
+        let energy = 0;
+        for (let authorIndex = 0; authorIndex < sampleCount; authorIndex++) {
+          energy += candidate[authorIndex] * candidate[authorIndex];
         }
-        if (Number.isFinite(nearestOther)) {
-          pointScores[authorIndex] =
-            (nearestOther - within) / Math.max(within, nearestOther, 1e-9);
+        if (energy > seedEnergy) {
+          seedEnergy = energy;
+          eigenvector = Float64Array.from(candidate);
         }
       }
-      return {
-        mean: pointScores.reduce((sum, score) => sum + score, 0) / vectors.length,
-        pointScores
-      };
-    };
-
-    const adjustedRandIndex = (assignmentsA, assignmentsB) => {
-      const chooseTwo = value => value > 1 ? value * (value - 1) / 2 : 0;
-      const contingency = new Map();
-      const rows = new Map();
-      const columns = new Map();
-      for (let i = 0; i < assignmentsA.length; i++) {
-        const row = assignmentsA[i];
-        const column = assignmentsB[i];
-        const key = row + '|' + column;
-        contingency.set(key, (contingency.get(key) || 0) + 1);
-        rows.set(row, (rows.get(row) || 0) + 1);
-        columns.set(column, (columns.get(column) || 0) + 1);
+      if (!eigenvector || seedEnergy <= varianceFloor || !normalizeInPlace(eigenvector)) {
+        break;
       }
-      const pairTotal = chooseTwo(assignmentsA.length);
-      if (!pairTotal) return 1;
-      const pairAgreement = [...contingency.values()]
-        .reduce((sum, count) => sum + chooseTwo(count), 0);
-      const rowPairs = [...rows.values()].reduce((sum, count) => sum + chooseTwo(count), 0);
-      const columnPairs = [...columns.values()].reduce((sum, count) => sum + chooseTwo(count), 0);
-      const expected = rowPairs * columnPairs / pairTotal;
-      const maximum = (rowPairs + columnPairs) / 2;
-      return maximum === expected ? 1 : (pairAgreement - expected) / (maximum - expected);
-    };
 
-    const candidateKs = [];
-    const maxK = vectors.length < 8
-      ? Math.max(1, Math.min(vectors.length, Math.round(Math.sqrt(vectors.length))))
-      : Math.max(1, Math.min(preferredK, 10, Math.floor(vectors.length / 2)));
-    for (let clusterCount = 1; clusterCount <= maxK; clusterCount++) {
-      candidateKs.push(clusterCount);
+      for (let iteration = 0; iteration < 300; iteration++) {
+        const next = new Float64Array(sampleCount);
+        for (let rowIndex = 0; rowIndex < sampleCount; rowIndex++) {
+          let value = 0;
+          for (let columnIndex = 0; columnIndex < sampleCount; columnIndex++) {
+            value += gram[rowIndex][columnIndex] * eigenvector[columnIndex];
+          }
+          next[rowIndex] = value;
+        }
+        removePreviousComponents(next);
+        if (!normalizeInPlace(next)) break;
+
+        let alignment = 0;
+        for (let index = 0; index < sampleCount; index++) {
+          alignment += eigenvector[index] * next[index];
+        }
+        if (alignment < 0) {
+          for (let index = 0; index < sampleCount; index++) next[index] *= -1;
+        }
+
+        let deltaSquared = 0;
+        for (let index = 0; index < sampleCount; index++) {
+          const delta = next[index] - eigenvector[index];
+          deltaSquared += delta * delta;
+        }
+        eigenvector = next;
+        if (deltaSquared <= 1e-18) break;
+      }
+
+      const gramTimesVector = new Float64Array(sampleCount);
+      for (let rowIndex = 0; rowIndex < sampleCount; rowIndex++) {
+        let value = 0;
+        for (let columnIndex = 0; columnIndex < sampleCount; columnIndex++) {
+          value += gram[rowIndex][columnIndex] * eigenvector[columnIndex];
+        }
+        gramTimesVector[rowIndex] = value;
+      }
+      let eigenvalue = 0;
+      for (let index = 0; index < sampleCount; index++) {
+        eigenvalue += eigenvector[index] * gramTimesVector[index];
+      }
+      if (eigenvalue <= varianceFloor || !Number.isFinite(eigenvalue)) break;
+
+      const singularValue = Math.sqrt(eigenvalue);
+      const loading = new Float64Array(vectorDimension);
+      for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+        let value = 0;
+        for (let authorIndex = 0; authorIndex < sampleCount; authorIndex++) {
+          value += centeredRows[authorIndex][featureIndex] * eigenvector[authorIndex];
+        }
+        loading[featureIndex] = value / singularValue;
+      }
+      if (!normalizeInPlace(loading)) break;
+
+      // Eigenvector signs are arbitrary. Anchor each sign to its strongest loading.
+      let signAnchorIndex = 0;
+      for (let featureIndex = 1; featureIndex < vectorDimension; featureIndex++) {
+        if (
+          Math.abs(loading[featureIndex])
+          > Math.abs(loading[signAnchorIndex])
+        ) {
+          signAnchorIndex = featureIndex;
+        }
+      }
+      if (loading[signAnchorIndex] < 0) {
+        for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+          loading[featureIndex] *= -1;
+        }
+        for (let authorIndex = 0; authorIndex < sampleCount; authorIndex++) {
+          eigenvector[authorIndex] *= -1;
+        }
+      }
+
+      let scoreEnergy = 0;
+      for (let authorIndex = 0; authorIndex < sampleCount; authorIndex++) {
+        let score = 0;
+        for (let featureIndex = 0; featureIndex < vectorDimension; featureIndex++) {
+          score += centeredRows[authorIndex][featureIndex] * loading[featureIndex];
+        }
+        rawScores[authorIndex][componentIndex] = score;
+        scoreEnergy += score * score;
+      }
+      if (scoreEnergy <= varianceFloor || !Number.isFinite(scoreEnergy)) break;
+
+      componentVectors.push(eigenvector);
+      explainedVariance[componentIndex] = scoreEnergy / varianceDenominator;
     }
 
-    const candidateModels = [];
-    const candidateScores = [];
-    candidateKs.forEach(clusterCount => {
-      const restartModels = [];
-      for (let restart = 0; restart < 6; restart++) {
-        const model = runSphericalKMeans(
-          clusterCount,
-          2019 + clusterCount * 101 + restart * 1009
-        );
-        restartModels.push(model);
+    // Stretch each PCA axis into an 8-bit channel. A soft percentile blend
+    // expands dense score regions without discarding the original PCA distance
+    // or assigning different colors to identical research profiles.
+    const rgbRows = Array.from({ length: sampleCount }, () => [128, 128, 128]);
+    const scoreRanges = [];
+    const colorPercentileWeight = 0.65;
+    for (let axis = 0; axis < 3; axis++) {
+      let minimum = Infinity;
+      let maximum = -Infinity;
+      rawScores.forEach(scores => {
+        minimum = Math.min(minimum, scores[axis]);
+        maximum = Math.max(maximum, scores[axis]);
+      });
+      if (!sampleCount) {
+        minimum = 0;
+        maximum = 0;
       }
-      const minimumObjective = Math.min(...restartModels.map(model => model.objective));
-      const nearOptimalModels = restartModels.filter(
-        model => model.objective <= minimumObjective * 1.02
-      );
-      const consensusPool = nearOptimalModels;
-      consensusPool.forEach(model => {
-        const peers = consensusPool.filter(peer => peer !== model);
-        model.consensus = peers.length
-          ? peers.reduce(
-              (sum, peer) => sum + adjustedRandIndex(model.assignments, peer.assignments),
-              0
-            ) / peers.length
-          : 1;
-      });
-      // Represent this k with the medoid-like near-optimal partition, not a
-      // potentially idiosyncratic lowest-loss restart.
-      const bestRestart = [...consensusPool].sort(
-        (a, b) => b.consensus - a.consensus || a.objective - b.objective
-      )[0];
-      const silhouette = silhouetteDetails(bestRestart);
-      const restartStability = restartModels
-        .filter(model => model !== bestRestart)
-        .reduce(
-          (sum, model) => sum + adjustedRandIndex(bestRestart.assignments, model.assignments),
-          0
-        ) / Math.max(1, restartModels.length - 1);
-      // A one-cluster partition is reproducible by definition, but that says
-      // nothing about meaningful separation.
-      const stability = clusterCount > 1 ? restartStability : 0;
-      bestRestart.restartModels = restartModels;
-      const minimumHealthySize = Math.max(2, Math.floor(vectors.length * 0.015));
-      const tinyClusterCount = bestRestart.sizes.filter(size => size < minimumHealthySize).length;
-      // Stability only strengthens an already separated solution. Otherwise an
-      // arbitrary but reproducible split of identical points would look "good".
-      const stabilityContribution = clusterCount > 1
-        ? Math.max(0, silhouette.mean) * Math.max(0, stability) * 0.1
-        : 0;
-      const selectionScore =
-        silhouette.mean
-        + stabilityContribution
-        - tinyClusterCount * 0.02
-        - clusterCount * 0.0008;
-      bestRestart.silhouette = silhouette.mean;
-      bestRestart.pointSilhouettes = silhouette.pointScores;
-      bestRestart.stability = stability;
-      bestRestart.selectionScore = selectionScore;
-      candidateModels.push(bestRestart);
-      candidateScores.push({
-        k: clusterCount,
-        silhouette: Number(silhouette.mean.toFixed(4)),
-        stability: Number(stability.toFixed(4)),
-        objective: Number(bestRestart.objective.toFixed(4)),
-        score: Number(selectionScore.toFixed(4))
-      });
-    });
+      scoreRanges.push([minimum, maximum]);
+      const range = maximum - minimum;
+      const degenerate = !Number.isFinite(range)
+        || range <= Math.max(1, Math.abs(minimum), Math.abs(maximum)) * 1e-12;
 
-    // Prefer the smallest model on a near-equal quality plateau. This reduces
-    // visually persuasive but unstable over-partitioning of sparse one-paper authors.
-    const peakSelectionScore = Math.max(...candidateModels.map(model => model.selectionScore));
-    const plateauTolerance = 0.012;
-    const bestModel = candidateModels
-      .filter(model => model.selectionScore >= peakSelectionScore - plateauTolerance)
-      .sort((a, b) => a.centroids.length - b.centroids.length)[0];
+      const rankedScores = rawScores
+        .map((scores, authorIndex) => ({
+          authorIndex,
+          value: scores[axis]
+        }))
+        .sort((a, b) => a.value - b.value || a.authorIndex - b.authorIndex);
+      const percentileByAuthor = new Float64Array(sampleCount);
+      for (let rankStart = 0; rankStart < rankedScores.length;) {
+        let rankEnd = rankStart + 1;
+        while (
+          rankEnd < rankedScores.length
+          && rankedScores[rankEnd].value === rankedScores[rankStart].value
+        ) {
+          rankEnd++;
+        }
+        const midRank = (rankStart + rankEnd - 1) / 2;
+        const percentile = sampleCount > 1 ? midRank / (sampleCount - 1) : 0.5;
+        for (let rankIndex = rankStart; rankIndex < rankEnd; rankIndex++) {
+          percentileByAuthor[rankedScores[rankIndex].authorIndex] = percentile;
+        }
+        rankStart = rankEnd;
+      }
 
-    const buildProfiles = model => {
-      const profiles = Array.from(
-        { length: model.centroids.length },
-        () => ({
-          size: 0,
-          topicWeights: new Float64Array(topicNames.length),
-          topicMembers: new Uint16Array(topicNames.length),
-          members: [],
-          topics: []
-        })
-      );
-      rawVectors.forEach((vector, authorIndex) => {
-        const profile = profiles[model.assignments[authorIndex]];
-        profile.size++;
-        profile.members.push(eligibleAuthorIds[authorIndex]);
-        vector.forEach((value, featureIndex) => {
-          if (!value) return;
-          profile.topicWeights[featureIndex] += value;
-          profile.topicMembers[featureIndex]++;
-        });
-      });
-      profiles.forEach(profile => {
-        const rankedTopics = topicNames
-          .map((topic, featureIndex) => {
-            const coverage = profile.topicMembers[featureIndex] / Math.max(1, profile.size);
-            const score =
-              Math.log1p(profile.topicWeights[featureIndex])
-              * idfWeights[featureIndex]
-              * (0.45 + coverage);
-            return { topic, score };
-          })
-          .filter(item => item.score > 0)
-          .sort((a, b) => b.score - a.score);
-        profile.topics = rankedTopics.slice(0, 4).map(item => item.topic);
-      });
-      return profiles;
-    };
-
-    // Canonicalize cluster IDs by dominant topics so colors remain more stable
-    // when publications are added or k-means restarts change.
-    const originalProfiles = buildProfiles(bestModel);
-    const orderedClusterIds = originalProfiles
-      .map((profile, clusterId) => ({
-        clusterId,
-        signature: (
-          profile.topics.slice(0, 3).map(topic => topic.toLowerCase()).join('|')
-          + '|' + profile.members.slice().sort().join('|')
-        ) || 'zz-' + String(clusterId).padStart(3, '0')
-      }))
-      .sort((a, b) => a.signature < b.signature ? -1 : a.signature > b.signature ? 1 : 0)
-      .map(item => item.clusterId);
-    const remap = new Map(orderedClusterIds.map((oldId, newId) => [oldId, newId]));
-    const remappedProfiles = new Map();
-
-    originalProfiles.forEach((profile, oldClusterId) => {
-      remappedProfiles.set(remap.get(oldClusterId), {
-        topics: profile.topics,
-        size: profile.size
-      });
-    });
-
-    eligibleAuthorIds.forEach((authorId, authorIndex) => {
-      const oldClusterId = bestModel.assignments[authorIndex];
-      const newClusterId = remap.get(oldClusterId);
-      result.set(authorId, newClusterId);
-
-      const similarities = bestModel.centroids
-        .map(centroid => dot(vectors[authorIndex], centroid))
-        .sort((a, b) => b - a);
-      const margin = similarities.length > 1 ? similarities[0] - similarities[1] : 0;
-      const baselineCluster = bestModel.assignments[authorIndex];
-      const baselineMembers = new Set(
-        bestModel.assignments
-          .map((clusterId, index) => clusterId === baselineCluster ? index : -1)
-          .filter(index => index >= 0)
-      );
-      const pointStability = bestModel.centroids.length > 1
-        ? (bestModel.restartModels || [])
-          .filter(model => model !== bestModel)
-          .reduce((sum, model, _, peers) => {
-            const comparisonCluster = model.assignments[authorIndex];
-            const comparisonMembers = new Set(
-              model.assignments
-                .map((clusterId, index) => clusterId === comparisonCluster ? index : -1)
-                .filter(index => index >= 0)
-            );
-            let intersection = 0;
-            baselineMembers.forEach(index => {
-              if (comparisonMembers.has(index)) intersection++;
-            });
-            const union = baselineMembers.size + comparisonMembers.size - intersection;
-            return sum + (union ? intersection / union : 1) / Math.max(1, peers.length);
-          }, 0)
-        : 0;
-      const authorNode = authorNodes.find(node => node.id === authorId);
-      if (authorNode) {
-        const marginScore = Math.max(0, Math.min(1, margin / 0.25));
-        const silhouetteScore = Math.max(
+      rawScores.forEach((scores, authorIndex) => {
+        if (degenerate) {
+          rgbRows[authorIndex][axis] = 128;
+          return;
+        }
+        const linearPosition = Math.max(
           0,
-          Math.min(1, bestModel.pointSilhouettes[authorIndex] || 0)
+          Math.min(1, (scores[axis] - minimum) / range)
         );
-        const evidenceScore = Math.min(
-          1,
-          Math.log1p(Number(authorNode.paper_count) || 1) / Math.log(8)
+        const colorPosition = linearPosition * (1 - colorPercentileWeight)
+          + percentileByAuthor[authorIndex] * colorPercentileWeight;
+        rgbRows[authorIndex][axis] = Math.max(
+          0,
+          Math.min(255, Math.round(colorPosition * 255))
         );
-        const globalStabilityScore = Math.max(0, Math.min(1, bestModel.stability));
-        authorNode.clusterConfidence = Number(
-          (
-            marginScore * 0.25
-            + silhouetteScore * 0.25
-            + evidenceScore * 0.15
-            + pointStability * 0.25
-            + globalStabilityScore * 0.1
-          ).toFixed(3)
-        );
-        authorNode.clusterStability = Number(pointStability.toFixed(3));
+      });
+    }
+
+    const result = new Map();
+    const rgbById = new Map();
+    const scoresById = new Map();
+    const authorNodeById = new Map(orderedAuthors.map(author => [author.id, author]));
+    authorIds.forEach((authorId, authorIndex) => {
+      const rgb = rgbRows[authorIndex].slice();
+      const scores = rawScores[authorIndex].slice();
+      const color = 'rgb(' + rgb.join(', ') + ')';
+      result.set(authorId, color);
+      rgbById.set(authorId, rgb);
+      scoresById.set(authorId, scores);
+
+      const authorNode = authorNodeById.get(authorId);
+      if (authorNode) {
+        authorNode.pcaRgb = rgb.slice();
+        authorNode.pcaScores = scores.slice();
+        authorNode.pcaColor = color;
       }
     });
+
+    const totalVariance = totalCenteredSumSquares / varianceDenominator;
+    const explainedVarianceRatio = explainedVariance.map(variance =>
+      totalVariance > varianceFloor
+        ? Math.max(0, Math.min(1, variance / totalVariance))
+        : 0
+    );
+    const coverage = {
+      similarity: similarityCoverage,
+      visibleSimilarity: visibleSimilarityCoverage,
+      semanticNeighbors: semanticNeighborCoverage,
+      visibleSemanticNeighbors: visibleSemanticNeighborCoverage
+    };
 
     result.meta = {
-      selectedK: bestModel.centroids.length,
-      silhouette: Number(bestModel.silhouette.toFixed(4)),
-      stability: Number(bestModel.stability.toFixed(4)),
-      objective: Number(bestModel.objective.toFixed(4)),
-      similarityCoverage: Number(similarityCoverage.toFixed(4)),
-      visibleSimilarityCoverage: Number(visibleSimilarityCoverage.toFixed(4)),
-      semanticNeighborCoverage: Number(semanticNeighborCoverage.toFixed(4)),
-      visibleSemanticNeighborCoverage: Number(visibleSemanticNeighborCoverage.toFixed(4)),
-      profiles: remappedProfiles,
-      candidates: candidateScores,
-      unclassifiedIds: [...authorFeatures.keys()].filter(authorId => !result.has(authorId))
+      authorIds: authorIds.slice(),
+      rgbById,
+      scoresById,
+      rawScores: rawScores.map(scores => scores.slice()),
+      explainedVariance,
+      explainedVarianceRatio,
+      totalVariance,
+      activeComponents: componentVectors.length,
+      scoreRanges,
+      colorMapping: 'minmax-percentile-blend',
+      colorPercentileWeight,
+      topicCount: topicNames.length,
+      vectorDimension,
+      semanticApplied,
+      semanticMode,
+      similarityAlpha,
+      neighborSimilarityAlpha,
+      latentTopicCoverage,
+      latentDimensions: latentTopicSpace?.dimensions || 0,
+      latentRetainedVariance: Number(
+        keywordSimData?.topic_vectors?.retained_variance
+      ) || 0,
+      coverage,
+      similarityCoverage,
+      visibleSimilarityCoverage,
+      semanticNeighborCoverage,
+      visibleSemanticNeighborCoverage
     };
     return result;
-  }
-
-  // Turn the topic assignments into spatial targets so K-means communities
-  // read as distinct visual neighborhoods, not only as different colors.
-  function createTopicClusterLayout(nodes, links, authorClusters, clusterProfiles) {
-    const clusterIds = [...new Set(
-      [...authorClusters.values()].filter(clusterId => Number.isInteger(clusterId) && clusterId >= 0)
-    )].sort((a, b) => a - b);
-    const centers = new Map();
-    const fieldRadii = new Map();
-    const nodeTargets = new Map();
-
-    if (clusterIds.length === 1) {
-      centers.set(clusterIds[0], { x: 0, y: 0 });
-    } else {
-      const ringRadius = Math.max(118, 52 * Math.sqrt(clusterIds.length));
-      clusterIds.forEach((clusterId, index) => {
-        const angle = -Math.PI / 2 + index * Math.PI * 2 / clusterIds.length;
-        centers.set(clusterId, {
-          x: Math.cos(angle) * ringRadius * 1.12,
-          y: Math.sin(angle) * ringRadius * 0.76
-        });
-      });
-    }
-
-    clusterIds.forEach(clusterId => {
-      const memberCount = clusterProfiles.get(clusterId)?.size || 1;
-      fieldRadii.set(clusterId, 34 + Math.sqrt(memberCount) * 4.2);
-    });
-
-    const endpointId = endpoint => typeof endpoint === 'object' ? endpoint.id : endpoint;
-    const keywordVotes = new Map();
-    links.forEach(link => {
-      if (link.type !== 'author_keyword') return;
-      const sourceId = endpointId(link.source);
-      const targetId = endpointId(link.target);
-      const sourceIsKeyword = String(sourceId).startsWith('kw:');
-      const keywordId = sourceIsKeyword ? sourceId : targetId;
-      const authorId = sourceIsKeyword ? targetId : sourceId;
-      const clusterId = authorClusters.get(authorId);
-      if (!centers.has(clusterId)) return;
-      if (!keywordVotes.has(keywordId)) keywordVotes.set(keywordId, new Map());
-      const votes = keywordVotes.get(keywordId);
-      const weight = Math.max(1, Number(link.paper_count ?? link.value) || 1);
-      votes.set(clusterId, (votes.get(clusterId) || 0) + weight);
-    });
-
-    nodes.forEach(node => {
-      if (node.type === 'author') {
-        const clusterId = authorClusters.get(node.id);
-        const center = centers.get(clusterId);
-        nodeTargets.set(node.id, center
-          ? { ...center, role: 'cluster' }
-          : { x: 0, y: 0, role: clusterId === -1 ? 'hub' : 'unclassified' });
-        return;
-      }
-
-      const votes = keywordVotes.get(node.id);
-      if (!votes?.size) {
-        nodeTargets.set(node.id, { x: 0, y: 0, role: 'keyword' });
-        return;
-      }
-      let totalWeight = 0;
-      let targetX = 0;
-      let targetY = 0;
-      votes.forEach((weight, clusterId) => {
-        const center = centers.get(clusterId);
-        if (!center) return;
-        totalWeight += weight;
-        targetX += center.x * weight;
-        targetY += center.y * weight;
-      });
-      nodeTargets.set(node.id, totalWeight
-        ? { x: targetX / totalWeight, y: targetY / totalWeight, role: 'keyword' }
-        : { x: 0, y: 0, role: 'keyword' });
-    });
-
-    // Seed nodes close to their deterministic target so the grouped structure
-    // is visible immediately, before the force simulation has fully cooled.
-    nodes.forEach(node => {
-      if (Number.isFinite(node.x) && Number.isFinite(node.y)) return;
-      const target = nodeTargets.get(node.id);
-      if (!target) return;
-      if (target.role === 'hub') {
-        node.x = target.x;
-        node.y = target.y;
-        return;
-      }
-      let hash = 2166136261;
-      for (const character of String(node.id)) {
-        hash ^= character.charCodeAt(0);
-        hash = Math.imul(hash, 16777619) >>> 0;
-      }
-      const angle = hash / 4294967296 * Math.PI * 2;
-      const spread = target.role === 'cluster' ? 24 : 32;
-      const radius = spread * (0.35 + ((hash >>> 8) % 1000) / 1000 * 0.65);
-      node.x = target.x + Math.cos(angle) * radius;
-      node.y = target.y + Math.sin(angle) * radius;
-    });
-
-    let simulationNodes = [];
-    const force = alpha => {
-      simulationNodes.forEach(node => {
-        const target = nodeTargets.get(node.id);
-        if (!target) return;
-        const confidence = Math.max(0, Math.min(1, Number(node.clusterConfidence) || 0));
-        const strength = node.type === 'keyword'
-          ? 0.026
-          : target.role === 'cluster'
-            ? 0.04 + confidence * 0.07
-            : target.role === 'hub'
-              ? 0.11
-              : 0.006;
-        const pull = alpha * strength;
-        if (node.fx == null) {
-          node.vx = (Number(node.vx) || 0) + (target.x - (Number(node.x) || 0)) * pull;
-        }
-        if (node.fy == null) {
-          node.vy = (Number(node.vy) || 0) + (target.y - (Number(node.y) || 0)) * pull;
-        }
-      });
-    };
-    force.initialize = incomingNodes => {
-      simulationNodes = incomingNodes || [];
-    };
-
-    return { centers, fieldRadii, force };
   }
 
   function buildGraph(data, keywordSimData = null) {
@@ -1426,9 +1221,6 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       if (n.type === 'author') {
         if (n.paper_count == null) n.paper_count = n.val || 1;
         if (n.first_author_count == null) n.first_author_count = 0;
-        if (n.first_author_share == null) {
-          n.first_author_share = n.paper_count ? n.first_author_count / n.paper_count : 0;
-        }
         if (!Array.isArray(n.top_keywords)) n.top_keywords = [];
       }
     });
@@ -1534,16 +1326,13 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
 
     const getNodeBaseColor = (n) => {
       if (!n) return '#ffffff';
-      // Match the non-dimmed nodeColor rules
       if (n.type === 'keyword') {
         return '#f1f0ec';
       }
-
-      if (n.id === largestAuthor?.id && n.type === 'author') return '#ffffff';
-      const clusterId = authorClusters.get(n.id);
-      if (clusterId === -1) return '#ffffff';
-      if (clusterId === undefined) return unclassifiedColor;
-      return clusterPalette[clusterId % clusterPalette.length];
+      if (n.id === COLLABO_FEATURED_AUTHOR_ID) {
+        return COLLABO_FEATURED_AUTHOR_COLOR;
+      }
+      return authorColors.get(n.id) || 'rgb(128, 128, 128)';
     };
 
     const getLinkEndpointId = (endpoint) => (typeof endpoint === 'object' ? endpoint.id : endpoint);
@@ -1582,12 +1371,8 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     // Top authors (limit 6 like before)
     const topSet = new Set([...authorNodes].sort((a,b)=> getPaperCount(b)-getPaperCount(a)).slice(0,6).map(n=>n.id));
 
-    // Top keywords (highlighted)
-    const topKeywords = new Set([...keywordNodes].sort((a,b)=> (b.val||0)-(a.val||0)).slice(0,5).map(n=>n.id));
-
-    // Find the largest node to exclude from clustering
+    // The most prolific author keeps the larger star treatment.
     const largestAuthor = authorNodes.find(n => getPaperCount(n) === maxAuthorPapers);
-    const excludeFromClustering = new Set(largestAuthor ? [largestAuthor.id] : []);
 
     const graphVocabularyHash = data.meta?.topic_vocabulary_hash;
     const similarityVocabularyHash = keywordSimData?.vocabulary_hash;
@@ -1595,109 +1380,64 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       || !similarityVocabularyHash
       || graphVocabularyHash === similarityVocabularyHash;
     if (!similarityVocabularyMatches) {
-      console.warn('Collaboration clustering skipped stale keyword similarities.');
+      console.warn('Collaboration PCA skipped stale keyword similarities.');
     }
 
-    const authorClusters = kMeansClustering(
+    const authorColors = createPcaAuthorColors(
       authorNodes,
       keywordNodes,
       data.links,
-      10,
-      excludeFromClustering,
       similarityVocabularyMatches ? keywordSimData : null
     );
-    const clusterProfiles = authorClusters.meta?.profiles || new Map();
-    const getClusterLabel = clusterId => {
-      if (clusterId === -1) return 'Collaboration hub';
-      if (!Number.isInteger(clusterId) || clusterId < 0) return 'Unclassified';
-      return `Cluster ${clusterId + 1}`;
-    };
-    
-    // Largest node gets special cluster ID (-1 means no cluster)
-    if (largestAuthor) {
-      authorClusters.set(largestAuthor.id, -1);
+    const pcaRgbById = authorColors.meta?.rgbById || new Map();
+    // Preserve the analytical PCA colors for links. If the featured white
+    // presentation color participates in screen blending, every hub spoke
+    // becomes white and washes out the surrounding colors.
+    const additiveLinkRgbById = new Map(
+      [...pcaRgbById].map(([id, rgb]) => [id, Array.from(rgb)])
+    );
+    const featuredAuthor = authorNodes.find(node => node.id === COLLABO_FEATURED_AUTHOR_ID);
+    if (featuredAuthor) {
+      const featuredRgb = COLLABO_FEATURED_AUTHOR_RGB.slice();
+      authorColors.set(COLLABO_FEATURED_AUTHOR_ID, COLLABO_FEATURED_AUTHOR_COLOR);
+      pcaRgbById.set(COLLABO_FEATURED_AUTHOR_ID, featuredRgb);
+      featuredAuthor.pcaRgb = featuredRgb.slice();
+      featuredAuthor.pcaColor = COLLABO_FEATURED_AUTHOR_COLOR;
     }
-    
-    // Distinct color palette for clusters (rainbow + extended)
-    const clusterPalette = [
-        '#bf1932', // red
-        '#ffbe98',
-        '#e2583e', // orange
-        '#f5df4d', // lime#f5df4d
-        '#88b04b', // green
-        '#00bcd4', // cyan
-        '#7bc4c4',
-        '#0f4c81', // blue
-        '#b163a3', // indigo
-        '#645495', // purple
-        '#d96c9d',
-        '#5b8def',
-    ];
-    const unclassifiedColor = '#9aa4b2';
+    const getAdditiveLinkColor = link => {
+      const sourceRgb = additiveLinkRgbById.get(getLinkEndpointId(link.source));
+      const targetRgb = additiveLinkRgbById.get(getLinkEndpointId(link.target));
+      const endpoints = [sourceRgb, targetRgb].filter(Boolean);
+      if (!endpoints.length) return 'rgb(185, 214, 240)';
+      // Screen blending models additive light: combined channels move toward 255.
+      const mixed = [0, 1, 2].map(channel => Math.round(
+        255 * (1 - endpoints.reduce(
+          (remaining, rgb) => remaining * (1 - rgb[channel] / 255),
+          1
+        ))
+      ));
+      return `rgb(${mixed[0]}, ${mixed[1]}, ${mixed[2]})`;
+    };
     const topicLinkDash = [2, 3];
     const getAuthorVisualValue = node => {
       const paperCount = getPaperCount(node);
+      // Avoid compressing the paper-count signal through two square roots.
+      // Small authors retain a visible floor while prolific authors separate
+      // much more clearly in both body radius and stellar rays.
+      const scaledValue = 0.2 + 0.2 * Math.pow(paperCount, 0.72);
       return node.id === largestAuthor?.id
-        ? 0.5 + Math.sqrt(paperCount) * 0.6
-        : 0.25 + Math.sqrt(paperCount) * 0.3;
-    };
-    const topicClusterLayout = createTopicClusterLayout(
-      data.nodes,
-      data.links,
-      authorClusters,
-      clusterProfiles
-    );
-    const drawTopicClusterFields = (ctx, globalScale) => {
-      if (!topicClusterLayout.centers.size) return;
-      const scale = Math.max(0.001, Number(globalScale) || 1);
-      const focusCluster = authorClusters.get(getFocusNodeId());
-      ctx.save();
-      topicClusterLayout.centers.forEach((center, clusterId) => {
-        const isActive = focusCluster === undefined || focusCluster < 0 || focusCluster === clusterId;
-        const color = clusterPalette[clusterId % clusterPalette.length];
-        const radius = topicClusterLayout.fieldRadii.get(clusterId) || 42;
-        const halo = ctx.createRadialGradient(center.x, center.y, 0, center.x, center.y, radius);
-        halo.addColorStop(0, fadeColor(color, isActive ? 0.075 : 0.012));
-        halo.addColorStop(0.62, fadeColor(color, isActive ? 0.026 : 0.006));
-        halo.addColorStop(1, fadeColor(color, 0));
-        ctx.fillStyle = halo;
-        ctx.beginPath();
-        ctx.arc(center.x, center.y, radius, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.setLineDash([3.5 / scale, 6 / scale]);
-        ctx.lineWidth = 0.8 / scale;
-        ctx.strokeStyle = fadeColor(color, isActive ? 0.18 : 0.035);
-        ctx.stroke();
-        ctx.setLineDash([]);
-
-        ctx.beginPath();
-        ctx.arc(center.x, center.y, 1.7 / scale, 0, Math.PI * 2);
-        ctx.fillStyle = fadeColor(color, isActive ? 0.62 : 0.12);
-        ctx.fill();
-
-        const label = getClusterLabel(clusterId);
-        const fontSize = Math.max(8.5 / scale, 3.2);
-        ctx.font = `500 ${fontSize}px Oswald, sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.lineWidth = 2.2 / scale;
-        ctx.strokeStyle = isActive ? 'rgba(2,6,17,0.82)' : 'rgba(2,6,17,0.18)';
-        ctx.fillStyle = fadeColor(color, isActive ? 0.54 : 0.09);
-        const labelY = center.y - radius * 0.7;
-        ctx.strokeText(label, center.x, labelY);
-        ctx.fillText(label, center.x, labelY);
-      });
-      ctx.restore();
+        ? scaledValue * 1.6
+        : scaledValue;
     };
 
     const g = ForceGraph()(container)
       .graphData(data)
       .backgroundColor('rgba(0,0,0,0)')
-      .autoPauseRedraw(true)
-      .onRenderFramePre((ctx, globalScale) => {
+      // The galaxy lives in onRenderFramePre, so rendering must continue after
+      // the force engine cools down or the background stars disappear.
+      .autoPauseRedraw(false)
+      .onRenderFramePre(ctx => {
         galaxyPainter.draw(ctx, performance.now());
-        drawTopicClusterFields(ctx, globalScale);
       })
       .nodeId('id')
       .nodeLabel(n => {
@@ -1710,11 +1450,11 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           return `<div class="collabo-node-tooltip"><div style="color:#f1f0ec;font-size:12px;">◇ KEYWORD</div><div><strong>${escapedName}</strong></div><div class="collabo-tooltip-meta">${paperCount} papers${authorCount ? ` · ${authorCount} researchers` : ''}</div></div>`;
         }
         
-        const clusterId = authorClusters.get(n.id);
         const photo = getNodePhoto(n.name);
         const photoMarkup = photo ? `<img class="collabo-node-photo-img" src="${photo}" alt="${escapedName}" loading="lazy"/>` : '';
         const authorColor = getNodeBaseColor(n);
-        const clusterLabel = getClusterLabel(clusterId);
+        const pcaRgb = pcaRgbById.get(n.id) || [128, 128, 128];
+        const researchColorLabel = `Research Color · RGB(${pcaRgb.join(', ')})`;
         const topicMarkup = (n.top_keywords || [])
           .slice(0, 3)
           .map(topic => `<span class="collabo-topic-chip">${htmlEscape(topic.name)}</span>`)
@@ -1725,7 +1465,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         const activity = n.active_from
           ? (n.active_to && n.active_to !== n.active_from ? `${n.active_from}–${n.active_to}` : `${n.active_from}`)
           : '';
-        return `<div class="collabo-node-tooltip">${photoMarkup}<div style="color:${authorColor} !important;"><strong style="color:${authorColor} !important;">${escapedName}</strong></div><div class="collabo-tooltip-theme" style="color:${authorColor} !important;">${htmlEscape(clusterLabel)}</div>${topicMarkup ? `<div class="collabo-tooltip-topics">${topicMarkup}</div>` : ''}<div class="collabo-tooltip-meta">${papers} papers · ${leadPapers} lead · ${collaborators} coauthors${activity ? ` · ${activity}` : ''}</div></div>`;
+        return `<div class="collabo-node-tooltip">${photoMarkup}<div style="color:${authorColor} !important;"><strong style="color:${authorColor} !important;">${escapedName}</strong></div><div class="collabo-tooltip-theme" style="color:${authorColor} !important;">${researchColorLabel}</div>${topicMarkup ? `<div class="collabo-tooltip-topics">${topicMarkup}</div>` : ''}<div class="collabo-tooltip-meta">${papers} papers · ${leadPapers} lead · ${collaborators} coauthors${activity ? ` · ${activity}` : ''}</div></div>`;
       })
       .nodeVal(n => {
         if (n.type === 'keyword') {
@@ -1742,24 +1482,13 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         if (l && l.__highlight) return 'rgba(255,255,255,0.55)';
         const focusId = getFocusNodeId();
         const isCoauthor = l.type === 'coauthor';
-        const sourceCluster = authorClusters.get(getLinkEndpointId(l.source));
-        const targetCluster = authorClusters.get(getLinkEndpointId(l.target));
-        const sharedCluster = isCoauthor
-          && sourceCluster >= 0
-          && sourceCluster === targetCluster
-          ? sourceCluster
-          : null;
         if (!focusId) {
           if (!isCoauthor) return 'rgba(255,255,255,0.035)';
-          return sharedCluster === null
-            ? 'rgba(185,214,240,0.06)'
-            : fadeColor(clusterPalette[sharedCluster % clusterPalette.length], 0.13);
+          return fadeColor(getAdditiveLinkColor(l), 0.1);
         }
         if (isLinkConnectedToFocus(l)) {
           if (!isCoauthor) return 'rgba(255,255,255,0.25)';
-          return sharedCluster === null
-            ? 'rgba(190,225,255,0.38)'
-            : fadeColor(clusterPalette[sharedCluster % clusterPalette.length], 0.46);
+          return fadeColor(getAdditiveLinkColor(l), 0.42);
         }
         return isCoauthor
           ? 'rgba(185,214,240,0.014)'
@@ -1770,11 +1499,17 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         const base = getNodeBaseColor(n);
         return isConnected ? base : fadeColor(base, DIM_ALPHA);
       })
-      // Keep the cluster-colored author body, then add a lightweight stellar
+      // Keep the PCA-colored author body, then add a lightweight stellar
       // core. Keywords remain a separate diamond-shaped visual language.
       .nodeCanvasObjectMode(node => node.type === 'keyword' ? 'replace' : 'after')
       .nodeCanvasObject((node, ctx, globalScale) => {
-        const displayName = node.name || node.id.replace(/^kw:/, '');
+        // Without the old cluster layout, d3 assigns initial coordinates on its
+        // first simulation tick. Skip the pre-tick paint instead of passing
+        // undefined coordinates into Canvas gradients and stopping the RAF loop.
+        if (!Number.isFinite(node.x) || !Number.isFinite(node.y)) return;
+        const renderScale = Number.isFinite(globalScale) && globalScale > 0
+          ? globalScale
+          : 1;
         const isConnected = isConnectedToHovered(node);
         const baseColor = getNodeBaseColor(node);
 
@@ -1787,25 +1522,13 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           ctx.fillRect(-keywordSize / 2, -keywordSize / 2, keywordSize, keywordSize);
           ctx.restore();
 
-          const shouldShowKeyword = topKeywords.has(node.id) && globalScale > 1.1;
-          if (shouldShowKeyword) {
-            const keywordLabel = displayName.length > 30 ? `${displayName.slice(0, 28)}…` : displayName;
-            const fontSize = Math.max(8.5 / globalScale, 2.3);
-            ctx.save();
-            ctx.font = `400 ${fontSize}px Oswald, sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'bottom';
-            ctx.lineWidth = 2.4 / globalScale;
-            ctx.strokeStyle = 'rgba(2,6,17,0.88)';
-            ctx.fillStyle = isConnected ? '#f1f0ec' : fadeColor('#f1f0ec', DIM_ALPHA);
-            ctx.strokeText(keywordLabel, node.x, node.y - keywordSize - 1.5 / globalScale);
-            ctx.fillText(keywordLabel, node.x, node.y - keywordSize - 1.5 / globalScale);
-            ctx.restore();
-          }
           return;
         }
 
-        const nodeVal = getPaperCount(node);
+        const nodeRgb = pcaRgbById.get(node.id) || [128, 128, 128];
+        const luminousColor = `rgb(${nodeRgb.map(channel => Math.round(
+          channel + (255 - channel) * 0.22
+        )).join(', ')})`;
         const visualRadius = Math.sqrt(getAuthorVisualValue(node)) * 4;
         const isTop = topSet.has(node.id);
         const isHub = node.id === largestAuthor?.id;
@@ -1816,7 +1539,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
         // Bloom is intentionally limited to major/hovered stars. The galaxy
         // already has hundreds of gradients, so this keeps animation smooth.
         if (isTop || isHub || isHovered) {
-          const glowRadius = visualRadius * (isHub ? 2.45 : 2.05) * hoverBoost;
+          const glowRadius = visualRadius * (isHub ? 2.7 : 2.15) * hoverBoost;
           const glow = ctx.createRadialGradient(
             node.x,
             node.y,
@@ -1830,6 +1553,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           glow.addColorStop(0.58, fadeColor(baseColor, 0.08 * brightness));
           glow.addColorStop(1, fadeColor(baseColor, 0));
           ctx.save();
+          ctx.globalCompositeOperation = 'lighter';
           ctx.fillStyle = glow;
           ctx.beginPath();
           ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
@@ -1837,108 +1561,42 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
           ctx.restore();
         }
 
-        // Major authors receive restrained four-way diffraction spikes. At a
-        // far zoom they disappear to avoid turning the graph into visual noise.
-        if (globalScale >= 0.55 && (isTop || isHub || isHovered)) {
-          const flareLength = (
-            visualRadius + (isHub ? 7 : isTop ? 4 : 3) / globalScale
-          ) * hoverBoost;
-          ctx.save();
-          ctx.globalCompositeOperation = 'lighter';
-          ctx.strokeStyle = fadeColor('#dff2ff', (isHub ? 0.34 : 0.24) * brightness);
-          ctx.lineWidth = 0.48 / globalScale;
-          ctx.lineCap = 'round';
-          ctx.beginPath();
-          ctx.moveTo(node.x, node.y - flareLength);
-          ctx.lineTo(node.x, node.y + flareLength);
-          ctx.moveTo(node.x - flareLength * 0.72, node.y);
-          ctx.lineTo(node.x + flareLength * 0.72, node.y);
-          ctx.stroke();
-          ctx.restore();
-        }
+        // Keep every researcher visibly star-shaped even after zoom-to-fit.
+        // Major authors retain longer rays, while ordinary authors get a
+        // screen-space minimum so their star does not collapse into a dark dot.
+        const isMajorStar = isTop || isHub || isHovered;
+        const flarePixels = isHub ? 10 : isTop ? 5.5 : isHovered ? 3 : 1.4;
+        const flareLength = (visualRadius + flarePixels / renderScale) * hoverBoost;
+        const horizontalFlareLength = flareLength * (isMajorStar ? 0.72 : 0.58);
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.strokeStyle = fadeColor(
+          luminousColor,
+          (isHub ? 0.58 : isMajorStar ? 0.4 : 0.28) * brightness
+        );
+        ctx.lineWidth = (isMajorStar ? 0.62 : 0.5) / renderScale;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(node.x, node.y - flareLength);
+        ctx.lineTo(node.x, node.y + flareLength);
+        ctx.moveTo(node.x - horizontalFlareLength, node.y);
+        ctx.lineTo(node.x + horizontalFlareLength, node.y);
+        ctx.stroke();
+        ctx.restore();
 
-        // A crisp white pinpoint turns every cluster-colored author node into
-        // a star while retaining the original circle and pointer hit area.
+        // A crisp PCA-colored pinpoint keeps the stellar shape without laying
+        // a white center over darker purple/blue author colors.
         const coreRadius = Math.max(
-          0.26 / globalScale,
-          Math.min(visualRadius * 0.24, 0.9 / globalScale)
+          0.72 / renderScale,
+          Math.min(visualRadius * 0.28, 1.15 / renderScale)
         );
         ctx.save();
         ctx.beginPath();
         ctx.arc(node.x, node.y, coreRadius, 0, Math.PI * 2);
-        ctx.fillStyle = fadeColor('#ffffff', 0.92 * brightness);
+        ctx.fillStyle = fadeColor(luminousColor, 0.92 * brightness);
         ctx.fill();
         ctx.restore();
 
-        // Outer orbit encodes the share of publications led by this author.
-        const ringRadius = visualRadius + 1.8 / globalScale;
-        const leadShare = Math.max(0, Math.min(1, Number(node.first_author_share) || 0));
-        ctx.save();
-        ctx.lineWidth = 1.35 / globalScale;
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, ringRadius, 0, Math.PI * 2);
-        ctx.strokeStyle = isConnected
-          ? 'rgba(255,255,255,0.16)'
-          : 'rgba(255,255,255,0.015)';
-        ctx.stroke();
-        if (leadShare > 0) {
-          ctx.beginPath();
-          ctx.arc(
-            node.x,
-            node.y,
-            ringRadius,
-            -Math.PI / 2,
-            -Math.PI / 2 + Math.PI * 2 * leadShare
-          );
-          ctx.strokeStyle = isConnected
-            ? 'rgba(255,255,255,0.9)'
-            : 'rgba(255,255,255,0.05)';
-          ctx.stroke();
-        }
-        ctx.restore();
-
-        // Authors: show labels based on zoom level and node size
-        // Higher zoom (larger globalScale) = show more labels
-        // Larger nodes (higher val) = show at lower zoom levels
-        const visibilityThreshold = Math.sqrt(nodeVal) * globalScale;
-        
-        // Threshold levels:
-        // - Top authors (topSet): always visible when zoom > 0.5
-        // - Large nodes (val > 10): visible when zoom > 0.8
-        // - Medium nodes (val > 5): visible when zoom > 1.2
-        // - Small nodes: visible when zoom > 2
-        let shouldShow = false;
-        if (topSet.has(node.id)) {
-          shouldShow = globalScale > 0.5;
-        } else if (visibilityThreshold > 4) {
-          shouldShow = true;
-        } else if (visibilityThreshold > 2.5) {
-          shouldShow = globalScale > 1;
-        } else if (visibilityThreshold > 1.5) {
-          shouldShow = globalScale > 1.5;
-        } else {
-          shouldShow = globalScale > 2.5;
-        }
-        
-        if (!shouldShow) return;
-        
-        const baseFontSize = 11 / globalScale;
-        // Scale label size with node size (node.val) but keep it bounded.
-        const sizeBoost = Math.min(1.4, Math.max(0.5, 0.95 + 0.22 * Math.log2((nodeVal || 1) + 1)));
-        const fontSize = Math.max(baseFontSize * sizeBoost, 2.5);
-        ctx.font = `${isTop ? '600' : '400'} ${fontSize}px Oswald, sans-serif`;
-
-        ctx.fillStyle = isConnected ? baseColor : fadeColor(baseColor, DIM_ALPHA);
-        ctx.strokeStyle = isConnected ? 'rgba(2,6,17,0.86)' : 'rgba(2,6,17,0.08)';
-        ctx.lineWidth = 2.6 / globalScale;
-        
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        
-        // Position text above node
-        const labelY = node.y - ringRadius - fontSize * 0.7;
-        ctx.strokeText(displayName, node.x, labelY);
-        ctx.fillText(displayName, node.x, labelY);
       })
       .onNodeClick(node => {
         // Center on clicked node
@@ -1992,27 +1650,11 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       .maxZoom(8);
 
     if (typeof g.d3Force === 'function') {
-      g.d3Force('topic-cluster', topicClusterLayout.force);
       const graphLinkForce = g.d3Force('link');
       if (graphLinkForce?.distance && graphLinkForce?.strength) {
-        const endpointCluster = endpoint => authorClusters.get(getLinkEndpointId(endpoint));
         graphLinkForce
-          .distance(link => {
-            const sourceCluster = endpointCluster(link.source);
-            const targetCluster = endpointCluster(link.target);
-            if (sourceCluster === -1 || targetCluster === -1) return 82;
-            if (link.type === 'author_keyword') return 27;
-            if (sourceCluster >= 0 && sourceCluster === targetCluster) return 32;
-            return 68;
-          })
-          .strength(link => {
-            const sourceCluster = endpointCluster(link.source);
-            const targetCluster = endpointCluster(link.target);
-            if (sourceCluster === -1 || targetCluster === -1) return 0.006;
-            if (link.type === 'author_keyword') return 0.026;
-            if (sourceCluster >= 0 && sourceCluster === targetCluster) return 0.11;
-            return 0.014;
-          });
+          .distance(link => link.type === 'author_keyword' ? 27 : 48)
+          .strength(link => link.type === 'author_keyword' ? 0.026 : 0.035);
       }
       if (typeof g.d3ReheatSimulation === 'function') g.d3ReheatSimulation();
     }
@@ -2047,41 +1689,6 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
       }, 1300);
     }
 
-    // Build cluster legend dynamically (inside graph, top-left)
-    function buildClusterLegend() {
-      const legendContainer = document.getElementById('cluster-legend-container');
-      if (!legendContainer) return;
-      
-      const clusterCounts = new Map();
-      authorClusters.forEach((clusterId) => {
-        if (clusterId >= 0) {
-          clusterCounts.set(clusterId, (clusterCounts.get(clusterId) || 0) + 1);
-        }
-      });
-      
-      const sortedClusters = [...clusterCounts.entries()].sort((a, b) => a[0] - b[0]);
-      
-      let html = '<div class="cluster-legend">';
-      html += '<div class="cluster-legend-title">Clusters</div>';
-      
-      sortedClusters.forEach(([clusterId, count]) => {
-        const color = clusterPalette[clusterId % clusterPalette.length];
-        const label = getClusterLabel(clusterId);
-        html += `<div class="cluster-item" title="${htmlEscape(label)}"><span class="cluster-dot" style="background:${color}"></span><span class="cluster-name">${htmlEscape(label)}</span><span class="cluster-count">${count}</span></div>`;
-      });
-
-      const unclassifiedCount = authorClusters.meta?.unclassifiedIds?.length || 0;
-      if (unclassifiedCount) {
-        html += `<div class="cluster-item"><span class="cluster-dot" style="background:${unclassifiedColor}"></span><span class="cluster-name">${getClusterLabel(undefined)}</span><span class="cluster-count">${unclassifiedCount}</span></div>`;
-      }
-      html += '<div class="cluster-item"><span class="cluster-dot keyword"></span><span class="cluster-name">Keyword</span></div>';
-      html += '<div class="cluster-legend-note">Position + hue = cluster · star size = papers · orbit = lead-author share</div>';
-      html += '</div>';
-      legendContainer.innerHTML = html;
-    }
-    
-    buildClusterLegend();
-
     // Initial sizing
     resizeCanvas(g);
     window.addEventListener('resize', () => resizeCanvas(g));
@@ -2090,7 +1697,7 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const loader = document.getElementById('coauthor-graph-loader');
     if (loader) loader.remove();
 
-    // Fit once during warmup and again after the clustered layout settles.
+    // Fit once during warmup and again after the force layout settles.
     // Once the visitor pans, zooms or selects a node, never override their view.
     let viewportInteracted = false;
     const markViewportInteraction = () => {
@@ -2100,8 +1707,8 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     container.addEventListener('wheel', markViewportInteraction, { passive: true });
     const autoFitView = () => {
       if (!viewportInteracted) {
-        // Topic diamonds can sit between several communities; fit to people so
-        // rare shared keywords do not make the actual researcher map too small.
+        // Fit to people so rare shared keywords do not make the researcher map
+        // too small in the viewport.
         g.zoomToFit(800, 72, node => node.type === 'author');
       }
     };
@@ -2109,22 +1716,9 @@ const COLLABO_DEFAULT_PHOTO = '/assets/img/BAELAB_LOGO.png';
     const settledFitTimerId = window.setTimeout(autoFitView, 4200);
     if (typeof g.onEngineStop === 'function') g.onEngineStop(autoFitView);
 
-    const GALAXY_FRAME_INTERVAL = 1000 / 30;
-    const galaxyTimerId = window.setInterval(() => {
-      if (document.hidden) return;
-      requestGraphRedraw(g);
-    }, GALAXY_FRAME_INTERVAL);
-
-    const onVisibilityChange = () => {
-      if (!document.hidden) requestGraphRedraw(g);
-    };
-    document.addEventListener('visibilitychange', onVisibilityChange);
-
     window.addEventListener('pagehide', () => {
-      window.clearInterval(galaxyTimerId);
       window.clearTimeout(warmupFitTimerId);
       window.clearTimeout(settledFitTimerId);
-      document.removeEventListener('visibilitychange', onVisibilityChange);
       container.removeEventListener('dblclick', onDoubleClick);
       container.removeEventListener('pointerdown', markViewportInteraction);
       container.removeEventListener('wheel', markViewportInteraction);
