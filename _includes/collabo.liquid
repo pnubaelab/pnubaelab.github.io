@@ -1597,6 +1597,36 @@ const COLLABO_FEATURED_AUTHOR_RGB = [255, 255, 255];
         ctx.fill();
         ctx.restore();
 
+        // Author names are visible before hover. Keep the overview readable by
+        // showing major authors first, then progressively reveal the rest as
+        // the user zooms in. Keyword and PCA labels remain hidden.
+        const paperCount = getPaperCount(node);
+        const shouldShowAuthorLabel = isTop
+          || isHovered
+          || (paperCount >= 10 && renderScale >= 0.75)
+          || (paperCount >= 4 && renderScale >= 1.15)
+          || renderScale >= 2;
+        if (!shouldShowAuthorLabel) return;
+
+        const displayName = node.name || node.id;
+        const labelPixels = isHub ? 13 : isTop ? 11.5 : 10;
+        const fontSize = labelPixels / renderScale;
+        const labelY = node.y - flareLength - 2.5 / renderScale;
+        ctx.save();
+        ctx.font = `${isTop ? '600' : '400'} ${fontSize}px Oswald, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.lineWidth = 2.4 / renderScale;
+        ctx.strokeStyle = isConnected
+          ? 'rgba(2,6,17,0.9)'
+          : 'rgba(2,6,17,0.2)';
+        ctx.fillStyle = isConnected
+          ? luminousColor
+          : fadeColor(luminousColor, DIM_ALPHA);
+        ctx.strokeText(displayName, node.x, labelY);
+        ctx.fillText(displayName, node.x, labelY);
+        ctx.restore();
+
       })
       .onNodeClick(node => {
         // Center on clicked node
