@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "test:research-vectors": "node utils/validate_research_vectors.cjs"
+    "test:research-vectors": "node utils/validate_research_vectors.cjs",
+    "test:count-up": "node utils/validate_count_up.cjs"
   },
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "1.4.0",

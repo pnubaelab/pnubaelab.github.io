@@ -6,7 +6,6 @@
     letter-spacing: 0.02em;
   }
   .collabo-legend,
-  .collabo-legend *,
   .collabo-node-tooltip,
   .collabo-node-tooltip *,
   #coauthor-graph-loader {
@@ -68,46 +67,260 @@
   }
   #coauthor-graph-wrapper {
     box-sizing: border-box;
-    padding: 7px;
-    border: 1px solid rgba(132, 171, 230, 0.18);
-    border-radius: clamp(18px, 2.4vw, 26px);
-    background: linear-gradient(145deg, rgba(18, 31, 56, 0.9), rgba(2, 6, 17, 0.96));
-    box-shadow:
-      0 18px 48px rgba(0, 0, 0, 0.32),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
   }
   #coauthor-graph {
     border-radius: clamp(14px, 2vw, 20px);
   }
+  .collabo-overflow-glass,
+  .collabo-overflow-frost {
+    display: none;
+  }
+  .publications-page {
+    position: relative;
+    isolation: isolate;
+    --publication-glass: color-mix(in srgb, var(--global-bg-color) 62%, transparent);
+    --publication-glass-border: rgba(255, 255, 255, 0.6);
+    --publication-glass-shadow: rgba(34, 45, 64, 0.08);
+    --collabo-clear-top: 0px;
+    --collabo-clear-bottom: 100vh;
+    --collabo-clear-left: 0px;
+    --collabo-clear-right: 100vw;
+  }
+  html[data-theme="dark"] .publications-page {
+    --publication-glass-border: rgba(202, 218, 240, 0.14);
+    --publication-glass-shadow: rgba(0, 0, 0, 0.16);
+  }
+  .publications-page .collabo-backdrop {
+    position: absolute;
+    top: -450px;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: calc(100% + 900px);
+  }
+  .publications-page #coauthor-graph {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    border-radius: 0;
+    background: transparent;
+    /* Fade the canvas itself so the sibling frost can still sample its pixels. */
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 96px, #000 calc(100% - 96px), transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 96px, #000 calc(100% - 96px), transparent);
+  }
+  .publications-page .collabo-viewport {
+    height: 520px;
+  }
+  /* One feathered layer avoids visible seams between the clear map and its
+     blurred overflow. Its transparent backdrop keeps the page color intact. */
+  .publications-page .collabo-overflow-frost {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    --collabo-frost-mask:
+      linear-gradient(to bottom, #000 calc(var(--collabo-clear-top) - 64px), transparent var(--collabo-clear-top), transparent var(--collabo-clear-bottom), #000 calc(var(--collabo-clear-bottom) + 64px)),
+      linear-gradient(to right, #000 calc(var(--collabo-clear-left) - var(--collabo-feather-x)), transparent var(--collabo-clear-left), transparent var(--collabo-clear-right), #000 calc(var(--collabo-clear-right) + var(--collabo-feather-x)));
+    -webkit-mask-image: var(--collabo-frost-mask);
+    mask-image: var(--collabo-frost-mask);
+    -webkit-mask-composite: source-over;
+    mask-composite: add;
+  }
+  /* Invisible hit areas let the page scroll outside the interactive map. */
+  .publications-page .collabo-overflow-glass {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    pointer-events: auto;
+  }
+  .collabo-overflow-glass.top {
+    inset: 0 0 auto;
+    height: var(--collabo-clear-top);
+  }
+  .collabo-overflow-glass.bottom {
+    inset: var(--collabo-clear-bottom) 0 0;
+  }
+  .collabo-overflow-glass.left {
+    top: var(--collabo-clear-top);
+    bottom: calc(100% - var(--collabo-clear-bottom));
+    left: 0;
+    width: var(--collabo-clear-left);
+  }
+  .collabo-overflow-glass.right {
+    top: var(--collabo-clear-top);
+    bottom: calc(100% - var(--collabo-clear-bottom));
+    right: 0;
+    width: calc(100% - var(--collabo-clear-right));
+  }
+  .publications-page > .post-header,
+  .publications-page .collabo-toolbar,
+  .publications-page .collabo-footer,
+  .publications-page .collabo-stats,
+  .publications-page .publications-reading-pane {
+    position: relative;
+    z-index: 2;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid var(--publication-glass-border);
+    border-radius: 18px;
+    background: var(--publication-glass);
+    box-shadow: 0 10px 32px var(--publication-glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+  }
+  .publications-page > .post-header {
+    margin-bottom: 1.4rem;
+  }
+  .publications-page .post-description {
+    margin-bottom: 0;
+  }
+  .publications-page .collabo-toolbar,
+  .publications-page .collabo-footer {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+  }
+  .publications-page .collabo-stats {
+    margin-bottom: 1.5rem;
+  }
+  .publications-page .pub-stats-container,
+  .publications-page .pub-stats-row {
+    margin-block: 0;
+  }
+  .publications-page .pub-legend {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .publications-page .publications-reading-pane {
+    margin-bottom: 2rem;
+    background: var(--global-bg-color, #f4f3f2);
+    border-color: var(--global-divider-color);
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .publications-page .publications {
+    margin-top: 1.5rem;
+  }
+  .publications-page .collabo-search,
+  .publications-page .bibsearch-form-input {
+    box-sizing: border-box;
+    background: transparent;
+    color: var(--global-text-color);
+  }
+  @media (max-width: 575.98px) {
+    .publications-page > .post-header,
+    .publications-page .collabo-stats,
+    .publications-page .publications-reading-pane {
+      padding: 1rem;
+      border-radius: 14px;
+    }
+    .publications-page .collabo-viewport {
+      height: 400px;
+    }
+    .publications-page .pub-legend {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+    .publications-page .pub-total-display {
+      display: grid;
+      grid-template-columns: max-content 1fr;
+      align-items: baseline;
+    }
+  }
+  .collabo-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+  }
+  .collabo-title {
+    margin: 0;
+    color: var(--global-text-color, #d5dce5);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .collabo-search {
+    width: min(100%, 320px);
+    padding: 0.55rem 0.8rem;
+    border: 1px solid rgba(140, 157, 180, 0.3);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--global-text-color, #d5dce5);
+    font-size: 0.78rem;
+  }
+  .collabo-search:focus-visible,
+  .collabo-legend-item:focus-visible,
+  .collabo-back-button:focus-visible {
+    outline: 2px solid #86cfd4;
+    outline-offset: 3px;
+  }
+  .collabo-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+  }
+  .collabo-hint {
+    color: var(--global-text-color-light, #8794a5);
+    font-size: 0.68rem;
+    margin: 0;
+  }
   .collabo-legend {
     display: flex;
-    gap: 1.5rem;
-    padding: 0.75rem 1rem;
-    background: rgba(2, 6, 17, 0.85);
-    border-radius: 8px;
-    font-size: 0.85rem;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    background: transparent;
+    font-size: 0.75rem;
     flex-wrap: wrap;
-    justify-content: center;
-    border: 1px solid rgba(255,255,255,0.1);
   }
   .collabo-legend-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #ffffff !important;
+    color: var(--global-text-color-light, #a6b1bf);
+    background: transparent;
+    border: 0;
+    padding: 0.25rem 0;
+    cursor: pointer;
+  }
+  .collabo-legend-item[aria-pressed="false"] {
+    opacity: 0.4;
+    text-decoration: line-through;
   }
   .collabo-legend-dot {
-    width: 14px;
-    height: 14px;
+    width: 9px;
+    height: 9px;
+    display: inline-block;
     border-radius: 50%;
-    box-shadow: 0 0 8px currentColor;
   }
   .collabo-legend-dot.author {
-    background: linear-gradient(135deg, #00bfff, #2979ff);
+    width: 15px;
+    height: 15px;
+    background: #8bc9ee;
+
+  }
+  .collabo-legend-dot.paper {
+    background: #a3abb5;
   }
   .collabo-legend-dot.keyword {
-    background: #f1f0ec;
-    border-radius: 4px;
+    width: 14px;
+    height: 9px;
+    border: 1px solid #b0a0e8;
+    background: radial-gradient(circle, #85dfd0 0 25%, transparent 35%);
+    transform: rotate(-30deg);
   }
   .node-label {
     font-family: 'Oswald', sans-serif;
@@ -119,7 +332,7 @@
     top: 19px;
     right: 19px;
     z-index: 1001;
-    display: none;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 52px;
@@ -145,7 +358,7 @@
   }
   @media (max-width: 575.98px) {
     #coauthor-graph-wrapper {
-      padding: 5px;
+      padding: 0;
       border-radius: 18px;
     }
     #coauthor-graph {
@@ -161,18 +374,41 @@
 </style>
 <div class="collabo-section" style="display: flex; flex-direction: column; gap: 1.5rem; align-items: stretch;">
   <div id="coauthor-graph-wrapper" style="position: relative;">
-    <div id="coauthor-graph" style="height: 520px; min-height: 360px; border: 1px solid #222; box-shadow: 0 0 24px #000a; background: #020611; position: relative; overflow: hidden;">
-      <div id="coauthor-graph-loader" style="position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
+    <div class="collabo-toolbar">
+      <h3 class="collabo-title">Research Constellation</h3>
+      <input id="collabo-search" class="collabo-search" type="search" placeholder="Find a paper, author or topic…" aria-label="Find a paper, author or topic" autocomplete="off">
     </div>
-    <button id="collabo-back-button" class="collabo-back-button" type="button" aria-label="Clear focused collaboration nodes">Back</button>
+    <div class="collabo-viewport" style="position: relative;">
+      <div class="collabo-backdrop">
+        <div id="coauthor-graph" aria-label="Slowly rotating 3D research map: papers are dim white dots; author circles and topic crystals are sized by their related paper counts.">
+          <div id="coauthor-graph-loader" style="position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
+        </div>
+        <div class="collabo-overflow-frost" aria-hidden="true"></div>
+        <div class="collabo-overflow-glass top" aria-hidden="true"></div>
+        <div class="collabo-overflow-glass bottom" aria-hidden="true"></div>
+        <div class="collabo-overflow-glass left" aria-hidden="true"></div>
+        <div class="collabo-overflow-glass right" aria-hidden="true"></div>
+      </div>
+      <button id="collabo-back-button" class="collabo-back-button" type="button" aria-label="Reset research map and filters">Reset view</button>
+    </div>
+    <div class="collabo-footer">
+      <div class="collabo-legend" role="group" aria-label="Visible node types">
+        <button class="collabo-legend-item" type="button" data-collabo-layer="paper" aria-pressed="true"><span class="collabo-legend-dot paper" aria-hidden="true"></span>Papers <span data-collabo-count="paper"></span></button>
+        <button class="collabo-legend-item" type="button" data-collabo-layer="author" aria-pressed="true"><span class="collabo-legend-dot author" aria-hidden="true"></span>Authors <span data-collabo-count="author"></span></button>
+        <button class="collabo-legend-item" type="button" data-collabo-layer="keyword" aria-pressed="true"><span class="collabo-legend-dot keyword" aria-hidden="true"></span>Topics <span data-collabo-count="keyword"></span></button>
+      </div>
+      <p id="collabo-status" class="collabo-hint" role="status" aria-live="polite">Size = related papers · Drag to rotate · Scroll to zoom</p>
+    </div>
   </div>
-  <div style="margin-top: .25rem;">
+  <div class="collabo-stats" style="margin-top: .25rem;">
     {% include pub_stats.liquid %}
   </div>
   <div id="coauthor-table" style="width: 100%;"></div>
 </div>
-<script src="//cdn.jsdelivr.net/npm/force-graph"></script>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.80.0/dist/3d-force-graph.min.js"></script>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js';
+
 {% assign firstPhoto = true %}
 const COLLABO_PHOTOS = {
 {% for person in site.people %}
@@ -190,324 +426,30 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
   const container = document.getElementById('coauthor-graph');
   const backButton = document.getElementById('collabo-back-button');
   if (!container) return;
+  const pageRoot = container.closest('.publications-page');
+  const viewport = container.closest('.collabo-viewport');
+  const backdrop = container.closest('.collabo-backdrop');
 
-  function initGalaxyBackground(target) {
-    const galaxyCanvas = document.createElement('canvas');
-    const ctx = galaxyCanvas.getContext('2d', { alpha: true });
-    if (!ctx) return null;
-
-    galaxyCanvas.setAttribute('aria-hidden', 'true');
-    galaxyCanvas.style.position = 'absolute';
-    galaxyCanvas.style.inset = '0';
-    galaxyCanvas.style.width = '100%';
-    galaxyCanvas.style.height = '100%';
-    galaxyCanvas.style.zIndex = '0';
-    galaxyCanvas.style.pointerEvents = 'none';
-    target.prepend(galaxyCanvas);
-
-    const dpr = () => Math.min(window.devicePixelRatio || 1, 2);
-    let width = 1;
-    let height = 1;
-    let mouseX = 0.5;
-    let mouseY = 0.5;
-    let smoothMouseX = 0.5;
-    let smoothMouseY = 0.5;
-
-    const stars = [];
-    function createStars(count) {
-      stars.length = 0;
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x: Math.random(),
-          y: Math.random(),
-          z: 0.3 + Math.random() * 0.7,
-          size: 0.3 + Math.random() * 1.6,
-          twinkle: Math.random() * Math.PI * 2,
-          twinkleSpeed: 0.2 + Math.random() * 1.2,
-          hue: 190 + Math.random() * 70
-        });
-      }
-    }
-
-    const onMouseMove = (e) => {
-      const rect = target.getBoundingClientRect();
-      mouseX = (e.clientX - rect.left) / Math.max(1, rect.width);
-      mouseY = (e.clientY - rect.top) / Math.max(1, rect.height);
-    };
-
-    const updateResolution = () => {
-      width = Math.max(1, target.clientWidth || 1);
-      height = Math.max(1, target.clientHeight || 1);
-      const ratio = dpr();
-      galaxyCanvas.width = Math.max(1, Math.floor(width * ratio));
-      galaxyCanvas.height = Math.max(1, Math.floor(height * ratio));
-      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const density = Math.max(140, Math.min(420, Math.round((width * height) / 2200)));
-      createStars(density);
-    };
-
-    const drawNebula = (t) => {
-      const cx = width * (0.5 + (smoothMouseX - 0.5) * 0.06);
-      const cy = height * (0.5 + (smoothMouseY - 0.5) * 0.06);
-
-      const g1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(width, height) * 0.65);
-      g1.addColorStop(0, 'rgba(40,95,180,0.23)');
-      g1.addColorStop(0.5, 'rgba(86,42,145,0.16)');
-      g1.addColorStop(1, 'rgba(2,6,17,0)');
-      ctx.fillStyle = g1;
-      ctx.fillRect(0, 0, width, height);
-
-      const angle = t * 0.00006;
-      const rx = Math.cos(angle) * width * 0.12;
-      const ry = Math.sin(angle * 1.2) * height * 0.1;
-      const g2 = ctx.createRadialGradient(
-        cx + rx,
-        cy + ry,
-        0,
-        cx + rx,
-        cy + ry,
-        Math.max(width, height) * 0.45
-      );
-      g2.addColorStop(0, 'rgba(129,93,255,0.15)');
-      g2.addColorStop(1, 'rgba(2,6,17,0)');
-      ctx.fillStyle = g2;
-      ctx.fillRect(0, 0, width, height);
-    };
-
-    const drawStars = (t) => {
-      for (let i = 0; i < stars.length; i++) {
-        const s = stars[i];
-        const tw = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(s.twinkle + t * 0.001 * s.twinkleSpeed));
-        const px = s.x * width + (smoothMouseX - 0.5) * 30 * s.z;
-        const py = s.y * height + (smoothMouseY - 0.5) * 24 * s.z;
-        const r = s.size * s.z * (0.6 + tw * 0.9);
-        const alpha = 0.18 + tw * 0.55;
-
-        const starGrad = ctx.createRadialGradient(px, py, 0, px, py, Math.max(0.8, r * 3.8));
-        starGrad.addColorStop(0, `hsla(${s.hue}, 85%, 78%, ${alpha})`);
-        starGrad.addColorStop(1, `hsla(${s.hue}, 90%, 65%, 0)`);
-        ctx.fillStyle = starGrad;
-        ctx.beginPath();
-        ctx.arc(px, py, Math.max(0.8, r * 3.8), 0, Math.PI * 2);
-        ctx.fill();
-      }
-    };
-
-    target.addEventListener('mousemove', onMouseMove);
-    const resizeObserver = new ResizeObserver(updateResolution);
-    resizeObserver.observe(target);
-    updateResolution();
-
-    let rafId = 0;
-    const render = (t) => {
-      rafId = requestAnimationFrame(render);
-      smoothMouseX += (mouseX - smoothMouseX) * 0.05;
-      smoothMouseY += (mouseY - smoothMouseY) * 0.05;
-
-      ctx.clearRect(0, 0, width, height);
-      drawNebula(t);
-      drawStars(t);
-    };
-    rafId = requestAnimationFrame(render);
-
-    const cleanup = () => {
-      cancelAnimationFrame(rafId);
-      resizeObserver.disconnect();
-      target.removeEventListener('mousemove', onMouseMove);
-      if (galaxyCanvas.parentNode === target) target.removeChild(galaxyCanvas);
-    };
-
-    window.addEventListener('pagehide', cleanup, { once: true });
-    return cleanup;
-  }
-
-  function initGalaxyFramePainter(target) {
-    let mouseX = 0.5;
-    let mouseY = 0.5;
-    let smoothMouseX = 0.5;
-    let smoothMouseY = 0.5;
-    let mouseActive = 0;
-    let smoothMouseActive = 0;
-    let width = 0;
-    let height = 0;
-    const stars = [];
-
-    const createStars = (count) => {
-      stars.length = 0;
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          angle: Math.random() * Math.PI * 2,
-          radius: Math.pow(Math.random(), 0.62),
-          z: 0.3 + Math.random() * 0.7,
-          size: 0.24 + Math.random() * 1.05,
-          twinkle: Math.random() * Math.PI * 2,
-          twinkleSpeed: 0.2 + Math.random() * 1.1,
-          spin: (Math.random() * 2 - 1) * 0.24,
-          phase: Math.random(),
-          speed: 0.12 + Math.random() * 0.24
-        });
-      }
-    };
-
-    const ensureStars = (w, h) => {
-      if (w === width && h === height && stars.length) return;
-      width = w;
-      height = h;
-      const density = Math.max(160, Math.min(500, Math.round((w * h) / 2800)));
-      createStars(density);
-    };
-
-    const onMouseMove = (e) => {
-      const rect = target.getBoundingClientRect();
-      mouseX = (e.clientX - rect.left) / Math.max(1, rect.width);
-      mouseY = (e.clientY - rect.top) / Math.max(1, rect.height);
-      mouseActive = 1;
-    };
-    const onMouseLeave = () => {
-      mouseX = 0.5;
-      mouseY = 0.5;
-      mouseActive = 0;
-    };
-    target.addEventListener('mousemove', onMouseMove);
-    target.addEventListener('mouseleave', onMouseLeave);
-
-    return {
-      draw(ctx, t) {
-        const w = ctx.canvas.width;
-        const h = ctx.canvas.height;
-        if (!w || !h) return;
-        ensureStars(w, h);
-
-        const time = t * 0.001;
-
-        smoothMouseX += (mouseX - smoothMouseX) * 0.05;
-        smoothMouseY += (mouseY - smoothMouseY) * 0.05;
-        smoothMouseActive += (mouseActive - smoothMouseActive) * 0.06;
-
-        const centerX = w * 0.5;
-        const centerY = h * 0.5;
-        const focusX = w * smoothMouseX;
-        const focusY = h * smoothMouseY;
-
-        const cx = focusX;
-        const cy = focusY;
-        const globalRot = time * 0.08;
-
-        ctx.save();
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-        ctx.fillStyle = 'rgba(1, 3, 10, 0.94)';
-        ctx.fillRect(0, 0, w, h);
-
-        const nebulaA = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.62);
-        nebulaA.addColorStop(0, 'rgba(20,45,90,0.2)');
-        nebulaA.addColorStop(0.55, 'rgba(35,20,70,0.12)');
-        nebulaA.addColorStop(1, 'rgba(2,6,17,0)');
-        ctx.fillStyle = nebulaA;
-        ctx.fillRect(0, 0, w, h);
-
-        const angle = t * 0.00006;
-        const rx = Math.cos(angle) * w * 0.12;
-        const ry = Math.sin(angle * 1.2) * h * 0.1;
-        const nebulaB = ctx.createRadialGradient(cx + rx, cy + ry, 0, cx + rx, cy + ry, Math.max(w, h) * 0.46);
-        nebulaB.addColorStop(0, 'rgba(55,70,130,0.1)');
-        nebulaB.addColorStop(1, 'rgba(2,6,17,0)');
-        ctx.fillStyle = nebulaB;
-        ctx.fillRect(0, 0, w, h);
-
-        const core = ctx.createRadialGradient(focusX, focusY, 0, focusX, focusY, Math.max(w, h) * 0.18);
-        core.addColorStop(0, `rgba(165, 215, 255, ${0.12 + smoothMouseActive * 0.1})`);
-        core.addColorStop(1, 'rgba(0,0,0,0)');
-        ctx.fillStyle = core;
-        ctx.fillRect(0, 0, w, h);
-
-        const lensRadius = Math.max(w, h) * (0.18 + 0.14 * smoothMouseActive);
-        const lensReach = lensRadius * 2.2;
-        const clamp01 = (v) => Math.max(0, Math.min(1, v));
-        const distortPoint = (x, y, strength = 1) => {
-          const dx = x - focusX;
-          const dy = y - focusY;
-          const dist = Math.hypot(dx, dy);
-          if (dist >= lensReach || dist < 0.0001) return { x, y };
-
-          const nx = dx / dist;
-          const ny = dy / dist;
-          const falloff = 1 - clamp01(dist / lensReach);
-          const pinch = (0.1 + 0.22 * smoothMouseActive) * falloff * falloff * strength;
-          const twist = (0.08 + 0.2 * smoothMouseActive) * falloff * falloff * strength;
-
-          const warpedX = x - nx * dist * pinch + (-ny) * dist * twist;
-          const warpedY = y - ny * dist * pinch + (nx) * dist * twist;
-          return { x: warpedX, y: warpedY };
-        };
-
-        if (smoothMouseActive > 0.02) {
-          const ring = ctx.createRadialGradient(focusX, focusY, lensRadius * 0.45, focusX, focusY, lensRadius * 1.05);
-          ring.addColorStop(0, `rgba(255,255,255,${0.02 + smoothMouseActive * 0.02})`);
-          ring.addColorStop(1, 'rgba(255,255,255,0)');
-          ctx.fillStyle = ring;
-          ctx.beginPath();
-          ctx.arc(focusX, focusY, lensRadius * 1.05, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        for (let i = 0; i < stars.length; i++) {
-          const s = stars[i];
-          const tw = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(s.twinkle + time * s.twinkleSpeed));
-          const depth = (s.phase + time * s.speed) % 1;
-          const zoom = 2.0 - 1.86 * depth;
-          const driftAngle = s.angle + time * s.spin + globalRot;
-          const orbitX = Math.cos(driftAngle) * s.radius * w * 0.92;
-          const orbitY = Math.sin(driftAngle) * s.radius * h * 0.92;
-
-          let px = cx + orbitX * zoom;
-          let py = cy + orbitY * zoom;
-
-          const dx = px - focusX;
-          const dy = py - focusY;
-          const dist = Math.hypot(dx, dy) + 0.0001;
-          const nx = dx / dist;
-          const ny = dy / dist;
-          const influence = Math.exp(-dist / (Math.max(w, h) * 0.6));
-          const inv = 1 / (dist + 28);
-          const active = 0.08 + 0.92 * smoothMouseActive;
-          const pullBase = (3120 * inv) * (0.4 + 0.9 * s.z) * active;
-          const swirlBase = (1900 * inv) * (0.35 + 0.65 * s.z) * active;
-          const depthFlow = 0.45 + 1.4 * (1 - depth);
-          const suction = pullBase * depthFlow * influence;
-          const swirl = swirlBase * (0.4 + 0.8 * (1 - depth)) * influence;
-
-          const vx = -nx * suction + -ny * swirl;
-          const vy = -ny * suction + nx * swirl;
-          px += vx;
-          py += vy;
-
-          const warped = distortPoint(px, py, 0.65 + 0.55 * s.z);
-          px = warped.x;
-          py = warped.y;
-
-          const r = s.size * s.z * (0.6 + tw * 1.05);
-          const alpha = 0.22 + tw * 0.5;
-
-          const starGrad = ctx.createRadialGradient(px, py, 0, px, py, Math.max(0.9, r * 2.9));
-          starGrad.addColorStop(0, `rgba(255,255,255,${alpha})`);
-          starGrad.addColorStop(1, 'rgba(255,255,255,0)');
-          ctx.fillStyle = starGrad;
-          ctx.beginPath();
-          ctx.arc(px, py, Math.max(0.9, r * 2.9), 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        ctx.restore();
-      },
-      destroy() {
-        target.removeEventListener('mousemove', onMouseMove);
-        target.removeEventListener('mouseleave', onMouseLeave);
-      }
-    };
-  }
-
-  const galaxyPainter = initGalaxyFramePainter(container);
+  const updateSceneLayout = () => {
+    if (!pageRoot || !viewport) return;
+    const clearHeight = computeMapHeight(viewport.clientWidth || 800);
+    viewport.style.height = `${clearHeight}px`;
+    const rect = viewport.getBoundingClientRect();
+    const width = document.documentElement.clientWidth;
+    const bleed = Math.max(260, Math.round(window.innerHeight * 0.45));
+    // Anchor the scene to the document. Extra canvas above and below the map
+    // keeps zoomed nodes visible outside the original clear opening.
+    backdrop.style.left = `${-rect.left}px`;
+    backdrop.style.top = `${-bleed}px`;
+    backdrop.style.width = `${width}px`;
+    backdrop.style.height = `${clearHeight + bleed * 2}px`;
+    backdrop.style.setProperty('--collabo-clear-top', `${bleed}px`);
+    backdrop.style.setProperty('--collabo-clear-bottom', `${bleed + clearHeight}px`);
+    backdrop.style.setProperty('--collabo-clear-left', `${rect.left}px`);
+    backdrop.style.setProperty('--collabo-clear-right', `${rect.right}px`);
+    backdrop.style.setProperty('--collabo-feather-x', `${Math.max(1, Math.min(48, rect.left, width - rect.right))}px`);
+  };
+  updateSceneLayout();
 
   const htmlEscape = (str = '') => str.replace(/[&<>"']/g, ch => ({
     '&': '&amp;',
@@ -568,30 +510,24 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
     if (searchBox) {
       searchBox.value = value;
       searchBox.dispatchEvent(new Event('input', { bubbles: true }));
-      searchBox.focus();
+      searchBox.focus({ preventScroll: true });
     } else if (retries > 0) {
       setTimeout(() => setBibSearchValue(value, retries - 1), 250);
     }
   }
 
-  // Responsive height logic for 2D graph
+  function computeMapHeight(width) {
+    if (width < 576) return Math.max(Math.round(width), 400);
+    return Math.max(Math.round(width * 9 / 16), 420);
+  }
+  // Extend the renderer beyond the clear map without attaching it to scrolling.
   function computeHeight() {
-    const w = container.clientWidth || 800;
-    if (w < 576) return Math.max(Math.round(w), 400);
-    return Math.max(Math.round(w * 9/16), 420);
+    return pageRoot ? backdrop.clientHeight : computeMapHeight(container.clientWidth || 800);
   }
   function resizeCanvas(graphInstance) {
     const h = computeHeight();
     container.style.height = h + 'px';
     graphInstance && graphInstance.height(h).width(container.clientWidth || 800);
-    const canvases = container.querySelectorAll('canvas');
-    canvases.forEach((canvas, idx) => {
-      if (idx === 0) return;
-      canvas.style.position = 'absolute';
-      canvas.style.inset = '0';
-      canvas.style.zIndex = '1';
-      canvas.style.background = 'transparent';
-    });
   }
 
   // Project complete author topic profiles relative to one reference researcher.
@@ -1636,542 +1572,474 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
   }
 
   function buildGraph(data, keywordSimData = null) {
-    // Backwards compatibility if file still has old keys
-    data.nodes.forEach(n => {
-      if (n.value != null && n.val == null) n.val = n.value;
-      if (!n.name) n.name = n.id;
-      // Ensure type field exists for older data
-      if (!n.type) n.type = 'author';
-      if (n.type === 'author') {
-        if (n.paper_count == null) n.paper_count = n.val || 1;
-        if (n.first_author_count == null) n.first_author_count = 0;
-        if (!Array.isArray(n.top_keywords)) n.top_keywords = [];
-      }
+    data.nodes.forEach(node => {
+      node.type ||= 'author';
+      node.name ||= node.id;
+      node.val ??= node.value || 1;
     });
-
-    // Hover highlight: build adjacency once (id -> Set(neighborIds))
-    const adjacency = new Map();
-    const addAdj = (a, b) => {
-      if (!a || !b) return;
-      if (!adjacency.has(a)) adjacency.set(a, new Set());
-      adjacency.get(a).add(b);
+    const authorNodes = data.nodes.filter(node => node.type === 'author');
+    const keywordNodes = data.nodes.filter(node => node.type === 'keyword');
+    const nodesById = new Map(data.nodes.map(node => [node.id, node]));
+    const endpointId = endpoint => typeof endpoint === 'object' ? endpoint.id : endpoint;
+    const paperCount = node => Math.max(1, Number(node.paper_count ?? node.val) || 1);
+    const maxAuthorPapers = Math.max(1, ...authorNodes.map(paperCount));
+    const maxTopicPapers = Math.max(1, ...keywordNodes.map(paperCount));
+    const relatedPaperRadius = (node, minimum, maximum, peak) => {
+      const weight = Math.min(1, (paperCount(node) - 1) / Math.max(1, peak - 1));
+      return minimum + (maximum - minimum) * Math.pow(weight, 0.7);
     };
-    (data.links || []).forEach(l => {
-      const s = typeof l.source === 'object' ? l.source.id : l.source;
-      const t = typeof l.target === 'object' ? l.target.id : l.target;
-      addAdj(s, t);
-      addAdj(t, s);
-    });
-    let hoveredNodeId = null;
-    let pinnedNodeId = null; // keep focus during click/drag
-    let lockedNodeId = null;
-
-    // Shared dimming strength for both node fill + labels
-    const DIM_ALPHA = 0.05;
-
-    // Hover grow animation (nice, subtle)
-    let hoverAnimT = 0;
-    let hoverAnimTarget = 0;
-    let hoverAnimRaf = 0;
-    let hoverAnimLastTs = 0;
-
-    const fadeColor = (color, alpha) => {
-      if (!color) return color;
-      const c = String(color).trim();
-
-      // #rgb or #rrggbb
-      if (c[0] === '#') {
-        const hex = c.length === 4
-          ? `${c[1]}${c[1]}${c[2]}${c[2]}${c[3]}${c[3]}`
-          : c.slice(1);
-        if (hex.length === 6) {
-          const r = parseInt(hex.slice(0, 2), 16);
-          const g = parseInt(hex.slice(2, 4), 16);
-          const b = parseInt(hex.slice(4, 6), 16);
-          return `rgba(${r},${g},${b},${alpha})`;
-        }
-      }
-
-      // rgb(r,g,b)
-      if (c.startsWith('rgb(')) {
-        const inside = c.slice(4, -1);
-        return `rgba(${inside},${alpha})`;
-      }
-
-      // rgba(r,g,b,a)
-      if (c.startsWith('rgba(')) {
-        const inside = c.slice(5, -1).split(',').slice(0, 3).join(',');
-        return `rgba(${inside},${alpha})`;
-      }
-
-      return c;
-    };
-
-    const updateBackButtonVisibility = () => {
-      if (!backButton) return;
-      backButton.classList.toggle('is-visible', Boolean(lockedNodeId));
-    };
-
-    const getFocusNodeId = () => lockedNodeId || pinnedNodeId || hoveredNodeId;
-
-    const requestGraphRedraw = (graphInstance) => {
-      if (!graphInstance) return;
-      if (typeof graphInstance.refresh === 'function') {
-        graphInstance.refresh();
-        return;
-      }
-      // Fallback: re-assign accessor to force a redraw
-      graphInstance.nodeCanvasObject(graphInstance.nodeCanvasObject());
-    };
-
-    const startHoverAnimation = (graphInstance) => {
-      if (hoverAnimRaf) return;
-      const step = (ts) => {
-        const dt = hoverAnimLastTs ? Math.min(64, ts - hoverAnimLastTs) : 16;
-        hoverAnimLastTs = ts;
-
-        // Smooth approach (critically damped-ish)
-        const k = 1 - Math.exp(-dt / 110);
-        hoverAnimT += (hoverAnimTarget - hoverAnimT) * k;
-
-        requestGraphRedraw(graphInstance);
-
-        if (Math.abs(hoverAnimTarget - hoverAnimT) < 0.002) {
-          hoverAnimT = hoverAnimTarget;
-          hoverAnimLastTs = 0;
-          hoverAnimRaf = 0;
-          requestGraphRedraw(graphInstance);
-          return;
-        }
-        hoverAnimRaf = requestAnimationFrame(step);
-      };
-      hoverAnimRaf = requestAnimationFrame(step);
-    };
-
-    const getNodeBaseColor = (n) => {
-      if (!n) return '#ffffff';
-      if (n.type === 'keyword') {
-        return '#f1f0ec';
-      }
-      return authorColors.get(n.id) || 'rgb(128, 128, 128)';
-    };
-
-    const getLinkEndpointId = (endpoint) => (typeof endpoint === 'object' ? endpoint.id : endpoint);
-    const isLinkConnectedToFocus = (link) => {
-      const focusId = getFocusNodeId();
-      if (!focusId || !link) return false;
-      const s = getLinkEndpointId(link.source);
-      const t = getLinkEndpointId(link.target);
-      return s === focusId || t === focusId;
-    };
-
-    const isConnectedToHovered = (node) => {
-      const focusId = getFocusNodeId();
-      if (!focusId) return true;
-      if (!node) return false;
-      const id = node.id;
-      if (id === focusId) return true;
-      return adjacency.get(focusId)?.has(id) || false;
-    };
-
-    const applyLockedFocus = (nodeId) => {
-      lockedNodeId = nodeId || null;
-      updateBackButtonVisibility();
-      g.nodeColor(g.nodeColor());
-      g.linkColor(g.linkColor());
-      requestGraphRedraw(g);
-    };
-
-    // Separate author and keyword nodes for sizing
-    const authorNodes = data.nodes.filter(n => n.type === 'author');
-    const keywordNodes = data.nodes.filter(n => n.type === 'keyword');
-    
-    const getPaperCount = node => Math.max(1, Number(node.paper_count ?? node.val) || 1);
-    const maxAuthorPapers = Math.max(...authorNodes.map(getPaperCount), 1);
-    
-    // Top authors (limit 6 like before)
-    const topSet = new Set([...authorNodes].sort((a,b)=> getPaperCount(b)-getPaperCount(a)).slice(0,6).map(n=>n.id));
-
-    // The most prolific author keeps the larger star treatment.
-    const largestAuthor = authorNodes.find(n => getPaperCount(n) === maxAuthorPapers);
-
-    const graphVocabularyHash = data.meta?.topic_vocabulary_hash;
-    const similarityVocabularyHash = keywordSimData?.vocabulary_hash;
-    const similarityVocabularyMatches = !graphVocabularyHash
-      || !similarityVocabularyHash
-      || graphVocabularyHash === similarityVocabularyHash;
-    if (!similarityVocabularyMatches) {
-      console.warn(
-        'Collaboration PCA is using the covered subset of stale keyword similarities.'
-      );
-    }
-
+    const topAuthors = new Set([...authorNodes].sort((a, b) => paperCount(b) - paperCount(a)).slice(0, 6).map(node => node.id));
+    const topTopics = new Set([...keywordNodes].sort((a, b) => paperCount(b) - paperCount(a)).slice(0, 4).map(node => node.id));
     const authorColors = createPcaAuthorColors(
-      authorNodes,
-      keywordNodes,
-      data.links,
-      keywordSimData,
-      COLLABO_RESEARCH_REFERENCE_AUTHOR_ID
+      authorNodes, keywordNodes, data.links, keywordSimData, COLLABO_RESEARCH_REFERENCE_AUTHOR_ID
     );
-    const pcaRgbById = authorColors.meta?.rgbById || new Map();
-    // Link blending uses the global base PCA hue. Feeding the white reference
-    // into screen blending would turn every professor spoke white.
-    const additiveLinkRgbById = authorColors.meta?.baseRgbById || pcaRgbById;
-    const getAdditiveLinkColor = link => {
-      const sourceRgb = additiveLinkRgbById.get(getLinkEndpointId(link.source));
-      const targetRgb = additiveLinkRgbById.get(getLinkEndpointId(link.target));
-      const endpoints = [sourceRgb, targetRgb].filter(Boolean);
-      if (!endpoints.length) return 'rgb(185, 214, 240)';
-      // Screen blending models additive light: combined channels move toward 255.
-      const mixed = [0, 1, 2].map(channel => Math.round(
-        255 * (1 - endpoints.reduce(
-          (remaining, rgb) => remaining * (1 - rgb[channel] / 255),
-          1
-        ))
-      ));
-      return `rgb(${mixed[0]}, ${mixed[1]}, ${mixed[2]})`;
+    const palette = ['#93daca', '#abafea', '#e1acd5', '#8dc5e8', '#c6c69a', '#bba0e1'];
+    const hashId = id => [...id].reduce((hash, char) => (Math.imul(hash, 31) + char.codePointAt(0)) >>> 0, 0);
+    // Seed a broad map from research profiles. Weak anchors preserve its shape
+    // while the paper links relax in 3D, so a prolific author cannot pull every
+    // paper into one dense ball at the center.
+    const axes = ['x', 'y', 'z'];
+    const spans = [500, 310, 180];
+    const orderedScores = axes.map((_, axis) => authorNodes.map(node => node.pcaScores?.[axis] || 0).sort((a, b) => a - b));
+    const anchors = new Map();
+    const jitter = (id, axis, spread) => ((hashId(`${axis}:${id}`) % 1009) / 1008 - 0.5) * spread;
+    authorNodes.forEach(node => {
+      const anchor = {};
+      axes.forEach((axis, index) => {
+        const score = node.pcaScores?.[index] || 0;
+        const rank = orderedScores[index].filter(value => value < score).length / Math.max(1, authorNodes.length - 1);
+        anchor[axis] = (rank * 2 - 1) * spans[index] + jitter(node.id, axis, 70);
+      });
+      anchors.set(node.id, anchor);
+    });
+    const placeAmongAuthors = (node, contributors) => {
+      const totalWeight = contributors.reduce((sum, author) => sum + 1 / Math.sqrt(paperCount(author)), 0) || 1;
+      const anchor = {};
+      axes.forEach(axis => {
+        anchor[axis] = contributors.reduce((sum, author) => sum + anchors.get(author.id)[axis] / Math.sqrt(paperCount(author)), 0) / totalWeight + jitter(node.id, axis, 125);
+      });
+      anchors.set(node.id, anchor);
     };
-    const topicLinkDash = [2, 3];
-    const getAuthorVisualValue = node => {
-      const paperCount = getPaperCount(node);
-      // Avoid compressing the paper-count signal through two square roots.
-      // Small authors retain a visible floor while prolific authors separate
-      // much more clearly in both body radius and stellar rays.
-      const scaledValue = 0.2 + 0.2 * Math.pow(paperCount, 0.72);
-      return node.id === largestAuthor?.id
-        ? scaledValue * 1.6
-        : scaledValue;
+    data.nodes.filter(node => node.type === 'paper').forEach(node => placeAmongAuthors(node, node.authors.map(id => nodesById.get(id)).filter(Boolean)));
+    keywordNodes.forEach(node => placeAmongAuthors(node, authorNodes.filter(author => author.topic_profile?.[node.name])));
+    data.nodes.forEach(node => Object.assign(node, anchors.get(node.id)));
+    const nodeColor = node => {
+      if (node.type === 'paper') return '#a3abb5';
+      if (node.type === 'keyword') return palette[hashId(node.id) % palette.length];
+      const color = new THREE.Color(authorColors.get(node.id) || '#8fbbe8');
+      const hsl = color.getHSL({});
+      // Keep research-derived hues legible; the white reference author also
+      // receives a tint so white dots remain exclusive to papers.
+      return color.setHSL(hsl.s < 0.08 ? 0.58 : hsl.h, Math.max(0.48, hsl.s), Math.max(0.5, Math.min(0.72, hsl.l))).getStyle();
     };
 
-    const g = ForceGraph()(container)
-      .graphData(data)
+    // Retain aggregate relationships for focus, while drawing only real
+    // paper authorship and paper-topic edges in the constellation.
+    const adjacency = new Map(data.nodes.map(node => [node.id, new Set()]));
+    data.links.forEach(link => {
+      const source = endpointId(link.source);
+      const target = endpointId(link.target);
+      adjacency.get(source)?.add(target);
+      adjacency.get(target)?.add(source);
+    });
+    const graphData = {
+      nodes: data.nodes,
+      links: data.links.filter(link => ['paper_author', 'paper_keyword'].includes(link.type))
+    };
+    const searchInput = document.getElementById('collabo-search');
+    const status = document.getElementById('collabo-status');
+    const layerButtons = [...document.querySelectorAll('[data-collabo-layer]')];
+    const visibleTypes = new Set(['paper', 'author', 'keyword']);
+    const nodeObjects = new Map();
+    const textureCache = new Set();
+    let hoveredId = null;
+    let selectedId = null;
+    let draggedId = null;
+    let searchMatches = null;
+    let focusIds = null;
+    let viewportInteracted = false;
+    let destroyed = false;
+    let fitTimer = 0;
+    let cameraMoving = false;
+    let rotationResumeTimer = 0;
+    const focusId = () => draggedId || hoveredId || selectedId;
+    const isActive = node => !focusIds || focusIds.has(node.id);
+    const isVisible = node => visibleTypes.has(node.type);
+    const isLinkVisible = link => isVisible(nodesById.get(endpointId(link.source))) && isVisible(nodesById.get(endpointId(link.target)));
+    const linkColor = link => {
+      const source = nodesById.get(endpointId(link.source));
+      const target = nodesById.get(endpointId(link.target));
+      const color = new THREE.Color(nodeColor(target));
+      const highlighted = focusIds && isActive(source) && isActive(target);
+      const alpha = highlighted ? 0.12 : focusIds ? 0.008 : link.type === 'paper_author' ? 0.018 : 0.009;
+      return `rgba(${Math.round(color.r * 255)},${Math.round(color.g * 255)},${Math.round(color.b * 255)},${alpha})`;
+    };
+
+    const glowCanvas = document.createElement('canvas');
+    glowCanvas.width = glowCanvas.height = 64;
+    const glowContext = glowCanvas.getContext('2d');
+    const glow = glowContext.createRadialGradient(32, 32, 0, 32, 32, 32);
+    glow.addColorStop(0, 'rgba(255,255,255,0.55)');
+    glow.addColorStop(0.3, 'rgba(255,255,255,0.15)');
+    glow.addColorStop(1, 'rgba(255,255,255,0)');
+    glowContext.fillStyle = glow;
+    glowContext.fillRect(0, 0, 64, 64);
+    const glowTexture = new THREE.CanvasTexture(glowCanvas);
+    textureCache.add(glowTexture);
+
+    const dotGeometry = new THREE.SphereGeometry(1, 28, 20);
+    const crystalGeometry = new THREE.OctahedronGeometry(1);
+    const orbitGeometry = new THREE.TorusGeometry(1, 0.035, 5, 40);
+    const addPart = (object, part, opacity = 1) => {
+      part.userData.baseOpacity = opacity;
+      part.material.opacity = opacity;
+      object.add(part);
+      return part;
+    };
+    const sizeLabel = label => {
+      const { width, height } = label.material.map.image;
+      const fit = Math.min(1, Math.max(80, g.width() - 32) / (width / 2));
+      const fontScale = g.width() < 576 ? 0.7 : 1;
+      const screenHeight = height / 2 * fit * fontScale;
+      const scale = screenHeight * 2 * Math.tan(g.camera().fov * Math.PI / 360) / g.height();
+      const parentScale = label.parent?.scale.x || 1;
+      label.scale.set(scale * width / height / parentScale, scale / parentScale, 1);
+    };
+    const addLabel = (object, node, radius) => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      const font = '500 40px Oswald, sans-serif';
+      ctx.font = font;
+      const maxWidth = Math.max(220, Math.min(1100, (container.clientWidth - 48) * 2));
+      const text = node.name.length > 68 ? `${node.name.slice(0, 65)}…` : node.name;
+      const lines = [''];
+      for (const word of text.split(/\s+/)) {
+        const index = lines.length - 1;
+        const candidate = lines[index] ? `${lines[index]} ${word}` : word;
+        if (lines[index] && ctx.measureText(candidate).width > maxWidth) lines.push(word);
+        else lines[index] = candidate;
+      }
+      canvas.width = Math.ceil(Math.min(maxWidth, Math.max(...lines.map(line => ctx.measureText(line).width)))) + 24;
+      canvas.height = lines.length * 50 + 14;
+      ctx.font = font;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.strokeStyle = 'rgba(8,12,20,0.9)';
+      ctx.lineWidth = 4;
+      ctx.fillStyle = node.type === 'paper' ? '#c5ccd4' : nodeColor(node);
+      lines.forEach((line, index) => {
+        ctx.strokeText(line, canvas.width / 2, 32 + index * 50, maxWidth);
+        ctx.fillText(line, canvas.width / 2, 32 + index * 50, maxWidth);
+      });
+      const texture = new THREE.CanvasTexture(canvas);
+      textureCache.add(texture);
+      const label = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false, depthTest: false, sizeAttenuation: false }));
+      label.renderOrder = 2;
+      sizeLabel(label);
+      label.position.y = radius + 14;
+      label.userData.isLabel = true;
+      // Labels do not intercept pointer picking intended for nearby dots.
+      label.raycast = () => {};
+      addPart(object, label, 0.9);
+      object.userData.label = label;
+      return label;
+    };
+    const defaultLabel = node => topAuthors.has(node.id) || topTopics.has(node.id);
+    const makeNode = node => {
+      const object = new THREE.Group();
+      const color = nodeColor(node);
+      let radius;
+      if (node.type === 'paper') {
+        // Each dot represents one paper; connected authors and topics carry
+        // the paper-count signal through their larger, varying sizes.
+        radius = 2.4;
+        const dot = new THREE.Mesh(dotGeometry, new THREE.MeshBasicMaterial({ color, transparent: true }));
+        dot.scale.setScalar(radius);
+        addPart(object, dot, 0.78);
+      } else if (node.type === 'author') {
+        radius = relatedPaperRadius(node, 4, 26, maxAuthorPapers);
+        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture, color, transparent: true, depthWrite: false }));
+        halo.scale.setScalar(radius * 3.8);
+        halo.raycast = () => {};
+        addPart(object, halo, 0.28);
+        const circle = new THREE.Mesh(dotGeometry, new THREE.MeshBasicMaterial({ color, transparent: true }));
+        circle.scale.setScalar(radius);
+        addPart(object, circle, 0.95);
+      } else {
+        radius = relatedPaperRadius(node, 2.5, 7.5, maxTopicPapers);
+        const crystal = new THREE.Mesh(crystalGeometry, new THREE.MeshPhongMaterial({ color, emissive: color, emissiveIntensity: 0.18, shininess: 80, transparent: true, flatShading: true }));
+        crystal.scale.set(radius * 0.7, radius * 1.25, radius * 0.7);
+        addPart(object, crystal, 0.88);
+        const orbit = new THREE.Mesh(orbitGeometry, new THREE.MeshBasicMaterial({ color, transparent: true, depthWrite: false }));
+        orbit.scale.setScalar(radius * 1.7);
+        orbit.rotation.set(0.9, 0.35, (hashId(node.id) % 180) * Math.PI / 180);
+        addPart(object, orbit, 0.65);
+      }
+      object.userData.radius = radius;
+      if (defaultLabel(node)) addLabel(object, node, radius);
+      nodeObjects.set(node.id, object);
+      return object;
+    };
+    const tooltip = node => {
+      const name = htmlEscape(node.name);
+      const color = nodeColor(node);
+      const kind = node.type === 'paper' ? '● PAPER' : node.type === 'author' ? '● AUTHOR' : '◇ TOPIC';
+      let detail = '';
+      let photo = '';
+      if (node.type === 'paper') {
+        detail = `<div class="collabo-tooltip-meta">${htmlEscape([node.year, node.venue].filter(Boolean).join(' · '))}</div><div class="collabo-tooltip-meta">${node.authors.map(htmlEscape).join(' · ')}</div>`;
+      } else if (node.type === 'author') {
+        const src = getNodePhoto(node.name);
+        if (src) photo = `<img class="collabo-node-photo-img" src="${htmlEscape(src)}" alt="${name}" loading="lazy">`;
+        detail = `<div class="collabo-tooltip-meta">${paperCount(node)} papers · ${node.first_author_count || 0} lead · ${node.coauthor_count || 0} coauthors</div>`;
+      } else {
+        detail = `<div class="collabo-tooltip-meta">${paperCount(node)} papers · ${node.author_count || 0} researchers</div>`;
+      }
+      const topics = node.type === 'paper' ? node.keywords : (node.top_keywords || []).map(topic => topic.name);
+      const chips = (topics || []).slice(0, 4).map(topic => `<span class="collabo-topic-chip">${htmlEscape(topic)}</span>`).join('');
+      return `<div class="collabo-node-tooltip">${photo}<div class="collabo-tooltip-theme" style="color:${color} !important">${kind}</div><strong>${name}</strong>${detail}${chips ? `<div class="collabo-tooltip-topics">${chips}</div>` : ''}</div>`;
+    };
+
+    const g = new ForceGraph3D(container, {
+      controlType: 'orbit', rendererConfig: { antialias: true, alpha: true }
+    })
+      .width(container.clientWidth || 800)
+      .height(computeHeight())
+      .numDimensions(3)
       .backgroundColor('rgba(0,0,0,0)')
-      // The galaxy lives in onRenderFramePre, so rendering must continue after
-      // the force engine cools down or the background stars disappear.
-      .autoPauseRedraw(false)
-      .onRenderFramePre(ctx => {
-        galaxyPainter.draw(ctx, performance.now());
-      })
+      .showNavInfo(false)
       .nodeId('id')
-      .nodeLabel(n => {
-        const displayName = n.name || n.id.replace(/^kw:/, '');
-        const escapedName = htmlEscape(displayName);
-        
-        if (n.type === 'keyword') {
-          const paperCount = Number(n.paper_count ?? n.val) || 0;
-          const authorCount = Number(n.author_count) || 0;
-          return `<div class="collabo-node-tooltip"><div style="color:#f1f0ec;font-size:12px;">◇ KEYWORD</div><div><strong>${escapedName}</strong></div><div class="collabo-tooltip-meta">${paperCount} papers${authorCount ? ` · ${authorCount} researchers` : ''}</div></div>`;
-        }
-        
-        const photo = getNodePhoto(n.name);
-        const photoMarkup = photo ? `<img class="collabo-node-photo-img" src="${photo}" alt="${escapedName}" loading="lazy"/>` : '';
-        const authorColor = getNodeBaseColor(n);
-        const pcaRgb = pcaRgbById.get(n.id) || [128, 128, 128];
-        const isResearchReference = authorColors.meta?.referenceApplied
-          && n.id === authorColors.meta.referenceAuthorId;
-        const researchColorLabel = isResearchReference
-          ? `Research Reference · RGB(${pcaRgb.join(', ')})`
-          : `Research Color · RGB(${pcaRgb.join(', ')})`;
-        const topicMarkup = (n.top_keywords || [])
-          .slice(0, 3)
-          .map(topic => `<span class="collabo-topic-chip">${htmlEscape(topic.name)}</span>`)
-          .join('');
-        const papers = getPaperCount(n);
-        const leadPapers = Number(n.first_author_count) || 0;
-        const collaborators = Number(n.coauthor_count) || 0;
-        const activity = n.active_from
-          ? (n.active_to && n.active_to !== n.active_from ? `${n.active_from}–${n.active_to}` : `${n.active_from}`)
-          : '';
-        return `<div class="collabo-node-tooltip">${photoMarkup}<div style="color:${authorColor} !important;"><strong style="color:${authorColor} !important;">${escapedName}</strong></div><div class="collabo-tooltip-theme" style="color:${authorColor} !important;">${researchColorLabel}</div>${topicMarkup ? `<div class="collabo-tooltip-topics">${topicMarkup}</div>` : ''}<div class="collabo-tooltip-meta">${papers} papers · ${leadPapers} lead · ${collaborators} coauthors${activity ? ` · ${activity}` : ''}</div></div>`;
-      })
-      .nodeVal(n => {
-        if (n.type === 'keyword') {
-          return 0.1 + Math.sqrt(n.paper_count || n.val || 1) * 0.15;
-        }
-        return getAuthorVisualValue(n);
-      })
-      .linkWidth(l => l.type === 'coauthor'
-        ? 0.35 + 0.2 * Math.sqrt(l.value || 1)
-        : 0.2 + 0.1 * Math.sqrt(l.paper_count || l.value || 1))
-      .linkLineDash(l => l.type === 'author_keyword' ? topicLinkDash : null)
-      .linkColor(l => {
-        // Brighten edges connected to the focused node (hover or drag)
-        if (l && l.__highlight) return 'rgba(255,255,255,0.55)';
-        const focusId = getFocusNodeId();
-        const isCoauthor = l.type === 'coauthor';
-        if (!focusId) {
-          if (!isCoauthor) return 'rgba(255,255,255,0.035)';
-          return fadeColor(getAdditiveLinkColor(l), 0.1);
-        }
-        if (isLinkConnectedToFocus(l)) {
-          if (!isCoauthor) return 'rgba(255,255,255,0.25)';
-          return fadeColor(getAdditiveLinkColor(l), 0.42);
-        }
-        return isCoauthor
-          ? 'rgba(185,214,240,0.014)'
-          : 'rgba(255,255,255,0.008)';
-      })
-      .nodeColor(n => {
-        const isConnected = isConnectedToHovered(n);
-        const base = getNodeBaseColor(n);
-        return isConnected ? base : fadeColor(base, DIM_ALPHA);
-      })
-      // Keep the PCA-colored author body, then add a lightweight stellar
-      // core. Keywords remain a separate diamond-shaped visual language.
-      .nodeCanvasObjectMode(node => node.type === 'keyword' ? 'replace' : 'after')
-      .nodeCanvasObject((node, ctx, globalScale) => {
-        // Without the old cluster layout, d3 assigns initial coordinates on its
-        // first simulation tick. Skip the pre-tick paint instead of passing
-        // undefined coordinates into Canvas gradients and stopping the RAF loop.
-        if (!Number.isFinite(node.x) || !Number.isFinite(node.y)) return;
-        const renderScale = Number.isFinite(globalScale) && globalScale > 0
-          ? globalScale
-          : 1;
-        const isConnected = isConnectedToHovered(node);
-        const baseColor = getNodeBaseColor(node);
-
-        if (node.type === 'keyword') {
-          const keywordSize = 2.2 + Math.sqrt(node.paper_count || node.val || 1) * 0.34;
-          ctx.save();
-          ctx.translate(node.x, node.y);
-          ctx.rotate(Math.PI / 4);
-          ctx.fillStyle = isConnected ? baseColor : fadeColor(baseColor, DIM_ALPHA);
-          ctx.fillRect(-keywordSize / 2, -keywordSize / 2, keywordSize, keywordSize);
-          ctx.restore();
-
-          return;
-        }
-
-        const nodeRgb = pcaRgbById.get(node.id) || [128, 128, 128];
-        const luminousColor = `rgb(${nodeRgb.map(channel => Math.round(
-          channel + (255 - channel) * 0.22
-        )).join(', ')})`;
-        const visualRadius = Math.sqrt(getAuthorVisualValue(node)) * 4;
-        const isTop = topSet.has(node.id);
-        const isHub = node.id === largestAuthor?.id;
-        const isHovered = hoveredNodeId === node.id;
-        const brightness = isConnected ? 1 : DIM_ALPHA;
-        const hoverBoost = isHovered ? 1 + 0.24 * hoverAnimT : 1;
-
-        // Bloom is intentionally limited to major/hovered stars. The galaxy
-        // already has hundreds of gradients, so this keeps animation smooth.
-        if (isTop || isHub || isHovered) {
-          const glowRadius = visualRadius * (isHub ? 2.7 : 2.15) * hoverBoost;
-          const glow = ctx.createRadialGradient(
-            node.x,
-            node.y,
-            visualRadius * 0.72,
-            node.x,
-            node.y,
-            glowRadius
-          );
-          glow.addColorStop(0, fadeColor(baseColor, 0));
-          glow.addColorStop(0.22, fadeColor(baseColor, 0.2 * brightness));
-          glow.addColorStop(0.58, fadeColor(baseColor, 0.08 * brightness));
-          glow.addColorStop(1, fadeColor(baseColor, 0));
-          ctx.save();
-          ctx.globalCompositeOperation = 'lighter';
-          ctx.fillStyle = glow;
-          ctx.beginPath();
-          ctx.arc(node.x, node.y, glowRadius, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
-
-        // Keep every researcher visibly star-shaped even after zoom-to-fit.
-        // Major authors retain longer rays, while ordinary authors get a
-        // screen-space minimum so their star does not collapse into a dark dot.
-        const isMajorStar = isTop || isHub || isHovered;
-        const flarePixels = isHub ? 10 : isTop ? 5.5 : isHovered ? 3 : 1.4;
-        const flareLength = (visualRadius + flarePixels / renderScale) * hoverBoost;
-        const horizontalFlareLength = flareLength * (isMajorStar ? 0.72 : 0.58);
-        ctx.save();
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.strokeStyle = fadeColor(
-          luminousColor,
-          (isHub ? 0.58 : isMajorStar ? 0.4 : 0.28) * brightness
-        );
-        ctx.lineWidth = (isMajorStar ? 0.62 : 0.5) / renderScale;
-        ctx.lineCap = 'round';
-        ctx.beginPath();
-        ctx.moveTo(node.x, node.y - flareLength);
-        ctx.lineTo(node.x, node.y + flareLength);
-        ctx.moveTo(node.x - horizontalFlareLength, node.y);
-        ctx.lineTo(node.x + horizontalFlareLength, node.y);
-        ctx.stroke();
-        ctx.restore();
-
-        // A crisp PCA-colored pinpoint keeps the stellar shape without laying
-        // a white center over darker purple/blue author colors.
-        const coreRadius = Math.max(
-          0.72 / renderScale,
-          Math.min(visualRadius * 0.28, 1.15 / renderScale)
-        );
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, coreRadius, 0, Math.PI * 2);
-        ctx.fillStyle = fadeColor(luminousColor, 0.92 * brightness);
-        ctx.fill();
-        ctx.restore();
-
-        // Author names are visible before hover. Keep the overview readable by
-        // showing major authors first, then progressively reveal the rest as
-        // the user zooms in. Keyword and PCA labels remain hidden.
-        const paperCount = getPaperCount(node);
-        const shouldShowAuthorLabel = isTop
-          || isHovered
-          || (paperCount >= 10 && renderScale >= 0.75)
-          || (paperCount >= 4 && renderScale >= 1.15)
-          || renderScale >= 2;
-        if (!shouldShowAuthorLabel) return;
-
-        const displayName = node.name || node.id;
-        const labelPixels = isHub ? 13 : isTop ? 11.5 : 10;
-        const fontSize = labelPixels / renderScale;
-        const labelY = node.y - flareLength - 2.5 / renderScale;
-        ctx.save();
-        ctx.font = `${isTop ? '600' : '400'} ${fontSize}px Oswald, sans-serif`;
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'bottom';
-        ctx.lineWidth = 2.4 / renderScale;
-        ctx.strokeStyle = isConnected
-          ? 'rgba(2,6,17,0.9)'
-          : 'rgba(2,6,17,0.2)';
-        ctx.fillStyle = isConnected
-          ? luminousColor
-          : fadeColor(luminousColor, DIM_ALPHA);
-        ctx.strokeText(displayName, node.x, labelY);
-        ctx.fillText(displayName, node.x, labelY);
-        ctx.restore();
-
+      .nodeLabel(tooltip)
+      .nodeThreeObject(makeNode)
+      .nodeVisibility(isVisible)
+      .linkVisibility(isLinkVisible)
+      .linkWidth(0)
+      .linkOpacity(1)
+      .linkColor(linkColor)
+      .warmupTicks(100)
+      .cooldownTicks(160)
+      .d3AlphaDecay(0.025)
+      .onNodeHover(node => {
+        hoveredId = node?.id || null;
+        refreshFocus();
+        container.style.cursor = node ? 'pointer' : 'grab';
       })
       .onNodeClick(node => {
-        // Center on clicked node
-        g.centerAt(node.x, node.y, 1000);
-        g.zoom(2, 1000);
-        
-        // For keywords, search by the keyword name; for authors, search by first name
-        if (node.type === 'keyword') {
-          const keywordName = node.name || node.id.replace(/^kw:/, '');
-          setBibSearchValue(keywordName);
-        } else {
-          setBibSearchValue(extractFirstName(node.id));
-        }
-        flashLinks(node, g);
+        viewportInteracted = true;
+        selectedId = node.id;
+        refreshFocus();
+        const target = { x: node.x || 0, y: node.y || 0, z: node.z || 0 };
+        const direction = new THREE.Vector3().copy(g.cameraPosition()).sub(new THREE.Vector3(target.x, target.y, target.z));
+        if (direction.lengthSq() < 0.01) direction.set(0, 0, 1);
+        direction.normalize().multiplyScalar(180);
+        pauseRotationForCamera(800);
+        g.cameraPosition({ x: target.x + direction.x, y: target.y + direction.y, z: target.z + direction.z }, target, 800);
+        setBibSearchValue(node.type === 'author' ? extractFirstName(node.id) : node.name);
       })
-      .onNodeHover(node => {
-        const prevId = hoveredNodeId;
-        const nextId = node ? node.id : null;
-        if (hoveredNodeId !== nextId) {
-          hoveredNodeId = nextId;
-          // Restart hover grow when switching nodes
-          if (nextId && nextId !== prevId) hoverAnimT = 0;
-          hoverAnimTarget = nextId ? 1 : 0;
-          startHoverAnimation(g);
-          // Re-evaluate colors
-          g.nodeColor(g.nodeColor());
-          g.linkColor(g.linkColor());
-        }
-        container.style.cursor = node ? 'pointer':'default';
+      .onBackgroundClick(() => {
+        selectedId = null;
+        hoveredId = null;
+        refreshFocus();
       })
-      .onNodeDrag(node => {
-        // While dragging, keep focus pinned so non-neighbors stay dim
-        const nextId = node ? node.id : null;
-        if (pinnedNodeId !== nextId) {
-          pinnedNodeId = nextId;
-          g.nodeColor(g.nodeColor());
-          g.linkColor(g.linkColor());
-        }
-      })
-      .onNodeDragEnd(node => {
-        // Clear pin after drag so dimming doesn't stick
-        if (pinnedNodeId !== null) {
-          pinnedNodeId = null;
-          g.nodeColor(g.nodeColor());
-          g.linkColor(g.linkColor());
-        }
-      })
-      .enableZoomInteraction(true)
-      .enablePanInteraction(true)
-      .minZoom(0.3)
-      .maxZoom(8);
+      .onNodeDrag(node => { draggedId = node.id; refreshFocus(); })
+      .onNodeDragEnd(() => { draggedId = null; refreshFocus(); })
+      .enableNavigationControls(true);
 
-    if (typeof g.d3Force === 'function') {
-      const graphLinkForce = g.d3Force('link');
-      if (graphLinkForce?.distance && graphLinkForce?.strength) {
-        graphLinkForce
-          .distance(link => link.type === 'author_keyword' ? 27 : 48)
-          .strength(link => link.type === 'author_keyword' ? 0.026 : 0.035);
-      }
-      if (typeof g.d3ReheatSimulation === 'function') g.d3ReheatSimulation();
-    }
-
-    const onDoubleClick = () => {
-      if (!hoveredNodeId) return;
-      applyLockedFocus(hoveredNodeId);
+    g.d3Force('charge').strength(-18);
+    g.d3Force('link')
+      .distance(link => link.type === 'paper_author' ? 80 : 110)
+      .strength(link => link.type === 'paper_author' ? 0.012 : 0.007);
+    g.d3Force('research-position', alpha => {
+      data.nodes.forEach(node => axes.forEach(axis => {
+        node[`v${axis}`] += (anchors.get(node.id)[axis] - node[axis]) * alpha * 0.055;
+      }));
+    });
+    // Configure forces before providing data; reheating before layout creation
+    // causes an undefined simulation error in 3d-force-graph.
+    g.graphData(graphData);
+    const controls = g.controls();
+    controls.minDistance = 30;
+    controls.maxDistance = 3000;
+    controls.autoRotateSpeed = 0.25;
+    const syncAutoRotation = () => {
+      controls.autoRotate = !destroyed && !document.hidden && !cameraMoving && !hoveredId && !draggedId;
     };
+    function pauseRotationForCamera(duration) {
+      cameraMoving = true;
+      clearTimeout(rotationResumeTimer);
+      syncAutoRotation();
+      rotationResumeTimer = window.setTimeout(() => {
+        cameraMoving = false;
+        syncAutoRotation();
+      }, duration);
+    }
+    syncAutoRotation();
+    document.addEventListener('visibilitychange', syncAutoRotation);
 
-    container.addEventListener('dblclick', onDoubleClick);
-    if (backButton) {
-      backButton.addEventListener('click', () => {
-        hoveredNodeId = null;
-        pinnedNodeId = null;
-        hoverAnimTarget = 0;
-        applyLockedFocus(null);
-        startHoverAnimation(g);
-        container.style.cursor = 'default';
+    function refreshFocus() {
+      if (destroyed) return;
+      syncAutoRotation();
+      const id = focusId();
+      focusIds = id ? new Set([id, ...(adjacency.get(id) || [])]) : searchMatches;
+      nodeObjects.forEach((object, nodeId) => {
+        const node = nodesById.get(nodeId);
+        const active = isActive(node);
+        const emphasized = nodeId === id || (!id && searchMatches?.has(nodeId));
+        const showLabel = nodeId === id || (!focusIds && defaultLabel(node)) || (!id && searchMatches?.size <= 8 && searchMatches.has(nodeId));
+        if (showLabel && !object.userData.label) addLabel(object, node, object.userData.radius);
+        object.children.forEach(child => {
+          child.material.opacity = child.userData.baseOpacity * (active ? 1 : 0.09);
+          if (child.userData.isLabel) child.visible = Boolean(showLabel);
+        });
+        object.scale.setScalar(emphasized ? 1.25 : 1);
+        if (object.userData.label) sizeLabel(object.userData.label);
       });
+      g.linkColor(linkColor);
+      if (id) {
+        const node = nodesById.get(id);
+        status.textContent = `${node.name} · ${node.type === 'paper' ? [node.year, 'Click to find publication'].filter(Boolean).join(' · ') : `${paperCount(node)} papers`}`;
+      } else if (searchMatches) {
+        status.textContent = `${searchMatches.size} matching nodes · Click a node to explore`;
+      } else {
+        status.textContent = 'Size = related papers · Drag to rotate · Scroll to zoom';
+      }
     }
 
-    function flashLinks(node, gInstance) {
-      const related = new Set();
-      gInstance.graphData().links.forEach(l => {
-        if (l.source.id === node.id || l.target.id === node.id) related.add(l);
+    function fitView(duration = 800) {
+      const nodes = data.nodes.filter(node => isVisible(node) && (!searchMatches || searchMatches.has(node.id)));
+      if (!nodes.length) return;
+      const center = {};
+      axes.forEach(axis => {
+        center[axis] = (Math.min(...nodes.map(node => node[axis])) + Math.max(...nodes.map(node => node[axis]))) / 2;
       });
-      related.forEach(l => { l.__highlight = true; });
-      gInstance.linkColor(gInstance.linkColor());
-      setTimeout(() => {
-        related.forEach(l => { l.__highlight = false; });
-        gInstance.linkColor(gInstance.linkColor());
-      }, 1300);
+      const halfFov = Math.tan(g.camera().fov * Math.PI / 360);
+      const aspect = g.width() / g.height();
+      const clearWidth = pageRoot ? viewport.clientWidth : g.width();
+      const clearHeight = pageRoot ? viewport.clientHeight : g.height();
+      const widthFraction = Math.max(0.2, (clearWidth - 80) / g.width());
+      const heightFraction = Math.max(0.2, (clearHeight - 80) / g.height());
+      // Fit actual node positions; billboard label bounds otherwise leave
+      // excessive empty space around the map in the built-in sphere fit.
+      const distance = Math.max(180, ...nodes.map(node => Math.max(
+        (Math.abs(node.x - center.x) + 22) / (halfFov * aspect * widthFraction),
+        (Math.abs(node.y - center.y) + 22) / (halfFov * heightFraction)
+      ) + node.z - center.z));
+      pauseRotationForCamera(duration);
+      g.cameraPosition({ x: center.x, y: center.y, z: center.z + distance }, center, duration);
     }
-
-    // Initial sizing
-    resizeCanvas(g);
-    window.addEventListener('resize', () => resizeCanvas(g));
-
-    // Remove loader
-    const loader = document.getElementById('coauthor-graph-loader');
-    if (loader) loader.remove();
-
-    // Fit once during warmup and again after the force layout settles.
-    // Once the visitor pans, zooms or selects a node, never override their view.
-    let viewportInteracted = false;
-    const markViewportInteraction = () => {
+    const onSearch = () => {
       viewportInteracted = true;
+      selectedId = hoveredId = null;
+      const query = searchInput.value.trim().toLocaleLowerCase();
+      searchMatches = query ? new Set(data.nodes.filter(node => [node.name, ...(node.authors || []), ...(node.keywords || [])].join(' ').toLocaleLowerCase().includes(query)).map(node => node.id)) : null;
+      refreshFocus();
     };
-    container.addEventListener('pointerdown', markViewportInteraction, { passive: true });
-    container.addEventListener('wheel', markViewportInteraction, { passive: true });
-    const autoFitView = () => {
-      if (!viewportInteracted) {
-        // Fit to people so rare shared keywords do not make the researcher map
-        // too small in the viewport.
-        g.zoomToFit(800, 72, node => node.type === 'author');
+    searchInput.addEventListener('input', onSearch);
+    const onSearchKey = event => { if (event.key === 'Enter') fitView(); };
+    searchInput.addEventListener('keydown', onSearchKey);
+    const layerHandlers = new Map();
+    layerButtons.forEach(button => {
+      const type = button.dataset.collaboLayer;
+      document.querySelector(`[data-collabo-count="${type}"]`).textContent = data.nodes.filter(node => node.type === type).length;
+      const handler = () => {
+        if (visibleTypes.has(type)) visibleTypes.delete(type);
+        else visibleTypes.add(type);
+        button.setAttribute('aria-pressed', String(visibleTypes.has(type)));
+        if (focusId() && !isVisible(nodesById.get(focusId()))) selectedId = hoveredId = draggedId = null;
+        g.nodeVisibility(isVisible).linkVisibility(isLinkVisible);
+        refreshFocus();
+      };
+      layerHandlers.set(button, handler);
+      button.addEventListener('click', handler);
+    });
+    const resetView = () => {
+      viewportInteracted = true;
+      selectedId = hoveredId = draggedId = null;
+      searchMatches = null;
+      searchInput.value = '';
+      layerButtons.forEach(button => {
+        visibleTypes.add(button.dataset.collaboLayer);
+        button.setAttribute('aria-pressed', 'true');
+      });
+      g.nodeVisibility(isVisible).linkVisibility(isLinkVisible);
+      refreshFocus();
+      fitView();
+      setBibSearchValue('');
+    };
+    backButton.addEventListener('click', resetView);
+
+    const syncProjection = () => {
+      if (!pageRoot) return;
+      const rect = viewport.getBoundingClientRect();
+      const sceneRect = backdrop.getBoundingClientRect();
+      const width = g.width();
+      const height = g.height();
+      const centerX = rect.left - sceneRect.left + rect.width / 2;
+      const centerY = rect.top - sceneRect.top + rect.height / 2;
+      g.camera().setViewOffset(width, height, width / 2 - centerX, height / 2 - centerY, width, height);
+    };
+    resizeCanvas(g);
+    syncProjection();
+    let resizeFrame = 0;
+    const scheduleViewportUpdate = () => {
+      if (resizeFrame) return;
+      resizeFrame = requestAnimationFrame(() => {
+        resizeFrame = 0;
+        updateSceneLayout();
+        if (g.width() !== container.clientWidth || g.height() !== computeHeight()) {
+          resizeCanvas(g);
+          nodeObjects.forEach(object => { if (object.userData.label) sizeLabel(object.userData.label); });
+        }
+        syncProjection();
+      });
+    };
+    const resizeObserver = new ResizeObserver(scheduleViewportUpdate);
+    resizeObserver.observe(container);
+    if (pageRoot) {
+      resizeObserver.observe(pageRoot);
+      resizeObserver.observe(viewport);
+      resizeObserver.observe(document.body, { box: 'border-box' });
+    }
+    document.fonts?.ready.then(() => { if (!destroyed) scheduleViewportUpdate(); });
+    window.addEventListener('resize', scheduleViewportUpdate, { passive: true });
+    window.visualViewport?.addEventListener('resize', scheduleViewportUpdate, { passive: true });
+    const markInteraction = () => { viewportInteracted = true; };
+    container.addEventListener('pointerdown', markInteraction, { passive: true });
+    container.addEventListener('wheel', markInteraction, { passive: true });
+    const autoFit = () => { if (!viewportInteracted && !destroyed) fitView(); };
+    fitTimer = window.setTimeout(autoFit, 600);
+    g.onEngineStop(autoFit);
+    document.getElementById('coauthor-graph-loader')?.remove();
+
+    window.addEventListener('pagehide', event => {
+      // Browsers may restore this same page and WebGL context from history.
+      if (event.persisted) { g.pauseAnimation(); return; }
+      destroyed = true;
+      clearTimeout(fitTimer);
+      clearTimeout(rotationResumeTimer);
+      document.removeEventListener('visibilitychange', syncAutoRotation);
+      resizeObserver.disconnect();
+      cancelAnimationFrame(resizeFrame);
+      window.removeEventListener('resize', scheduleViewportUpdate);
+      window.visualViewport?.removeEventListener('resize', scheduleViewportUpdate);
+      searchInput.removeEventListener('input', onSearch);
+      searchInput.removeEventListener('keydown', onSearchKey);
+      backButton.removeEventListener('click', resetView);
+      layerHandlers.forEach((handler, button) => button.removeEventListener('click', handler));
+      container.removeEventListener('pointerdown', markInteraction);
+      container.removeEventListener('wheel', markInteraction);
+      g.pauseAnimation();
+      nodeObjects.forEach(object => object.children.forEach(child => child.material.dispose()));
+      [dotGeometry, crystalGeometry, orbitGeometry].forEach(geometry => geometry.dispose());
+      textureCache.forEach(texture => texture.dispose());
+      g.renderer().dispose();
+    });
+    window.addEventListener('pageshow', event => {
+      if (event.persisted && !destroyed) {
+        syncAutoRotation();
+        g.resumeAnimation();
       }
-    };
-    const warmupFitTimerId = window.setTimeout(autoFitView, 1400);
-    const settledFitTimerId = window.setTimeout(autoFitView, 4200);
-    if (typeof g.onEngineStop === 'function') g.onEngineStop(autoFitView);
-
-    window.addEventListener('pagehide', () => {
-      window.clearTimeout(warmupFitTimerId);
-      window.clearTimeout(settledFitTimerId);
-      container.removeEventListener('dblclick', onDoubleClick);
-      container.removeEventListener('pointerdown', markViewportInteraction);
-      container.removeEventListener('wheel', markViewportInteraction);
-      galaxyPainter.destroy();
-    }, { once: true });
-
+    });
   }
 
   Promise.all([
@@ -2183,7 +2051,7 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
     .then(([data, keywordSimData]) => buildGraph(data, keywordSimData))
     .catch(err => {
       const loader = document.getElementById('coauthor-graph-loader');
-      if (loader) loader.textContent = 'Failed to load graph data.';
+      if (loader) loader.textContent = 'Unable to display the collaboration graph. Please reload the page.';
       console.error('Graph load error', err);
     });
 })();

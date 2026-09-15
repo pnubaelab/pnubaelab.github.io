@@ -60,14 +60,18 @@ class CountUp {
     const deltaTime = Math.min((currentTime - this.lastTime) / 1000, 0.1); // Cap delta time
     this.lastTime = currentTime;
 
-    // Spring physics simulation
+    // Integrate long frames in small steps. A single 100ms spring step can
+    // diverge on slower devices while the WebGL background is rendering.
+    const maxStep = Math.min(1 / 120, 1 / this.damping);
+    const steps = Math.max(1, Math.ceil(deltaTime / maxStep));
+    const stepTime = deltaTime / steps;
+    for (let step = 0; step < steps; step++) {
+      const displacement = this.currentValue - this.targetValue;
+      const acceleration = -this.stiffness * displacement - this.damping * this.velocity;
+      this.velocity += acceleration * stepTime;
+      this.currentValue += this.velocity * stepTime;
+    }
     const displacement = this.currentValue - this.targetValue;
-    const springForce = -this.stiffness * displacement;
-    const dampingForce = -this.damping * this.velocity;
-    const acceleration = springForce + dampingForce;
-
-    this.velocity += acceleration * deltaTime;
-    this.currentValue += this.velocity * deltaTime;
 
     this.updateDisplay(this.currentValue);
 
