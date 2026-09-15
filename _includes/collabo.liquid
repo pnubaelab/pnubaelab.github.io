@@ -96,11 +96,11 @@
   }
   .publications-page .collabo-backdrop {
     position: absolute;
-    top: -450px;
+    top: 0;
     left: 0;
     z-index: 0;
     width: 100%;
-    height: calc(100% + 900px);
+    height: 100%;
   }
   .publications-page #coauthor-graph {
     position: relative;
@@ -126,9 +126,11 @@
     pointer-events: none;
     -webkit-backdrop-filter: blur(16px);
     backdrop-filter: blur(16px);
+    /* Keep arithmetic out of this custom property: the production CSS
+       minifier strips required whitespace around calc() additions. */
     --collabo-frost-mask:
-      linear-gradient(to bottom, #000 calc(var(--collabo-clear-top) - 64px), transparent var(--collabo-clear-top), transparent var(--collabo-clear-bottom), #000 calc(var(--collabo-clear-bottom) + 64px)),
-      linear-gradient(to right, #000 calc(var(--collabo-clear-left) - var(--collabo-feather-x)), transparent var(--collabo-clear-left), transparent var(--collabo-clear-right), #000 calc(var(--collabo-clear-right) + var(--collabo-feather-x)));
+      linear-gradient(to bottom, #000 var(--collabo-frost-top), transparent var(--collabo-clear-top), transparent var(--collabo-clear-bottom), #000 var(--collabo-frost-bottom)),
+      linear-gradient(to right, #000 var(--collabo-frost-left), transparent var(--collabo-clear-left), transparent var(--collabo-clear-right), #000 var(--collabo-frost-right));
     -webkit-mask-image: var(--collabo-frost-mask);
     mask-image: var(--collabo-frost-mask);
     -webkit-mask-composite: source-over;
@@ -447,7 +449,11 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
     backdrop.style.setProperty('--collabo-clear-bottom', `${bleed + clearHeight}px`);
     backdrop.style.setProperty('--collabo-clear-left', `${rect.left}px`);
     backdrop.style.setProperty('--collabo-clear-right', `${rect.right}px`);
-    backdrop.style.setProperty('--collabo-feather-x', `${Math.max(1, Math.min(48, rect.left, width - rect.right))}px`);
+    const featherX = Math.max(1, Math.min(48, rect.left, width - rect.right));
+    backdrop.style.setProperty('--collabo-frost-top', `${bleed - 64}px`);
+    backdrop.style.setProperty('--collabo-frost-bottom', `${bleed + clearHeight + 64}px`);
+    backdrop.style.setProperty('--collabo-frost-left', `${rect.left - featherX}px`);
+    backdrop.style.setProperty('--collabo-frost-right', `${rect.right + featherX}px`);
   };
   updateSceneLayout();
 
