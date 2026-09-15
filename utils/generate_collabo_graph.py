@@ -28,6 +28,8 @@ keyword_counter = Counter()
 keyword_authors = defaultdict(set)
 author_keyword_links = defaultdict(int)  # (author, keyword) -> count
 author_keyword_papers = defaultdict(int)
+paper_nodes = []
+paper_id_counts = Counter()
 
 FIRST_AUTHOR_WEIGHT = 3
 OTHER_AUTHOR_WEIGHT = 1
@@ -147,6 +149,23 @@ for entry in bib_database.entries:
 
         # Extract and count keywords
         keywords = extract_keywords(entry)
+        # BibTeX keys can repeat, even for different titles. Keep every record
+        # addressable without merging its authors or topics into another paper.
+        bib_key = entry['ID']
+        paper_id_counts[bib_key] += 1
+        occurrence = paper_id_counts[bib_key]
+        paper_id = f"paper:{bib_key}:{occurrence}"
+        paper_nodes.append({
+            "id": paper_id,
+            "bib_key": bib_key,
+            "name": re.sub(r'\s+', ' ', entry.get('title', bib_key)).strip('{} '),
+            "type": "paper",
+            "value": 1,
+            "year": publication_year,
+            "venue": entry.get('journal') or entry.get('booktitle') or '',
+            "authors": authors,
+            "keywords": keywords,
+        })
         for kw in keywords:
             keyword_counter[kw] += 1
             # Link authors to keywords
@@ -282,9 +301,21 @@ author_kw_links = [
     if kw in filtered_keywords
 ]
 
-# Combine all nodes and links
-nodes = author_nodes + keyword_nodes
-links = coauthor_links + author_kw_links
+# Preserve aggregate links for research colors; the constellation renders the
+# individual paper-to-author and paper-to-topic relationships.
+paper_links = []
+for paper in paper_nodes:
+    paper_links.extend(
+        {"source": paper["id"], "target": author, "value": 1, "type": "paper_author"}
+        for author in paper["authors"]
+    )
+    paper_links.extend(
+        {"source": paper["id"], "target": f"kw:{keyword}", "value": 1, "type": "paper_keyword"}
+        for keyword in paper["keywords"] if keyword in filtered_keywords
+    )
+
+nodes = author_nodes + keyword_nodes + paper_nodes
+links = coauthor_links + author_kw_links + paper_links
 # Hash an explicitly specified bytewise ordering. Python's casefold and
 # JavaScript's toLowerCase are not equivalent for every Unicode character.
 topic_vocabulary = sorted(keyword_counter, key=lambda value: value.encode("utf-8"))
@@ -293,6 +324,7 @@ topic_vocabulary_hash = hashlib.sha256(
 ).hexdigest()[:16]
 
 print(f"  - Authors: {len(author_nodes)}")
+print(f"  - Papers: {len(paper_nodes)}")
 print(f"  - Keywords (appearing >= {MIN_KEYWORD_COUNT} times): {len(keyword_nodes)}")
 print(f"  - Coauthor links: {len(coauthor_links)}")
 print(f"  - Author-Keyword links: {len(author_kw_links)}")
@@ -301,7 +333,7 @@ with open('assets/json/collabo_graph.json', 'w', encoding='utf-8') as f:
     json.dump(
         {
             "meta": {
-                "schema_version": 3,
+                "schema_version": 4,
                 "author_value": "weighted_authorship",
                 "first_author_weight": FIRST_AUTHOR_WEIGHT,
                 "other_author_weight": OTHER_AUTHOR_WEIGHT,

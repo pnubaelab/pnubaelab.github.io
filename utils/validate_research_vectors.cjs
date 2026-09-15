@@ -42,7 +42,40 @@ const graphPath = process.argv[2] || "assets/json/collabo_graph.json";
 const similarityPath = process.argv[3] || "assets/json/keyword_similarity.json";
 const graph = JSON.parse(fs.readFileSync(graphPath, "utf8"));
 const similarity = JSON.parse(fs.readFileSync(similarityPath, "utf8"));
-assert.equal(graph.meta?.schema_version, 3, "unexpected graph schema");
+assert.equal(graph.meta?.schema_version, 4, "unexpected graph schema");
+const nodesById = new Map(graph.nodes.map((node) => [node.id, node]));
+assert.equal(nodesById.size, graph.nodes.length, "duplicate graph node IDs");
+const paperNodes = graph.nodes.filter((node) => node.type === "paper");
+assert.ok(paperNodes.length > 0, "individual papers are missing");
+const paperEdges = new Set();
+graph.links.forEach((link) => {
+  assert.ok(nodesById.has(link.source) && nodesById.has(link.target), "dangling graph link");
+  if (!link.type.startsWith("paper_")) return;
+  assert.equal(nodesById.get(link.source).type, "paper", "paper link has a non-paper source");
+  assert.equal(nodesById.get(link.target).type, link.type === "paper_author" ? "author" : "keyword");
+  const edge = JSON.stringify([link.source, link.target]);
+  assert.ok(!paperEdges.has(edge), "duplicate paper edge");
+  paperEdges.add(edge);
+});
+const paperCountsByAuthor = new Map();
+const paperCountsByTopic = new Map();
+paperNodes.forEach((paper) => {
+  assert.ok(paper.name && paper.bib_key && paper.authors.length, "incomplete paper metadata");
+  paper.authors.forEach((author) => {
+    assert.ok(paperEdges.has(JSON.stringify([paper.id, author])), "missing paper authorship edge");
+    paperCountsByAuthor.set(author, (paperCountsByAuthor.get(author) || 0) + 1);
+  });
+  paper.keywords.forEach((topic) => {
+    const id = `kw:${topic}`;
+    if (!nodesById.has(id)) return;
+    assert.ok(paperEdges.has(JSON.stringify([paper.id, id])), "missing paper topic edge");
+    paperCountsByTopic.set(id, (paperCountsByTopic.get(id) || 0) + 1);
+  });
+});
+graph.nodes.forEach((node) => {
+  if (node.type === "author") assert.equal(paperCountsByAuthor.get(node.id), node.paper_count, "author paper count differs from records");
+  if (node.type === "keyword") assert.equal(paperCountsByTopic.get(node.id), node.paper_count, "topic paper count differs from records");
+});
 assert.equal(similarity.version, 4, "unexpected semantic payload schema");
 assert.equal(similarity.vectorizer?.scheme, "bm25-multiview-v1", "unexpected vectorizer scheme");
 assert.equal(similarity.vectorizer?.lead_alpha, 0.3, "first-author weight drifted");
