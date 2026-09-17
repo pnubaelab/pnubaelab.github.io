@@ -360,6 +360,11 @@ ninja.data = [{
           description: "M.S. Software Engineer at Diverta Inc.",
           section: "People",handler: () => {
               window.location.href = "/people/Ahmad%20Wahid/";
+            },},{id: "people-arif-wibisono",
+          title: 'Arif Wibisono',
+          description: "PhD. Professor at Institut Teknologi Sepuluh Nopember, Department of Information System",
+          section: "People",handler: () => {
+              window.location.href = "/people/ArifWibisono/";
             },},{id: "people-bernardo-nugroho-yahya",
           title: 'Bernardo Nugroho Yahya',
           description: "PhD. Professor at Hankuk Univ of Foreign Studies, Industrial Engineering",
@@ -605,6 +610,11 @@ ninja.data = [{
           description: "M.S Program",
           section: "People",handler: () => {
               window.location.href = "/people/%EC%9C%A4%EC%86%8C%EC%98%81/";
+            },},{id: "people-chaeho-yoon-윤채호",
+          title: 'Chaeho Yoon(윤채호)',
+          description: "Research Intern (Incoming)",
+          section: "People",handler: () => {
+              window.location.href = "/people/%EC%9C%A4%EC%B1%84%ED%98%B8/";
             },},{id: "people-gawon-lee-이가원",
           title: 'Gawon Lee(이가원)',
           description: "M.S. KISTI",
