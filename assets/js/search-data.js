@@ -51,11 +51,11 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-yard-simulator",
+        },{id: "post-tak-39-s-yard-simulator",
         
-          title: "Yard Simulator",
+          title: "Tak&#39;s Yard Simulator",
         
-        description: "자동화 컨테이너 터미널의 물류 흐름을 살펴보는 3D 야드 시뮬레이터",
+        description: "Follow containers, cranes, AGVs, and trucks through an automated terminal in a 3D yard simulator",
         section: "Posts",
         handler: () => {
           
