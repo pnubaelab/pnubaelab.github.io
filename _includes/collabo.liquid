@@ -1751,6 +1751,18 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
       return label;
     };
     const defaultLabel = node => topAuthors.has(node.id) || topTopics.has(node.id);
+    // Reveal more author/topic names as their estimated screen size grows.
+    // Using the camera-to-orbit distance keeps the threshold stable while the
+    // constellation auto-rotates, so labels do not flicker.
+    const zoomLabelMinimumRadius = { author: 8, keyword: 6 };
+    const zoomLabel = (node, object) => {
+      if (node.type === 'paper' || !isVisible(node)) return false;
+      const camera = g.camera();
+      const cameraDistance = Math.max(1, camera.position.distanceTo(controls.target));
+      const projectedRadius = object.userData.radius * g.height()
+        / (2 * Math.tan(camera.fov * Math.PI / 360) * cameraDistance);
+      return projectedRadius >= zoomLabelMinimumRadius[node.type];
+    };
     const makeNode = node => {
       const object = new THREE.Group();
       const color = nodeColor(node);
@@ -1867,6 +1879,22 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
     controls.minDistance = 30;
     controls.maxDistance = 3000;
     controls.autoRotateSpeed = 0.25;
+    let labelRefreshFrame = 0;
+    let lastLabelCameraDistance = g.camera().position.distanceTo(controls.target);
+    let pendingLabelCameraDistance = lastLabelCameraDistance;
+    const scheduleZoomLabelRefresh = () => {
+      const cameraDistance = g.camera().position.distanceTo(controls.target);
+      const minimumChange = Math.max(1, lastLabelCameraDistance * 0.015);
+      if (Math.abs(cameraDistance - lastLabelCameraDistance) < minimumChange) return;
+      pendingLabelCameraDistance = cameraDistance;
+      if (labelRefreshFrame) return;
+      labelRefreshFrame = requestAnimationFrame(() => {
+        labelRefreshFrame = 0;
+        lastLabelCameraDistance = pendingLabelCameraDistance;
+        refreshLabels();
+      });
+    };
+    controls.addEventListener('change', scheduleZoomLabelRefresh);
     const syncAutoRotation = () => {
       controls.autoRotate = !destroyed && !document.hidden && !cameraMoving && !hoveredId && !draggedId;
     };
@@ -1882,6 +1910,24 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
     syncAutoRotation();
     document.addEventListener('visibilitychange', syncAutoRotation);
 
+    function refreshLabels() {
+      if (destroyed) return;
+      const id = focusId();
+      nodeObjects.forEach((object, nodeId) => {
+        const node = nodesById.get(nodeId);
+        const active = isActive(node);
+        const showLabel = nodeId === id
+          || (!focusIds && (defaultLabel(node) || zoomLabel(node, object)))
+          || (!id && searchMatches?.size <= 8 && searchMatches.has(nodeId));
+        if (showLabel && !object.userData.label) addLabel(object, node, object.userData.radius);
+        const label = object.userData.label;
+        if (!label) return;
+        label.material.opacity = label.userData.baseOpacity * (active ? 1 : 0.09);
+        label.visible = Boolean(showLabel);
+        sizeLabel(label);
+      });
+    }
+
     function refreshFocus() {
       if (destroyed) return;
       syncAutoRotation();
@@ -1891,15 +1937,14 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
         const node = nodesById.get(nodeId);
         const active = isActive(node);
         const emphasized = nodeId === id || (!id && searchMatches?.has(nodeId));
-        const showLabel = nodeId === id || (!focusIds && defaultLabel(node)) || (!id && searchMatches?.size <= 8 && searchMatches.has(nodeId));
-        if (showLabel && !object.userData.label) addLabel(object, node, object.userData.radius);
         object.children.forEach(child => {
-          child.material.opacity = child.userData.baseOpacity * (active ? 1 : 0.09);
-          if (child.userData.isLabel) child.visible = Boolean(showLabel);
+          if (!child.userData.isLabel) {
+            child.material.opacity = child.userData.baseOpacity * (active ? 1 : 0.09);
+          }
         });
         object.scale.setScalar(emphasized ? 1.25 : 1);
-        if (object.userData.label) sizeLabel(object.userData.label);
       });
+      refreshLabels();
       g.linkColor(linkColor);
       if (id) {
         const node = nodesById.get(id);
@@ -1994,7 +2039,7 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
         updateSceneLayout();
         if (g.width() !== container.clientWidth || g.height() !== computeHeight()) {
           resizeCanvas(g);
-          nodeObjects.forEach(object => { if (object.userData.label) sizeLabel(object.userData.label); });
+          refreshLabels();
         }
         syncProjection();
       });
@@ -2024,8 +2069,10 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
       clearTimeout(fitTimer);
       clearTimeout(rotationResumeTimer);
       document.removeEventListener('visibilitychange', syncAutoRotation);
+      controls.removeEventListener('change', scheduleZoomLabelRefresh);
       resizeObserver.disconnect();
       cancelAnimationFrame(resizeFrame);
+      cancelAnimationFrame(labelRefreshFrame);
       window.removeEventListener('resize', scheduleViewportUpdate);
       window.visualViewport?.removeEventListener('resize', scheduleViewportUpdate);
       searchInput.removeEventListener('input', onSearch);

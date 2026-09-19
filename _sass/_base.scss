@@ -93,6 +93,28 @@ table {
   }
 }
 
+.post article table:not(.table):not(.table-cv) {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.6rem 0.75rem;
+    border: 1px solid var(--global-divider-color);
+    vertical-align: top;
+  }
+
+  thead th {
+    color: #202123;
+    background-color: var(--global-theme-color);
+
+    * {
+      color: inherit;
+    }
+  }
+}
+
 a,
 table.table a {
   color: var(--global-theme-color);
