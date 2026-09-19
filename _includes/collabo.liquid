@@ -1798,6 +1798,10 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
       nodeObjects.set(node.id, object);
       return object;
     };
+    const formatRgbColor = color => {
+      const channels = color.match(/[\d.]+/g)?.slice(0, 3).map(value => Math.round(Number(value)));
+      return channels?.length === 3 ? `RGB(${channels.join(', ')})` : color;
+    };
     const tooltip = node => {
       const name = htmlEscape(node.name);
       const color = nodeColor(node);
@@ -1809,7 +1813,7 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
       } else if (node.type === 'author') {
         const src = getNodePhoto(node.name);
         if (src) photo = `<img class="collabo-node-photo-img" src="${htmlEscape(src)}" alt="${name}" loading="lazy">`;
-        detail = `<div class="collabo-tooltip-meta">${paperCount(node)} papers · ${node.first_author_count || 0} lead · ${node.coauthor_count || 0} coauthors</div>`;
+        detail = `<div class="collabo-tooltip-meta">${paperCount(node)} papers · ${node.first_author_count || 0} lead · ${node.coauthor_count || 0} coauthors</div><div class="collabo-tooltip-meta">Author color · ${htmlEscape(formatRgbColor(color))}</div>`;
       } else {
         detail = `<div class="collabo-tooltip-meta">${paperCount(node)} papers · ${node.author_count || 0} researchers</div>`;
       }
