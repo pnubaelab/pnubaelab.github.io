@@ -366,6 +366,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-08-25BESTPAPER/";
+            },},{id: "news-paper-accepted-to-ocean-engineering",
+          title: 'Paper Accepted to Ocean Engineering!!!',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-10-07-KikunParkOE/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
@@ -1516,6 +1521,16 @@ ninja.data = [{
           description: "KDS 컨퍼런스&amp;헤커톤, DAEGU, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026KDS%ED%95%99%ED%9A%8C/";
+            },},{id: "photo-2026년-신입생환영회-종민-축하",
+          title: '2026년 신입생환영회 + 종민 축하',
+          description: "대구탕, 장전, busan",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%8B%A0%EC%9E%85%EC%83%9D%ED%99%98%EC%98%81%ED%9A%8C/";
+            },},{id: "photo-커피빵",
+          title: '커피빵',
+          description: "胜负, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%8B%A0%EC%9E%85%EC%83%9D%ED%99%98%EC%98%81%ED%9A%8C%20copy/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
