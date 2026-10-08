@@ -3,6 +3,7 @@ import base64
 import hashlib
 import json
 import math
+import traceback
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -39,11 +40,20 @@ def _cosine_sim_matrix_sentence_transformers(texts: List[str], model_name: str):
         from sentence_transformers import SentenceTransformer  # type: ignore
         import numpy as np  # type: ignore
     except Exception as e:  # pragma: no cover
+        if not (
+            isinstance(e, ModuleNotFoundError)
+            and e.name in {"sentence_transformers", "numpy"}
+        ):
+            raise RuntimeError(
+                "Embedding dependencies are installed but failed to import. "
+                "Check the underlying error below for incompatible packages.\n"
+                f"{traceback.format_exc()}"
+            ) from e
         raise RuntimeError(
             "Missing optional dependency for embedding similarity. "
             "Install with: pip install sentence-transformers numpy\n"
             f"Original import error: {e}"
-        )
+        ) from e
 
     model = SentenceTransformer(model_name)
     embeddings = model.encode(

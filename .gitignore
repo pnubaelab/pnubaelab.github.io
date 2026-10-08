@@ -13,3 +13,4 @@ vendor
 .idea
 *.log
 __pycache__/
+.venv-keywords/
