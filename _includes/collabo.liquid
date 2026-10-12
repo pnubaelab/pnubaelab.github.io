@@ -27,6 +27,17 @@
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+  .collabo-tooltip-name-author {
+    font-size: 11px;
+    font-weight: 400;
+  }
+  .collabo-tooltip-name-keyword {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .collabo-tooltip-name-author-reference {
+    font-size: 14px;
+  }
   .collabo-tooltip-topics {
     display: flex;
     flex-wrap: wrap;
@@ -1711,10 +1722,16 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
       const parentScale = label.parent?.scale.x || 1;
       label.scale.set(scale * width / height / parentScale, scale / parentScale, 1);
     };
+    const isReferenceAuthor = node => node.type === 'author'
+      && node.id.replace(/[,\s]/g, '').toLowerCase() === COLLABO_RESEARCH_REFERENCE_AUTHOR_ID.replace(/[,\s]/g, '').toLowerCase();
     const addLabel = (object, node, radius) => {
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
-      const font = '500 40px Oswald, sans-serif';
+      const fontSize = node.type === 'keyword' || isReferenceAuthor(node) ? 36 : node.type === 'author' ? 24 : 40;
+      const fontWeight = node.type === 'keyword' ? 600 : node.type === 'author' ? 400 : 500;
+      const lineHeight = fontSize * 1.25;
+      const textY = 7 + lineHeight / 2;
+      const font = `${fontWeight} ${fontSize}px Oswald, sans-serif`;
       ctx.font = font;
       const maxWidth = Math.max(220, Math.min(1100, (container.clientWidth - 48) * 2));
       const text = node.name.length > 68 ? `${node.name.slice(0, 65)}…` : node.name;
@@ -1726,7 +1743,7 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
         else lines[index] = candidate;
       }
       canvas.width = Math.ceil(Math.min(maxWidth, Math.max(...lines.map(line => ctx.measureText(line).width)))) + 24;
-      canvas.height = lines.length * 50 + 14;
+      canvas.height = lines.length * lineHeight + 14;
       ctx.font = font;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
@@ -1734,8 +1751,8 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
       ctx.lineWidth = 4;
       ctx.fillStyle = node.type === 'paper' ? '#c5ccd4' : nodeColor(node);
       lines.forEach((line, index) => {
-        ctx.strokeText(line, canvas.width / 2, 32 + index * 50, maxWidth);
-        ctx.fillText(line, canvas.width / 2, 32 + index * 50, maxWidth);
+        ctx.strokeText(line, canvas.width / 2, textY + index * lineHeight, maxWidth);
+        ctx.fillText(line, canvas.width / 2, textY + index * lineHeight, maxWidth);
       });
       const texture = new THREE.CanvasTexture(canvas);
       textureCache.add(texture);
@@ -1784,7 +1801,7 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
         circle.scale.setScalar(radius);
         addPart(object, circle, 0.95);
       } else {
-        radius = relatedPaperRadius(node, 2.5, 7.5, maxTopicPapers);
+        radius = relatedPaperRadius(node, 4, 12, maxTopicPapers);
         const crystal = new THREE.Mesh(crystalGeometry, new THREE.MeshPhongMaterial({ color, emissive: color, emissiveIntensity: 0.18, shininess: 80, transparent: true, flatShading: true }));
         crystal.scale.set(radius * 0.7, radius * 1.25, radius * 0.7);
         addPart(object, crystal, 0.88);
@@ -1819,7 +1836,9 @@ const COLLABO_RESEARCH_REFERENCE_AUTHOR_ID = 'Bae, Hyerim';
       }
       const topics = node.type === 'paper' ? node.keywords : (node.top_keywords || []).map(topic => topic.name);
       const chips = (topics || []).slice(0, 4).map(topic => `<span class="collabo-topic-chip">${htmlEscape(topic)}</span>`).join('');
-      return `<div class="collabo-node-tooltip">${photo}<div class="collabo-tooltip-theme" style="color:${color} !important">${kind}</div><strong>${name}</strong>${detail}${chips ? `<div class="collabo-tooltip-topics">${chips}</div>` : ''}</div>`;
+      const referenceClass = isReferenceAuthor(node) ? ' collabo-tooltip-name-author-reference' : '';
+      const nameLabel = node.type === 'paper' ? `<strong>${name}</strong>` : `<span class="collabo-tooltip-name-${node.type}${referenceClass}">${name}</span>`;
+      return `<div class="collabo-node-tooltip">${photo}<div class="collabo-tooltip-theme" style="color:${color} !important">${kind}</div>${nameLabel}${detail}${chips ? `<div class="collabo-tooltip-topics">${chips}</div>` : ''}</div>`;
     };
 
     const g = new ForceGraph3D(container, {
