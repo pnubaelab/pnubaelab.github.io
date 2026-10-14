@@ -821,11 +821,21 @@ ninja.data = [{
           description: "2023년 배혜림 교수님 교육용 유튜브 제작팀",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2023%EB%B0%B0%ED%98%9C%EB%A6%BC%EA%B5%90%EC%88%98%EB%8B%98%EA%B5%90%EC%9C%A1%EC%9A%A9%EC%9C%A0%ED%8A%9C%EB%B8%8C2/";
+            },},{id: "photo-2023년-무주",
+          title: '2023년 무주',
+          description: "무주, 강원도, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2023%EB%AC%B4%EC%A3%BC%EA%B0%95%EC%9B%90%EB%8F%84/";
             },},{id: "photo-2023년-연구실-회식",
           title: '2023년 연구실 회식',
           description: "2023년 풀타임, 파트타임, 학부연구생 전체 회식",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2023%EB%85%8403%EC%9B%94%EC%97%B0%EA%B5%AC%EC%8B%A4%ED%9A%8C%EC%8B%9D/";
+            },},{id: "photo-2023년-제주-레일바이크",
+          title: '2023년 제주 레일바이크',
+          description: "레일바이크 체험, Jeju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2023%EC%A0%9C%EC%A3%BC%EB%A0%88%EC%9D%BC%EB%B0%94%EC%9D%B4%ED%81%AC/";
             },},{id: "photo-2023년-대한산업공학회-춘계공동학술대회",
           title: '2023년 대한산업공학회 춘계공동학술대회',
           description: "2023년 대한산업공학회 춘계공동학술대회",
@@ -836,6 +846,11 @@ ninja.data = [{
           description: "2023년 대한산업공학회 춘계공동학술대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2023%EB%8C%80%ED%95%9C%EC%82%B0%EC%97%85%EA%B3%B5%ED%95%99%ED%9A%8C%EC%B6%98%EA%B3%84/";
+            },},{id: "photo-2023년-제주도-나들이",
+          title: '2023년 제주도 나들이',
+          description: "제주도 야외 휴식, Jeju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2023%EC%A0%9C%EC%A3%BC%EB%8F%84%EB%82%98%EB%93%A4%EC%9D%B4/";
             },},{id: "photo-2023-제-3회-가덕도신공항물류포럼",
           title: '2023 제 3회 가덕도신공항물류포럼',
           description: "2023 제 3회 가덕도신공항물류포럼",
@@ -871,6 +886,11 @@ ninja.data = [{
           description: "2023 연구실 체육대회",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2023%EB%85%84%EC%97%B0%EA%B5%AC%EC%8B%A4%EC%B2%B4%EC%9C%A1%EB%8C%80%ED%9A%8C3/";
+            },},{id: "photo-2023년-지역-ai-교실",
+          title: '2023년 지역 AI 교실',
+          description: "인공지능그랜드ICT연구센터 지역 AI 교실, 부산가야지역아동센터, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2023%EC%A7%80%EC%97%ADAI%EA%B5%90%EC%8B%A4/";
             },},{id: "photo-logms-부산",
           title: 'LogMS 부산',
           description: "LOGMS 2023 부산",
@@ -881,6 +901,11 @@ ninja.data = [{
           description: "LOGMS 2023 부산",
           section: "Photo",handler: () => {
               window.location.href = "/photo/logmsinbusan20232/";
+            },},{id: "photo-2023년-연구실-면담",
+          title: '2023년 연구실 면담',
+          description: "연구실 면담, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2023%EC%97%B0%EA%B5%AC%EC%8B%A4%EB%A9%B4%EB%8B%B4/";
             },},{id: "photo-2023년-logms",
           title: '2023년 LOGMS',
           description: "LOGMS2023, Busan, Korea",
@@ -891,6 +916,11 @@ ninja.data = [{
           description: "한국지능정보시스템학회, JNU ,JeJu, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2023%ED%95%9C%EA%B5%AD%EC%A7%80%EB%8A%A5%EC%A0%95%EB%B3%B4%EC%82%AC%EC%8A%A4%ED%85%9C%ED%95%99%ED%9A%8C/";
+            },},{id: "photo-2024년-한라산",
+          title: '2024년 한라산',
+          description: "한라산 ,JeJu, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2024%ED%95%9C%EB%9D%BC%EC%82%B0/";
             },},{id: "photo-2024홈커밍데이",
           title: '2024홈커밍데이',
           description: "2024.03 홈커밍데이",
