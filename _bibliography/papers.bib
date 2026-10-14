@@ -1,3 +1,36 @@
+@INPROCEEDINGS{11704279,
+  author={Park, Taekhyun and Jo, Sangmin and Hong, Seongmoon and Kim, Dohee and Bae, Hyerim},
+  level={Conference},
+  abbr={CASE},
+  booktitle={2026 IEEE 22nd International Conference on Automation Science and Engineering (CASE)}, 
+  title={LLM-Based Maritime Risk Scenario Generation for Intelligent Vessel Traffic Services}, 
+  year={2026},
+  volume={},
+  number={},
+  html={https://ieeexplore.ieee.org/abstract/document/11704279},
+  pages={226-231},
+  abstract={Maritime accident prevention requires timely, interpretable risk assessment that can support operational decision-making in Vessel Traffic Service (VTS) environments. We propose an integrated framework that combines Large Language Models (LLMs) with machine-learning-based risk inference to unify accident risk probability estimation and dynamic scenario generation. Heterogeneous data sources–Automatic Identification System (AIS) trajectories, meteorological observations, historical accident statistics, and tribunal adjudication reports–are standardized through a two-path LLM pipeline and aligned on a uniform spatial grid. A gradientboosting classifier with SHAP (SHapley Additive exPlanations)-based explainability identifies key risk drivers, and isotonic regression calibration produces well-calibrated, continuous risk scores. For scenario generation, a hypergraph-based retrievalaugmented generation (RAG) knowledge base encodes multiway relationships among accident cases, causal factors, and maritime regulations; retrieved evidence is combined with calibrated risk scores in few-shot, Chain-of-Thought (CoT) prompts to generate interpretable accident scenarios with a cause-progression-outcome structure. A web-based dashboard with on-device text-to-speech delivers grid-level risk visualization, narrative risk scenarios, and actionable navigational advisories within a unified prediction-explanation-response interface for maritime safety management. Additional results are available at the project page: https://thrillcrazyer.github.io/MaritimeRiskScenarioGen},
+  keywords={Accidents,Modeling,Large language models,Scenario generation,Retrieval augmented generation,Timing,Cognition,Cognitive systems,Printing,Visualization},
+  doi={10.1109/CASE69030.2026.11704279},
+  preview={https://thrillcrazyer.github.io/images/framework.png},
+  video={https://www.youtube.com/watch?v=KPFRiOgYq84}}
+
+@INPROCEEDINGS{11704398,
+  level={Conference},
+  abbr={CASE},
+  author={Kim, Somyeong and Kim, Dohee and Bae, Hyerim},
+  html={https://ieeexplore.ieee.org/abstract/document/11704398},
+  booktitle={2026 IEEE 22nd International Conference on Automation Science and Engineering (CASE)}, 
+  title={Diffusion-Based Accident Data Augmentation for Ship Collision Identification Using Relative Maritime Traffic Map}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={244-249},
+  abstract={This study proposes a diffusion-based data augmentation framework to address the severe class imbalance in Ship-to-Ship (S2S) collision identification. While AIS data provides abundant normal samples, accident-related encounter patterns are extremely scarce. To address this issue, we employ diffusion models, including DDPM, LDM and NCSN++ with Conditional Learning, to generate high-fidelity Relative Maritime Traffic Maps (RMTM). Quality evaluations using KID, EMD, and spatial correlation metrics showed that Conditional DDPM achieved the highest fidelity, particularly at a 10 km radius (KID: 0.0001, EMD: 0.0121). Experimental results across multiple observation radii (5, 10, and 20 km) demonstrated that the proposed augmentation significantly outperforms traditional class-weighting and undersampling strategies. Notably, at a 20 km radius, MobileNet achieved an F1-score of 0.9532 and a Recall of 0.9909. These findings confirm that diffusion-based augmentation effectively restores the statistical distribution of rare accident data, providing a reliable foundation for enhancing maritime safety and autonomous navigation systems.},
+  keywords={Modeling,Marine vehicles,Accidents,Printing,Diffusion models,Equations,Labeling,Trajectory,Machine learning,Data augmentation},
+  doi={10.1109/CASE69030.2026.11704398}}
+
+
 @article{PARK2026128532,
 level = {SCI},
 title = {Lightweight maritime traffic network incorporating adaptive sampling and dual-feature clustering for sequential vessel estimated time of arrival prediction},
@@ -211,6 +244,8 @@ additional_info={. **JCR Q1, Top 20.48%!!!**},
       arxiv={2605.11011},
       html={https://thrillcrazyer.github.io/LoopUS}, 
       abstract={Looped computation shows promise in improving the reasoning-oriented performance of LLMs by scaling test-time compute. However, existing approaches typically require either training recurrent models from scratch or applying disruptive retrofits, which involve substantial computational costs and may compromise pretrained capabilities. To address these limitations, we introduce \textbf{Looped Depth Up-Scaling} (LoopUS), a post-training framework that converts a standard pretrained LLM into a looped architecture. As a key technical contribution, LoopUS recasts the pretrained LLM into an encoder, a looped reasoning block, and a decoder. It operationalizes this latent-refinement architecture through four core components: (1) block decomposition, guided by staged representation dynamics; (2) an input-dependent selective gate to mitigate hidden-state drift; (3) random deep supervision for memory-efficient learning over long recursive horizons; and (4) a confidence head for adaptive early exiting. Collectively, these mechanisms transform a standard non-looped model into a looped form while stabilizing it against both computational bottlenecks and representation collapse. Through stable latent looping, LoopUS improves reasoning-oriented performance without extending the generated traces or requiring recurrent training from scratch.},
+      preview={https://thrillcrazyer.github.io/images/LoopUS/RepresentationLearning.png},
+      video={https://www.youtube.com/watch?v=PW-x6m8_mP8}
 }
 
 @misc{choo2026domainadaptivehealthindicatorlearning,
