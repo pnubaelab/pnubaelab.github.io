@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: Publications
-description: Research publications and academic works.
+description: 
 nav: true
 nav_order: 2
 collabo_background: true

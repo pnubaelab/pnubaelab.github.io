@@ -2,7 +2,7 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: A showcase of BAELAB's innovative projects.
+description:
 nav: true
 nav_order: 3
 horizontal: false
