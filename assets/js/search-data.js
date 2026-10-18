@@ -32,14 +32,14 @@ ninja.data = [{
           },
         },{id: "nav-publications",
           title: "Publications",
-          description: "Research publications and academic works.",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
           },
         },{id: "nav-projects",
           title: "Projects",
-          description: "A showcase of BAELAB&#39;s innovative projects.",
+          description: "",
           section: "Navigation",
           handler: () => {
             window.location.href = "/projects/";
