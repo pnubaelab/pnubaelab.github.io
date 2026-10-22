@@ -1,0 +1,17 @@
+---
+layout: post
+date: 2026-09-28 11:59:00-0400
+inline: false
+related_posts: true
+title: 2026년도 제3회 해양수산 과학기술 혁신포럼 종합토론
+giscus_comments: true
+author: [Hyerim Bae]
+---
+
+
+제3회 해양수산 과학기술 혁신포럼에서 '항만물류 현장에 적용 가능한 AI기술'을 주제로
+
+부산대학교 배혜림 교수님께서 좌장을 맡아 토론을 진행하셨습니다.
+
+{% include video.liquid path="https://www.youtube.com/embed/GKEPAgeubb8" class="rounded z-depth-1" %}
+
