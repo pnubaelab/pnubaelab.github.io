@@ -366,8 +366,8 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-08-25BESTPAPER/";
-            },},{id: "news-심성현-교수님께서-산업통상부-유튜브에-출연하셨습니다",
-          title: '심성현 교수님께서  산업통상부 유튜브에 출연하셨습니다!!',
+            },},{id: "news-저희-랩실-선배님이신-심성현-교수님께서-산업통상부-유튜브에-출연하셨습니다",
+          title: '저희 랩실 선배님이신 심성현 교수님께서 산업통상부 유튜브에 출연하셨습니다!!',
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/%EC%8B%AC%EC%84%B1%ED%98%84%EA%B5%90%EC%88%98%EB%8B%98/";
