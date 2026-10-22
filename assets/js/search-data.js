@@ -371,6 +371,16 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/%EC%8B%AC%EC%84%B1%ED%98%84%EA%B5%90%EC%88%98%EB%8B%98/";
+            },},{id: "news-2026년-글로벌-공급망-위기-대응-포럼-세션-토론",
+          title: '2026년 글로벌 공급망 위기 대응 포럼 세션 토론',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026%EB%85%84%EA%B8%80%EB%A1%9C%EB%B2%8C%EA%B3%B5%EA%B8%89%EB%A7%9D%EC%9C%84%EA%B8%B0%EB%8C%80%EC%9D%91%ED%8F%AC%EB%9F%BC/";
+            },},{id: "news-2026년도-제3회-해양수산-과학기술-혁신포럼-종합토론",
+          title: '2026년도 제3회 해양수산 과학기술 혁신포럼 종합토론',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/%5B2026%EB%85%84%EB%8F%84%20%EC%A0%9C5%ED%9A%8C%20%ED%95%B4%EC%96%91%EC%88%98%EC%82%B0%20%EA%B3%BC%ED%95%99%EA%B8%B0%EC%88%A0%20%ED%98%81%EC%8B%A0%ED%8F%AC%EB%9F%BC%5D%20%EC%A2%85%ED%95%A9%ED%86%A0%EB%A1%A0/";
             },},{id: "news-paper-accepted-to-ocean-engineering",
           title: 'Paper Accepted to Ocean Engineering!!!',
           description: "",
@@ -1566,6 +1576,21 @@ ninja.data = [{
           description: "胜负, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%8B%A0%EC%9E%85%EC%83%9D%ED%99%98%EC%98%81%ED%9A%8C%20copy/";
+            },},{id: "photo-2026-scsc유망기술교류회",
+          title: '2026 SCSC유망기술교류회',
+          description: "2026 SCSC Emerging Technology Exchange Meeting, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%9C%A0%EB%A8%95%EA%B5%90%EB%A5%98%EA%B8%B0%EC%88%A0%ED%9A%8C%20copy%202/";
+            },},{id: "photo-2026-scsc유망기술교류회",
+          title: '2026 SCSC유망기술교류회',
+          description: "2026 SCSC Emerging Technology Exchange Meeting, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%9C%A0%EB%A8%95%EA%B5%90%EB%A5%98%EA%B8%B0%EC%88%A0%ED%9A%8C%20copy/";
+            },},{id: "photo-2026-scsc유망기술교류회",
+          title: '2026 SCSC유망기술교류회',
+          description: "2026 SCSC Emerging Technology Exchange Meeting, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026%EB%85%84%EC%9C%A0%EB%A8%95%EA%B5%90%EB%A5%98%EA%B8%B0%EC%88%A0%ED%9A%8C/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
