@@ -1591,6 +1591,11 @@ ninja.data = [{
           description: "2026 SCSC Emerging Technology Exchange Meeting, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%9C%A0%EB%A8%95%EA%B5%90%EB%A5%98%EA%B8%B0%EC%88%A0%ED%9A%8C/";
+            },},{id: "photo-professor-dohee-kim-39-s-wedding",
+          title: 'Professor Dohee Kim&amp;#39;s Wedding',
+          description: "Prof. Dohee Kim&#39;s Wedding, Grand Mercure Ambassador Changwon, Changwon, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EA%B2%B0%ED%98%BC%EC%8B%9D/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
