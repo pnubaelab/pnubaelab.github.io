@@ -1596,6 +1596,16 @@ ninja.data = [{
           description: "Prof. Dohee Kim&#39;s Wedding, Grand Mercure Ambassador Changwon, Changwon, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EA%B2%B0%ED%98%BC%EC%8B%9D/";
+            },},{id: "photo-professor-dohee-kim-39-s-wedding",
+          title: 'Professor Dohee Kim&amp;#39;s Wedding',
+          description: "Prof. Dohee Kim&#39;s Wedding, Grand Mercure Ambassador Changwon, Changwon, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EA%B2%B0%ED%98%BC%EC%8B%9D2/";
+            },},{id: "photo-professor-dohee-kim-39-s-wedding",
+          title: 'Professor Dohee Kim&amp;#39;s Wedding',
+          description: "PNU Festival, Busan, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/%EC%B6%95%EC%A0%9C/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
