@@ -9,7 +9,7 @@ giscus_comments: true
 author: [Kikun Park, Hyunha Lee, Jaehyeon Heo, Hanbyeol Park, Minseop Kim, Hyerim Bae]
 ---
 
-**Congratulations**!!!   🎉🎉🎉       
+**Congratulations**!!! 🎉🎉🎉  
 Kikun Park's paper accepted to Ocean Engineering (IF 6.3)!!!!
 
 {% quote PARK2026128532 %}
@@ -23,5 +23,3 @@ Lightweight maritime traffic network incorporating adaptive sampling and dual-fe
 <div class="col-sm mt-3 mt-md-0">
     {% include figure.liquid path="https://ars.els-cdn.com/content/image/X00298018.jpg" class="img-fluid rounded z-depth-1" zoomable=true  max-width="300px"%}
 </div>
-
-

@@ -2,9 +2,9 @@
 layout: page
 title: 📸Photos
 permalink: /photos/
-description: 
+description:
 nav: true
-display_categories: [2026,2025,2024,2023,2022,2021,2020]
+display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
 ---
 
 <style>
@@ -187,39 +187,41 @@ display_categories: [2026,2025,2024,2023,2022,2021,2020]
 <div class="photo-gallery">
   {% assign sorted_projects = site.photo | sort: 'date' | reverse %}
 
-  {% if page.display_categories %}
-    {% for year in page.display_categories %}
-      {% assign year_str = year | append: '' %}
-      {% assign has_year_projects = false %}
-      {% for project in sorted_projects %}
-        {% assign project_year = project.date | date: "%Y" %}
-        {% if project_year == year_str %}
-          {% assign has_year_projects = true %}
-          {% break %}
-        {% endif %}
-      {% endfor %}
-      {% if has_year_projects %}
-        <div class="category-section">
-          {% assign year_mod = year | modulo: 2 %}
-          <h2 class="category-title {% if year_mod == 0 %}category-title--even{% else %}category-title--odd{% endif %}">{{ year }}</h2>
-          <div class="photo-masonry">
-            {% for project in sorted_projects %}
-              {% assign project_year = project.date | date: "%Y" %}
-              {% if project_year == year_str %}
-                {% include photo.html %}
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
-  {% else %}
-    <div class="photo-masonry">
-      {% for project in sorted_projects %}
-        {% include photo.html %}
-      {% endfor %}
-    </div>
-  {% endif %}
+{% if page.display_categories %}
+{% for year in page.display_categories %}
+{% assign year_str = year | append: '' %}
+{% assign has_year_projects = false %}
+{% for project in sorted_projects %}
+{% assign project_year = project.date | date: "%Y" %}
+{% if project_year == year_str %}
+{% assign has_year_projects = true %}
+{% break %}
+{% endif %}
+{% endfor %}
+{% if has_year_projects %}
+
+<div class="category-section">
+{% assign year_mod = year | modulo: 2 %}
+<h2 class="category-title {% if year_mod == 0 %}category-title--even{% else %}category-title--odd{% endif %}">{{ year }}</h2>
+<div class="photo-masonry">
+{% for project in sorted_projects %}
+{% assign project_year = project.date | date: "%Y" %}
+{% if project_year == year_str %}
+{% include photo.html %}
+{% endif %}
+{% endfor %}
+</div>
+</div>
+{% endif %}
+{% endfor %}
+{% else %}
+<div class="photo-masonry">
+{% for project in sorted_projects %}
+{% include photo.html %}
+{% endfor %}
+</div>
+{% endif %}
+
 </div>
 
 <div class="parisienne-regular" style="text-align: center; color: #666;">

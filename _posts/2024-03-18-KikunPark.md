@@ -9,7 +9,6 @@ author: [박기군]
 tags: Discrete Event Simulation, Event, GAIML, AI, Genetic Algorithm, ML
 ---
 
-
 This is the PPT from the Weekly Lab Seminar on March 28, 2024.
 
 {% quote park2024predictive %}

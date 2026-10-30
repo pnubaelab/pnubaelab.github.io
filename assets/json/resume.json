@@ -39,7 +39,7 @@
     {
       "name": "제1기 가덕도신공항건설공단 정보화위원회 / First Gadeokdo New Airport Construction Authority Informatization Committee",
       "position": "위원 / Committee Member",
-      "url":"https://g-airport.or.kr/kor/index.do",
+      "url": "https://g-airport.or.kr/kor/index.do",
       "startDate": "2025-01-01",
       "endDate": "Now"
     },
@@ -268,61 +268,32 @@
     {
       "name": "Big Data Analytics",
       "icon": "fa-solid fa-database",
-      "keywords": [
-        "Data Mining",
-        "Machine Learning",
-        "Predictive Analytics",
-        "Statistical Analysis"
-      ]
+      "keywords": ["Data Mining", "Machine Learning", "Predictive Analytics", "Statistical Analysis"]
     },
     {
       "name": "Artificial Intelligence",
       "icon": "fa-solid fa-brain",
-      "keywords": [
-        "Deep Learning",
-        "Neural Networks",
-        "Time Series Forecasting",
-        "LLMs"
-      ]
+      "keywords": ["Deep Learning", "Neural Networks", "Time Series Forecasting", "LLMs"]
     },
     {
       "name": "Process Mining",
       "icon": "fa-solid fa-route",
-      "keywords": [
-        "Business Process Analysis",
-        "Workflow Optimization",
-        "Process Discovery",
-        "Performance Analysis"
-      ]
+      "keywords": ["Business Process Analysis", "Workflow Optimization", "Process Discovery", "Performance Analysis"]
     },
     {
       "name": "Reinforcement Learning",
       "icon": "fa-solid fa-arrows-spin",
-      "keywords": [
-        "Decision Making",
-        "Optimization",
-        "Dynamic Programming"
-      ]
+      "keywords": ["Decision Making", "Optimization", "Dynamic Programming"]
     },
     {
       "name": "Industrial Engineering",
       "icon": "fa-solid fa-industry",
-      "keywords": [
-        "Operations Research",
-        "Supply Chain Management",
-        "Quality Control",
-        "Manufacturing Systems"
-      ]
+      "keywords": ["Operations Research", "Supply Chain Management", "Quality Control", "Manufacturing Systems"]
     },
     {
       "name": "Port Logistics & SCM",
       "icon": "fa-solid fa-truck",
-      "keywords": [
-        "Port Logistics",
-        "Supply Chain Optimization",
-        "Transportation Systems",
-        "Warehouse Management"
-      ]
+      "keywords": ["Port Logistics", "Supply Chain Optimization", "Transportation Systems", "Warehouse Management"]
     }
   ]
 }

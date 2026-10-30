@@ -19,22 +19,24 @@
             <th scope="row" style="width: 20%;">{{ item.date | date: '%b %d, %Y' }}</th>
             <td>
               {% if item.inline %}
-            {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
-            {% else %}
-            {% if item.redirect %}
-                <a class="news-title" href="{{ item.redirect }}" target="_blank" rel="noopener">{{ item.title }}</a>
-            {% elsif item.url contains "http" %}
-                <a class="news-title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
-            {% else %}
-                <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
-            {% endif %}
-            {% endif %}
+                {{ item.content | remove: '<p>' | remove: '</p>' | emojify }}
+              {% else %}
+                {% if item.redirect %}
+                  <a class="news-title" href="{{ item.redirect }}" target="_blank" rel="noopener">{{ item.title }}</a>
+                {% elsif item.url contains 'http' %}
+                  <a class="news-title" href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a>
+                {% else %}
+                  <a class="news-title" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+                {% endif %}
+              {% endif %}
               {% if item.author %}
                 {%- assign authors = item.author | arrayify -%}
-                <br><small class="text-muted">
+                <br>
+                <small class="text-muted">
                   {% for author in authors %}
                     {%- assign author_name = author | strip -%}
-                    {% if forloop.index > 1 %}, {% endif %}{{ author_name }}
+                    {% if forloop.index > 1 %}, {% endif -%}
+                    {{- author_name }}
                   {% endfor %}
                 </small>
               {% endif %}

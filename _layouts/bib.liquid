@@ -220,7 +220,7 @@
           <a href="{{ entry.supp | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">Supp</a>
         {% endif %}
       {% endif %}
-    <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
+      <a class="bibtex btn btn-sm z-depth-0" role="button">Bib</a>
       {% if entry.video and site.enable_video_embedding %}
         <a class="abstract btn btn-sm z-depth-0" role="button">Video</a>
       {% elsif entry.video %}
@@ -256,7 +256,7 @@
           {% for author in entry.author_array %}
             {%- assign author_last_name = author.last | regex_replace: '[*∗†‡§¶‖&^]', '' -%}
             {%- assign author_full = author.first | append: ' ' | append: author_last_name | strip -%}
-            {%- assign person = site.people | where_exp: "p", "p.title and p.title contains author_full" | first -%}
+            {%- assign person = site.people | where_exp: 'p', 'p.title and p.title contains author_full' | first -%}
             {% if person and person.img %}
               {%- assign redirect_url = person.redirect -%}
               {%- if redirect_url and redirect_url contains '://' -%}
@@ -267,7 +267,15 @@
                 {%- assign person_href = person.url | relative_url -%}
               {%- endif -%}
               <a href="{{ person_href }}" target="_blank" rel="noopener" style="display:inline-block;">
-                <img src="{{ person.img | relative_url }}" alt="{{ author_full }}" title="{{ author_full }}" width="32" height="32" style="width:32px;height:32px;object-fit:cover;border-radius:50%;border:1px solid var(--global-border-color, #ddd);" loading="lazy" />
+                <img
+                  src="{{ person.img | relative_url }}"
+                  alt="{{ author_full }}"
+                  title="{{ author_full }}"
+                  width="32"
+                  height="32"
+                  style="width:32px;height:32px;object-fit:cover;border-radius:50%;border:1px solid var(--global-border-color, #ddd);"
+                  loading="lazy"
+                >
               </a>
             {% endif %}
           {% endfor %}
@@ -397,12 +405,19 @@
         {% for keyword in keywords_array %}
           {% assign kw = keyword | strip %}
           {% if kw != '' %}
-            <a href="#{{ kw | url_encode }}" class="keyword-tag" style="display: inline-block; padding: 0.15rem 0.5rem; margin: 0.1rem 0.15rem; background-color: rgba(255, 110, 199, 0.1); color: #ff6ec7; font-size: 0.8rem; border-radius: 4px; text-decoration: none; border: 1px solid rgba(255, 110, 199, 0.3); cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.backgroundColor='rgba(255, 110, 199, 0.25)'" onmouseout="this.style.backgroundColor='rgba(255, 110, 199, 0.1)'" onclick="event.preventDefault(); var searchBox = document.getElementById('bibsearch'); if(searchBox) { searchBox.value = '{{ kw | escape }}'; searchBox.dispatchEvent(new Event('input', {bubbles: true})); searchBox.scrollIntoView({behavior: 'smooth', block: 'center'}); }">{{ kw }}</a>
+            <a
+              href="#{{ kw | url_encode }}"
+              class="keyword-tag"
+              style="display: inline-block; padding: 0.15rem 0.5rem; margin: 0.1rem 0.15rem; background-color: rgba(255, 110, 199, 0.1); color: #ff6ec7; font-size: 0.8rem; border-radius: 4px; text-decoration: none; border: 1px solid rgba(255, 110, 199, 0.3); cursor: pointer; transition: all 0.2s ease;"
+              onmouseover="this.style.backgroundColor='rgba(255, 110, 199, 0.25)'"
+              onmouseout="this.style.backgroundColor='rgba(255, 110, 199, 0.1)'"
+              onclick="event.preventDefault(); var searchBox = document.getElementById('bibsearch'); if(searchBox) { searchBox.value = '{{ kw | escape }}'; searchBox.dispatchEvent(new Event('input', {bubbles: true})); searchBox.scrollIntoView({behavior: 'smooth', block: 'center'}); }"
+            >
+              {{- kw -}}
+            </a>
           {% endif %}
         {% endfor %}
       </div>
     {% endif %}
-
-    
   </div>
 </div>

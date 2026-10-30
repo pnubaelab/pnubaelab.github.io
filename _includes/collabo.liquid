@@ -101,7 +101,7 @@
     --collabo-clear-left: 0px;
     --collabo-clear-right: 100vw;
   }
-  html[data-theme="dark"] .publications-page {
+  html[data-theme='dark'] .publications-page {
     --publication-glass-border: rgba(202, 218, 240, 0.14);
     --publication-glass-shadow: rgba(0, 0, 0, 0.16);
   }
@@ -139,9 +139,20 @@
     backdrop-filter: blur(16px);
     /* Keep arithmetic out of this custom property: the production CSS
        minifier strips required whitespace around calc() additions. */
-    --collabo-frost-mask:
-      linear-gradient(to bottom, #000 var(--collabo-frost-top), transparent var(--collabo-clear-top), transparent var(--collabo-clear-bottom), #000 var(--collabo-frost-bottom)),
-      linear-gradient(to right, #000 var(--collabo-frost-left), transparent var(--collabo-clear-left), transparent var(--collabo-clear-right), #000 var(--collabo-frost-right));
+    --collabo-frost-mask: linear-gradient(
+        to bottom,
+        #000 var(--collabo-frost-top),
+        transparent var(--collabo-clear-top),
+        transparent var(--collabo-clear-bottom),
+        #000 var(--collabo-frost-bottom)
+      ),
+      linear-gradient(
+        to right,
+        #000 var(--collabo-frost-left),
+        transparent var(--collabo-clear-left),
+        transparent var(--collabo-clear-right),
+        #000 var(--collabo-frost-right)
+      );
     -webkit-mask-image: var(--collabo-frost-mask);
     mask-image: var(--collabo-frost-mask);
     -webkit-mask-composite: source-over;
@@ -184,7 +195,9 @@
     border: 1px solid var(--publication-glass-border);
     border-radius: 18px;
     background: var(--publication-glass);
-    box-shadow: 0 10px 32px var(--publication-glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 10px 32px var(--publication-glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
     -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
   }
@@ -309,7 +322,7 @@
     padding: 0.25rem 0;
     cursor: pointer;
   }
-  .collabo-legend-item[aria-pressed="false"] {
+  .collabo-legend-item[aria-pressed='false'] {
     opacity: 0.4;
     text-decoration: line-through;
   }
@@ -323,7 +336,6 @@
     width: 15px;
     height: 15px;
     background: #8bc9ee;
-
   }
   .collabo-legend-dot.paper {
     background: #a3abb5;
@@ -338,7 +350,9 @@
   .node-label {
     font-family: 'Oswald', sans-serif;
     font-size: 12px;
-    text-shadow: 0 0 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6);
+    text-shadow:
+      0 0 4px rgba(0, 0, 0, 0.8),
+      0 0 8px rgba(0, 0, 0, 0.6);
   }
   .collabo-back-button {
     position: absolute;
@@ -351,7 +365,7 @@
     min-width: 52px;
     height: 28px;
     padding: 0 0.7rem;
-    border: 1px solid rgba(255,255,255,0.16);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 999px;
     background: rgba(2, 6, 17, 0.9);
     color: #ffffff;
@@ -360,7 +374,10 @@
     text-transform: uppercase;
     cursor: pointer;
     pointer-events: auto;
-    transition: opacity 160ms ease, transform 160ms ease, background 160ms ease;
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease,
+      background 160ms ease;
   }
   .collabo-back-button:hover {
     background: rgba(18, 36, 70, 0.95);
@@ -389,12 +406,27 @@
   <div id="coauthor-graph-wrapper" style="position: relative;">
     <div class="collabo-toolbar">
       <h3 class="collabo-title">Research Constellation</h3>
-      <input id="collabo-search" class="collabo-search" type="search" placeholder="Find a paper, author or topic…" aria-label="Find a paper, author or topic" autocomplete="off">
+      <input
+        id="collabo-search"
+        class="collabo-search"
+        type="search"
+        placeholder="Find a paper, author or topic…"
+        aria-label="Find a paper, author or topic"
+        autocomplete="off"
+      >
     </div>
     <div class="collabo-viewport" style="position: relative;">
       <div class="collabo-backdrop">
-        <div id="coauthor-graph" aria-label="Slowly rotating 3D research map: papers are dim white dots; author circles and topic crystals are sized by their related paper counts.">
-          <div id="coauthor-graph-loader" style="position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;">Loading Collaboration Graph…</div>
+        <div
+          id="coauthor-graph"
+          aria-label="Slowly rotating 3D research map: papers are dim white dots; author circles and topic crystals are sized by their related paper counts."
+        >
+          <div
+            id="coauthor-graph-loader"
+            style="position:absolute;inset:0;z-index:3;display:flex;align-items:center;justify-content:center;color:#ffffff;font-size:.85rem;font-family:system-ui,Segoe UI,sans-serif;letter-spacing:.5px;"
+          >
+            Loading Collaboration Graph…
+          </div>
         </div>
         <div class="collabo-overflow-frost" aria-hidden="true"></div>
         <div class="collabo-overflow-glass top" aria-hidden="true"></div>
@@ -406,9 +438,15 @@
     </div>
     <div class="collabo-footer">
       <div class="collabo-legend" role="group" aria-label="Visible node types">
-        <button class="collabo-legend-item" type="button" data-collabo-layer="paper" aria-pressed="true"><span class="collabo-legend-dot paper" aria-hidden="true"></span>Papers <span data-collabo-count="paper"></span></button>
-        <button class="collabo-legend-item" type="button" data-collabo-layer="author" aria-pressed="true"><span class="collabo-legend-dot author" aria-hidden="true"></span>Authors <span data-collabo-count="author"></span></button>
-        <button class="collabo-legend-item" type="button" data-collabo-layer="keyword" aria-pressed="true"><span class="collabo-legend-dot keyword" aria-hidden="true"></span>Topics <span data-collabo-count="keyword"></span></button>
+        <button class="collabo-legend-item" type="button" data-collabo-layer="paper" aria-pressed="true">
+          <span class="collabo-legend-dot paper" aria-hidden="true"></span>Papers <span data-collabo-count="paper"></span>
+        </button>
+        <button class="collabo-legend-item" type="button" data-collabo-layer="author" aria-pressed="true">
+          <span class="collabo-legend-dot author" aria-hidden="true"></span>Authors <span data-collabo-count="author"></span>
+        </button>
+        <button class="collabo-legend-item" type="button" data-collabo-layer="keyword" aria-pressed="true">
+          <span class="collabo-legend-dot keyword" aria-hidden="true"></span>Topics <span data-collabo-count="keyword"></span>
+        </button>
       </div>
       <p id="collabo-status" class="collabo-hint" role="status" aria-live="polite">Size = related papers · Drag to rotate · Scroll to zoom</p>
     </div>
@@ -419,7 +457,9 @@
   <div id="coauthor-table" style="width: 100%;"></div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.80.0/dist/3d-force-graph.min.js"></script>
-<script type="module">
+<script
+  type="module"
+>
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.179.1/build/three.module.js';
 
 {% assign firstPhoto = true %}

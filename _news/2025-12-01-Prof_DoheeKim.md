@@ -15,4 +15,3 @@ We are thrilled to announce that **Dr. Dohee Kim**, an alumna of our lab, has be
 We sincerely congratulate Professor Dohee Kim on this wonderful achievement and wish her continued success in her future research and teaching endeavors.
 
 The entire BAE Lab family is cheering for Professor Kim's new journey! 🎊
-

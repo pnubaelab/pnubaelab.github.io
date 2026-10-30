@@ -24,7 +24,8 @@ layout: default
         {% assign authors = author_field | arrayify %}
         {% for a in authors %}
           {%- assign a_t = a | strip -%}
-          {% if forloop.index > 1 %}, {% endif %}{{ a_t }}
+          {% if forloop.index > 1 %}, {% endif -%}
+          {{- a_t }}
         {% endfor %}
       {% endif %}
       {% if page.last_updated %}, last updated on {{ page.last_updated | date: '%B %d, %Y' }}{% endif %}
@@ -102,7 +103,7 @@ layout: default
       {%- assign authors = author_field | arrayify -%}
       {%- for a in authors -%}
         {%- assign a_t = a | strip -%}
-        {%- assign person = site.people | where_exp: "p", "p.title and p.title contains a_t" | first -%}
+        {%- assign person = site.people | where_exp: 'p', 'p.title and p.title contains a_t' | first -%}
         {%- if person and person.img -%}
           {%- assign redirect_url = person.redirect -%}
           {%- if redirect_url and redirect_url contains '://' -%}
@@ -113,7 +114,15 @@ layout: default
             {%- assign person_href = person.url | relative_url -%}
           {%- endif -%}
           <a href="{{ person_href }}" target="_blank" rel="noopener">
-            <img src="{{ person.img | relative_url }}" alt="{{ a_t }}" title="{{ a_t }}" width="80" height="80" style="width:80px;height:80px;object-fit:cover;border-radius:50%;border:1px solid var(--global-border-color, #ddd);" loading="lazy" />
+            <img
+              src="{{ person.img | relative_url }}"
+              alt="{{ a_t }}"
+              title="{{ a_t }}"
+              width="80"
+              height="80"
+              style="width:80px;height:80px;object-fit:cover;border-radius:50%;border:1px solid var(--global-border-color, #ddd);"
+              loading="lazy"
+            >
           </a>
         {%- endif -%}
       {%- endfor -%}

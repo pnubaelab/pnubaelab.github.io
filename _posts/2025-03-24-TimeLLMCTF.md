@@ -17,4 +17,3 @@ This idea is currently being developed in a paper titled "Generative AI and Mach
 {% endquote %}
 
 <iframe src="/assets/pdf/CT forecasting with TimeLLM.pdf" width="100%" height="600px"></iframe>
-

@@ -10,8 +10,8 @@ class CountUp {
     this.from = options.from || 0;
     this.duration = options.duration || 2;
     this.delay = options.delay || 0;
-    this.separator = options.separator || ',';
-    this.direction = options.direction || 'up';
+    this.separator = options.separator || ",";
+    this.direction = options.direction || "up";
     this.onStart = options.onStart;
     this.onEnd = options.onEnd;
 
@@ -19,9 +19,9 @@ class CountUp {
     this.damping = 20 + 40 * (1 / this.duration);
     this.stiffness = 100 * (1 / this.duration);
 
-    this.currentValue = this.direction === 'down' ? this.to : this.from;
+    this.currentValue = this.direction === "down" ? this.to : this.from;
     this.velocity = 0;
-    this.targetValue = this.direction === 'down' ? this.from : this.to;
+    this.targetValue = this.direction === "down" ? this.from : this.to;
     this.animationId = null;
     this.started = false;
 
@@ -48,9 +48,9 @@ class CountUp {
   }
 
   start() {
-    if (typeof this.onStart === 'function') this.onStart();
+    if (typeof this.onStart === "function") this.onStart();
 
-    this.targetValue = this.direction === 'down' ? this.from : this.to;
+    this.targetValue = this.direction === "down" ? this.from : this.to;
     this.lastTime = performance.now();
     this.animate();
   }
@@ -79,7 +79,7 @@ class CountUp {
     if (Math.abs(this.velocity) < 0.01 && Math.abs(displacement) < 0.01) {
       this.currentValue = this.targetValue;
       this.updateDisplay(this.currentValue);
-      if (typeof this.onEnd === 'function') this.onEnd();
+      if (typeof this.onEnd === "function") this.onEnd();
       return;
     }
 
@@ -94,7 +94,7 @@ class CountUp {
   formatValue(value) {
     const rounded = Math.round(value);
     if (this.separator) {
-      return rounded.toLocaleString('en-US').replace(/,/g, this.separator);
+      return rounded.toLocaleString("en-US").replace(/,/g, this.separator);
     }
     return rounded.toString();
   }
@@ -107,16 +107,16 @@ class CountUp {
 }
 
 // Initialize all count-up elements when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  const countUpElements = document.querySelectorAll('[data-countup]');
-  
+document.addEventListener("DOMContentLoaded", () => {
+  const countUpElements = document.querySelectorAll("[data-countup]");
+
   countUpElements.forEach((element) => {
-    const to = parseInt(element.getAttribute('data-countup'), 10);
-    const from = parseInt(element.getAttribute('data-from') || '0', 10);
-    const duration = parseFloat(element.getAttribute('data-duration') || '2');
-    const delay = parseFloat(element.getAttribute('data-delay') || '0');
-    const separator = element.getAttribute('data-separator') || ',';
-    const direction = element.getAttribute('data-direction') || 'up';
+    const to = parseInt(element.getAttribute("data-countup"), 10);
+    const from = parseInt(element.getAttribute("data-from") || "0", 10);
+    const duration = parseFloat(element.getAttribute("data-duration") || "2");
+    const delay = parseFloat(element.getAttribute("data-delay") || "0");
+    const separator = element.getAttribute("data-separator") || ",";
+    const direction = element.getAttribute("data-direction") || "up";
 
     new CountUp(element, {
       to,
@@ -124,12 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
       duration,
       delay,
       separator,
-      direction
+      direction,
     });
   });
 });
 
 // Export for module use
-if (typeof module !== 'undefined' && module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = CountUp;
 }

@@ -27,7 +27,6 @@ The answer is a tightly choreographed sequence of handoffs. A vessel arrives at 
 
 **Tak's Yard Simulator** brings that choreography to life in **3D**. Watch the terminal evolve over time, trace individual moves, and see how vessels, cranes, AGVs, and external trucks share the same operational rhythm.
 
-
 ## Simulator
 
 _Start the simulation below, or open it in a new tab for the full workspace with menus and information panels._
@@ -55,28 +54,25 @@ _Start the simulation below, or open it in a new tab for the full workspace with
 1. **Follow a container's journey** — Pick an AGV at the quay and follow it as it carries a container into the yard.
 2. **Catch the hidden moves** — Watch yard cranes stack and retrieve containers. When a target container is buried, the crane must first clear the containers above it; this is **rehandling**.
 3. **Read the terminal at a glance** — Use **Yard status** for occupancy and rehandling counts, then open **Container search** to uncover a container's exact location and movement history.
-<br>
-<br>
+   <br>
+   <br>
 
 ## Controls and Information Panels
 
 ### View Controls
 
-| Control                 | Function                                                   |
-| :---------------------- | :--------------------------------------------------------- |
-| Drag                    | Rotate the view                                            |
-| Right-click and drag    | Pan the view                                               |
-| Mouse wheel             | Zoom in or out                                             |
-| `Space`                 | Pause or play                                              |
-| `1` / `2` / `3` / `4`   | Switch views                                               |
-| `F` or **Fullscreen**   | Toggle fullscreen                                          |
-| **Speed**               | Set the pace, from a slow inspection to approximately 600 events per frame |
-| **Controls**            | Color containers by flow, remaining dwell time, or stack height |
-
-
+| Control               | Function                                                                   |
+| :-------------------- | :------------------------------------------------------------------------- |
+| Drag                  | Rotate the view                                                            |
+| Right-click and drag  | Pan the view                                                               |
+| Mouse wheel           | Zoom in or out                                                             |
+| `Space`               | Pause or play                                                              |
+| `1` / `2` / `3` / `4` | Switch views                                                               |
+| `F` or **Fullscreen** | Toggle fullscreen                                                          |
+| **Speed**             | Set the pace, from a slow inspection to approximately 600 events per frame |
+| **Controls**          | Color containers by flow, remaining dwell time, or stack height            |
 
 ### Information Available in the Menus
-
 
 - **Yard status** — See yard occupancy, rehandling totals, and which equipment is currently at work.
 - **Blocks** — Compare the operating state and utilization of each yard block.
@@ -84,4 +80,3 @@ _Start the simulation below, or open it in a new tab for the full workspace with
 - **Container search / Container info** — Locate any container and inspect its stack position, containers above it, remaining dwell time, and full event history.
 
 For questions or further details, please contact [glorytak74@pusan.ac.kr](mailto:glorytak74@pusan.ac.kr).
-

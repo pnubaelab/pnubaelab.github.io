@@ -6,5 +6,5 @@ related_posts: false
 author: [Mingi Han]
 ---
 
-Selamat tinggal dan selamat! 🏝️ 🌋🐚 !!!    
+Selamat tinggal dan selamat! 🏝️ 🌋🐚 !!!  
 Mingi Han has submitted a paper to the **Journal of the Korean Institute of Industrial Engineers**(JKIIE)

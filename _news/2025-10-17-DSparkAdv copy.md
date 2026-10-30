@@ -6,10 +6,10 @@ inline: false
 related_posts: false
 related_publications: true
 giscus_comments: true
-author: [Suhyeon Jo,Gawon Lee, Jaehyeon Heo, Dohee Kim ,Sunghyun Sim]
+author: [Suhyeon Jo, Gawon Lee, Jaehyeon Heo, Dohee Kim, Sunghyun Sim]
 ---
 
-**Congratulations**!!!   🎉🎉🎉       
+**Congratulations**!!! 🎉🎉🎉  
 Suhyeon Jo's paper accepted to Ocean Engineering(IF 5.5) !!!!
 
 {% quote JO2026123452 %}

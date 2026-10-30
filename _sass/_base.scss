@@ -1,42 +1,42 @@
 /*******************************************************************************
  * Styles for the base elements of the theme.
  ******************************************************************************/
-$global-font-stack: 'A2z', 'ZCOOL KuaiLe', sans-serif;
+$global-font-stack: "A2z", "ZCOOL KuaiLe", sans-serif;
 $zcool-chinese-unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF, U+FF00-FFEF;
 
 @font-face {
-  font-family: 'ZCOOL KuaiLe';
+  font-family: "ZCOOL KuaiLe";
   font-style: normal;
   font-weight: 400;
-  src: url('https://fonts.gstatic.com/s/zcoolkuaile/v22/tssqApdaRQokwFjFJjvM6h2moYby.woff2') format('woff2');
+  src: url("https://fonts.gstatic.com/s/zcoolkuaile/v22/tssqApdaRQokwFjFJjvM6h2moYby.woff2") format("woff2");
   font-display: swap;
   unicode-range: $zcool-chinese-unicode-range;
 }
 
 @font-face {
-    font-family: 'A2z';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2') format('woff2');
-    font-weight: 300;
-    font-display: swap;
+  font-family: "A2z";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
 }
 
 @font-face {
-  font-family: 'A2z';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2') format('woff2');
+  font-family: "A2z";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-3Light.woff2") format("woff2");
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'A2z';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2') format('woff2');
+  font-family: "A2z";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-7Bold.woff2") format("woff2");
   font-weight: 700;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'A2z';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-8ExtraBold.woff2') format('woff2');
+  font-family: "A2z";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/2601-6@1.0/에이투지체-8ExtraBold.woff2") format("woff2");
   font-weight: 800;
   font-display: swap;
 }
@@ -46,7 +46,6 @@ $zcool-chinese-unicode-range: U+3000-303F, U+3400-4DBF, U+4E00-9FFF, U+F900-FAFF
 body {
   font-family: $global-font-stack;
 }
-
 
 p,
 h2,
@@ -66,7 +65,7 @@ strong {
 
 strong {
   color: var(--global-theme-color);
-  font-family: 'A2z', sans-serif;
+  font-family: "A2z", sans-serif;
   font-weight: 700;
 }
 
@@ -88,7 +87,7 @@ table {
   }
 
   th {
-    font-family: 'A2z', sans-serif;
+    font-family: "A2z", sans-serif;
     font-weight: bold;
   }
 }
@@ -149,7 +148,9 @@ blockquote {
 
   &.publication-quote-link {
     cursor: pointer;
-    transition: border-color 0.15s ease, background-color 0.15s ease;
+    transition:
+      border-color 0.15s ease,
+      background-color 0.15s ease;
 
     &:hover,
     &:focus {
@@ -1525,19 +1526,19 @@ figure.cover {
 }
 
 /* Light mode: show BAELAB_LOGO.png, hide BAELAB_LOGOB.png */
-html:not([data-theme='dark']) .navbar-logo-dark {
+html:not([data-theme="dark"]) .navbar-logo-dark {
   display: none;
 }
 
-html:not([data-theme='dark']) .navbar-logo-light {
+html:not([data-theme="dark"]) .navbar-logo-light {
   display: inline-block;
 }
 
 /* Dark mode: show BAELAB_LOGOB.png, hide BAELAB_LOGO.png */
-html[data-theme='dark'] .navbar-logo-light {
+html[data-theme="dark"] .navbar-logo-light {
   display: none;
 }
 
-html[data-theme='dark'] .navbar-logo-dark {
+html[data-theme="dark"] .navbar-logo-dark {
   display: inline-block;
 }

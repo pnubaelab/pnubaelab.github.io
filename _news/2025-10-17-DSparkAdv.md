@@ -9,7 +9,7 @@ giscus_comments: true
 author: [Daesan Park]
 ---
 
-**Congratulations**!!!   🎉🎉🎉       
+**Congratulations**!!! 🎉🎉🎉  
 Daesan Park's paper accepted to Advanced Engineering Informatics(IF 9.9) !!!!
 
 {% quote PARK2026103974 %}

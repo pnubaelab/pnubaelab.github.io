@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: 
+subtitle:
 
 # profile:
 #   align: right
@@ -452,8 +452,6 @@ latest_posts:
     </a>
   </div>
 
-
-
 <div class="section-container">
     <div class="highlight-box doc-intro doc-center">
       <h2 class="doc-heading">From Raw Data to Operational Intelligence<span class="hero-colon">.</span></h2>
@@ -486,6 +484,5 @@ latest_posts:
       <p style="margin:0 0 10px 0;">Email: <a href="mailto:hrbae@pusan.ac.kr">hrbae@pusan.ac.kr</a></p>
   </section>
 </div>
-
 
 </div>

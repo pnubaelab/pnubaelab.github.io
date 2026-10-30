@@ -12,10 +12,10 @@ horizontal: false
   {% assign projects = site.projects | where: "category", "projects" %}
   {% assign sorted_projects = projects | sort: "end_date" | reverse %}
 
-  {% assign year = '' %}
-  {% for project in sorted_projects %}
-    {% assign current_year = project.end_date | date: '%Y' %}
-    {% if current_year == '' %}{% assign current_year = 'Unknown' %}{% endif %}
+{% assign year = '' %}
+{% for project in sorted_projects %}
+{% assign current_year = project.end_date | date: '%Y' %}
+{% if current_year == '' %}{% assign current_year = 'Unknown' %}{% endif %}
 
     {% if current_year != year %}
       {% unless forloop.first %}
@@ -55,11 +55,14 @@ horizontal: false
         {% endif %}
       </td>
     </tr>
-  {% endfor %}
 
-  {% if sorted_projects and sorted_projects.size > 0 %}
-          </tbody>
-        </table>
-      </div>
-  {% endif %}
+{% endfor %}
+
+{% if sorted_projects and sorted_projects.size > 0 %}
+
+</tbody>
+</table>
+</div>
+{% endif %}
+
 </div>

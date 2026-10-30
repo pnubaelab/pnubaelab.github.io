@@ -7,4 +7,3 @@ importance: 2008
 category: alumni
 redirect: https://www.linkedin.com/in/taufiknuradi/?originalSubdomain=id
 ---
-

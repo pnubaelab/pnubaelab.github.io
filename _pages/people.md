@@ -2,11 +2,12 @@
 layout: page
 title: People
 permalink: /people/
-description: 
+description:
 nav: true
-display_categories: [current, parttime,alumni]
+display_categories: [current, parttime, alumni]
 horizontal: false
 ---
+
 <style>
 .projects h2.category { color: var(--category-heading-color) !important; }
 </style>
@@ -55,8 +56,10 @@ horizontal: false
       {% endif %}
     {% endfor %}
 
-  {% else %}
+{% else %}
+
   <!-- Display projects without categories -->
+
     {% assign sorted_projects = site.people | sort: "importance"| reverse  %}
     <!-- Generate cards for each project -->
     {% if page.horizontal %}
@@ -75,6 +78,6 @@ horizontal: false
       </div>
     {% endif %}
 
-  {% endif %}
+{% endif %}
 
 </div>
