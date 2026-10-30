@@ -51,7 +51,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "post-tak-39-s-yard-simulator",
+        },{id: "post-port-mining",
+        
+          title: 'Port Mining <svg width="1.2rem" height="1.2rem" top=".5rem" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M17 13.5v6H5v-12h6m3-3h6v6m0-6-9 9" class="icon_svg-stroke" stroke="#999" stroke-width="1.5" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+        
+        description: "Port Mining, presented by Jongmin Kim at the SCSC promising technology exchange meeting.",
+        section: "Posts",
+        handler: () => {
+          
+            window.open("https://zomezome.com/story.html?play=1", "_blank");
+          
+        },
+      },{id: "post-tak-39-s-yard-simulator",
         
           title: "Tak&#39;s Yard Simulator",
         
@@ -254,7 +265,7 @@ ninja.data = [{
           section: "News",handler: () => {
               window.location.href = "/news/2025-09-04-BPM/";
             },},{id: "news-すごい-sangmin-jo-got-the-icicic2025-best-presentation-award",
-          title: 'すごい!! 🎉🎉🎉    Sangmin Jo got the ICICIC2025 Best Presentation Award!!!!',
+          title: 'すごい!! 🎉🎉🎉  Sangmin Jo got the ICICIC2025 Best Presentation Award!!!!',
           description: "",
           section: "News",},{id: "news-제11회-39-부산-r-amp-d-주간-39-행사-25-26일-벡스코서-열려",
           title: '제11회 &amp;#39;부산 R&amp;amp;D 주간&amp;#39; 행사 25~26일 벡스코서 열려',
