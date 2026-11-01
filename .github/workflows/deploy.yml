@@ -9,6 +9,7 @@ on:
       - "assets/**"
       - "_sass/**"
       - "_scripts/**"
+      - "_plugins/**"
       - "**.bib"
       - "**.html"
       - "**.js"
@@ -16,6 +17,12 @@ on:
       - "**.liquid"
       - "**/*.md"
       - "**.yml"
+      - "rust/**"
+      - "bin/**"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "package.json"
+      - "package-lock.json"
       - "Gemfile"
       - "Gemfile.lock"
       - "!.github/workflows/axe.yml"
@@ -39,6 +46,7 @@ on:
       - "assets/**"
       - "_sass/**"
       - "_scripts/**"
+      - "_plugins/**"
       - "**.bib"
       - "**.html"
       - "**.js"
@@ -46,6 +54,12 @@ on:
       - "**.liquid"
       - "**/*.md"
       - "**.yml"
+      - "rust/**"
+      - "bin/**"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "package.json"
+      - "package-lock.json"
       - "Gemfile"
       - "Gemfile.lock"
       - "!.github/workflows/axe.yml"
@@ -61,6 +75,12 @@ on:
       - "!FAQ.md"
       - "!INSTALL.md"
       - "!README.md"
+  # Commits created by Update Data Files use GITHUB_TOKEN, whose pushes do not
+  # trigger another workflow. Build the updated default branch after it succeeds.
+  workflow_run:
+    workflows: ["Update Data Files"]
+    types: [completed]
+    branches: [master, main]
   workflow_dispatch:
 
 permissions:
@@ -68,18 +88,45 @@ permissions:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     # available images: https://github.com/actions/runner-images#available-images
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+        with:
+          # The data update commit is newer than workflow_run.head_sha.
+          ref: ${{ github.event_name == 'workflow_run' && github.event.repository.default_branch || '' }}
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Validate count-up animation
+        run: node utils/validate_count_up.cjs
       - name: Validate research vectors
         run: node utils/validate_research_vectors.cjs
+      - name: Validate browser loading behavior
+        run: node utils/validate_optional_libraries.cjs
+      - name: Validate photo gallery scheduling
+        run: node utils/validate_photo_gallery.cjs
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+      - name: Cache Rust build
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: rust
+      - name: Test Rust optimizer
+        run: cargo test --locked --manifest-path rust/Cargo.toml
       - name: Setup Ruby 💎
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
           bundler-cache: true
+      - name: Validate original photo dimensions
+        run: bundle exec ruby utils/validate_photo_dimensions.rb
+      - name: Validate Scholar timeout handling
+        run: bundle exec ruby utils/validate_scholar_timeouts.rb
       - name: Setup Python 🐍
         uses: actions/setup-python@v5
         with:
@@ -102,6 +149,8 @@ jobs:
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
+      - name: Optimize images with Rust
+        run: cargo run --release --locked --manifest-path rust/Cargo.toml -- _site/assets
       - name: Validate built graph CSS
         run: node utils/validate_collabo_css.cjs
       - name: Deploy 🚀

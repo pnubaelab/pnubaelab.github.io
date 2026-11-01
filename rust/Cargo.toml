@@ -1,0 +1,13 @@
+[package]
+name = "site-optimize"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+oxipng = { version = "10.2.1", default-features = false }
+rayon = "1.11"
+tempfile = "3.23"
+
+[dev-dependencies]
+png = "0.18"

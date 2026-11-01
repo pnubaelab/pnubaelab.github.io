@@ -1,4 +1,10 @@
-FROM ruby:slim
+FROM rust:1.91-bookworm AS optimizer
+WORKDIR /build
+COPY rust/Cargo.toml rust/Cargo.lock ./
+COPY rust/src ./src
+RUN cargo test --locked && cargo build --release --locked
+
+FROM ruby:3.3-slim-bookworm
 
 # uncomment these if you are having this issue with the build:
 # /usr/local/bundle/gems/jekyll-4.3.4/lib/jekyll/site.rb:509:in `initialize': Permission denied @ rb_sysopen - /srv/jekyll/.jekyll-cache/.gitignore (Errno::EACCES)
@@ -44,7 +50,10 @@ RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
     locale-gen
 
 # set environment variables
-ENV EXECJS_RUNTIME=Node \
+COPY --from=optimizer /build/target/release/site-optimize /usr/local/bin/site-optimize
+
+ENV SITE_OPTIMIZER_BIN=/usr/local/bin/site-optimize \
+    EXECJS_RUNTIME=Node \
     JEKYLL_ENV=production \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US:en \
@@ -61,8 +70,8 @@ ADD Gemfile /srv/jekyll
 WORKDIR /srv/jekyll
 
 # install jekyll and dependencies
-RUN gem install --no-document jekyll bundler
-RUN bundle install --no-cache
+RUN gem install --no-document bundler -v 2.6.9
+RUN bundle _2.6.9_ install --no-cache
 
 EXPOSE 8080
 

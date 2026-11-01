@@ -1,0 +1,94 @@
+name: Verify Docker site
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - ".github/workflows/docker-verify.yml"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "docker-compose*.yml"
+      - "bin/**"
+      - "_plugins/**"
+      - "rust/**"
+      - "_includes/**"
+      - "_layouts/**"
+      - "_pages/**"
+      - "_config.yml"
+      - "assets/js/**"
+      - "_scripts/**"
+      - "utils/**"
+      - "Gemfile"
+      - "Gemfile.lock"
+  pull_request:
+    branches: [master, main]
+    paths:
+      - ".github/workflows/docker-verify.yml"
+      - "Dockerfile"
+      - ".dockerignore"
+      - "docker-compose*.yml"
+      - "bin/**"
+      - "_plugins/**"
+      - "rust/**"
+      - "_includes/**"
+      - "_layouts/**"
+      - "_pages/**"
+      - "_config.yml"
+      - "assets/js/**"
+      - "_scripts/**"
+      - "utils/**"
+      - "Gemfile"
+      - "Gemfile.lock"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout fresh source
+        uses: actions/checkout@v4
+      - name: Build local Docker image
+        run: docker compose build
+      - name: Start site on port 8080
+        run: docker compose up -d --no-build --pull never
+      - name: Wait for initial site build
+        shell: bash
+        run: |
+          deadline=$((SECONDS + 720))
+          until curl --fail --silent --show-error --max-time 10 http://localhost:8080/ -o /tmp/site-index.html; do
+            if (( SECONDS >= deadline )); then
+              echo 'Site did not become available on port 8080 within 12 minutes' >&2
+              exit 1
+            fi
+            sleep 5
+          done
+      - name: Verify pages and emitted JavaScript
+        shell: bash
+        run: |
+          for route in / /photos/ /publications/; do
+            curl --fail --silent --show-error --max-time 30 "http://localhost:8080${route}" -o /tmp/site-page.html
+            test -s /tmp/site-page.html
+          done
+          grep -q 'assets/js/optional-libraries.js' /tmp/site-index.html
+          curl --fail --silent --show-error --max-time 30 http://localhost:8080/assets/js/optional-libraries.js -o /tmp/optional-libraries.js
+          grep -q 'data-optional-scripts' /tmp/optional-libraries.js
+          docker compose exec -T jekyll site-optimize --help
+          docker compose exec -T jekyll bundle exec ruby utils/validate_photo_dimensions.rb
+          docker compose exec -T jekyll node utils/validate_photo_gallery.cjs
+          docker compose exec -T jekyll bundle exec ruby utils/validate_scholar_timeouts.rb
+      - name: Verify Rust optimization ran during Jekyll build
+        shell: bash
+        run: |
+          docker compose logs --no-color jekyll > /tmp/jekyll-build.log
+          grep -q 'Rust optimizer:' /tmp/jekyll-build.log
+          grep -Eq 'PNG optimization: [1-9][0-9]* files,' /tmp/jekyll-build.log
+      - name: Show container logs
+        if: always()
+        run: docker compose logs --no-color
+      - name: Stop containers
+        if: always()
+        run: docker compose down --remove-orphans

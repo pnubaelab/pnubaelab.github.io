@@ -1,8 +1,9 @@
-# this file uses prebuilt image in dockerhub
+# The multi-stage build keeps the Rust toolchain out of the runtime image.
 services:
   jekyll:
-    image: amirpourmand/al-folio:slim
-    #build: .
+    image: pnubaelab-site:local
+    build: .
+    pull_policy: build
     ports:
       - 8080:8080
       - 35729:35729

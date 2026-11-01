@@ -1,37 +1,37 @@
 #!/bin/bash
 set -euo pipefail
 
-echo "Entry point script running"
-
-CONFIG_FILE=_config.yml
-
-# Function to manage Gemfile.lock
-manage_gemfile_lock() {
-    git config --global --add safe.directory '*'
-    if command -v git &> /dev/null && [ -f Gemfile.lock ]; then
-        if git ls-files --error-unmatch Gemfile.lock &> /dev/null; then
-            echo "Gemfile.lock is tracked by git, keeping it intact"
-            git restore Gemfile.lock 2>/dev/null || true
-        else
-            echo "Gemfile.lock is not tracked by git, removing it"
-            rm Gemfile.lock
-        fi
+# Keep the mounted lockfile intact. Dependencies are installed in the image.
+# Supervise the exact child PID so configuration reloads cannot kill other jobs.
+jekyll_pid=''
+cleanup() {
+    if [[ -n "$jekyll_pid" ]]; then
+        kill -TERM "$jekyll_pid" 2>/dev/null || true
+        wait "$jekyll_pid" 2>/dev/null || true
     fi
 }
-
-start_jekyll() {
-    manage_gemfile_lock
-    bundle exec jekyll serve --watch --port=8080 --host=0.0.0.0 --livereload --verbose --trace --force_polling &
-}
-
-start_jekyll
+trap 'cleanup; exit 0' TERM INT
 
 while true; do
-    inotifywait -q -e modify,move,create,delete $CONFIG_FILE
-    if [ $? -eq 0 ]; then
-        echo "Change detected to $CONFIG_FILE, restarting Jekyll"
-        jekyll_pid=$(pgrep -f jekyll)
-        kill -KILL $jekyll_pid
-        start_jekyll
+    bundle exec jekyll serve --watch --port=8080 --host=0.0.0.0 --livereload --trace --force_polling &
+    jekyll_pid=$!
+    while kill -0 "$jekyll_pid" 2>/dev/null; do
+        if inotifywait -q -t 2 -e modify,move_self,delete_self _config.yml; then
+            echo 'Configuration changed; restarting Jekyll'
+            cleanup
+            jekyll_pid=''
+            break
+        else
+            watcher_status=$?
+            # inotifywait uses 2 for a timeout; other errors should stop the service.
+            if [[ "$watcher_status" != 2 ]]; then
+                cleanup
+                exit "$watcher_status"
+            fi
+        fi
+    done
+    if [[ -n "$jekyll_pid" ]]; then
+        wait "$jekyll_pid"
+        exit $?
     fi
 done
