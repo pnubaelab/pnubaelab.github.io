@@ -397,6 +397,21 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026-10-07-KikunParkOE/";
+            },},{id: "news-센터-추진성과보고",
+          title: '센터 추진성과보고',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026%EB%85%84SCSC%EC%84%BC%ED%84%B0/";
+            },},{id: "news-조건부-잔여-생존함수-기반-컨테이너-체류시간-예측-및-적재-위치-결정",
+          title: '조건부 잔여 생존함수 기반 컨테이너 체류시간 예측 및 적재 위치 결정',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026%EB%85%84SCSC%EC%84%BC%ED%84%B0%EC%B6%94%EC%A7%84%EC%84%B1%EA%B3%BC%EB%B3%B4%EA%B3%A0%20copy/";
+            },},{id: "news-ais-기반-글로벌-항만-기능-구역-구축-및-실시간-선박-상태-식별-시스템",
+          title: 'AIS 기반 글로벌 항만 기능 구역 구축 및 실시간 선박 상태 식별 시스템...',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026%EB%85%84SCSC%EC%84%BC%ED%84%B0%EC%B6%94%EC%A7%84%EC%84%B1%EA%B3%BC%EB%B3%B4%EA%B3%A0/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",

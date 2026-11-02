@@ -12,72 +12,122 @@ function fixture({ intersectionObserver = true } = {}) {
   let observer;
   function classList() {
     const names = new Set();
-    return { add: (...values) => values.forEach((v) => names.add(v)), remove: (...values) => values.forEach((v) => names.delete(v)), contains: (v) => names.has(v) };
+    return {
+      add: (...values) => values.forEach((v) => names.add(v)),
+      remove: (...values) => values.forEach((v) => names.delete(v)),
+      contains: (v) => names.has(v),
+    };
   }
   function eventTarget() {
     const events = {};
     return {
-      addEventListener: (name, fn) => { (events[name] ||= new Set()).add(fn); },
+      addEventListener: (name, fn) => {
+        (events[name] ||= new Set()).add(fn);
+      },
       removeEventListener: (name, fn) => events[name]?.delete(fn),
       dispatch: (name) => [...(events[name] || [])].forEach((fn) => fn()),
     };
   }
   function makeGrid(top) {
     const grid = { items: [], classList: classList(), clientWidth: 900, reads: 0 };
-    grid.querySelectorAll = (selector) => grid.items.filter((item) => {
-      if (selector === ".grid-item") return true;
-      if (selector === ".grid-item.grid-item--wide") return item.classList.contains("grid-item--wide");
-      return item.classList.contains("is-photo-loaded") || item.classList.contains("is-photo-error");
-    });
+    grid.querySelectorAll = (selector) =>
+      grid.items.filter((item) => {
+        if (selector === ".grid-item") return true;
+        if (selector === ".grid-item.grid-item--wide") return item.classList.contains("grid-item--wide");
+        return item.classList.contains("is-photo-loaded") || item.classList.contains("is-photo-error");
+      });
     grid.contains = (item) => grid.items.includes(item);
-    grid.appendChild = (item) => { grid.items.splice(grid.items.indexOf(item), 1); grid.items.push(item); };
+    grid.appendChild = (item) => {
+      grid.items.splice(grid.items.indexOf(item), 1);
+      grid.items.push(item);
+    };
     for (let index = 0; index < 3; index++) {
       const img = { ...eventTarget(), complete: false, naturalWidth: 1000 };
       const values = new Map();
       const attrs = new Map();
       const item = {
-        ...eventTarget(), img, index, dataset: {}, classList: classList(), isConnected: true,
+        ...eventTarget(),
+        img,
+        index,
+        dataset: {},
+        classList: classList(),
+        isConnected: true,
         style: { setProperty: (key, value) => values.set(key, value), removeProperty: (key) => values.delete(key) },
-        setAttribute: (key, value) => attrs.set(key, value), removeAttribute: (key) => attrs.delete(key),
+        setAttribute: (key, value) => attrs.set(key, value),
+        removeAttribute: (key) => attrs.delete(key),
         hasAttribute: (key) => attrs.has(key),
         getBoundingClientRect: () => ({ top, bottom: top + 200, left: 0 }),
-        querySelector: (selector) => selector === ".photo-img" ? img : card,
+        querySelector: (selector) => (selector === ".photo-img" ? img : card),
       };
-      const card = { get offsetHeight() { grid.reads++; return 200; } };
+      const card = {
+        get offsetHeight() {
+          grid.reads++;
+          return 200;
+        },
+      };
       grid.items.push(item);
     }
     return grid;
   }
   const grids = [makeGrid(0), makeGrid(5000)];
   const document = {
-    querySelectorAll: (selector) => selector === ".photo-masonry" ? grids : grids.flatMap((grid) => grid.items),
-    addEventListener() {}, hidden: false,
+    querySelectorAll: (selector) => (selector === ".photo-masonry" ? grids : grids.flatMap((grid) => grid.items)),
+    addEventListener() {},
+    hidden: false,
   };
   const window = {
-    innerHeight: 800, scrollX: 0, scrollY: 0,
+    innerHeight: 800,
+    scrollX: 0,
+    scrollY: 0,
     matchMedia: () => ({ matches: true, addEventListener() {} }),
-    getComputedStyle: () => ({ getPropertyValue: (key) => ({ "--photo-column-count": "3", "column-gap": "4", "row-gap": "4", "grid-auto-rows": "2" })[key] }),
-    requestAnimationFrame: (fn) => { frames.push(fn); return frames.length; },
-    addEventListener: (event, fn) => { windowEvents[event] = fn; },
+    getComputedStyle: () => ({
+      getPropertyValue: (key) => ({ "--photo-column-count": "3", "column-gap": "4", "row-gap": "4", "grid-auto-rows": "2" })[key],
+    }),
+    requestAnimationFrame: (fn) => {
+      frames.push(fn);
+      return frames.length;
+    },
+    addEventListener: (event, fn) => {
+      windowEvents[event] = fn;
+    },
   };
   const context = {
-    document, window,
-    setTimeout: (fn) => { const id = ++nextTimer; timers.set(id, fn); return id; },
+    document,
+    window,
+    setTimeout: (fn) => {
+      const id = ++nextTimer;
+      timers.set(id, fn);
+      return id;
+    },
     clearTimeout: (id) => timers.delete(id),
   };
   if (intersectionObserver) {
     context.IntersectionObserver = class {
-      constructor(callback, options) { observer = { callback, options, observed: [] }; }
-      observe(grid) { observer.observed.push(grid); }
+      constructor(callback, options) {
+        observer = { callback, options, observed: [] };
+      }
+      observe(grid) {
+        observer.observed.push(grid);
+      }
     };
   }
   vm.runInNewContext(source, context);
   return {
-    grids, frames, timers, windowEvents,
+    grids,
+    frames,
+    timers,
+    windowEvents,
     observer: () => observer,
     activate: (grid, isIntersecting = true) => observer.callback([{ target: grid, isIntersecting }]),
-    flushFrame: () => { const batch = frames.splice(0); batch.forEach((fn) => fn()); },
-    flushTimers: () => { const batch = [...timers.values()]; timers.clear(); batch.forEach((fn) => fn()); },
+    flushFrame: () => {
+      const batch = frames.splice(0);
+      batch.forEach((fn) => fn());
+    },
+    flushTimers: () => {
+      const batch = [...timers.values()];
+      timers.clear();
+      batch.forEach((fn) => fn());
+    },
   };
 }
 
@@ -109,7 +159,11 @@ assert.equal(env.frames.length, 1, "burst image callbacks must share one animati
 const beforeBurstReads = visible.reads;
 env.flushFrame();
 assert.equal(visible.reads - beforeBurstReads, 3, "burst must measure each card once");
-assert.deepEqual(visible.items.map((item) => item.index), [2, 0, 1], "retain image completion ordering");
+assert.deepEqual(
+  visible.items.map((item) => item.index),
+  [2, 0, 1],
+  "retain image completion ordering"
+);
 assert.ok(originals[0].classList.contains("is-photo-error"));
 assert.ok(originals[1].classList.contains("is-photo-loaded"));
 originals[0].img.dispatch("load");
