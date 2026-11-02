@@ -7,7 +7,17 @@
   <div class="card hoverable">
     <div class="photo-img-wrap">
       {% if project.img %}
-        <img class="photo-img" src="{{ project.img | relative_url }}" alt="project thumbnail" {% if project.photo_width and project.photo_height %}width="{{ project.photo_width }}" height="{{ project.photo_height }}" {% endif %}loading="lazy" decoding="async" data-zoomable>
+        <img
+          class="photo-img"
+          src="{{ project.img | relative_url }}"
+          alt="project thumbnail"
+          {% if project.photo_width and project.photo_height %}
+            width="{{ project.photo_width }}" height="{{ project.photo_height }}"
+          {% endif -%}
+          loading="lazy"
+          decoding="async"
+          data-zoomable
+        >
       {% endif %}
       <div class="photo-desc-overlay">{{ project.description }}</div>
       <div class="polaroid-text">{{ project.date | date: '%b %d, %Y' }}</div>

@@ -11,8 +11,3 @@ author: [Takhyeong Kim]
 김탁형 연구원이 SCSC 연구센터 성과보고회 및 기술교류회에서 " 조건부 잔여 생존함수 기반 컨테이너 체류시간 예측 및 적재 위치 결정" 를 설명했습니다.
 
 {% include video.liquid path="https://www.youtube.com/embed/RadiuDs2zOs" class="rounded z-depth-1" %}
-
-
-
-
- 
