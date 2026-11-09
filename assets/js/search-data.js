@@ -1632,6 +1632,16 @@ ninja.data = [{
           description: "PNU Festival, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/%EC%B6%95%EC%A0%9C/";
+            },},{id: "photo-2026-informs",
+          title: '2026 INFORMS',
+          description: "2026 INFORMS, Los Angels, USA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026Informs2/";
+            },},{id: "photo-2026-informs",
+          title: '2026 INFORMS',
+          description: "2026 INFORMS, Los Angels, USA",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026Informs/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
