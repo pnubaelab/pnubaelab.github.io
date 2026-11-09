@@ -4,9 +4,6 @@ const path = require("node:path");
 const vm = require("node:vm");
 const source = fs.readFileSync(path.join(__dirname, "../assets/js/photo-gallery.js"), "utf8");
 
-<<<<<<< HEAD
-function fixture({ intersectionObserver = true, columnCount = 3 } = {}) {
-=======
 function fixture({
   intersectionObserver = true,
   heights = [200, 200, 200],
@@ -15,7 +12,6 @@ function fixture({
   fixedWideIndices = [],
   gridCount = 2,
 } = {}) {
->>>>>>> refs/remotes/origin/main
   const frames = [];
   const timers = new Map();
   const windowEvents = {};
@@ -56,17 +52,6 @@ function fixture({
       });
     };
     grid.contains = (item) => grid.items.includes(item);
-<<<<<<< HEAD
-    grid.appendChild = () => { assert.fail("image completion must not reorder date-sorted items"); };
-    for (let index = 0; index < 3; index++) {
-      const img = { ...eventTarget(), complete: false, naturalWidth: 1000 };
-      const values = new Map();
-      const attrs = new Map();
-      const item = {
-        ...eventTarget(), img, index, dataset: { fixedWide: index % 2 === 0 ? "true" : "false" }, classList: classList(), isConnected: true,
-        style: { setProperty: (key, value) => values.set(key, value), removeProperty(key) { values.delete(key); if (key === "grid-column") delete this.gridColumn; } },
-        setAttribute: (key, value) => attrs.set(key, value), removeAttribute: (key) => attrs.delete(key),
-=======
     grid.appendChild = (item) => {
       grid.items.splice(grid.items.indexOf(item), 1);
       grid.items.push(item);
@@ -110,7 +95,6 @@ function fixture({
         },
         setAttribute: (key, value) => attrs.set(key, value),
         removeAttribute: (key) => attrs.delete(key),
->>>>>>> refs/remotes/origin/main
         hasAttribute: (key) => attrs.has(key),
         getBoundingClientRect: () => ({ top, bottom: top + 200, left: 0 }),
         querySelector: (selector) => (selector === ".photo-img" ? img : card),
@@ -136,11 +120,6 @@ function fixture({
     scrollX: 0,
     scrollY: 0,
     matchMedia: () => ({ matches: true, addEventListener() {} }),
-<<<<<<< HEAD
-    getComputedStyle: () => ({ getPropertyValue: (key) => ({ "--photo-column-count": String(columnCount), "column-gap": "4", "row-gap": "4", "grid-auto-rows": "2" })[key] }),
-    requestAnimationFrame: (fn) => { frames.push(fn); return frames.length; },
-    addEventListener: (event, fn) => { windowEvents[event] = fn; },
-=======
     getComputedStyle: () => ({
       getPropertyValue: (key) => ({ "--photo-column-count": String(columns), "column-gap": "4", "row-gap": "4", "grid-auto-rows": "2" })[key],
     }),
@@ -151,7 +130,6 @@ function fixture({
     addEventListener: (event, fn) => {
       windowEvents[event] = fn;
     },
->>>>>>> refs/remotes/origin/main
   };
   const context = {
     document,
@@ -176,10 +154,6 @@ function fixture({
   }
   vm.runInNewContext(source, context);
   return {
-<<<<<<< HEAD
-    grids, frames, timers, windowEvents,
-    setColumnCount: (value) => { columnCount = value; },
-=======
     setColumns: (value) => {
       columns = value;
     },
@@ -187,7 +161,6 @@ function fixture({
     frames,
     timers,
     windowEvents,
->>>>>>> refs/remotes/origin/main
     observer: () => observer,
     activate: (grid, isIntersecting = true) => observer.callback([{ target: grid, isIntersecting }]),
     flushFrame: () => {
@@ -206,20 +179,12 @@ const env = fixture();
 const [visible, offscreen] = env.grids;
 assert.equal(env.observer().observed.length, 2);
 assert.equal(env.observer().options.rootMargin, "600px 0px");
-<<<<<<< HEAD
-assert.equal(env.frames.length, 0, "inactive grids must not schedule frames");
-for (const grid of env.grids) {
-  assert.equal(grid.items[0].style.gridColumn, "1 / span 2", "first large photo starts on the left before loading");
-  assert.equal(grid.items[2].style.gridColumn, "2 / span 2", "next large photo starts on the right before loading");
-}
-=======
 assert.equal(env.frames.length, 1, "first screen must be scheduled before the initial observer callback");
 assert.equal(offscreen.reads, 0, "distant sections must not measure any cards during initialization");
 assert.equal(offscreen.classList.contains("is-masonry"), false, "deferred sections must retain normal CSS grid height");
 env.flushFrame();
 assert.ok(visible.classList.contains("is-masonry"));
 assert.equal(offscreen.reads, 0, "first-screen planning must not measure distant cards");
->>>>>>> refs/remotes/origin/main
 const initialReads = offscreen.reads;
 const offscreenItem = offscreen.items[0];
 offscreenItem.img.dispatch("load");
@@ -230,7 +195,6 @@ env.activate(offscreen);
 assert.equal(env.frames.length, 1);
 env.flushFrame();
 assert.ok(offscreenItem.classList.contains("is-photo-loaded"));
-assert.equal(offscreen.items[2].style.gridColumn, "2 / span 2", "pending large photos retain their alternating side");
 assert.equal(offscreenItem.hasAttribute("aria-hidden"), false);
 assert.ok(offscreen.reads > initialReads);
 env.activate(offscreen, false);
@@ -244,15 +208,11 @@ assert.equal(env.frames.length, 1, "burst image callbacks must share one animati
 const beforeBurstReads = visible.reads;
 env.flushFrame();
 assert.equal(visible.reads - beforeBurstReads, 3, "burst must measure each card once");
-<<<<<<< HEAD
-assert.deepEqual(visible.items.map((item) => item.index), [0, 1, 2], "retain newest-first order despite out-of-order loading");
-=======
 assert.deepEqual(
   visible.items.map((item) => item.index),
   [0, 1, 2],
   "retain chronological DOM order despite out-of-order image completions"
 );
->>>>>>> refs/remotes/origin/main
 assert.ok(originals[0].classList.contains("is-photo-error"));
 assert.ok(originals[1].classList.contains("is-photo-loaded"));
 originals[0].img.dispatch("load");
@@ -283,25 +243,6 @@ distantItem.img.dispatch("load");
 assert.equal(fallback.frames.length, 1, "fallback must continue revealing offscreen images");
 fallback.flushFrame();
 assert.ok(distantItem.classList.contains("is-photo-loaded"));
-<<<<<<< HEAD
-// Exercise breakpoint changes with pending and completed large photos.
-for (const columns of [2, 1, 3]) {
-  fallback.setColumnCount(columns);
-  fallback.windowEvents.resize();
-  fallback.flushTimers();
-  fallback.flushFrame();
-  for (const grid of fallback.grids) {
-    assert.equal(grid.items[0].style.gridColumn, columns >= 3 ? "1 / span 2" : undefined);
-    assert.equal(grid.items[2].style.gridColumn, columns >= 3 ? "2 / span 2" : undefined);
-    assert.deepEqual(grid.items.map((item) => item.index), [0, 1, 2]);
-  }
-}
-
-const page = fs.readFileSync(path.join(__dirname, "../_pages/photos.md"), "utf8");
-assert.match(page, /grid-auto-flow:\s*row\s+dense\s*;/, "CSS must fill gaps while retaining date-sorted source order");
-assert.doesNotMatch(page, /\border:\s*\d/, "loading state must not change visual order");
-console.log("Photo gallery chronology, alternating large photos, responsive placement, batching and deferred loading checks passed.");
-=======
 function placements(grid) {
   return grid.items.map((item) => {
     const [column, span] = item.style.gridColumn.split(" / span ").map(Number);
@@ -396,5 +337,35 @@ assert.ok(
   priority.grids[0].items.every((item) => item.img.sizes === "880px"),
   "eager image sizes must follow responsive layout"
 );
-console.log("Photo gallery chronology, global gap filling, responsive geometry, completion batching, deferral and fallback checks passed.");
->>>>>>> refs/remotes/origin/main
+// Alternation must survive packing search, out-of-order loads and resizing.
+const alternating = fixture({
+  intersectionObserver: false,
+  heights: [220, 100, 310, 150, 180, 90, 260, 130],
+  fixedWideIndices: [0, 2, 4, 6],
+  eagerImages: 3,
+  gridCount: 1,
+});
+function validateAlternation() {
+  const plan = validateLayout(alternating.grids[0], 3);
+  const wide = plan.filter((card) => [0, 2, 4, 6].includes(card.index));
+  assert.deepEqual(wide.map((card) => card.column), [0, 1, 0, 1], "large photos must alternate left and right in date order");
+  assert.ok(wide.every((card, index) => index === 0 || card.row > wide[index - 1].row), "packing must preserve visual order of large photos");
+}
+alternating.flushFrame();
+validateAlternation();
+[...alternating.grids[0].items].reverse().forEach((item) => item.img.dispatch("load"));
+alternating.flushFrame();
+validateAlternation();
+for (const columns of [2, 1, 3]) {
+  alternating.setColumns(columns);
+  alternating.windowEvents.resize();
+  alternating.flushTimers();
+  alternating.flushFrame();
+  validateLayout(alternating.grids[0], columns);
+}
+validateAlternation();
+for (const filename of ["assets/js/photo-gallery.js", "_pages/photos.md", "utils/validate_photo_gallery.cjs"]) {
+  const content = fs.readFileSync(path.join(__dirname, "..", filename), "utf8");
+  assert.doesNotMatch(content, /^(?:<{7}|={7}|>{7})(?: |$)/m, `${filename} must not contain merge conflict markers`);
+}
+console.log("Photo gallery chronology, alternating large photos, gap filling, responsive geometry, loading and merge integrity checks passed.");

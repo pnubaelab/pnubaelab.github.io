@@ -1,13 +1,4 @@
 (function () {
-<<<<<<< HEAD
-    var randomWideItemRatio = 0.05;
-    var scheduledGrids = [];
-    var pendingPlacements = new Map();
-    var enteringCandidates = [];
-    var activeGrids = new Set();
-    var dirtyGrids = new Set();
-    var grids = Array.prototype.slice.call(document.querySelectorAll('.photo-masonry'));
-=======
   var randomWideItemRatio = 0.05;
   var scheduledGrids = [];
   var pendingPlacements = new Map();
@@ -15,7 +6,6 @@
   var activeGrids = new Set();
   var dirtyGrids = new Set();
   var grids = Array.prototype.slice.call(document.querySelectorAll(".photo-masonry"));
->>>>>>> refs/remotes/origin/main
 
   function isNearViewport(item, margin) {
     var rect = item.getBoundingClientRect();
@@ -93,212 +83,6 @@
         if (activeLayoutAnimations.get(item) === animation) {
           activeLayoutAnimations.delete(item);
         }
-<<<<<<< HEAD
-      });
-
-      pendingLayoutRects = new WeakMap();
-    }
-
-    function handleReducedMotionChange(event) {
-      if (event.matches) stopLayoutAnimations();
-    }
-
-    if (typeof reducedMotionQuery.addEventListener === 'function') {
-      reducedMotionQuery.addEventListener('change', handleReducedMotionChange);
-    } else {
-      reducedMotionQuery.addListener(handleReducedMotionChange);
-    }
-
-    function assignWidePlacements(grid, columnCount) {
-      // Use date order, including pending images, so loading cannot flip sides.
-      grid.querySelectorAll('.grid-item.grid-item--wide').forEach(function (item, index) {
-        if (columnCount >= 3) {
-          var columnStart = index % 2 === 0 ? 1 : columnCount - 1;
-          item.style.gridColumn = columnStart + ' / span 2';
-        } else {
-          item.style.removeProperty('grid-column');
-        }
-      });
-    }
-
-    function applyMasonry(grid) {
-      var computedStyle = window.getComputedStyle(grid);
-      var columnCount = parseInt(computedStyle.getPropertyValue('--photo-column-count'), 10);
-      var rowHeight = parseFloat(computedStyle.getPropertyValue('grid-auto-rows'));
-      var rowGap = parseFloat(computedStyle.getPropertyValue('row-gap'));
-
-      if (!rowHeight || rowHeight <= 0) return;
-
-      // Set widths before measuring card heights at this breakpoint.
-      assignWidePlacements(grid, columnCount);
-
-      var measurements = Array.prototype.slice.call(grid.querySelectorAll('.grid-item')).map(function (item) {
-        var content = item.querySelector('.card') || item;
-        var contentHeight = content.offsetHeight;
-        var rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
-
-        return {
-          item: item,
-          rowSpan: rowSpan,
-        };
-      });
-
-      measurements.forEach(function (measurement) {
-        measurement.item.style.setProperty('--masonry-row-span', measurement.rowSpan);
-      });
-    }
-
-    function scheduleMasonry(grid) {
-      dirtyGrids.add(grid);
-      if (!activeGrids.has(grid)) return;
-      if (scheduledGrids.indexOf(grid) === -1) scheduledGrids.push(grid);
-      if (layoutFrame !== null) return;
-
-      layoutFrame = window.requestAnimationFrame(function () {
-        var batch = scheduledGrids.slice();
-        scheduledGrids = [];
-        layoutFrame = null;
-
-        enteringCandidates = [];
-        // Capture each visible grid once before any image-completion writes.
-        batch.forEach(captureLayoutPositions);
-        batch.forEach(function (grid) {
-          var placements = pendingPlacements.get(grid) || [];
-          pendingPlacements.delete(grid);
-          placements.forEach(function (placement) { placement(); });
-          applyMasonry(grid);
-          animateLayoutPositions(grid);
-          dirtyGrids.delete(grid);
-        });
-        // Read visibility after the final placement, then start only onscreen effects.
-        var entering = reducedMotionQuery.matches ? [] : enteringCandidates.filter(function (item) {
-          return isNearViewport(item, 0);
-        });
-        entering.forEach(function (item) {
-          item.classList.add('is-photo-entering');
-          item.addEventListener('animationend', function () {
-            item.classList.remove('is-photo-entering');
-          }, { once: true });
-        });
-      });
-    }
-
-    function layoutAllMasonry() {
-      // Clear stale desktop column constraints even in deferred sections so they
-      // cannot widen the document when switching to a narrow viewport.
-      if (window.matchMedia('(max-width: 768px)').matches) {
-        document.querySelectorAll('.photo-masonry .grid-item.grid-item--wide').forEach(function (item) {
-          item.style.removeProperty('grid-column');
-        });
-      }
-      grids.forEach(scheduleMasonry);
-    }
-
-    var resizeTimer;
-    function onResize() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(layoutAllMasonry, 120);
-    }
-
-    function assignRandomWideItems() {
-      var items = Array.prototype.slice.call(document.querySelectorAll('.photo-masonry .grid-item'));
-
-      items.forEach(function (item) {
-        item.classList.remove('grid-item--wide');
-      });
-
-      var candidates = items.filter(function (item) {
-        return item.querySelector('.photo-img');
-      });
-
-      if (candidates.length === 0) return;
-
-      var fixedWideItems = candidates.filter(function (item) {
-        return item.dataset.fixedWide === 'true';
-      });
-      var randomCandidates = candidates.filter(function (item) {
-        return item.dataset.fixedWide !== 'true';
-      });
-      var randomWideItemCount = Math.min(randomCandidates.length, Math.round(candidates.length * randomWideItemRatio));
-
-      fixedWideItems.forEach(function (item) {
-        item.classList.add('grid-item--wide');
-      });
-
-      for (var index = randomCandidates.length - 1; index > 0; index -= 1) {
-        var randomIndex = Math.floor(Math.random() * (index + 1));
-        var currentItem = randomCandidates[index];
-        randomCandidates[index] = randomCandidates[randomIndex];
-        randomCandidates[randomIndex] = currentItem;
-      }
-
-      randomCandidates.slice(0, randomWideItemCount).forEach(function (item) {
-        item.classList.add('grid-item--wide');
-      });
-    }
-
-    function initializePhotoGrid(grid) {
-      grid.classList.add('is-masonry');
-
-      grid.querySelectorAll('.grid-item').forEach(function (item) {
-        var img = item.querySelector('.photo-img');
-        var isPlaced = false;
-
-        item.setAttribute('aria-hidden', 'true');
-
-        function finishPlacement(stateClass) {
-          if (isPlaced) return;
-
-          isPlaced = true;
-
-          if (img) {
-            img.removeEventListener('load', revealLoadedPhoto);
-            img.removeEventListener('error', revealErroredPhoto);
-          }
-
-          var placements = pendingPlacements.get(grid) || [];
-          placements.push(function () {
-            // Reveal in place: the template already supplies newest-first order.
-            item.removeAttribute('aria-hidden');
-            item.classList.add(stateClass);
-            if (stateClass === 'is-photo-loaded') enteringCandidates.push(item);
-          });
-          pendingPlacements.set(grid, placements);
-          scheduleMasonry(grid);
-        }
-
-        function revealLoadedPhoto() {
-          finishPlacement('is-photo-loaded');
-        }
-
-        function revealErroredPhoto() {
-          finishPlacement('is-photo-error');
-        }
-
-        if (!img) {
-          revealErroredPhoto();
-          return;
-        }
-
-        img.addEventListener('load', revealLoadedPhoto, { once: true });
-        img.addEventListener('error', revealErroredPhoto, { once: true });
-
-        if (img.complete && img.naturalWidth > 0) {
-          revealLoadedPhoto();
-        } else if (img.complete) {
-          revealErroredPhoto();
-        }
-      });
-
-      applyMasonry(grid);
-    }
-
-    assignRandomWideItems();
-
-    grids.forEach(function (grid) {
-      // One initial sizing pass reserves the original aspect ratios for lazy images.
-      initializePhotoGrid(grid);
-=======
       }
 
       animation.addEventListener("finish", clearFinishedAnimation, { once: true });
@@ -330,9 +114,11 @@
     reducedMotionQuery.addListener(handleReducedMotionChange);
   }
 
-  function findOpenPlacement(card, occupied) {
+  function findOpenPlacement(card, occupied, minimumTop) {
     var best = null;
-    for (var column = 0; column <= occupied.length - card.columns; column += 1) {
+    var firstColumn = card.wideColumn === null ? 0 : card.wideColumn;
+    var lastColumn = card.wideColumn === null ? occupied.length - card.columns : card.wideColumn;
+    for (var column = firstColumn; column <= lastColumn; column += 1) {
       var intervals = [];
       for (var offset = 0; offset < card.columns; offset += 1) {
         intervals = intervals.concat(occupied[column + offset]);
@@ -340,7 +126,7 @@
       intervals.sort(function (first, second) {
         return first.top - second.top;
       });
-      var top = 0;
+      var top = minimumTop || 0;
       var limit = Infinity;
       for (var index = 0; index < intervals.length; index += 1) {
         var interval = intervals[index];
@@ -362,8 +148,10 @@
     var occupied = Array.from({ length: columnCount }, function () {
       return [];
     });
+    var previousWideTop = -1;
     var placements = order.map(function (card) {
-      var placement = findOpenPlacement(card, occupied);
+      var placement = findOpenPlacement(card, occupied, card.wideColumn === null ? 0 : previousWideTop + 1);
+      if (card.wideColumn !== null) previousWideTop = placement.top;
       for (var offset = 0; offset < card.columns; offset += 1) {
         occupied[placement.column + offset].push({ top: placement.top, bottom: placement.top + card.rows });
       }
@@ -400,11 +188,8 @@
   function compactPlan(cards, columnCount) {
     // A single column already has no packing gaps; keep exact date order there.
     var best = packOrder(cards, columnCount);
-    var priority = cards.filter(function (card) {
-      return card.priority;
-    });
     var movable = cards.filter(function (card) {
-      return !card.priority;
+      return !card.priority && card.wideColumn === null;
     });
     if (columnCount === 1 || movable.length < 2) return best.placements;
     var lowerBound = Math.max.apply(
@@ -451,16 +236,26 @@
       }
       orders.push(shuffled);
     }
+    // Keep priority photos and alternating wide cards in their date slots.
+    // Search only the remaining cards to fill the spaces around those anchors.
     orders.forEach(function (order) {
-      var plan = packOrder(priority.concat(order), columnCount);
+      var next = 0;
+      var candidate = cards.map(function (card) {
+        return card.priority || card.wideColumn !== null ? card : order[next++];
+      });
+      var plan = packOrder(candidate, columnCount);
       if (comparePlans(plan, best) < 0) best = plan;
+    });
+    var movableSlots = [];
+    cards.forEach(function (card, index) {
+      if (!card.priority && card.wideColumn === null) movableSlots.push(index);
     });
     // Bound local refinement so a dense year cannot monopolize the main thread.
     for (var attempt = 0; attempt < Math.min(24, movable.length * 2) && best.height > lowerBound; attempt += 1) {
       var order = best.order.slice();
       var offset = attempt % (movable.length - 1);
-      var first = priority.length + offset;
-      var second = attempt < movable.length - 1 ? first + 1 : order.length - 1 - offset;
+      var first = movableSlots[offset];
+      var second = attempt < movable.length - 1 ? movableSlots[offset + 1] : movableSlots[movable.length - 1 - offset];
       var card = order[first];
       order[first] = order[second];
       order[second] = card;
@@ -484,6 +279,7 @@
       item.style.removeProperty("grid-column");
       item.style.removeProperty("grid-row-start");
     });
+    var wideIndex = 0;
     var cards = items.map(function (item, index) {
       var content = item.querySelector(".card") || item;
       var img = item.querySelector(".photo-img");
@@ -491,6 +287,7 @@
         item: item,
         index: index,
         priority: img && img.loading === "eager",
+        wideColumn: columnCount >= 3 && item.classList.contains("grid-item--wide") ? (wideIndex++ % 2 === 0 ? 0 : columnCount - 2) : null,
         columns: columnCount > 1 && item.classList.contains("grid-item--wide") ? 2 : 1,
         rows: Math.max(1, Math.ceil((content.offsetHeight + rowGap) / (rowHeight + rowGap))),
       };
@@ -500,7 +297,7 @@
       ":" +
       cards
         .map(function (card) {
-          return card.rows + "x" + card.columns + (card.priority ? "p" : "");
+          return card.rows + "x" + card.columns + ":" + card.wideColumn + (card.priority ? "p" : "");
         })
         .join(",");
     var cached = layoutCache.get(grid);
@@ -669,7 +466,6 @@
       } else if (img.complete) {
         revealErroredPhoto();
       }
->>>>>>> refs/remotes/origin/main
     });
 
     // Leave distant sections in ordinary CSS grid flow. Intrinsic image

@@ -25,12 +25,8 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
   --photo-column-count: 3;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-<<<<<<< HEAD
-  /* Start in date order, but let later photos fill gaps around alternating wide cards. */
+  /* Fill gaps in the fallback grid; JavaScript plans the masonry positions. */
   grid-auto-flow: row dense;
-=======
-  grid-auto-flow: row;
->>>>>>> refs/remotes/origin/main
   gap: 4px;
   margin: 20px 0;
   position: relative;
