@@ -57,6 +57,21 @@ class AssetCacheTest < Minitest::Test
     assert_includes html, 'sizes="auto,'
     assert_includes html, 'loading="lazy"'
 
+    (1..4).each do |index|
+      priority_html = template.render!({ 'project' => @photo.data, 'include' => { 'photo_priority' => index } }, registers: { site: site })
+      assert_includes priority_html, index <= 3 ? 'loading="eager"' : 'loading="lazy"'
+      if index == 1
+        assert_includes priority_html, 'fetchpriority="high"'
+      else
+        refute_includes priority_html, 'fetchpriority="high"'
+      end
+      if index <= 3
+        refute_includes priority_html, 'sizes="auto,', 'sizes=auto requires lazy loading'
+      else
+        assert_includes priority_html, 'sizes="auto,'
+      end
+    end
+
     site.config['imagemagick']['enabled'] = false
     JekyllImagemagick::ImageGenerator.new.generate(site)
     refute @photo.data.key?('photo_sources'), 'disabled conversion must clear stale sources'

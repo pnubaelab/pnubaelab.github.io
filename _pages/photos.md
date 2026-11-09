@@ -5,7 +5,6 @@ permalink: /photos/
 description:
 nav: true
 display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
-photo_batch_size: 6
 ---
 
 <style>
@@ -190,8 +189,9 @@ photo_batch_size: 6
 
 {% include photo-styles.liquid %}
 
-<div class="photo-gallery" data-photo-batch-size="{{ page.photo_batch_size | default: 6 }}">
+<div class="photo-gallery">
   {% assign sorted_projects = site.photo | sort: 'date' | reverse %}
+  {% assign priority_photo_count = 0 %}
 
 {% if page.display_categories %}
 {% for year in page.display_categories %}
@@ -213,7 +213,8 @@ photo_batch_size: 6
 {% for project in sorted_projects %}
 {% assign project_year = project.date | date: "%Y" %}
 {% if project_year == year_str %}
-{% include photo.html %}
+{% assign priority_photo_count = priority_photo_count | plus: 1 %}
+{% include photo.html photo_priority=priority_photo_count %}
 {% endif %}
 {% endfor %}
 </div>
@@ -223,7 +224,8 @@ photo_batch_size: 6
 {% else %}
 <div class="photo-masonry">
 {% for project in sorted_projects %}
-{% include photo.html %}
+{% assign priority_photo_count = priority_photo_count | plus: 1 %}
+{% include photo.html photo_priority=priority_photo_count %}
 {% endfor %}
 </div>
 {% endif %}

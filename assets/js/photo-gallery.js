@@ -1,8 +1,5 @@
 (function () {
   var randomWideItemRatio = 0.05;
-  var gallery = document.querySelector(".photo-gallery");
-  var placementBatchSize = Math.max(1, Math.min(8, parseInt(gallery && gallery.dataset.photoBatchSize, 10) || 6));
-  var placementBeamWidth = 64;
   var scheduledGrids = [];
   var pendingPlacements = new Map();
   var enteringCandidates = [];
@@ -117,96 +114,148 @@
     reducedMotionQuery.addListener(handleReducedMotionChange);
   }
 
-  function placeCard(state, card, column, floor) {
-    var top = floor;
-    for (var offset = 0; offset < card.columns; offset += 1) {
-      top = Math.max(top, state.heights[column + offset]);
-    }
-    var heights = state.heights.slice();
-    var gaps = state.gaps;
-    for (var offset = 0; offset < card.columns; offset += 1) {
-      gaps += top - heights[column + offset];
-      heights[column + offset] = top + card.rows;
-    }
-    return {
-      heights: heights,
-      gaps: gaps,
-      remaining: state.remaining.filter(function (candidate) {
-        return candidate !== card;
-      }),
-      placements: state.placements.concat([{ card: card, column: column, top: top }]),
-      chronologyCost: state.chronologyCost + Math.abs(card.localIndex - state.placements.length),
-    };
-  }
-
-  function comparePlacements(first, second) {
-    return (
-      Math.max.apply(null, first.heights) - Math.max.apply(null, second.heights) ||
-      first.gaps - second.gaps ||
-      first.chronologyCost - second.chronologyCost
-    );
-  }
-
-  function searchBatch(cards, heights, floor) {
-    var initial = { heights: heights, gaps: 0, remaining: cards, placements: [], chronologyCost: 0 };
-    // Keep a chronological greedy baseline so search can never make its score worse.
-    var baseline = initial;
-    cards.forEach(function (card) {
-      var candidates = [];
-      for (var column = 0; column <= heights.length - card.columns; column += 1) {
-        candidates.push(placeCard(baseline, card, column, floor));
+  function findOpenPlacement(card, occupied) {
+    var best = null;
+    for (var column = 0; column <= occupied.length - card.columns; column += 1) {
+      var intervals = [];
+      for (var offset = 0; offset < card.columns; offset += 1) {
+        intervals = intervals.concat(occupied[column + offset]);
       }
-      candidates.sort(comparePlacements);
-      baseline = candidates[0];
-    });
-    if (heights.length === 1 || cards.length === 1) return baseline;
-
-    var beam = [initial];
-    for (var depth = 0; depth < cards.length; depth += 1) {
-      var candidates = [];
-      beam.forEach(function (state) {
-        state.remaining.forEach(function (card) {
-          for (var column = 0; column <= heights.length - card.columns; column += 1) {
-            candidates.push(placeCard(state, card, column, floor));
-          }
-        });
+      intervals.sort(function (first, second) {
+        return first.top - second.top;
       });
-      // Estimate the best possible final height, including cards still unplaced.
-      candidates.forEach(function (candidate) {
-        var area = candidate.heights.reduce(function (sum, height) {
-          return sum + height;
-        }, 0);
-        area += candidate.remaining.reduce(function (sum, card) {
-          return sum + card.rows * card.columns;
-        }, 0);
-        candidate.bound = Math.max(Math.max.apply(null, candidate.heights), area / heights.length);
-      });
-      candidates.sort(function (first, second) {
-        return first.bound - second.bound || first.gaps - second.gaps || first.chronologyCost - second.chronologyCost;
-      });
-      var seen = new Set();
-      beam = candidates
-        .filter(function (candidate) {
-          var key =
-            candidate.remaining
-              .map(function (card) {
-                return card.localIndex;
-              })
-              .join(",") +
-            ":" +
-            candidate.heights.join(",");
-          if (seen.has(key)) return false;
-          seen.add(key);
-          return true;
-        })
-        .slice(0, placementBeamWidth);
+      var top = 0;
+      var limit = Infinity;
+      for (var index = 0; index < intervals.length; index += 1) {
+        var interval = intervals[index];
+        if (interval.top >= top + card.rows) {
+          limit = interval.top;
+          break;
+        }
+        top = Math.max(top, interval.bottom);
+      }
+      var waste = limit - top - card.rows;
+      if (!best || top < best.top || (top === best.top && waste < best.waste)) {
+        best = { card: card, column: column, top: top, waste: waste };
+      }
     }
-    beam.push(baseline);
-    beam.sort(comparePlacements);
-    return beam[0];
+    return best;
+  }
+
+  function packOrder(order, columnCount) {
+    var occupied = Array.from({ length: columnCount }, function () {
+      return [];
+    });
+    var placements = order.map(function (card) {
+      var placement = findOpenPlacement(card, occupied);
+      for (var offset = 0; offset < card.columns; offset += 1) {
+        occupied[placement.column + offset].push({ top: placement.top, bottom: placement.top + card.rows });
+      }
+      return placement;
+    });
+    var height = 0;
+    var gaps = 0;
+    occupied.forEach(function (intervals) {
+      intervals.sort(function (first, second) {
+        return first.top - second.top;
+      });
+      var bottom = 0;
+      intervals.forEach(function (interval) {
+        gaps += interval.top - bottom;
+        bottom = interval.bottom;
+      });
+      height = Math.max(height, bottom);
+    });
+    var chronologyCost = placements
+      .slice()
+      .sort(function (first, second) {
+        return first.top - second.top || first.column - second.column;
+      })
+      .reduce(function (cost, placement, index) {
+        return cost + Math.abs(placement.card.index - index);
+      }, 0);
+    return { placements: placements, height: height, gaps: gaps, chronologyCost: chronologyCost, order: order };
+  }
+
+  function comparePlans(first, second) {
+    return first.height - second.height || first.gaps - second.gaps || first.chronologyCost - second.chronologyCost;
+  }
+
+  function compactPlan(cards, columnCount) {
+    // A single column already has no packing gaps; keep exact date order there.
+    var best = packOrder(cards, columnCount);
+    var priority = cards.filter(function (card) {
+      return card.priority;
+    });
+    var movable = cards.filter(function (card) {
+      return !card.priority;
+    });
+    if (columnCount === 1 || movable.length < 2) return best.placements;
+    var lowerBound = Math.max.apply(
+      null,
+      cards.map(function (card) {
+        return card.rows;
+      })
+    );
+    lowerBound = Math.max(
+      lowerBound,
+      Math.ceil(
+        cards.reduce(function (area, card) {
+          return area + card.rows * card.columns;
+        }, 0) / columnCount
+      )
+    );
+    var orders = [
+      movable.slice().sort(function (a, b) {
+        return b.rows - a.rows || a.index - b.index;
+      }),
+      movable.slice().sort(function (a, b) {
+        return b.rows * b.columns - a.rows * a.columns || a.index - b.index;
+      }),
+      movable.slice().sort(function (a, b) {
+        return b.columns - a.columns || b.rows - a.rows || a.index - b.index;
+      }),
+      movable.slice().sort(function (a, b) {
+        return b.columns - a.columns || a.rows - b.rows || a.index - b.index;
+      }),
+      movable.slice().reverse(),
+    ];
+    // Stable shuffled candidates broaden the search without shuffling DOM dates.
+    for (var seed = 1; seed <= 6; seed += 1) {
+      var shuffled = movable.slice();
+      var random = seed * 2654435761;
+      for (var index = shuffled.length - 1; index > 0; index -= 1) {
+        random ^= random << 13;
+        random ^= random >>> 17;
+        random ^= random << 5;
+        var swap = (random >>> 0) % (index + 1);
+        var card = shuffled[index];
+        shuffled[index] = shuffled[swap];
+        shuffled[swap] = card;
+      }
+      orders.push(shuffled);
+    }
+    orders.forEach(function (order) {
+      var plan = packOrder(priority.concat(order), columnCount);
+      if (comparePlans(plan, best) < 0) best = plan;
+    });
+    // Bound local refinement so a dense year cannot monopolize the main thread.
+    for (var attempt = 0; attempt < Math.min(24, movable.length * 2) && best.height > lowerBound; attempt += 1) {
+      var order = best.order.slice();
+      var offset = attempt % (movable.length - 1);
+      var first = priority.length + offset;
+      var second = attempt < movable.length - 1 ? first + 1 : order.length - 1 - offset;
+      var card = order[first];
+      order[first] = order[second];
+      order[second] = card;
+      var plan = packOrder(order, columnCount);
+      if (comparePlans(plan, best) < 0) best = plan;
+    }
+    return best.placements;
   }
 
   function applyMasonry(grid) {
+    grid.classList.add("is-masonry");
     var computedStyle = window.getComputedStyle(grid);
     var columnCount = parseInt(computedStyle.getPropertyValue("--photo-column-count"), 10);
     var rowHeight = parseFloat(computedStyle.getPropertyValue("grid-auto-rows"));
@@ -219,46 +268,29 @@
       item.style.removeProperty("grid-column");
       item.style.removeProperty("grid-row-start");
     });
-    var cards = items.map(function (item) {
+    var cards = items.map(function (item, index) {
       var content = item.querySelector(".card") || item;
+      var img = item.querySelector(".photo-img");
       return {
         item: item,
+        index: index,
+        priority: img && img.loading === "eager",
         columns: columnCount > 1 && item.classList.contains("grid-item--wide") ? 2 : 1,
         rows: Math.max(1, Math.ceil((content.offsetHeight + rowGap) / (rowHeight + rowGap))),
       };
     });
     var key =
-      [columnCount, rowHeight, rowGap, grid.clientWidth, placementBatchSize].join(":") +
+      [columnCount, rowHeight, rowGap, grid.clientWidth].join(":") +
       ":" +
       cards
         .map(function (card) {
-          return card.rows + "x" + card.columns;
+          return card.rows + "x" + card.columns + (card.priority ? "p" : "");
         })
         .join(",");
     var cached = layoutCache.get(grid);
     var placements = cached && cached.key === key ? cached.placements : null;
     if (!placements) {
-      var heights = Array(columnCount).fill(0);
-      var floor = 0;
-      placements = [];
-      for (var start = 0; start < cards.length; start += placementBatchSize) {
-        var batch = cards.slice(start, start + placementBatchSize);
-        batch.forEach(function (card, index) {
-          card.localIndex = index;
-        });
-        var result = searchBatch(batch, heights, floor);
-        heights = result.heights;
-        placements = placements.concat(result.placements);
-        // Later date batches may use the skyline, but must start below every
-        // preceding batch's card top. They cannot backfill above newer photos.
-        floor =
-          Math.max.apply(
-            null,
-            result.placements.map(function (placement) {
-              return placement.top;
-            })
-          ) + 1;
-      }
+      placements = compactPlan(cards, columnCount);
       layoutCache.set(grid, { key: key, placements: placements });
     }
     placements.forEach(function (placement) {
@@ -266,6 +298,11 @@
       item.style.setProperty("--masonry-row-span", placement.card.rows);
       item.style.gridRowStart = placement.top + 1;
       item.style.gridColumn = placement.column + 1 + " / span " + placement.card.columns;
+    });
+    // Eager images cannot use sizes=auto. Once layout is known, account for
+    // their exact width, including wide cards and responsive column changes.
+    grid.querySelectorAll('.photo-img[loading="eager"][srcset]').forEach(function (img) {
+      if (img.clientWidth > 0) img.sizes = Math.ceil(img.clientWidth) + "px";
     });
   }
 
@@ -368,8 +405,6 @@
   }
 
   function initializePhotoGrid(grid) {
-    grid.classList.add("is-masonry");
-
     grid.querySelectorAll(".grid-item").forEach(function (item) {
       var img = item.querySelector(".photo-img");
       var isPlaced = false;
@@ -420,13 +455,14 @@
       }
     });
 
-    applyMasonry(grid);
+    // Leave distant sections in ordinary CSS grid flow. Intrinsic image
+    // dimensions reserve their height without measuring cards or searching.
+    scheduleMasonry(grid);
   }
 
   assignRandomWideItems();
 
   grids.forEach(function (grid) {
-    // One initial sizing pass reserves the original aspect ratios for lazy images.
     initializePhotoGrid(grid);
   });
 
@@ -452,6 +488,11 @@
     );
     grids.forEach(function (grid) {
       gridObserver.observe(grid);
+      // Start the first screen without waiting for the observer's first callback.
+      if (isNearViewport(grid, 600)) {
+        activeGrids.add(grid);
+        scheduleMasonry(grid);
+      }
     });
   } else {
     grids.forEach(function (grid) {
