@@ -337,4 +337,35 @@ assert.ok(
   priority.grids[0].items.every((item) => item.img.sizes === "880px"),
   "eager image sizes must follow responsive layout"
 );
-console.log("Photo gallery chronology, global gap filling, responsive geometry, completion batching, deferral and fallback checks passed.");
+// Alternation must survive packing search, out-of-order loads and resizing.
+const alternating = fixture({
+  intersectionObserver: false,
+  heights: [220, 100, 310, 150, 180, 90, 260, 130],
+  fixedWideIndices: [0, 2, 4, 6],
+  eagerImages: 3,
+  gridCount: 1,
+});
+function validateAlternation() {
+  const plan = validateLayout(alternating.grids[0], 3);
+  const wide = plan.filter((card) => [0, 2, 4, 6].includes(card.index));
+  assert.deepEqual(wide.map((card) => card.column), [0, 1, 0, 1], "large photos must alternate left and right in date order");
+  assert.ok(wide.every((card, index) => index === 0 || card.row > wide[index - 1].row), "packing must preserve visual order of large photos");
+}
+alternating.flushFrame();
+validateAlternation();
+[...alternating.grids[0].items].reverse().forEach((item) => item.img.dispatch("load"));
+alternating.flushFrame();
+validateAlternation();
+for (const columns of [2, 1, 3]) {
+  alternating.setColumns(columns);
+  alternating.windowEvents.resize();
+  alternating.flushTimers();
+  alternating.flushFrame();
+  validateLayout(alternating.grids[0], columns);
+}
+validateAlternation();
+for (const filename of ["assets/js/photo-gallery.js", "_pages/photos.md", "utils/validate_photo_gallery.cjs"]) {
+  const content = fs.readFileSync(path.join(__dirname, "..", filename), "utf8");
+  assert.doesNotMatch(content, /^(?:<{7}|={7}|>{7})(?: |$)/m, `${filename} must not contain merge conflict markers`);
+}
+console.log("Photo gallery chronology, alternating large photos, gap filling, responsive geometry, loading and merge integrity checks passed.");
