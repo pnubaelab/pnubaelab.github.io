@@ -4,7 +4,14 @@ const path = require("node:path");
 const vm = require("node:vm");
 const source = fs.readFileSync(path.join(__dirname, "../assets/js/photo-gallery.js"), "utf8");
 
-function fixture({ intersectionObserver = true, heights = [200, 200, 200], columns = 3, batchSize = 6 } = {}) {
+function fixture({
+  intersectionObserver = true,
+  heights = [200, 200, 200],
+  columns = 3,
+  eagerImages = 0,
+  fixedWideIndices = [],
+  gridCount = 2,
+} = {}) {
   const frames = [];
   const timers = new Map();
   const windowEvents = {};
@@ -29,20 +36,37 @@ function fixture({ intersectionObserver = true, heights = [200, 200, 200], colum
     };
   }
   function makeGrid(top) {
-    const grid = { items: [], classList: classList(), clientWidth: 900, reads: 0 };
-    grid.querySelectorAll = (selector) =>
-      grid.items.filter((item) => {
+    const grid = {
+      items: [],
+      classList: classList(),
+      clientWidth: 900,
+      reads: 0,
+      getBoundingClientRect: () => ({ top, bottom: top + heights.length * 200, left: 0 }),
+    };
+    grid.querySelectorAll = (selector) => {
+      if (selector.startsWith(".photo-img")) return grid.items.map((item) => item.img).filter((img) => img.loading === "eager" && img.srcset);
+      return grid.items.filter((item) => {
         if (selector === ".grid-item") return true;
         if (selector === ".grid-item.grid-item--wide") return item.classList.contains("grid-item--wide");
         return item.classList.contains("is-photo-loaded") || item.classList.contains("is-photo-error");
       });
+    };
     grid.contains = (item) => grid.items.includes(item);
     grid.appendChild = (item) => {
       grid.items.splice(grid.items.indexOf(item), 1);
       grid.items.push(item);
     };
     for (let index = 0; index < heights.length; index++) {
-      const img = { ...eventTarget(), complete: false, naturalWidth: 1000 };
+      const img = {
+        ...eventTarget(),
+        complete: false,
+        naturalWidth: 1000,
+        loading: top === 0 && index < eagerImages ? "eager" : "lazy",
+        srcset: "preview.webp 480w",
+        get clientWidth() {
+          return grid.clientWidth / columns - 20;
+        },
+      };
       const values = new Map();
       const attrs = new Map();
       const item = {
@@ -50,7 +74,7 @@ function fixture({ intersectionObserver = true, heights = [200, 200, 200], colum
         img,
         index,
         values,
-        dataset: {},
+        dataset: { fixedWide: fixedWideIndices.includes(index) ? "true" : undefined },
         classList: classList(),
         isConnected: true,
         style: {
@@ -85,9 +109,8 @@ function fixture({ intersectionObserver = true, heights = [200, 200, 200], colum
     }
     return grid;
   }
-  const grids = [makeGrid(0), makeGrid(5000)];
+  const grids = Array.from({ length: gridCount }, (_, index) => makeGrid(index * 5000));
   const document = {
-    querySelector: () => ({ dataset: { photoBatchSize: String(batchSize) } }),
     querySelectorAll: (selector) => (selector === ".photo-masonry" ? grids : grids.flatMap((grid) => grid.items)),
     addEventListener() {},
     hidden: false,
@@ -156,7 +179,12 @@ const env = fixture();
 const [visible, offscreen] = env.grids;
 assert.equal(env.observer().observed.length, 2);
 assert.equal(env.observer().options.rootMargin, "600px 0px");
-assert.equal(env.frames.length, 0, "inactive grids must not schedule frames");
+assert.equal(env.frames.length, 1, "first screen must be scheduled before the initial observer callback");
+assert.equal(offscreen.reads, 0, "distant sections must not measure any cards during initialization");
+assert.equal(offscreen.classList.contains("is-masonry"), false, "deferred sections must retain normal CSS grid height");
+env.flushFrame();
+assert.ok(visible.classList.contains("is-masonry"));
+assert.equal(offscreen.reads, 0, "first-screen planning must not measure distant cards");
 const initialReads = offscreen.reads;
 const offscreenItem = offscreen.items[0];
 offscreenItem.img.dispatch("load");
@@ -227,7 +255,7 @@ function placements(grid) {
     };
   });
 }
-function validateLayout(grid, columns, batchSize) {
+function validateLayout(grid, columns) {
   const plan = placements(grid);
   const occupied = new Set();
   plan.forEach((card) => {
@@ -240,20 +268,12 @@ function validateLayout(grid, columns, batchSize) {
       }
     }
   });
-  for (let start = batchSize; start < plan.length; start += batchSize) {
-    const previous = plan.slice(start - batchSize, start);
-    const current = plan.slice(start, start + batchSize);
-    assert.ok(
-      Math.min(...current.map((card) => card.row)) > Math.max(...previous.map((card) => card.row)),
-      "older batches cannot appear above newer ones"
-    );
-  }
   return plan;
 }
 
 const packing = fixture({ intersectionObserver: false, heights: [120, 350, 80, 280, 110, 230, 170, 310, 150, 90, 240, 190, 75, 300, 140] });
 packing.flushFrame();
-const packed = validateLayout(packing.grids[0], 3, 6);
+const packed = validateLayout(packing.grids[0], 3);
 const originalOrder = packing.grids[0].items.map((item) => item.index);
 [...packing.grids[0].items].reverse().forEach((item) => item.img.dispatch("load"));
 packing.flushFrame();
@@ -267,12 +287,12 @@ packing.setColumns(2);
 packing.windowEvents.resize();
 packing.flushTimers();
 packing.flushFrame();
-validateLayout(packing.grids[0], 2, 6);
+validateLayout(packing.grids[0], 2);
 packing.setColumns(1);
 packing.windowEvents.resize();
 packing.flushTimers();
 packing.flushFrame();
-const single = validateLayout(packing.grids[0], 1, 6);
+const single = validateLayout(packing.grids[0], 1);
 assert.deepEqual(
   [...single].sort((a, b) => a.row - b.row).map((card) => card.index),
   originalOrder,
@@ -282,7 +302,7 @@ assert.deepEqual(
 // This fixture has a known shorter arrangement than chronological shortest-column placement.
 const optimization = fixture({ intersectionObserver: false, heights: [120, 350, 80, 280, 110, 230] });
 optimization.flushFrame();
-const optimized = validateLayout(optimization.grids[0], 3, 6);
+const optimized = validateLayout(optimization.grids[0], 3);
 const greedyHeights = [0, 0, 0];
 [120, 350, 80, 280, 110, 230].forEach((height) => {
   const column = greedyHeights.indexOf(Math.min(...greedyHeights));
@@ -290,10 +310,31 @@ const greedyHeights = [0, 0, 0];
 });
 assert.ok(
   Math.max(...optimized.map((card) => card.row + card.rows)) < Math.max(...greedyHeights),
-  "batch search should improve known greedy whitespace"
+  "compact search should improve known greedy whitespace"
 );
 
-const strict = fixture({ intersectionObserver: false, heights: [120, 350, 80, 280, 110, 230, 170], batchSize: 1 });
-strict.flushFrame();
-validateLayout(strict.grids[0], 3, 1);
-console.log("Photo gallery chronology, bounded batch packing, responsive geometry, completion batching, deferral and fallback checks passed.");
+const bridge = fixture({ intersectionObserver: false, heights: [100, 200, 100, 150, 80], fixedWideIndices: [2], gridCount: 1 });
+bridge.flushFrame();
+const bridgePlan = validateLayout(bridge.grids[0], 3);
+// Chronological skyline placement needs 52 rows and loses the gap below the wide card.
+assert.ok(Math.max(...bridgePlan.map((card) => card.row + card.rows)) < 52, "global packing must reclaim space lost below wide cards");
+assert.ok(
+  bridgePlan.some((card, index) => bridgePlan.slice(index + 1).some((later) => later.row < card.row)),
+  "density is allowed to take precedence over visual date order"
+);
+const priority = fixture({ eagerImages: 3 });
+priority.flushFrame();
+assert.equal(Number(priority.grids[0].items[0].style.gridRowStart), 1, "first priority photo must stay at the top");
+assert.ok(
+  priority.grids[0].items.every((item) => item.img.sizes === "280px"),
+  "eager images must use their measured card width"
+);
+priority.setColumns(1);
+priority.windowEvents.resize();
+priority.flushTimers();
+priority.flushFrame();
+assert.ok(
+  priority.grids[0].items.every((item) => item.img.sizes === "880px"),
+  "eager image sizes must follow responsive layout"
+);
+console.log("Photo gallery chronology, global gap filling, responsive geometry, completion batching, deferral and fallback checks passed.");
