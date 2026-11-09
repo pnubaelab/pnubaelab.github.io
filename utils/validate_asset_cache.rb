@@ -1,6 +1,7 @@
 # Real ImageMagick conversions, plus a deterministic stand-in for the tested Rust CLI.
 require 'jekyll'
 require 'minitest/autorun'
+require 'ostruct'
 require_relative '../_plugins/responsive_image_cache'
 
 class AssetCacheTest < Minitest::Test
@@ -23,16 +24,51 @@ class AssetCacheTest < Minitest::Test
     raise 'fixture conversion failed' unless system('convert', '-size', '32x24', "xc:#{color}", @input)
   end
 
-  def generate(quality = 85)
+  def generate(quality = 85, widths: [16])
     config = Jekyll.configuration('source' => @source, 'destination' => @destination,
       'cache_dir' => @cache, 'plugins' => [],
       'imagemagick' => { 'enabled' => true, 'input_directories' => ['assets/img/'],
-        'input_formats' => ['.png'], 'widths' => [16],
+        'input_formats' => ['.png'], 'widths' => widths,
         'output_formats' => { 'webp' => "-quality #{quality} -auto-orient -strip" } })
     site = Jekyll::Site.new(config)
+    @photo = OpenStruct.new(data: { 'img' => 'assets/img/sample.png', 'photo_width' => 32, 'photo_height' => 24 })
+    site.collections['photo'] = OpenStruct.new(docs: [@photo])
     JekyllImagemagick::ImageGenerator.new.generate(site)
-    assert_equal 1, site.static_files.length
+    assert_equal widths.length, site.static_files.length
     assert File.file?(@output)
+    site
+  end
+
+  def test_gallery_uses_real_variant_widths_and_keeps_original_for_zoom
+    site = generate(widths: [16, 64, 128, 0])
+    sources = @photo.data['photo_sources']
+    assert_equal [16, 32], sources.map { |source| source['width'] }, 'do not advertise upscaled widths'
+    sources.each do |source|
+      actual_width, status = Open3.capture2('identify', '-format', '%w', File.join(site.dest, source['url']))
+      assert status.success?
+      assert_equal actual_width.to_i, source['width']
+    end
+    template = Liquid::Template.parse(File.read(File.expand_path('../_includes/photo.html', __dir__)))
+    html = template.render!({ 'project' => @photo.data }, registers: { site: site })
+    assert_includes html, 'data-zoom-src="/assets/img/sample.png"'
+    assert_includes html, 'src="/assets/img/sample-16.webp"'
+    assert_includes html, '/assets/img/sample-64.webp 32w'
+    refute_includes html, '128w'
+    assert_includes html, 'sizes="auto,'
+    assert_includes html, 'loading="lazy"'
+
+    site.config['imagemagick']['enabled'] = false
+    JekyllImagemagick::ImageGenerator.new.generate(site)
+    refute @photo.data.key?('photo_sources'), 'disabled conversion must clear stale sources'
+    html = template.render!({ 'project' => @photo.data }, registers: { site: site })
+    assert_includes html, 'src="/assets/img/sample.png"'
+    refute_includes html, 'srcset='
+    refute_includes html, 'data-zoom-src='
+
+    @photo.data['img'] = 'https://example.com/photo.jpg'
+    site.config['imagemagick']['enabled'] = true
+    JekyllImagemagick::ImageGenerator.new.generate(site)
+    refute @photo.data.key?('photo_sources'), 'external images must retain their original source'
   end
 
   def test_responsive_cache_survives_clean_output_and_checkout_timestamps

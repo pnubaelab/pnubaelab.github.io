@@ -5,6 +5,26 @@ require 'open3'
 require_relative '../bin/asset_cache'
 
 module ResponsiveImageCache
+  def generate(site)
+    photos = site.collections['photo']&.docs || []
+    photos.each { |photo| photo.data.delete('photo_sources') }
+    @photo_variants = Hash.new { |hash, path| hash[path] = [] }
+    result = super
+
+    photos.each do |photo|
+      image = photo.data['img']
+      width = photo.data['photo_width']
+      next unless image.is_a?(String) && width.is_a?(Integer) && width.positive?
+
+      path = File.expand_path(image.sub(%r{\A/+}, ''), site.source)
+      sources = @photo_variants[path].map do |url, edge|
+        { 'url' => url, 'width' => edge.zero? ? width : [edge, width].min }
+      end.uniq { |source| source['width'] }.sort_by { |source| source['width'] }
+      photo.data['photo_sources'] = sources unless sources.empty?
+    end
+    result
+  end
+
   private
 
   def generate_files(site, tuples, formats)
@@ -31,6 +51,10 @@ module ResponsiveImageCache
         generated += 1
       end
       FileUtils.copy_file(cached, output)
+      if extension == 'webp'
+        url = output.delete_prefix(site.dest + File::SEPARATOR)
+        @photo_variants[File.expand_path(input)] << [url, edge]
+      end
 
       prefix = File.dirname(input.sub(site.source, ''))
       site.static_files << JekyllImagemagick::ImageFile.new(site, site.dest, prefix, File.basename(output))

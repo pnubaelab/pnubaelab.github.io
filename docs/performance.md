@@ -61,7 +61,7 @@ After the watcher exclusions and network timeout changes, the final 8080 restart
 
 ## Photo gallery without reducing image quality
 
-The gallery keeps the original image URLs, files, resolution and zoom behavior. A build-time header read adds each photo's `width` and `height` attributes, accounting for EXIF display orientation; CSS continues to display the same responsive size. Reserving the correct aspect ratio lets the browser's native lazy loading defer distant original images. No thumbnail conversion or downsampling is introduced.
+The gallery displays the existing generated WebP variants in cards and loads the original image when zooming. Source files and their original resolution remain intact. A build-time header read adds each photo's `width` and `height` attributes, accounting for EXIF display orientation; CSS continues to display the same responsive size. Reserving the correct aspect ratio lets the browser's native lazy loading defer distant previews. The responsive preview behavior is detailed below.
 
 Photo card styles now appear once per gallery page. The gallery controller is a separate cacheable script. Image completion callbacks are batched into one animation frame per affected visible year section, preserving completion ordering and the existing wide-card placement scoring algorithm. IntersectionObserver defers later layout passes for distant sections. Entrance and movement effects run for visible cards; resizing clears stale desktop column constraints before deferred sections are activated. Reduced motion and browsers without IntersectionObserver retain functional fallbacks.
 
@@ -81,12 +81,20 @@ Validation: `bundle exec ruby utils/validate_asset_cache.rb` checks real ImageMa
 
 Local production benchmarks on 2026-11-09 used isolated copies and the same existing `pnubaelab-site:local` Docker image, `JEKYLL_ENV=production`, `jekyll build --profile` and the same Rust executable. Times include the post-write PNG optimizer; dependency installation, Rust compilation, PurgeCSS and remote cache transfer are excluded.
 
-| Build | Total | Generation | Rendering | Writing, including PNG optimization |
-| --- | ---: | ---: | ---: | ---: |
-| Before, empty output/cache | 465.725s | 211.472s | 23.068s | 230.943s |
-| After, empty output/cache | 274.062s | 223.016s | 22.487s | 28.353s |
-| After, cached assets, empty output and changed image timestamps | 37.400s | 3.656s | 22.385s | 11.140s |
+| Build                                                           |    Total | Generation | Rendering | Writing, including PNG optimization |
+| --------------------------------------------------------------- | -------: | ---------: | --------: | ----------------------------------: |
+| Before, empty output/cache                                      | 465.725s |   211.472s |   23.068s |                            230.943s |
+| After, empty output/cache                                       | 274.062s |   223.016s |   22.487s |                             28.353s |
+| After, cached assets, empty output and changed image timestamps |  37.400s |     3.656s |   22.385s |                             11.140s |
 
 The cold build took about 41% less time; the cached build took about 92% less time than the uncached baseline. The cached run reused all 786 responsive images and all 34 PNGs without running conversion/optimization again. These are local measurements, not GitHub Actions duration guarantees. A cache miss still performs the existing image transformations.
 
 All 786 WebP and 34 optimized PNG outputs matched the baseline byte for byte. All 401 HTML routes remained. The main stylesheet retained 14,398 top-level rules, selectors and declaration ordering with no stylesheet parse errors; the existing graph CSS validation passed. Its bytes differ because it now uses Sass output directly instead of CSSminify2's additional value/whitespace normalizations. All 262 original image assets remained byte-identical. The four cache tests passed 30 assertions.
+
+## Responsive gallery previews (2026-11-09)
+
+The ImageMagick generator now exposes only variants actually produced during the build as `photo_sources`. Width descriptors reflect the smaller of the requested width and original oriented width, so small images are never advertised as upscaled; repeated widths are removed. Missing dimensions, external originals, disabled conversion and unsupported formats retain their original image source. This reuses the same cached WebP files without additional image transformations.
+
+Photo cards use WebP `srcset` with `sizes="auto, (max-width: 768px) 100vw, 620px"`. Supporting browsers use the card's actual width, including randomly widened cards, while older browsers get conservative fallback sizes. `data-zoom-src` points to the original for the existing medium-zoom library. Lazy loading, aspect ratio reservation, masonry, animations, Markdown and original assets remain in place.
+
+Validation: all 167 generated gallery images have responsive sources. The five cache/gallery tests passed 57 assertions, including real variant dimensions, duplicate-width removal, original zoom URLs and disabled/external fallbacks. The production build reused all 786 WebP and 34 PNG cache entries and completed in 38.018 seconds locally. Chromium checks at desktop 1280×900 (DPR 1) and mobile 390×844 (DPR 2) confirmed that no gallery original was requested before zoom, previews loaded as WebP, clicking loaded the original and no JavaScript exceptions occurred. For `2026Informs.jpg`, desktop selected the 20,402-byte 480px preview and mobile selected the 49,042-byte 800px preview, compared with the 1,867,680-byte original. These are file-size comparisons, not network-speed benchmarks.
