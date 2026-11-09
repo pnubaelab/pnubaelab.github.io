@@ -66,3 +66,27 @@ The gallery keeps the original image URLs, files, resolution and zoom behavior. 
 Photo card styles now appear once per gallery page. The gallery controller is a separate cacheable script. Image completion callbacks are batched into one animation frame per affected visible year section, preserving completion ordering and the existing wide-card placement scoring algorithm. IntersectionObserver defers later layout passes for distant sections. Entrance and movement effects run for visible cards; resizing clears stale desktop column constraints before deferred sections are activated. Reduced motion and browsers without IntersectionObserver retain functional fallbacks.
 
 Checks: `npm run test:photo-gallery` exercises burst batching, offscreen deferral/reactivation, error handling, resizing and the observer fallback. `bundle exec ruby utils/validate_photo_dimensions.rb` verifies safe original-header reads, caching, invalid paths and unavailable ImageMagick. Both are wired into Actions. Real Chromium checks on port 8080 cover desktop/mobile, all 165 photos through scrolling, no gallery runtime errors, and medium-zoom opening an original image. Timing/network counts depend on browser heuristics and viewport; no render-speed multiplier is claimed.
+
+## Build caching and redundant CSS compression (2026-11-09)
+
+Markdown, Liquid templates, image dimensions, ImageMagick conversion flags and original image files remain the same. Sass already emits compressed `assets/css/main.css`; it is now excluded from the second CSSminify2 pass. In the baseline, that pass reduced 618,879 bytes to 618,728 bytes while occupying most of the write phase. Other CSS and HTML retain their existing minification.
+
+`_plugins/responsive_image_cache.rb` stores the existing ImageMagick converter's output under `.jekyll-cache/responsive-v1`. Keys include the original file's SHA-256, output format, width, conversion flags, resize flags and ImageMagick version. The generator restores each expected output and registers it with Jekyll's cleaner. Rebuilding after deleting `_site`, or after a checkout changes timestamps, reuses unchanged conversions. Changes to image contents or conversion options regenerate the affected variants.
+
+`bin/asset_cache.rb` stages PNG cache misses for the existing parallel Rust optimizer. Keys include the input bytes and the optimizer executable's SHA-256. Both original and already optimized inputs can reuse their result. Failed conversions/optimizer runs do not populate successful cache entries. Cache writes use temporary files followed by rename; symlinked PNGs are skipped. Original source images are never modified.
+
+The Docker hook and Actions use this same PNG cache. Actions restores `.jekyll-cache` across runs and saves a new snapshot after success; it does not restore `_site`. Jekyll still renders all pages, preserving collection/listing updates and deletions. `--profile` now records rendering costs in deployment logs. The first build populates the cache; deleting `.jekyll-cache` safely forces regeneration.
+
+Validation: `bundle exec ruby utils/validate_asset_cache.rb` checks real ImageMagick output against an uncached conversion, rebuilding with a clean destination and changed timestamps, content/settings invalidation, PNG optimizer invalidation, symlink handling, output permissions and failed-conversion recovery. The PNG integration test substitutes a deterministic CLI; the existing Rust pixel-preservation tests remain in the deployment workflow.
+
+Local production benchmarks on 2026-11-09 used isolated copies and the same existing `pnubaelab-site:local` Docker image, `JEKYLL_ENV=production`, `jekyll build --profile` and the same Rust executable. Times include the post-write PNG optimizer; dependency installation, Rust compilation, PurgeCSS and remote cache transfer are excluded.
+
+| Build | Total | Generation | Rendering | Writing, including PNG optimization |
+| --- | ---: | ---: | ---: | ---: |
+| Before, empty output/cache | 465.725s | 211.472s | 23.068s | 230.943s |
+| After, empty output/cache | 274.062s | 223.016s | 22.487s | 28.353s |
+| After, cached assets, empty output and changed image timestamps | 37.400s | 3.656s | 22.385s | 11.140s |
+
+The cold build took about 41% less time; the cached build took about 92% less time than the uncached baseline. The cached run reused all 786 responsive images and all 34 PNGs without running conversion/optimization again. These are local measurements, not GitHub Actions duration guarantees. A cache miss still performs the existing image transformations.
+
+All 786 WebP and 34 optimized PNG outputs matched the baseline byte for byte. All 401 HTML routes remained. The main stylesheet retained 14,398 top-level rules, selectors and declaration ordering with no stylesheet parse errors; the existing graph CSS validation passed. Its bytes differ because it now uses Sass output directly instead of CSSminify2's additional value/whitespace normalizations. All 262 original image assets remained byte-identical. The four cache tests passed 30 assertions.

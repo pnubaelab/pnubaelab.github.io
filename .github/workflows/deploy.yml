@@ -123,6 +123,13 @@ jobs:
         with:
           ruby-version: "3.3"
           bundler-cache: true
+      - name: Restore generated asset cache
+        uses: actions/cache@v4
+        with:
+          path: .jekyll-cache
+          key: site-assets-v1-${{ runner.os }}-${{ hashFiles('Gemfile.lock', 'rust/Cargo.lock', 'rust/src/**', '_plugins/*cache*.rb', 'bin/asset_cache.rb') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            site-assets-v1-${{ runner.os }}-${{ hashFiles('Gemfile.lock', 'rust/Cargo.lock', 'rust/src/**', '_plugins/*cache*.rb', 'bin/asset_cache.rb') }}-
       - name: Validate original photo dimensions
         run: bundle exec ruby utils/validate_photo_dimensions.rb
       - name: Validate Scholar timeout handling
@@ -144,13 +151,17 @@ jobs:
           sudo apt-get update && sudo apt-get install -y imagemagick
           pip3 install --upgrade nbconvert
           export JEKYLL_ENV=production
-          bundle exec jekyll build
+          bundle exec jekyll build --profile
+      - name: Validate asset cache invalidation
+        run: bundle exec ruby utils/validate_asset_cache.rb
       - name: Purge unused CSS 🧹
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
       - name: Optimize images with Rust
-        run: cargo run --release --locked --manifest-path rust/Cargo.toml -- _site/assets
+        run: |
+          cargo build --release --locked --manifest-path rust/Cargo.toml
+          ruby bin/asset_cache.rb _site/assets rust/target/release/site-optimize .jekyll-cache
       - name: Validate built graph CSS
         run: node utils/validate_collabo_css.cjs
       - name: Deploy 🚀
