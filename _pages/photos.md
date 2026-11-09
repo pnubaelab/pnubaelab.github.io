@@ -25,7 +25,8 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
   --photo-column-count: 3;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-flow: dense;
+  /* Start in date order, but let later photos fill gaps around alternating wide cards. */
+  grid-auto-flow: row dense;
   gap: 4px;
   margin: 20px 0;
   position: relative;
@@ -36,7 +37,6 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
 }
 
 .photo-masonry .grid-item {
-  order: 1;
   width: 100% !important;
   margin-bottom: 0 !important;
   opacity: 0;
@@ -50,7 +50,6 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
 }
 
 .photo-masonry .grid-item.is-photo-loaded {
-  order: 0;
   opacity: 1;
   transform: none;
   pointer-events: auto;
@@ -62,7 +61,6 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
 }
 
 .photo-masonry .grid-item.is-photo-error {
-  order: 0;
   opacity: 1;
   transform: none;
   will-change: auto;

@@ -4,7 +4,7 @@ const path = require("node:path");
 const vm = require("node:vm");
 const source = fs.readFileSync(path.join(__dirname, "../assets/js/photo-gallery.js"), "utf8");
 
-function fixture({ intersectionObserver = true } = {}) {
+function fixture({ intersectionObserver = true, columnCount = 3 } = {}) {
   const frames = [];
   const timers = new Map();
   const windowEvents = {};
@@ -30,14 +30,14 @@ function fixture({ intersectionObserver = true } = {}) {
       return item.classList.contains("is-photo-loaded") || item.classList.contains("is-photo-error");
     });
     grid.contains = (item) => grid.items.includes(item);
-    grid.appendChild = (item) => { grid.items.splice(grid.items.indexOf(item), 1); grid.items.push(item); };
+    grid.appendChild = () => { assert.fail("image completion must not reorder date-sorted items"); };
     for (let index = 0; index < 3; index++) {
       const img = { ...eventTarget(), complete: false, naturalWidth: 1000 };
       const values = new Map();
       const attrs = new Map();
       const item = {
-        ...eventTarget(), img, index, dataset: {}, classList: classList(), isConnected: true,
-        style: { setProperty: (key, value) => values.set(key, value), removeProperty: (key) => values.delete(key) },
+        ...eventTarget(), img, index, dataset: { fixedWide: index % 2 === 0 ? "true" : "false" }, classList: classList(), isConnected: true,
+        style: { setProperty: (key, value) => values.set(key, value), removeProperty(key) { values.delete(key); if (key === "grid-column") delete this.gridColumn; } },
         setAttribute: (key, value) => attrs.set(key, value), removeAttribute: (key) => attrs.delete(key),
         hasAttribute: (key) => attrs.has(key),
         getBoundingClientRect: () => ({ top, bottom: top + 200, left: 0 }),
@@ -56,7 +56,7 @@ function fixture({ intersectionObserver = true } = {}) {
   const window = {
     innerHeight: 800, scrollX: 0, scrollY: 0,
     matchMedia: () => ({ matches: true, addEventListener() {} }),
-    getComputedStyle: () => ({ getPropertyValue: (key) => ({ "--photo-column-count": "3", "column-gap": "4", "row-gap": "4", "grid-auto-rows": "2" })[key] }),
+    getComputedStyle: () => ({ getPropertyValue: (key) => ({ "--photo-column-count": String(columnCount), "column-gap": "4", "row-gap": "4", "grid-auto-rows": "2" })[key] }),
     requestAnimationFrame: (fn) => { frames.push(fn); return frames.length; },
     addEventListener: (event, fn) => { windowEvents[event] = fn; },
   };
@@ -74,6 +74,7 @@ function fixture({ intersectionObserver = true } = {}) {
   vm.runInNewContext(source, context);
   return {
     grids, frames, timers, windowEvents,
+    setColumnCount: (value) => { columnCount = value; },
     observer: () => observer,
     activate: (grid, isIntersecting = true) => observer.callback([{ target: grid, isIntersecting }]),
     flushFrame: () => { const batch = frames.splice(0); batch.forEach((fn) => fn()); },
@@ -86,6 +87,10 @@ const [visible, offscreen] = env.grids;
 assert.equal(env.observer().observed.length, 2);
 assert.equal(env.observer().options.rootMargin, "600px 0px");
 assert.equal(env.frames.length, 0, "inactive grids must not schedule frames");
+for (const grid of env.grids) {
+  assert.equal(grid.items[0].style.gridColumn, "1 / span 2", "first large photo starts on the left before loading");
+  assert.equal(grid.items[2].style.gridColumn, "2 / span 2", "next large photo starts on the right before loading");
+}
 const initialReads = offscreen.reads;
 const offscreenItem = offscreen.items[0];
 offscreenItem.img.dispatch("load");
@@ -96,6 +101,7 @@ env.activate(offscreen);
 assert.equal(env.frames.length, 1);
 env.flushFrame();
 assert.ok(offscreenItem.classList.contains("is-photo-loaded"));
+assert.equal(offscreen.items[2].style.gridColumn, "2 / span 2", "pending large photos retain their alternating side");
 assert.equal(offscreenItem.hasAttribute("aria-hidden"), false);
 assert.ok(offscreen.reads > initialReads);
 env.activate(offscreen, false);
@@ -109,7 +115,7 @@ assert.equal(env.frames.length, 1, "burst image callbacks must share one animati
 const beforeBurstReads = visible.reads;
 env.flushFrame();
 assert.equal(visible.reads - beforeBurstReads, 3, "burst must measure each card once");
-assert.deepEqual(visible.items.map((item) => item.index), [2, 0, 1], "retain image completion ordering");
+assert.deepEqual(visible.items.map((item) => item.index), [0, 1, 2], "retain newest-first order despite out-of-order loading");
 assert.ok(originals[0].classList.contains("is-photo-error"));
 assert.ok(originals[1].classList.contains("is-photo-loaded"));
 originals[0].img.dispatch("load");
@@ -136,4 +142,20 @@ distantItem.img.dispatch("load");
 assert.equal(fallback.frames.length, 1, "fallback must continue revealing offscreen images");
 fallback.flushFrame();
 assert.ok(distantItem.classList.contains("is-photo-loaded"));
-console.log("Photo gallery batching, deferred activation, error handling, resize and observer fallback checks passed.");
+// Exercise breakpoint changes with pending and completed large photos.
+for (const columns of [2, 1, 3]) {
+  fallback.setColumnCount(columns);
+  fallback.windowEvents.resize();
+  fallback.flushTimers();
+  fallback.flushFrame();
+  for (const grid of fallback.grids) {
+    assert.equal(grid.items[0].style.gridColumn, columns >= 3 ? "1 / span 2" : undefined);
+    assert.equal(grid.items[2].style.gridColumn, columns >= 3 ? "2 / span 2" : undefined);
+    assert.deepEqual(grid.items.map((item) => item.index), [0, 1, 2]);
+  }
+}
+
+const page = fs.readFileSync(path.join(__dirname, "../_pages/photos.md"), "utf8");
+assert.match(page, /grid-auto-flow:\s*row\s+dense\s*;/, "CSS must fill gaps while retaining date-sorted source order");
+assert.doesNotMatch(page, /\border:\s*\d/, "loading state must not change visual order");
+console.log("Photo gallery chronology, alternating large photos, responsive placement, batching and deferred loading checks passed.");

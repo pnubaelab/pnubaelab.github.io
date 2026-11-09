@@ -1,6 +1,5 @@
 (function () {
     var randomWideItemRatio = 0.05;
-    var widePlacementPassCount = 3;
     var scheduledGrids = [];
     var pendingPlacements = new Map();
     var enteringCandidates = [];
@@ -118,124 +117,16 @@
       reducedMotionQuery.addListener(handleReducedMotionChange);
     }
 
-    function measureLoadedBottom(items) {
-      return items.reduce(function (bottom, item) {
-        return Math.max(bottom, item.offsetTop + item.offsetHeight);
-      }, 0);
-    }
-
-    function getRenderedColumnStart(grid, item, columnCount, columnGap) {
-      var columnWidth = (grid.clientWidth - columnGap * (columnCount - 1)) / columnCount;
-      var columnStep = columnWidth + columnGap;
-      return Math.max(1, Math.min(columnCount - 1, Math.round(item.offsetLeft / columnStep) + 1));
-    }
-
-    function measureWideTopGap(grid, wideItem, loadedItems, columnCount, columnGap, rowGap, columnStart) {
-      var columnWidth = (grid.clientWidth - columnGap * (columnCount - 1)) / columnCount;
-      var wideTop = wideItem.offsetTop;
-      var totalGap = 0;
-
-      for (var offset = 0; offset < 2; offset += 1) {
-        var columnIndex = columnStart - 1 + offset;
-        var columnCenter = columnIndex * (columnWidth + columnGap) + columnWidth / 2;
-        var supportBottom = 0;
-
-        loadedItems.forEach(function (item) {
-          if (item === wideItem) return;
-
-          var itemBottom = item.offsetTop + item.offsetHeight;
-          var coversColumn = item.offsetLeft <= columnCenter && item.offsetLeft + item.offsetWidth >= columnCenter;
-
-          if (coversColumn && itemBottom <= wideTop) {
-            supportBottom = Math.max(supportBottom, itemBottom);
-          }
-        });
-
-        totalGap += Math.max(0, wideTop - supportBottom - rowGap);
-      }
-
-      return totalGap;
-    }
-
-    function measureTotalWideTopGap(grid, wideItems, loadedItems, columnCount, columnGap, rowGap) {
-      return wideItems.reduce(function (totalGap, wideItem) {
-        var columnStart = getRenderedColumnStart(grid, wideItem, columnCount, columnGap);
-        return totalGap + measureWideTopGap(grid, wideItem, loadedItems, columnCount, columnGap, rowGap, columnStart);
-      }, 0);
-    }
-
-    function optimizeWidePlacements(grid, computedStyle) {
-      var columnCount = parseInt(computedStyle.getPropertyValue('--photo-column-count'), 10);
-      var columnGap = parseFloat(computedStyle.getPropertyValue('column-gap')) || 0;
-      var rowGap = parseFloat(computedStyle.getPropertyValue('row-gap')) || 0;
-      var wideItems = Array.prototype.slice.call(grid.querySelectorAll('.grid-item.grid-item--wide'));
-
-      wideItems.forEach(function (item) {
-        if (!item.classList.contains('is-photo-loaded') && !item.classList.contains('is-photo-error')) {
+    function assignWidePlacements(grid, columnCount) {
+      // Use date order, including pending images, so loading cannot flip sides.
+      grid.querySelectorAll('.grid-item.grid-item--wide').forEach(function (item, index) {
+        if (columnCount >= 3) {
+          var columnStart = index % 2 === 0 ? 1 : columnCount - 1;
+          item.style.gridColumn = columnStart + ' / span 2';
+        } else {
           item.style.removeProperty('grid-column');
         }
       });
-
-      if (!columnCount || columnCount < 3 || grid.clientWidth <= 0) {
-        wideItems.forEach(function (item) {
-          item.style.removeProperty('grid-column');
-        });
-        return;
-      }
-
-      var loadedItems = getLoadedItems(grid);
-      var loadedWideItems = wideItems.filter(function (item) {
-        return item.classList.contains('is-photo-loaded') || item.classList.contains('is-photo-error');
-      });
-
-      // Re-evaluate both adjacent column pairs. A few light coordinate-descent
-      // passes let neighboring wide cards settle without changing DOM order.
-      for (var pass = 0; pass < widePlacementPassCount; pass += 1) {
-        loadedWideItems.forEach(function (wideItem) {
-          var bestPlacement = null;
-          var candidateStarts = [null];
-
-          for (var start = 1; start < columnCount; start += 1) {
-            candidateStarts.push(start);
-          }
-
-          candidateStarts.forEach(function (columnStart) {
-            if (columnStart === null) {
-              wideItem.style.removeProperty('grid-column');
-            } else {
-              wideItem.style.gridColumn = columnStart + ' / span 2';
-            }
-
-            var layoutBottom = measureLoadedBottom(loadedItems);
-            var topGap = measureTotalWideTopGap(grid, loadedWideItems, loadedItems, columnCount, columnGap, rowGap);
-            var layoutScore = layoutBottom + topGap;
-
-            if (
-              !bestPlacement ||
-              layoutScore < bestPlacement.layoutScore - 0.5 ||
-              (Math.abs(layoutScore - bestPlacement.layoutScore) <= 0.5 && layoutBottom < bestPlacement.layoutBottom - 0.5) ||
-              (Math.abs(layoutScore - bestPlacement.layoutScore) <= 0.5 &&
-                Math.abs(layoutBottom - bestPlacement.layoutBottom) <= 0.5 &&
-                topGap < bestPlacement.topGap)
-            ) {
-              bestPlacement = {
-                columnStart: columnStart,
-                layoutBottom: layoutBottom,
-                topGap: topGap,
-                layoutScore: layoutScore,
-              };
-            }
-          });
-
-          if (bestPlacement) {
-            if (bestPlacement.columnStart === null) {
-              wideItem.style.removeProperty('grid-column');
-            } else {
-              wideItem.style.gridColumn = bestPlacement.columnStart + ' / span 2';
-            }
-          }
-        });
-      }
     }
 
     function applyMasonry(grid) {
@@ -246,11 +137,8 @@
 
       if (!rowHeight || rowHeight <= 0) return;
 
-      if (columnCount < 3) {
-        grid.querySelectorAll('.grid-item.grid-item--wide').forEach(function (item) {
-          item.style.removeProperty('grid-column');
-        });
-      }
+      // Set widths before measuring card heights at this breakpoint.
+      assignWidePlacements(grid, columnCount);
 
       var measurements = Array.prototype.slice.call(grid.querySelectorAll('.grid-item')).map(function (item) {
         var content = item.querySelector('.card') || item;
@@ -266,8 +154,6 @@
       measurements.forEach(function (measurement) {
         measurement.item.style.setProperty('--masonry-row-span', measurement.rowSpan);
       });
-
-      optimizeWidePlacements(grid, computedStyle);
     }
 
     function scheduleMasonry(grid) {
@@ -380,8 +266,7 @@
 
           var placements = pendingPlacements.get(grid) || [];
           placements.push(function () {
-            // Retain completion ordering within each year without a layout per load.
-            grid.appendChild(item);
+            // Reveal in place: the template already supplies newest-first order.
             item.removeAttribute('aria-hidden');
             item.classList.add(stateClass);
             if (stateClass === 'is-photo-loaded') enteringCandidates.push(item);
