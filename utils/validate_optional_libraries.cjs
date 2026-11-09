@@ -9,23 +9,21 @@ const flush = () => new Promise((resolve) => setImmediate(resolve));
 async function checkLibraries({ present = true, failAt } = {}) {
   const requests = [];
   const errors = [];
-  const configs = [{
-    dataset: { selector: ".grid" },
-    textContent: JSON.stringify([
-      { src: "library.js", integrity: "sha256-library" },
-      { src: "plugin.js" },
-      { src: "setup.js" },
-    ]),
-  }];
+  const configs = [
+    {
+      dataset: { selector: ".grid" },
+      textContent: JSON.stringify([{ src: "library.js", integrity: "sha256-library" }, { src: "plugin.js" }, { src: "setup.js" }]),
+    },
+  ];
   const document = {
     querySelectorAll: () => configs,
-    querySelector: () => present ? {} : null,
+    querySelector: () => (present ? {} : null),
     createElement: () => ({}),
     head: {
       appendChild(script) {
         requests.push(script);
         // Keep load completion asynchronous to exercise the dependency chain.
-        queueMicrotask(() => script.src === failAt ? script.onerror() : script.onload());
+        queueMicrotask(() => (script.src === failAt ? script.onerror() : script.onload()));
       },
     },
   };
@@ -42,7 +40,7 @@ function checkShortcut(platform, readyState, hasToggle = true) {
   let ready;
   const document = {
     readyState,
-    querySelector: () => hasToggle ? toggle : null,
+    querySelector: () => (hasToggle ? toggle : null),
     addEventListener(event, callback, options) {
       assert.equal(event, "DOMContentLoaded");
       assert.equal(options.once, true);
@@ -64,7 +62,10 @@ function checkShortcut(platform, readyState, hasToggle = true) {
   assert.equal(absent.errors.length, 0);
 
   const success = await checkLibraries();
-  assert.deepEqual(success.requests.map((script) => script.src), ["library.js", "plugin.js", "setup.js"]);
+  assert.deepEqual(
+    success.requests.map((script) => script.src),
+    ["library.js", "plugin.js", "setup.js"]
+  );
   assert.ok(success.requests.every((script) => script.async === false));
   assert.equal(success.requests[0].integrity, "sha256-library");
   assert.equal(success.requests[0].crossOrigin, "anonymous");
@@ -73,7 +74,11 @@ function checkShortcut(platform, readyState, hasToggle = true) {
   for (const failAt of ["library.js", "plugin.js"]) {
     const failed = await checkLibraries({ failAt });
     const expected = failAt === "library.js" ? ["library.js"] : ["library.js", "plugin.js"];
-    assert.deepEqual(failed.requests.map((script) => script.src), expected, "failed dependencies must prevent setup");
+    assert.deepEqual(
+      failed.requests.map((script) => script.src),
+      expected,
+      "failed dependencies must prevent setup"
+    );
     assert.deepEqual(failed.errors, [`Could not load ${failAt}`]);
   }
 

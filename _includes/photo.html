@@ -7,7 +7,41 @@
   <div class="card hoverable">
     <div class="photo-img-wrap">
       {% if project.img %}
-        <img class="photo-img" src="{{ project.img | relative_url }}" alt="project thumbnail" {% if project.photo_width and project.photo_height %}width="{{ project.photo_width }}" height="{{ project.photo_height }}" {% endif %}loading="lazy" decoding="async" data-zoomable>
+        {% assign photo_is_priority = false %}
+        {% if include.photo_priority and include.photo_priority <= 3 %}
+          {% assign photo_is_priority = true %}
+        {% endif %}
+        {% assign photo_sources = project.photo_sources %}
+        {% assign photo_source_count = photo_sources | size %}
+        <img
+          class="photo-img"
+          {% if photo_source_count > 0 %}
+            src="{{ photo_sources.first.url | relative_url }}"
+            srcset="{% for source in photo_sources %}{{ source.url | relative_url | uri_escape }} {{ source.width }}w{% unless forloop.last %}, {% endunless %}{% endfor %}"
+            {% if photo_is_priority %}
+              sizes="(max-width: 480px) 100vw, (max-width: 768px) {% if project.size == 'large' %}100vw{% else %}50vw{% endif %}, {% if project.size == 'large' %}620px{% else %}300px{% endif %}"
+            {% else %}
+              sizes="auto, (max-width: 768px) 100vw, 620px"
+            {% endif %}
+            data-zoom-src="{{ project.img | relative_url }}"
+          {% else %}
+            src="{{ project.img | relative_url }}"
+          {% endif %}
+          alt="project thumbnail"
+          {% if project.photo_width and project.photo_height %}
+            width="{{ project.photo_width }}" height="{{ project.photo_height }}"
+          {% endif -%}
+          {% if photo_is_priority %}
+            loading="eager"
+            {% if include.photo_priority == 1 %}
+              fetchpriority="high"
+            {% endif %}
+          {% else %}
+            loading="lazy"
+          {% endif %}
+          decoding="async"
+          data-zoomable
+        >
       {% endif %}
       <div class="photo-desc-overlay">{{ project.description }}</div>
       <div class="polaroid-text">{{ project.date | date: '%b %d, %Y' }}</div>

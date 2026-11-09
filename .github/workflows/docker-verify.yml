@@ -80,6 +80,7 @@ jobs:
           docker compose exec -T jekyll bundle exec ruby utils/validate_photo_dimensions.rb
           docker compose exec -T jekyll node utils/validate_photo_gallery.cjs
           docker compose exec -T jekyll bundle exec ruby utils/validate_scholar_timeouts.rb
+          docker compose exec -T jekyll bundle exec ruby utils/validate_asset_cache.rb
       - name: Verify Rust optimization ran during Jekyll build
         shell: bash
         run: |

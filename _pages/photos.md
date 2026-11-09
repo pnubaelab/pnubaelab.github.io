@@ -25,8 +25,12 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
   --photo-column-count: 3;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+<<<<<<< HEAD
   /* Start in date order, but let later photos fill gaps around alternating wide cards. */
   grid-auto-flow: row dense;
+=======
+  grid-auto-flow: row;
+>>>>>>> refs/remotes/origin/main
   gap: 4px;
   margin: 20px 0;
   position: relative;
@@ -192,6 +196,7 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
 
 <div class="photo-gallery">
   {% assign sorted_projects = site.photo | sort: 'date' | reverse %}
+  {% assign priority_photo_count = 0 %}
 
 {% if page.display_categories %}
 {% for year in page.display_categories %}
@@ -213,7 +218,8 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
 {% for project in sorted_projects %}
 {% assign project_year = project.date | date: "%Y" %}
 {% if project_year == year_str %}
-{% include photo.html %}
+{% assign priority_photo_count = priority_photo_count | plus: 1 %}
+{% include photo.html photo_priority=priority_photo_count %}
 {% endif %}
 {% endfor %}
 </div>
@@ -223,7 +229,8 @@ display_categories: [2026, 2025, 2024, 2023, 2022, 2021, 2020]
 {% else %}
 <div class="photo-masonry">
 {% for project in sorted_projects %}
-{% include photo.html %}
+{% assign priority_photo_count = priority_photo_count | plus: 1 %}
+{% include photo.html photo_priority=priority_photo_count %}
 {% endfor %}
 </div>
 {% endif %}
