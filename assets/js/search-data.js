@@ -412,6 +412,11 @@ ninja.data = [{
           description: "",
           section: "News",handler: () => {
               window.location.href = "/news/2026%EB%85%84SCSC%EC%84%BC%ED%84%B0%EC%B6%94%EC%A7%84%EC%84%B1%EA%B3%BC%EB%B3%B4%EA%B3%A0/";
+            },},{id: "news-professor-hyerim-bae-selected-for-the-37th-baekam-paper-award",
+          title: 'Professor Hyerim Bae Selected for the 37th Baekam Paper Award!!',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/2026-11-11-%EB%B0%B1%EC%95%94%EB%85%BC%EB%AC%B8%EC%83%81/";
             },},{id: "people-nur-ahmad-wahid",
           title: 'Nur Ahmad Wahid',
           description: "M.S. Software Engineer at Diverta Inc.",
