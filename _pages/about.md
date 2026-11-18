@@ -284,7 +284,9 @@ latest_posts:
   <h1 class="hero-title tech-text" data-tech-text>
     <span class="tech-text-label">BAE LAB</span><canvas class="tech-text-canvas" aria-hidden="true"></canvas>
   </h1>
-  <p class="hero-subtitle">BIGDATA ANALYTICS ENGINEERING LAB · PNU</p>
+  <p class="hero-subtitle tech-text" data-tech-text>
+    <span class="tech-text-label">BIGDATA ANALYTICS ENGINEERING LAB · PNU</span><canvas class="tech-text-canvas" aria-hidden="true"></canvas>
+  </p>
 </div>
 
 <script src="{{ '/assets/js/tech-text.js' | relative_url | bust_file_cache }}" defer></script>

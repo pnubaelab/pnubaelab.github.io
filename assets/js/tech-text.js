@@ -67,7 +67,6 @@ SOFTWARE.
     let dpr = 1;
     let fontSize = 1;
     let pad = 0;
-    let baseline = 0;
     let press = null;
     let hovered = -1;
     let ink = "#fff";
@@ -93,7 +92,7 @@ SOFTWARE.
     const sprite = (glyph, outlined, font, color) => {
       const edge = 7;
       const left = glyph.x - glyph.metrics.actualBoundingBoxLeft - edge;
-      const top = baseline - glyph.metrics.actualBoundingBoxAscent - edge;
+      const top = glyph.baseline - glyph.metrics.actualBoundingBoxAscent - edge;
       const image = document.createElement("canvas");
       image.width = Math.max(1, Math.ceil((glyph.metrics.actualBoundingBoxLeft + glyph.metrics.actualBoundingBoxRight + edge * 2) * dpr));
       image.height = Math.max(1, Math.ceil((glyph.metrics.actualBoundingBoxAscent + glyph.metrics.actualBoundingBoxDescent + edge * 2) * dpr));
@@ -107,10 +106,10 @@ SOFTWARE.
         c.lineWidth = 3;
         c.strokeStyle = color;
         c.setLineDash([4, 2]);
-        c.strokeText(glyph.char, glyph.x, baseline);
+        c.strokeText(glyph.char, glyph.x, glyph.baseline);
         c.globalCompositeOperation = "destination-out";
       }
-      c.fillText(glyph.char, glyph.x, baseline);
+      c.fillText(glyph.char, glyph.x, glyph.baseline);
       return { image, left, top };
     };
 
@@ -120,18 +119,23 @@ SOFTWARE.
       const style = getComputedStyle(label);
       fontSize = parseFloat(style.fontSize);
       ink = style.color;
-      pad = Math.ceil(fontSize * 0.8);
+      pad = Math.max(28, Math.ceil(fontSize * 0.8));
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, Math.round(rect.width * dpr));
       canvas.height = Math.max(1, Math.round((rect.height + pad * 2) * dpr));
       canvas.style.top = `${-pad}px`;
       canvas.style.height = `${rect.height + pad * 2}px`;
-      baseline = baselineMarker.getBoundingClientRect().top - rect.top + pad;
       const font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
       ctx.font = font;
       ctx.textBaseline = "alphabetic";
       const range = document.createRange();
       const textNode = label.firstChild;
+      range.selectNodeContents(label);
+      const lines = range.getClientRects();
+      const lastLineBottom = lines[lines.length - 1]?.bottom ?? rect.bottom;
+      // The marker sits on the last line. Apply its baseline offset to each
+      // letter's line so wrapped text keeps its original positions.
+      const baselineOffset = baselineMarker.getBoundingClientRect().top - lastLineBottom;
       let offset = 0;
       glyphs = Array.from(label.textContent, (char) => {
         range.setStart(textNode, offset);
@@ -146,6 +150,7 @@ SOFTWARE.
           right: box.right - rect.left,
           top: box.top - rect.top,
           bottom: box.bottom - rect.top,
+          baseline: box.bottom - rect.top + pad + baselineOffset,
           metrics: ctx.measureText(char),
           offset: 0,
           velocity: 0,
@@ -247,9 +252,9 @@ SOFTWARE.
         const glyph = glyphs[hovered];
         const target = {
           x1: glyph.x - glyph.metrics.actualBoundingBoxLeft - 6,
-          y1: baseline - glyph.metrics.actualBoundingBoxAscent + glyph.offset - 6,
+          y1: glyph.baseline - glyph.metrics.actualBoundingBoxAscent + glyph.offset - 6,
           x2: glyph.x + glyph.metrics.actualBoundingBoxRight + 6,
-          y2: baseline + glyph.metrics.actualBoundingBoxDescent + glyph.offset + 6,
+          y2: glyph.baseline + glyph.metrics.actualBoundingBoxDescent + glyph.offset + 6,
         };
         for (const key of ["x1", "y1", "x2", "y2"]) {
           frame[key] = reducedMotion.matches || frame.index < 0 || frame.alpha < 0.02 ? target[key] : approach(frame[key], target[key], dt, 0.08);
