@@ -1639,12 +1639,12 @@ ninja.data = [{
               window.location.href = "/photo/%EC%B6%95%EC%A0%9C/";
             },},{id: "photo-2026-informs",
           title: '2026 INFORMS',
-          description: "2026 INFORMS, Los Angels, USA",
+          description: "2026 INFORMS, San Francisco, CA, USA",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026Informs2/";
             },},{id: "photo-2026-informs",
           title: '2026 INFORMS',
-          description: "2026 INFORMS, Los Angels, USA",
+          description: "2026 INFORMS, San Francisco, CA, USA",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026Informs/";
             },},{id: "projects-",
