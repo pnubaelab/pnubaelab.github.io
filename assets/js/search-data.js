@@ -1647,11 +1647,31 @@ ninja.data = [{
           description: "2026 INFORMS, San Francisco, CA, USA",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026Informs/";
+            },},{id: "photo-2026년-icicic",
+          title: '2026년 ICICIC',
+          description: "ICICIC2026, Chongqing, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026ICICIC3/";
+            },},{id: "photo-2026년-icicic",
+          title: '2026년 ICICIC',
+          description: "ICICIC2026, Chongqing, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026ICICIC4/";
             },},{id: "photo-추계학술대회",
           title: '추계학술대회',
           description: "2026 한국신뢰성학회 추계학술대회,PARADISE HOTEL, Busan, Korea",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026%EB%85%84%EC%B6%94%EA%B3%84%EC%8B%A0%EB%A2%B0%EC%84%B1%ED%95%99%ED%9A%8C/";
+            },},{id: "photo-2026년-icicic",
+          title: '2026년 ICICIC',
+          description: "ICICIC2026, Chongqing, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026ICICIC1/";
+            },},{id: "photo-2026년-icicic",
+          title: '2026년 ICICIC',
+          description: "ICICIC2026, Chongqing, China",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/2026ICICIC2/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
