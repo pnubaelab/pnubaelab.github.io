@@ -1,0 +1,37 @@
+{
+  "cli_version": "0.5.0",
+  "checkpoint_id": "bc8a8a63ba72",
+  "session_id": "b21ea66a-bd04-4794-a46a-3d55877ef5c8",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-23T10:04:32.537664047Z",
+  "branch": "main",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "assets/img/2026ICICIC_4.jpg",
+    "_photo/2026ICICIC1.md",
+    "_photo/2026ICICIC2.md",
+    "_photo/2026ICICIC3.md",
+    "_photo/2026ICICIC4.md",
+    "assets/img/2026ICICIC.jpg",
+    "assets/img/2026ICICIC_2.jpg",
+    "assets/img/2026ICICIC_3.jpg"
+  ],
+  "agent": "Copilot CLI",
+  "turn_id": "b9280f28a296",
+  "token_usage": {
+    "input_tokens": 0,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 0,
+    "output_tokens": 0,
+    "api_call_count": 0
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-11-23T10:04:32.327229183Z",
+    "agent_lines": 28,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 28,
+    "agent_percentage": 100
+  }
+}
