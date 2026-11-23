@@ -3,7 +3,7 @@
   "checkpoint_id": "bc8a8a63ba72",
   "strategy": "manual-commit",
   "branch": "main",
-  "checkpoints_count": 0,
+  "checkpoints_count": 1,
   "files_touched": [
     "_photo/2026ICICIC1.md",
     "_photo/2026ICICIC2.md",
@@ -20,6 +20,12 @@
       "transcript": "/bc/8a8a63ba72/0/full.jsonl",
       "content_hash": "/bc/8a8a63ba72/0/content_hash.txt",
       "prompt": "/bc/8a8a63ba72/0/prompt.txt"
+    },
+    {
+      "metadata": "/bc/8a8a63ba72/1/metadata.json",
+      "transcript": "/bc/8a8a63ba72/1/full.jsonl",
+      "content_hash": "/bc/8a8a63ba72/1/content_hash.txt",
+      "prompt": "/bc/8a8a63ba72/1/prompt.txt"
     }
   ],
   "token_usage": {
