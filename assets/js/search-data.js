@@ -1672,6 +1672,26 @@ ninja.data = [{
           description: "ICICIC2026, Chongqing, China",
           section: "Photo",handler: () => {
               window.location.href = "/photo/2026ICICIC2/";
+            },},{id: "photo-grn-bri-2026",
+          title: 'GRN-BRI 2026',
+          description: "GRN-BRI 2026, Jeonbuk National University, Jeonju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/GRNBRI2026_1/";
+            },},{id: "photo-grn-bri-2026",
+          title: 'GRN-BRI 2026',
+          description: "GRN-BRI 2026, Jeonbuk National University, Jeonju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/GRNBRI2026_2/";
+            },},{id: "photo-grn-bri-2026",
+          title: 'GRN-BRI 2026',
+          description: "GRN-BRI 2026, Jeonbuk National University, Jeonju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/GRNBRI2026_3/";
+            },},{id: "photo-grn-bri-2026",
+          title: 'GRN-BRI 2026',
+          description: "GRN-BRI 2026, Jeonbuk National University, Jeonju, Korea",
+          section: "Photo",handler: () => {
+              window.location.href = "/photo/GRNBRI2026_4/";
             },},{id: "projects-",
           title: '',
           description: "센서 인식 기술을 활용한 AGV 트랜스폰더 예지보전 기술 개발",
